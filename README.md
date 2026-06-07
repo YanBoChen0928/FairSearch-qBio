@@ -1,16 +1,6 @@
 # FairSearch-qBio
 
-Evaluating and Mitigating Institutional Bias in Academic RAG
-for Quantitative Biology (q-bio) papers on arXiv.
-
-# FairSearch-qBio
-
-Evaluating and Mitigating Institutional Bias in Academic RAG
-for Quantitative Biology (q-bio) papers on arXiv.
-
-# FairSearch-qBio
-
-## Evaluating and Mitigating Institutional Bias in Academic RAG Systems
+## Evaluating and Mitigating Institutional Bias in Academic RAG for Quantitative Biology (q-bio) papers on arXiv.
 
 **Course:** CS 6200 Information Retrieval — Northeastern University (Summer 2026)  
 **Instructor:** Prof. Shanu Sushmita  
