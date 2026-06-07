@@ -113,13 +113,13 @@ FairSearch-qBio/
 | ---------------------------------------------- | ------ | -------------- |
 | Step 1 — Data preparation                      | Yan-Bo | ✅ Complete    |
 | Step 2 — Embedding (all-MiniLM-L6-v2)          | Yan-Bo | 🔄 In progress |
-| Step 3 — ChromaDB ingestion                    | Jici   | 🔄 In progress |
+| Step 3 — ChromaDB ingestion                    | Raj    | 🔄 In progress |
 | Step 4 — Query generation                      | Yan-Bo | 🔄 In progress |
 | Step 5 — Baseline retrieval + Precision/Recall | Jici   | ⏳ Upcoming    |
-| Step 6 — Fair MMR re-ranking                   | Jici   | ⏳ Upcoming    |
-| Step 7 — Gemini generation                     | Jici   | ⏳ Upcoming    |
-| Step 8 — Full evaluation                       | Both   | ⏳ Upcoming    |
-| Step 9 — Streamlit dashboard                   | Both   | ⏳ Upcoming    |
+| Step 6 — Fair MMR re-ranking                   | xxxx   | ⏳ Upcoming    |
+| Step 7 — Gemini generation                     | xxxx   | ⏳ Upcoming    |
+| Step 8 — Full evaluation                       | xxxx   | ⏳ Upcoming    |
+| Step 9 — Streamlit dashboard                   | xxxx   | ⏳ Upcoming    |
 
 ---
 
