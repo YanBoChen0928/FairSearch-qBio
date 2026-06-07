@@ -1,0 +1,25 @@
+# Raw data
+data/raw/*
+!data/raw/.gitkeep
+
+# Processed data (shared through Kaggle Dataset instead)
+data/processed/*
+!data/processed/.gitkeep
+
+# ChromaDB index
+data/chroma/*
+!data/chroma/.gitkeep
+
+# ChromaDB / SQLite files
+*.sqlite3
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
