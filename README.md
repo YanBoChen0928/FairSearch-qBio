@@ -4,7 +4,7 @@
 
 **Course:** CS 6200 Information Retrieval — Northeastern University (Summer 2026)  
 **Instructor:** Prof. Shanu Sushmita  
-**Team:** Jici Jiang · Raj Lucka · Yan-Bo Chen
+**Team:** Jici Jiang · Raj Lucka · Yan-Bo Chen  
 **GitHub:** [github.com/YanBoChen0928/FairSearch-qBio](https://github.com/YanBoChen0928/FairSearch-qBio)
 
 ---
@@ -63,8 +63,9 @@ FairSearch-qBio/
 │
 ├── data/
 │   ├── raw/                    # Raw arXiv JSON/CSV metadata (not committed, ~4GB)
-│   ├── processed/              # Preprocessed metadata (filtered, enriched)
-│   │   └── qbio_papers.json    # 54,971 q-bio abstracts (clean, no institution yet)
+│   ├── processed/              # Preprocessed metadata (not committed)
+│   │   └── qbio_papers.json    # NOT in GitHub — import from Kaggle Dataset
+│   ├── chroma/                 # ChromaDB index files (not committed)
 │   └── queries.json            # 50 starter queries for audit
 │
 ├── src/                        # Core modules
@@ -79,7 +80,7 @@ FairSearch-qBio/
 ├── notebooks/                  # Step-by-step development notebooks
 │   ├── step1_data_prep.ipynb       # Yan-Bo: filter & clean 54k q-bio papers
 │   ├── step2_embedding.ipynb       # Yan-Bo: embed abstracts with all-MiniLM-L6-v2
-│   ├── step3_chromadb.ipynb        # Jici: store vectors in ChromaDB
+│   ├── step3_chromadb.ipynb         # Raj: store vectors in ChromaDB
 │   ├── step4_query_generation.ipynb # Yan-Bo: generate 50 research queries
 │   ├── step5_retrieval_baseline.ipynb # Jici: Top-K search + Precision/Recall
 │   ├── step6_reranking.ipynb       # Jici: Fair MMR / Fair-Top-K
@@ -101,7 +102,7 @@ FairSearch-qBio/
 
 | Step                                           | Owner  | Status         |
 | ---------------------------------------------- | ------ | -------------- |
-| Step 1 — Data preparation                      | Yan-Bo | ✅ Complete    |
+| Step 1 — Data preparation                      | Yan-Bo | 🔄 In progress |
 | Step 2 — Embedding (all-MiniLM-L6-v2)          | Yan-Bo | 🔄 In progress |
 | Step 3 — ChromaDB ingestion                    | Raj    | 🔄 In progress |
 | Step 4 — Query generation                      | Yan-Bo | 🔄 In progress |
@@ -150,7 +151,7 @@ The raw arXiv snapshot (~4GB) is too large to commit to GitHub. To reproduce:
 2. Place at `data/raw/arxiv-metadata-oai-snapshot.json`
 3. Run `notebooks/step1_data_prep.ipynb` to extract the 54,971 q-bio papers
 
-Institution labels are enriched via the [OpenAlex API](https://openalex.org/) and cached in `data/processed/`.
+Institution labels are enriched via the OpenAlex API where available and cached locally in `data/processed/`, but these generated data files are not committed to GitHub. If needed, they should be shared through Kaggle Datasets.
 
 ---
 
@@ -166,7 +167,7 @@ Institution labels are enriched via the [OpenAlex API](https://openalex.org/) an
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/YanBoChen0928/FairSearch-qBio.git
+git clone https://github.com/YanBoChen0928/FairSearch-qBio.git CS6200-Project
 cd CS6200-Project
 
 # 2. Install dependencies
