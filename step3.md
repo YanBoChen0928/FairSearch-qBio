@@ -47,13 +47,13 @@ You need to import two Kaggle Datasets into your notebook before running this st
 - **Content:** 55,301 q-bio papers with `paper_id`, `title`, `abstract`, `authors`, `categories`, `year`
 
 ### Dataset 2: Pre-computed embeddings
-- **Kaggle Dataset URL:** (Yan-Bo will share this after Step 2 is complete)
+- **Kaggle Dataset URL:** https://www.kaggle.com/datasets/yanbochen928/fairsearch-qbio-embeddings-raj-jici-yb
 - **Files:**
   - `qbio_embeddings.npy` — embedding matrix, shape `(55301, 384)`
   - `embedding_info.json` — metadata file confirming model name, dimension, record count, and `paper_id` order
 - **Kaggle path (once added):**
-  - `/kaggle/input/fairsearch-qbio-embeddings/qbio_embeddings.npy`
-  - `/kaggle/input/fairsearch-qbio-embeddings/embedding_info.json`
+  - `/kaggle/input/fairsearch-qbio-embeddings-raj-jici-yb/qbio_embeddings.npy`
+  - `/kaggle/input/fairsearch-qbio-embeddings-raj-jici-yb/embedding_info.json`
 
 > **Important:** The row order in `qbio_embeddings.npy` matches the order of
 > `paper_ids` in `embedding_info.json`, which matches the order of records
