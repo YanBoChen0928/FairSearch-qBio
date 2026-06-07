@@ -117,3 +117,26 @@ app/               ← .gitkeep (Streamlit dashboard goes here)
 You do not need to do anything special. All folders will already exist on your machine.
 Just place the correct data files inside them as described in the workflow plan above.
 Do NOT delete or commit the `.gitkeep` files — they are harmless and necessary.
+
+---
+
+## Note on Institution Labeling and ChromaDB Metadata
+
+Institution enrichment is not required before building the initial ChromaDB index. For Project Update 1, the baseline retrieval pipeline only needs stable paper IDs, abstracts, and basic metadata such as title, year, and categories.
+
+Raj should use `paper_id` as the stable record ID in ChromaDB so that institution labels can be joined later by `paper_id`. Institution labels such as `elite_label` and `region` can be added later through a separate OpenAlex enrichment step before calculating fairness metrics such as SPD and SRR.
+
+**Project Update 1 order:**
+```
+Step 1a → qbio_papers.json (no institution fields)
+Step 2  → embeddings
+Step 3  → ChromaDB baseline index (paper_id, title, year, categories)
+Step 4  → queries
+Step 5a → baseline retrieval + Precision/Recall
+```
+
+**Before fairness metrics (Project Update 2):**
+```
+Step 1b → OpenAlex enrichment → qbio_institution_labels.json
+Step 5b → join retrieval results with labels → calculate SPD / SRR
+```
