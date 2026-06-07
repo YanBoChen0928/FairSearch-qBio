@@ -41,11 +41,27 @@ Retrieved paper categories : "q-bio.PE q-bio.QM"
 ### From GitHub repo
 - `queries/queries.json` — 50 research queries with `query_id`, `query_text`, `subcategory`
 
+To load this file in your Kaggle notebook:
+
+```python
+!git clone https://github.com/YanBoChen0928/FairSearch-qBio.git
+```
+
+Then read from:
+```
+/kaggle/working/FairSearch-qBio/queries/queries.json
+```
+
 ### From Kaggle Datasets (add to your notebook)
 - `fairsearch-qbio-processed-raj-jici-yb` → `qbio_papers.json`
   - Path: `/kaggle/input/fairsearch-qbio-processed-raj-jici-yb/qbio_papers.json`
 - `fairsearch-qbio-chromadb` (Raj will publish after Step 3)
-  - Path: `/kaggle/input/fairsearch-qbio-chromadb/chroma_db/`
+  - Original Kaggle input path: `/kaggle/input/fairsearch-qbio-chromadb/chroma_db/`
+  - Working path after copying: `/kaggle/working/chroma_db/`
+
+**Important:** Kaggle input directories are read-only. Before connecting to ChromaDB,
+copy the ChromaDB folder from `/kaggle/input/fairsearch-qbio-chromadb/chroma_db/`
+to `/kaggle/working/chroma_db/`, then connect to the copied working directory.
 
 ---
 
@@ -68,9 +84,15 @@ If time permits, K=5 and K=20 may also be reported as a sensitivity check.
 ```
 
 ### Step 5.2 — Load inputs
-Load `queries.json` from the GitHub repo (committed file).
+Clone the GitHub repo and load `queries/queries.json`:
+```python
+!git clone https://github.com/YanBoChen0928/FairSearch-qBio.git
+```
+Read from `/kaggle/working/FairSearch-qBio/queries/queries.json`.
 Load `qbio_papers.json` to retrieve full paper metadata by `paper_id`.
-Connect to the ChromaDB collection `qbio_papers`.
+Copy the ChromaDB folder from the Kaggle input directory to `/kaggle/working/chroma_db/`,
+then connect to the ChromaDB collection `qbio_papers`.
+The collection name must be exactly `qbio_papers`.
 
 ### Step 5.3 — Embed each query and retrieve Top-K
 For each of the 50 queries:
@@ -92,11 +114,11 @@ Precision@10 = number of relevant papers in Top-10 / 10
 
 **Recall@10**
 ```
-Recall@10 = number of relevant papers in Top-10 / total papers in target subcategory
+Recall@10 = number of relevant papers in Top-10 / number of corpus records whose categories include the target subcategory
 ```
 
 Note: Recall@10 will be very small because the relevant pool is large
-(e.g., q-bio.NC has 12,131 category assignments). Report it but emphasize Precision@10.
+(e.g., q-bio.NC has 12,131 category assignments). Report it, but emphasize Precision@10 and HitRate@10.
 
 **HitRate@10**
 ```
@@ -134,7 +156,7 @@ Save per-query results as `retrieval_results.json`:
 | Metric | Formula | Primary? |
 |--------|---------|----------|
 | Precision@10 | relevant in Top-10 / 10 | ✅ Primary |
-| Recall@10 | relevant in Top-10 / subcategory size | Secondary |
+| Recall@10 | relevant in Top-10 / records matching target subcategory | Secondary |
 | HitRate@10 | ≥1 relevant in Top-10 | ✅ Primary |
 
 ---
@@ -161,7 +183,8 @@ are planned for the next phase (Step 1b via OpenAlex API).
 
 Preliminary observations to report:
 - Are retrieval results concentrated in certain years or q-bio subcategories?
-- Do any queries consistently retrieve papers from a narrow set of authors or venues?
+- Do any queries consistently retrieve papers from a narrow set of authors, if author metadata is available?
+- Are some q-bio subcategories consistently under-retrieved or over-retrieved?
 
 Formal SPD and SRR measurement will be completed after OpenAlex enrichment in Project Update 2.
 
