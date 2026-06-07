@@ -5,6 +5,11 @@ for Quantitative Biology (q-bio) papers on arXiv.
 
 # FairSearch-qBio
 
+Evaluating and Mitigating Institutional Bias in Academic RAG
+for Quantitative Biology (q-bio) papers on arXiv.
+
+# FairSearch-qBio
+
 ## Evaluating and Mitigating Institutional Bias in Academic RAG Systems
 
 **Course:** CS 6200 Information Retrieval — Northeastern University (Summer 2026)  
@@ -82,14 +87,14 @@ FairSearch-qBio/
 │   └── prompt_utils.py         # Helpers for LLM synthesis / prompt engineering
 │
 ├── notebooks/                  # Step-by-step development notebooks
-│   ├── step1_data_prep.ipynb        # Yan-Bo: filter & clean 54k q-bio papers
-│   ├── step2_embedding.ipynb        # Yan-Bo: embed abstracts with all-MiniLM-L6-v2
-│   ├── step3_chromadb.ipynb         # Raj: store vectors in ChromaDB
+│   ├── step1_data_prep.ipynb       # Yan-Bo: filter & clean 54k q-bio papers
+│   ├── step2_embedding.ipynb       # Yan-Bo: embed abstracts with all-MiniLM-L6-v2
+│   ├── step3_chromadb.ipynb        # Jici: store vectors in ChromaDB
 │   ├── step4_query_generation.ipynb # Yan-Bo: generate 50 research queries
 │   ├── step5_retrieval_baseline.ipynb # Jici: Top-K search + Precision/Recall
-│   ├── step6_reranking.ipynb        # Jici: Fair MMR / Fair-Top-K
-│   ├── step7_generation.ipynb       # Jici: Gemini generation + citation audit
-│   └── step8_evaluation.ipynb       # Both: NDCG, MRR, SPD, RAGAS
+│   ├── step6_reranking.ipynb       # Jici: Fair MMR / Fair-Top-K
+│   ├── step7_generation.ipynb      # Jici: Gemini generation + citation audit
+│   └── step8_evaluation.ipynb      # Both: NDCG, MRR, SPD, RAGAS
 │
 ├── app/                        # Phase IV: Dashboard
 │   └── streamlit_app.py        # Streamlit interface: standard vs FairSearch
@@ -156,6 +161,39 @@ The raw arXiv snapshot (~4GB) is too large to commit to GitHub. To reproduce:
 3. Run `notebooks/step1_data_prep.ipynb` to extract the 54,971 q-bio papers
 
 Institution labels are enriched via the [OpenAlex API](https://openalex.org/) and cached in `data/processed/`.
+
+---
+
+## Local Development
+
+**Working directory (local machine):**
+
+```
+/Users/yanbochen/IdeaProjects/CS6200-Project
+```
+
+**Quick start (local):**
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/YanBoChen0928/FairSearch-qBio.git
+cd CS6200-Project
+
+# 2. Install dependencies
+pip install -r requirements.txt
+
+# 3. Add arXiv raw data (download separately from Kaggle)
+# Place at: data/raw/arxiv-metadata-oai-snapshot.json
+
+# 4. Run notebooks in order under notebooks/
+```
+
+**Kaggle environment (primary compute):**
+All Step 1–2 notebooks are developed and executed on Kaggle Notebooks, where the arXiv dataset is directly mounted at:
+
+```
+/kaggle/input/datasets/organizations/Cornell-University/arxiv/arxiv-metadata-oai-snapshot.json
+```
 
 ---
 
