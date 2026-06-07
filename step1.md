@@ -6,11 +6,14 @@
 Raw data (4GB)             Intermediate outputs              Team collaboration
 ────────────────           ──────────────                    ──────────────
 arXiv snapshot      →      qbio_papers.json          →       Kaggle Dataset
-(already available         (generated in Step 1)             (created by Yan-Bo, imported by all three members)
+(already available         (generated in Step 1)             (created by the step owner, imported by all three members)
 on Kaggle)
 
-                    →      embeddings (ChromaDB)     →       Kaggle Dataset
-                           (generated in Step 2)             (created by Yan-Bo, imported by all three members)
+                    →      embeddings                →       Kaggle Dataset
+                           (generated in Step 2)             (created by the step owner, imported by all three members)
+
+                    →      ChromaDB index            →       Kaggle Dataset
+                           (generated in Step 3)             (created by the step owner, imported by all three members)
 ```
 
 GitHub should only store the code. No data should be pushed to GitHub.
@@ -19,7 +22,7 @@ GitHub should only store the code. No data should be pushed to GitHub.
 
 ## Specific Workflow Plan
 
-You (Yan-Bo) only need to do this once, and then the rest of the team can follow along.
+For Step 1, Yan-Bo only needs to generate and publish `qbio_papers.json` once, and then the rest of the team can import it from Kaggle.
 
 **After finishing Step 1:**
 
@@ -29,7 +32,13 @@ You (Yan-Bo) only need to do this once, and then the rest of the team can follow
 
 **After finishing Step 2:**
 
-- Save the ChromaDB index as another Kaggle Dataset.
+- Save the embedding output as a Kaggle Dataset if needed.
+- Name it something like `fairsearch-qbio-embeddings`.
+- Invite the team members as collaborators.
+
+**After finishing Step 3:**
+
+- Save the ChromaDB index as a Kaggle Dataset.
 - Name it something like `fairsearch-qbio-chromadb`.
 - Invite the team members as collaborators as well.
 
@@ -50,13 +59,18 @@ Based on this strategy, the files and folders that `.gitignore` should block are
 
 ```gitignore
 # Raw data
-data/raw/
+data/raw/*
+!data/raw/.gitkeep
 
 # Processed data (shared through Kaggle Dataset instead)
-data/processed/
+data/processed/*
+!data/processed/.gitkeep
 
 # ChromaDB index
-data/chroma/
+data/chroma/*
+!data/chroma/.gitkeep
+
+# ChromaDB / SQLite files
 *.sqlite3
 
 # Python
@@ -71,8 +85,7 @@ __pycache__/
 .DS_Store
 ```
 
-The entire `data/processed/` folder should be ignored because the JSON file,
-regardless of size, should be shared through Kaggle Dataset instead.
+All real data files inside `data/processed/` should be ignored, except for `.gitkeep`, because the JSON file should be shared through Kaggle Dataset instead.
 
 ---
 
