@@ -73,3 +73,34 @@ __pycache__/
 
 The entire `data/processed/` folder should be ignored because the JSON file,
 regardless of size, should be shared through Kaggle Dataset instead.
+
+---
+
+## Repository Folder Structure & `.gitkeep`
+
+Git does not track empty folders. To make sure all team members get the correct
+folder structure after `git clone`, each folder contains an empty placeholder file
+called `.gitkeep`.
+
+**What `.gitkeep` is:**
+- A completely empty file with no content.
+- Its only purpose is to make Git "see" the folder so it gets committed.
+- The name is a community convention — Git has no built-in knowledge of it.
+
+**Current folder structure committed to the repo:**
+
+```
+data/
+├── raw/           ← .gitkeep (actual raw data is NOT committed)
+├── processed/     ← .gitkeep (actual JSON data is NOT committed)
+└── chroma/        ← .gitkeep (ChromaDB index is NOT committed)
+src/               ← .gitkeep (Python modules go here)
+notebooks/         ← .gitkeep (Kaggle notebooks go here)
+app/               ← .gitkeep (Streamlit dashboard goes here)
+```
+
+**For team members after `git clone`:**
+
+You do not need to do anything special. All folders will already exist on your machine.
+Just place the correct data files inside them as described in the workflow plan above.
+Do NOT delete or commit the `.gitkeep` files — they are harmless and necessary.
