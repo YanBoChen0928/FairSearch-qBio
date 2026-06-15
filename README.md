@@ -67,10 +67,12 @@ FairSearch-qBio/
 │   ├── raw/                    # Raw arXiv JSON/CSV metadata (not committed, ~4GB)
 │   ├── processed/              # Preprocessed metadata (not committed)
 │   │   └── qbio_papers.json    # NOT in GitHub — import from Kaggle Dataset
-│   ├── chroma/                 # ChromaDB index files (not committed)
-│   └── queries.json            # 50 starter queries for audit
+│   └── chroma/                 # ChromaDB index files (not committed)
 │
-├── src/                        # Core modules
+├── queries/
+│   └── queries.json            # 50 research queries for the audit
+│
+├── src/                        # Core modules — PLANNED (current work is notebook-first; see notebooks/)
 │   ├── data_loader.py          # Load, preprocess, enrich arXiv metadata
 │   ├── index_builder.py        # Build vector embeddings & index in ChromaDB
 │   ├── retriever.py            # Query → vector search (Top-K)
@@ -80,7 +82,7 @@ FairSearch-qBio/
 │   └── prompt_utils.py         # Helpers for LLM synthesis / prompt engineering
 │
 ├── notebooks/                  # Step-by-step development notebooks
-│   ├── step1_data_prep.ipynb       # Yan-Bo: filter & clean 54k q-bio papers
+│   ├── step1_data_prep.ipynb       # Yan-Bo: filter & clean q-bio papers (55,301)
 │   ├── step2_embedding.ipynb       # Yan-Bo: embed abstracts with all-MiniLM-L6-v2
 │   ├── step3_chromadb.ipynb         # Raj: store vectors in ChromaDB
 │   ├── step4_query_generation.ipynb # Yan-Bo: generate 50 research queries
@@ -102,17 +104,19 @@ FairSearch-qBio/
 
 ## Work Division
 
-| Step                                           | Owner  | Status         |
-| ---------------------------------------------- | ------ | -------------- |
-| Step 1 — Data preparation                      | Yan-Bo | 🔄 In progress |
-| Step 2 — Embedding (all-MiniLM-L6-v2)          | Yan-Bo | 🔄 In progress |
-| Step 3 — ChromaDB ingestion                    | Raj    | 🔄 In progress |
-| Step 4 — Query generation                      | Yan-Bo | 🔄 In progress |
-| Step 5 — Baseline retrieval + Precision/Recall | Jici   | ⏳ Upcoming    |
-| Step 6 — Fair MMR re-ranking                   | xxxx   | ⏳ Upcoming    |
-| Step 7 — Gemini generation                     | xxxx   | ⏳ Upcoming    |
-| Step 8 — Full evaluation                       | xxxx   | ⏳ Upcoming    |
-| Step 9 — Streamlit dashboard                   | xxxx   | ⏳ Upcoming    |
+| Step                                           | Owner  | Status      |
+| ---------------------------------------------- | ------ | ----------- |
+| Step 1 — Data preparation                      | Yan-Bo | ✅ Done     |
+| Step 2 — Embedding (all-MiniLM-L6-v2)          | Yan-Bo | ✅ Done     |
+| Step 3 — ChromaDB ingestion                    | Raj    | ✅ Done     |
+| Step 4 — Query generation                      | Yan-Bo | ✅ Done     |
+| Step 5 — Baseline retrieval + Precision/Recall | Jici   | ✅ Done     |
+| Step 6 — Fair MMR re-ranking                   | TBD    | ⏳ Upcoming |
+| Step 7 — Gemini generation                     | TBD    | ⏳ Upcoming |
+| Step 8 — Full evaluation                       | TBD    | ⏳ Upcoming |
+| Step 9 — Streamlit dashboard                   | TBD    | ⏳ Upcoming |
+| Slides (Project Update 1)                      | Yan-Bo | ✅ Done     |
+| Report PDF (Project Update 1)                  | Jici   | ✅ Done     |
 
 ---
 
@@ -120,8 +124,8 @@ FairSearch-qBio/
 
 > Results will be updated as experiments complete.
 
-- **RQ2 early signal:** Elite institutions account for ~11.7% of retrieved results but appear in ~54.3% of Gemini-generated citations.
-- **RQ3 early signal:** Fair MMR at λ=0.7 reduces SPD by 67% while NDCG@10 actually improves vs. Fair-Top-K.
+- **Baseline retrieval (Update 1):** Mean Precision@10 = 0.654 and HitRate@10 = 0.96 across 50 queries; per-subcategory Precision@10 ranges from 0.97 (q-bio.NC) down to 0.08 (q-bio.OT).
+- **Fairness metrics (SPD, SRR) and generation-stage citation analysis are deferred to Update 2** (require OpenAlex institution labeling, Step 1b).
 
 ---
 
