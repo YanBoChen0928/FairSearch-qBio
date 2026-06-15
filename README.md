@@ -11,7 +11,7 @@
 
 ## Project Overview
 
-This project audits a Retrieval-Augmented Generation (RAG) system built on the arXiv **q-bio** corpus (~54,971 papers) for **institutional homophily** — the tendency to systematically rank or cite papers from elite universities higher than equally relevant work from non-elite institutions.
+This project audits a Retrieval-Augmented Generation (RAG) system built on the arXiv **q-bio** corpus (~55,300 papers) for **institutional homophily** — the tendency to systematically rank or cite papers from elite universities higher than equally relevant work from non-elite institutions.
 
 We investigate three research questions across the full RAG pipeline:
 
@@ -26,15 +26,17 @@ We investigate three research questions across the full RAG pipeline:
 ## Pipeline Architecture
 
 ```
-Step 1  →  Prepare dataset (54,971 q-bio arXiv abstracts)
-Step 2  →  Embed text with all-MiniLM-L6-v2
-Step 3  →  Store vectors in ChromaDB
-Step 4  →  Generate research queries
-Step 5  →  Retrieve Top-K papers  ← RQ1 (SPD, SRR)
-Step 6  →  Fair MMR re-ranking    ← RQ3 (NDCG@10, MRR)
-Step 7  →  Gemini 1.5 Flash generation ← RQ2 (citation bias)
-Step 8  →  Evaluate (NDCG@10, MRR, SPD, RAGAS)
-Step 9  →  Streamlit diagnostic dashboard
+Step 1   →  Prepare dataset (55,301 q-bio abstracts; 55,300 after dedup)
+Step 1b  →  Enrich institution/region labels via OpenAlex   [Update 2]
+Step 2   →  Embed text with all-MiniLM-L6-v2
+Step 3   →  Store vectors in ChromaDB (55,300 records)
+Step 4   →  Generate 50 research queries
+Step 5a  →  Retrieve Top-K + Precision/Recall   ← baseline (Update 1)
+Step 5b  →  Join labels → SPD, SRR   ← RQ1   [Update 2]
+Step 6   →  Fair MMR re-ranking   ← RQ3 (NDCG@10, MRR)   [Update 2]
+Step 7   →  Gemini 1.5 Flash generation   ← RQ2 (citation bias)   [Update 2]
+Step 8   →  Evaluate (NDCG@10, MRR, SPD, RAGAS)   [Update 2]
+Step 9   →  Streamlit diagnostic dashboard   [Update 2]
 ```
 
 ---
@@ -149,7 +151,7 @@ The raw arXiv snapshot (~4GB) is too large to commit to GitHub. To reproduce:
 
 1. Download from [Kaggle — Cornell University arXiv](https://www.kaggle.com/datasets/Cornell-University/arxiv)
 2. Place at `data/raw/arxiv-metadata-oai-snapshot.json`
-3. Run `notebooks/step1_data_prep.ipynb` to extract the 54,971 q-bio papers
+3. Run `notebooks/step1_data_prep.ipynb` to extract the 55,301 q-bio papers
 
 Institution labels are enriched via the OpenAlex API where available and cached locally in `data/processed/`, but these generated data files are not committed to GitHub. If needed, they should be shared through Kaggle Datasets.
 

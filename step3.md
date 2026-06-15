@@ -28,11 +28,11 @@ User query → embed query → find Top-K most similar paper vectors → return 
 
 Each record stored in ChromaDB has three parts:
 
-| Part | What it is | Example |
-|------|-----------|---------|
-| `id` | Unique identifier | `"0704.0021"` |
-| `embedding` | 384-dim vector | `[0.12, -0.34, ...]` |
-| `metadata` | Paper info (title, year, categories) | `{"title": "...", "year": "2007"}` |
+| Part        | What it is                           | Example                            |
+| ----------- | ------------------------------------ | ---------------------------------- |
+| `id`        | Unique identifier                    | `"0704.0021"`                      |
+| `embedding` | 384-dim vector                       | `[0.12, -0.34, ...]`               |
+| `metadata`  | Paper info (title, year, categories) | `{"title": "...", "year": "2007"}` |
 
 ---
 
@@ -41,12 +41,14 @@ Each record stored in ChromaDB has three parts:
 You need to import two Kaggle Datasets into your notebook before running this step.
 
 ### Dataset 1: Processed paper metadata
+
 - **Kaggle Dataset URL:** https://www.kaggle.com/datasets/yanbochen928/fairsearch-qbio-processed-raj-jici-yb
 - **File:** `qbio_papers.json`
 - **Kaggle path:** `/kaggle/input/fairsearch-qbio-processed-raj-jici-yb/qbio_papers.json`
-- **Content:** 55,301 q-bio papers with `paper_id`, `title`, `abstract`, `authors`, `categories`, `year`
+- **Content:** 55,300 q-bio papers with `paper_id`, `title`, `abstract`, `authors`, `categories`, `year`
 
 ### Dataset 2: Pre-computed embeddings
+
 - **Kaggle Dataset URL:** https://www.kaggle.com/datasets/yanbochen928/fairsearch-qbio-embeddings-raj-jici-yb
 - **Files:**
   - `qbio_embeddings.npy` — embedding matrix, shape `(55301, 384)`
@@ -85,9 +87,11 @@ Load `qbio_embeddings.npy` to get the pre-computed vectors.
 Load `embedding_info.json` to verify alignment.
 
 Key alignment check:
+
 ```
 embedding_info["paper_ids"][i] == qbio_papers[i]["paper_id"]
 ```
+
 If this check fails, do NOT proceed — the data is misaligned.
 
 ### Step 3.3 — Initialize ChromaDB
@@ -99,6 +103,7 @@ Create a collection named `qbio_papers`.
 
 Insert records in batches of 500 to avoid memory issues.
 Each record must include:
+
 - `id` = `paper_id` (string)
 - `embedding` = row from `qbio_embeddings.npy` (list of 384 floats)
 - `metadata` = `{"title": ..., "year": ..., "categories": ...}`
@@ -110,7 +115,8 @@ Each record must include:
 ### Step 3.5 — Validate
 
 After inserting all records, verify:
-- Total count in ChromaDB collection should equal `55,301`
+
+- Total count in ChromaDB collection should equal `55,300`
 - Run one test query to confirm retrieval works
 
 ---
@@ -118,6 +124,7 @@ After inserting all records, verify:
 ## Output
 
 After the notebook finishes, the ChromaDB index will be saved at:
+
 ```
 /kaggle/working/chroma_db/
 ```
@@ -141,6 +148,7 @@ After the notebook finishes, the ChromaDB index will be saved at:
 ## Notebook Name
 
 Please name your notebook:
+
 ```
 step3_chromadb.ipynb
 ```
