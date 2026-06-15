@@ -11,7 +11,7 @@
 
 ## Project Overview
 
-This project audits a Retrieval-Augmented Generation (RAG) system built on the arXiv **q-bio** corpus (~54,971 papers) for **institutional homophily** — the tendency to systematically rank or cite papers from elite universities higher than equally relevant work from non-elite institutions.
+This project audits a Retrieval-Augmented Generation (RAG) system built on the arXiv **q-bio** corpus (~55,300 papers) for **institutional homophily** — the tendency to systematically rank or cite papers from elite universities higher than equally relevant work from non-elite institutions.
 
 We investigate three research questions across the full RAG pipeline:
 
@@ -26,15 +26,17 @@ We investigate three research questions across the full RAG pipeline:
 ## Pipeline Architecture
 
 ```
-Step 1  →  Prepare dataset (54,971 q-bio arXiv abstracts)
-Step 2  →  Embed text with all-MiniLM-L6-v2
-Step 3  →  Store vectors in ChromaDB
-Step 4  →  Generate research queries
-Step 5  →  Retrieve Top-K papers  ← RQ1 (SPD, SRR)
-Step 6  →  Fair MMR re-ranking    ← RQ3 (NDCG@10, MRR)
-Step 7  →  Gemini 1.5 Flash generation ← RQ2 (citation bias)
-Step 8  →  Evaluate (NDCG@10, MRR, SPD, RAGAS)
-Step 9  →  Streamlit diagnostic dashboard
+Step 1   →  Prepare dataset (55,301 q-bio abstracts; 55,300 after dedup)
+Step 1b  →  Enrich institution/region labels via OpenAlex   [Update 2]
+Step 2   →  Embed text with all-MiniLM-L6-v2
+Step 3   →  Store vectors in ChromaDB (55,300 records)
+Step 4   →  Generate 50 research queries
+Step 5a  →  Retrieve Top-K + Precision/Recall   ← baseline (Update 1)
+Step 5b  →  Join labels → SPD, SRR   ← RQ1   [Update 2]
+Step 6   →  Fair MMR re-ranking   ← RQ3 (NDCG@10, MRR)   [Update 2]
+Step 7   →  Gemini 1.5 Flash generation   ← RQ2 (citation bias)   [Update 2]
+Step 8   →  Evaluate (NDCG@10, MRR, SPD, RAGAS)   [Update 2]
+Step 9   →  Streamlit diagnostic dashboard   [Update 2]
 ```
 
 ---
@@ -65,10 +67,12 @@ FairSearch-qBio/
 │   ├── raw/                    # Raw arXiv JSON/CSV metadata (not committed, ~4GB)
 │   ├── processed/              # Preprocessed metadata (not committed)
 │   │   └── qbio_papers.json    # NOT in GitHub — import from Kaggle Dataset
-│   ├── chroma/                 # ChromaDB index files (not committed)
-│   └── queries.json            # 50 starter queries for audit
+│   └── chroma/                 # ChromaDB index files (not committed)
 │
-├── src/                        # Core modules
+├── queries/
+│   └── queries.json            # 50 research queries for the audit
+│
+├── src/                        # Core modules — PLANNED (current work is notebook-first; see notebooks/)
 │   ├── data_loader.py          # Load, preprocess, enrich arXiv metadata
 │   ├── index_builder.py        # Build vector embeddings & index in ChromaDB
 │   ├── retriever.py            # Query → vector search (Top-K)
@@ -78,7 +82,7 @@ FairSearch-qBio/
 │   └── prompt_utils.py         # Helpers for LLM synthesis / prompt engineering
 │
 ├── notebooks/                  # Step-by-step development notebooks
-│   ├── step1_data_prep.ipynb       # Yan-Bo: filter & clean 54k q-bio papers
+│   ├── step1_data_prep.ipynb       # Yan-Bo: filter & clean q-bio papers (55,301)
 │   ├── step2_embedding.ipynb       # Yan-Bo: embed abstracts with all-MiniLM-L6-v2
 │   ├── step3_chromadb.ipynb         # Raj: store vectors in ChromaDB
 │   ├── step4_query_generation.ipynb # Yan-Bo: generate 50 research queries
@@ -100,17 +104,19 @@ FairSearch-qBio/
 
 ## Work Division
 
-| Step                                           | Owner  | Status         |
-| ---------------------------------------------- | ------ | -------------- |
-| Step 1 — Data preparation                      | Yan-Bo | 🔄 In progress |
-| Step 2 — Embedding (all-MiniLM-L6-v2)          | Yan-Bo | 🔄 In progress |
-| Step 3 — ChromaDB ingestion                    | Raj    | 🔄 In progress |
-| Step 4 — Query generation                      | Yan-Bo | 🔄 In progress |
-| Step 5 — Baseline retrieval + Precision/Recall | Jici   | ⏳ Upcoming    |
-| Step 6 — Fair MMR re-ranking                   | xxxx   | ⏳ Upcoming    |
-| Step 7 — Gemini generation                     | xxxx   | ⏳ Upcoming    |
-| Step 8 — Full evaluation                       | xxxx   | ⏳ Upcoming    |
-| Step 9 — Streamlit dashboard                   | xxxx   | ⏳ Upcoming    |
+| Step                                           | Owner  | Status      |
+| ---------------------------------------------- | ------ | ----------- |
+| Step 1 — Data preparation                      | Yan-Bo | ✅ Done     |
+| Step 2 — Embedding (all-MiniLM-L6-v2)          | Yan-Bo | ✅ Done     |
+| Step 3 — ChromaDB ingestion                    | Raj    | ✅ Done     |
+| Step 4 — Query generation                      | Yan-Bo | ✅ Done     |
+| Step 5 — Baseline retrieval + Precision/Recall | Jici   | ✅ Done     |
+| Step 6 — Fair MMR re-ranking                   | TBD    | ⏳ Upcoming |
+| Step 7 — Gemini generation                     | TBD    | ⏳ Upcoming |
+| Step 8 — Full evaluation                       | TBD    | ⏳ Upcoming |
+| Step 9 — Streamlit dashboard                   | TBD    | ⏳ Upcoming |
+| Slides (Project Update 1)                      | Yan-Bo | ✅ Done     |
+| Report PDF (Project Update 1)                  | Jici   | ✅ Done     |
 
 ---
 
@@ -118,8 +124,8 @@ FairSearch-qBio/
 
 > Results will be updated as experiments complete.
 
-- **RQ2 early signal:** Elite institutions account for ~11.7% of retrieved results but appear in ~54.3% of Gemini-generated citations.
-- **RQ3 early signal:** Fair MMR at λ=0.7 reduces SPD by 67% while NDCG@10 actually improves vs. Fair-Top-K.
+- **Baseline retrieval (Update 1):** Mean Precision@10 = 0.654 and HitRate@10 = 0.96 across 50 queries; per-subcategory Precision@10 ranges from 0.97 (q-bio.NC) down to 0.08 (q-bio.OT).
+- **Fairness metrics (SPD, SRR) and generation-stage citation analysis are deferred to Update 2** (require OpenAlex institution labeling, Step 1b).
 
 ---
 
@@ -149,7 +155,7 @@ The raw arXiv snapshot (~4GB) is too large to commit to GitHub. To reproduce:
 
 1. Download from [Kaggle — Cornell University arXiv](https://www.kaggle.com/datasets/Cornell-University/arxiv)
 2. Place at `data/raw/arxiv-metadata-oai-snapshot.json`
-3. Run `notebooks/step1_data_prep.ipynb` to extract the 54,971 q-bio papers
+3. Run `notebooks/step1_data_prep.ipynb` to extract the 55,301 q-bio papers
 
 Institution labels are enriched via the OpenAlex API where available and cached locally in `data/processed/`, but these generated data files are not committed to GitHub. If needed, they should be shared through Kaggle Datasets.
 
