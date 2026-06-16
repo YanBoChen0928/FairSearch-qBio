@@ -107,6 +107,54 @@ Each query should:
 
 ---
 
+## Query Generation Methodology
+
+This five-step methodology documents how the 50 queries were produced. It is
+written for reuse in the final report's Methodology section.
+
+**1. Determine subcategory distribution.**
+We first scanned the full q-bio corpus to count papers per subcategory across
+all ten q-bio categories (ranging from 1,586 in q-bio.OT to 13,181 in q-bio.QM).
+The 1,356 papers carrying only the legacy `q-bio` tag — which cannot be mapped
+to a specific subcategory — were excluded from query design.
+
+**2. Hybrid allocation of query counts.**
+We adopted a hybrid allocation strategy rather than strict proportional
+allocation. Larger subcategories received more queries (7 each for q-bio.QM and
+q-bio.PE, 6 for q-bio.NC), while smaller subcategories retained a minimum
+representation (at least 4 queries each). This prevents the evaluation from
+over-concentrating on the largest areas while ensuring every subcategory has
+enough samples to support later per-subcategory fairness analysis. Final
+allocation: QM 7, PE 7, NC 6, BM 5, SC 5, MN 4, GN 4, TO 4, CB 4, OT 4 —
+50 queries total.
+
+**3. Draft each query under three principles.**
+Each query follows three principles: (i) it is a natural-language research
+question, not a keyword search; (ii) it is specific enough to retrieve relevant
+papers; and (iii) it covers a distinct aspect within its subcategory to avoid
+redundancy. Drafts were produced in one pass with AI assistance, following this
+step4.md specification (the distribution, allocation, and principles above)
+rather than a standalone prompt.
+
+**4. Manual review and refinement.**
+After drafting, each query was reviewed query-by-query by a team member,
+focusing on the accuracy of its target subcategory label. Three queries were
+refined for category alignment:
+- q025: changed from a chromatin-structure question to a protein-DNA
+  interaction question (more canonical for q-bio.BM)
+- q047: rephrased into a cross-domain version integrating molecular, cellular,
+  and environmental factors (better fitting q-bio.OT)
+- q049: rephrased into a cross-system comparative question (more appropriate
+  for q-bio.OT)
+
+**5. Store in standard JSON format.**
+Each query is stored with three fields: `query_id` (e.g., q001), `query_text`
+(the natural-language question), and `subcategory` (the target category). The
+final set was written to `queries/queries.json` and committed to GitHub for
+team use.
+
+---
+
 ## Output Schema
 
 Each query is stored as a JSON object with the following fields:
