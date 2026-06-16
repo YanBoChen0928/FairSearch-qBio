@@ -57,7 +57,7 @@ for cat, count in sorted(counter.items()):
 | q-bio.NC | 12,131 | **Neurons and Cognition** — neural computation, brain modeling, sensory systems, learning |
 | q-bio.OT | 1,586 | **Other Quantitative Biology** — topics not fitting other subcategories |
 | q-bio.PE | 12,999 | **Populations and Evolution** — evolutionary dynamics, population genetics, ecology |
-| q-bio.QM | 13,180 | **Quantitative Methods** — mathematical and computational methods applied to biology |
+| q-bio.QM | 13,181 | **Quantitative Methods** — mathematical and computational methods applied to biology |
 | q-bio.SC | 1,808 | **Subcellular Processes** — organelle function, intracellular transport, cytoskeleton |
 | q-bio.TO | 2,618 | **Tissues and Organs** — physiology, organ modeling, morphogenesis |
 
@@ -76,7 +76,7 @@ the retrieval results more representative across the full q-bio corpus.
 
 | Subcategory | Category Count | Allocated Queries |
 |-------------|----------------|-------------------|
-| q-bio.QM | 13,180 | 7 |
+| q-bio.QM | 13,181 | 7 |
 | q-bio.PE | 12,999 | 7 |
 | q-bio.NC | 12,131 | 6 |
 | q-bio.BM | 6,745 | 5 |
@@ -86,10 +86,10 @@ the retrieval results more representative across the full q-bio corpus.
 | q-bio.CB | 2,451 | 4 |
 | q-bio.SC | 1,808 | 5 |
 | q-bio.OT | 1,586 | 4 |
-| **Total** | **61,510** | **50** |
+| **Total** | **61,511** | **50** |
 
 **Note:** The category counts represent q-bio category assignments, not unique papers.
-Since one paper can have multiple q-bio category tags, the total category count (61,510)
+Since one paper can have multiple q-bio category tags, the total category count (61,511)
 can exceed the number of unique papers in the corpus (55,301).
 
 The 50 queries are allocated only across the 10 specific q-bio subcategories,
@@ -114,7 +114,7 @@ written for reuse in the final report's Methodology section.
 
 **1. Determine subcategory distribution.**
 We first scanned the full q-bio corpus to count papers per subcategory across
-all ten q-bio categories (ranging from 1,586 in q-bio.OT to 13,180 in q-bio.QM).
+all ten q-bio categories (ranging from 1,586 in q-bio.OT to 13,181 in q-bio.QM).
 The 1,356 papers carrying only the legacy `q-bio` tag — which cannot be mapped
 to a specific subcategory — were excluded from query design.
 
