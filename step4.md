@@ -86,10 +86,10 @@ the retrieval results more representative across the full q-bio corpus.
 | q-bio.CB | 2,451 | 4 |
 | q-bio.SC | 1,808 | 5 |
 | q-bio.OT | 1,586 | 4 |
-| **Total** | **61,511** | **50** |
+| **Total** | **61,510** | **50** |
 
 **Note:** The category counts represent q-bio category assignments, not unique papers.
-Since one paper can have multiple q-bio category tags, the total category count (61,511)
+Since one paper can have multiple q-bio category tags, the total category count (61,510)
 can exceed the number of unique papers in the corpus (55,301).
 
 The 50 queries are allocated only across the 10 specific q-bio subcategories,
