@@ -1,7 +1,8 @@
 # Step 1b-v2: Institution Labeling Redesign
 
-Status: design draft for team review. No code is run yet. We choose between
-Option A and Option B after the 150-query re-run (see "Decision criteria").
+Status: 1b-v2 not implemented yet. The 150-query audit (using v1 labels) is done;
+based on those numbers the recommendation is Option B (see section 5b), pending
+team confirmation from Raj and Jici.
 
 ## 1. Why a v2 is needed
 
@@ -126,6 +127,52 @@ three numbers before choosing A or B:
 - If SPD hugs 0, the CI still crosses 0, and coverage is still ~19% -> the
   bottleneck is coverage, not query count -> redo 1b. Prefer Option B if time
   allows (it also fixes the baseline); use Option A if we need the smallest change.
+
+## 5b. Decision after the 150-query run: adopt Option B
+
+Result of the 150-query re-run (neutral queries, n = 100), using v1 labels:
+- Coverage stayed at 17% (170 of 1,000 neutral slots labeled), still stuck near
+  the 19% we saw at 50 queries. Adding queries did not raise coverage.
+- SPD = +0.061, SRR = 1.374. SPD 95% CI [+0.010, +0.115] excludes 0, but the
+  binomial test gives p = 0.069 (not significant at 0.05).
+- The original-50 subset reproduced the standalone 50-query result (95 labeled,
+  elite share 0.274), confirming the pipeline is consistent.
+
+Reading against the criteria in section 5, the signals are mixed: the bootstrap
+CI excludes 0 (the "keep v1" branch), but coverage is stuck and the baseline is
+still the biased 7,061-paper subset (the "redo" branch). A borderline,
+underpowered result computed on a biased baseline is not something we can
+defend, so we redo 1b.
+
+Why Option B over Option A:
+The run proves the bottleneck is the labeling method, not the query count.
+Option A only fixes the lookup; it leaves the two problems that actually matter
+untouched (the baseline is still the biased OpenAlex-covered subset, and preprint
+affiliation coverage may stay low even with id-first lookup). Option B fixes both
+at once, with a random-sample unbiased baseline plus direct labeling of the
+retrieved set, and its extra per-paper effort lands exactly on the retrieved
+papers that RQ2 (citation bias) and RQ3 (Fair MMR) need labeled anyway. So the
+same labeling effort raises the validity and statistical power of all three
+research questions simultaneously.
+
+Effect on the research questions (the RQs do not change; only their validity and
+power do):
+- RQ1 (retrieval parity): B provides an unbiased baseline and near-100% coverage
+  on the retrieved set, so SPD/SRR become trustworthy. A leaves RQ1 confounded
+  and underpowered.
+- RQ2 (Gemini citation bias): compares cited vs retrieved-context elite share,
+  which needs labels on the retrieved set. B labels that set directly (near-full
+  coverage); A relies on the sparse corpus table (~17%), so B makes RQ2 far
+  better powered.
+- RQ3 (Fair MMR tradeoff): re-ranking needs elite labels on the candidates. B's
+  dense labels let MMR actually act on fairness and let us measure before/after
+  SPD cleanly; A's sparse labels give MMR little to work with.
+
+One-line summary: Option A only patches a broken thermometer; Option B swaps in
+an accurate one and happens to measure exactly where RQ2 and RQ3 need it.
+
+Cost accepted: higher per-paper labeling effort, and a small change to 5b's
+baseline computation (5a and the query set are unchanged).
 
 ## 6. Open items / team alignment
 
