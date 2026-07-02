@@ -1,6 +1,8 @@
 # Raw data
 data/raw/*
 !data/raw/.gitkeep
+data/raj_step1b/*
+! data/raj_step1b/.gitkeep
 
 # Processed data (shared through Kaggle Dataset instead)
 data/processed/*
