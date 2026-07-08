@@ -229,3 +229,68 @@ and we build our own labeler so both Option B samples use one identical method.
 QS updates ranks yearly, so Top-50 membership shifts a little between editions.
 We freeze on the 2026 edition for reproducibility. Any future re-run must state
 which QS edition it used, or the elite share is not comparable across runs.
+
+## 8. Pilot results (MEASURED, n = 300) — 2026-07-08
+
+These are REAL measured numbers from a 300-paper pilot run of the Option B
+labeler on Kaggle (notebook: `step1b_institution_labels-yb.ipynb`). They are not
+hypothetical. Config: random seed 42, PILOT_N = 300, OpenAlex polite pool
+(mailto set), method = landing_page_url primary (http://arxiv.org/abs/<id>) with
+DOI fallback (10.48550/arXiv.<id>), elite list = QS Top-50 2026 exact
+case-insensitive match.
+
+### Method fix found during the pilot
+The primary lookup initially missed everything because OpenAlex stores the arXiv
+landing page URL as `http://arxiv.org/abs/<id>` (http, not https). After changing
+the query to http, the primary lookup works and DOI is a true fallback, not the
+main path. Verified on a raw record in the diagnostic cell.
+
+### Coverage (n = 300)
+- found          : 138 (46%)
+- no_affiliation : 156 (52%)
+- not_found      :   6 (2%)
+
+Key comparison: Raj v1 whole-corpus labeling had not_found = 82% and usable
+coverage ~17% on the retrieved set. The pilot cuts not_found to 2% and raises
+usable coverage to 46% (about 3x). The bottleneck is no longer "OpenAlex can't
+find the paper" (solved) but "the paper exists in OpenAlex with no affiliation
+attached" (a data ceiling for arXiv preprints, not a code problem — confirmed by
+inspecting a raw record with empty institutions and empty raw_affiliation_strings).
+
+### Coverage by id format
+- new format (e.g. 1610.07213): total 282, found 125 (44%), no_aff 151, not_found 6
+- old format (e.g. physics/0310009): total 18, found 13 (72%), no_aff 5, not_found 0
+
+The old-format concern is dropped: old ids were not a weak spot (found rate was
+actually higher, though on a small n = 18). Both formats work with the same
+method, so no special handling is needed.
+
+### Unbiased baseline elite share
+- found papers in sample : 138
+- elite (QS Top-50)      : 25
+- sample elite share     : 0.181
+
+This 0.181 is the Option B baseline (the sample_share term in
+SPD = retrieved_share - sample_share). It is meaningfully LOWER than Raj v1's
+biased corpus base rate of 0.233. This confirms the section-4 argument: the old
+7,061-paper baseline over-stated the elite share, because elite papers are easier
+for OpenAlex to label cleanly. Using an unbiased baseline (0.181) will tend to
+widen SPD, i.e. the homophily signal may be stronger under Option B than under v1.
+
+### Elite institutions matched (sanity check, all plausible QS Top-50)
+Oxford x3, Pennsylvania x3, Queensland x2, Cambridge x2, Princeton x2, Yale x2,
+Imperial x2, British Columbia x2, Chicago x1, TU Munich x1, NUS x1, UCLA x1,
+MIT x1, ETH Zurich x1, Seoul National x1. Exact case-insensitive matching
+produced no obvious mis-matches; OpenAlex tended to return full institution
+names, so no alias table is needed for now.
+
+### Decision
+Method confirmed and adopted. Do not chase higher coverage (the remaining 52% is
+an OpenAlex data ceiling; recovering it would need PDF parsing at high cost and
+uncertain benefit). Next: scale to a ~1000-paper random baseline and label the
+full retrieved set (retrieval_results.json) with this same labeler; those two
+label sets feed Step 5b. Coverage of ~46% is sufficient for Steps 6-9; the only
+RQ sensitive to it is RQ1 (statistical power), and it must be disclosed as a
+methodology limitation (OpenAlex affiliation coverage is lower for non-elite /
+non-English / Global-South institutions, a confound running the same direction as
+RQ1).
