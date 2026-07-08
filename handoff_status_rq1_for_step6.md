@@ -40,19 +40,25 @@ above (1b -> 8) belongs to Project Update 2.
 
 ---
 
-## The four data files you will need (in `data/`)
+## The four data files you will need (get them from Kaggle, not GitHub)
 
-Full field-by-field docs are in `data/README_data.md`. Short version:
+These files are NOT in the GitHub repo (large / data artifacts live on Kaggle).
+Search each dataset by name on Kaggle (owner: `yanbochen928`) and add it as a
+notebook input. Full field-by-field docs are in `data/README_data.md`.
 
-| File | What it gives you |
-|------|-------------------|
-| `retrieval_results.json` | 150 queries x top-10 papers + relevance. The candidates Step 6 re-ranks. |
-| `retrieval_labels.json` | Elite label for each retrieved paper. Use this to measure post-rerank SPD. |
-| `sample_labels_1000.json` | Baseline elite rate (0.144). The reference point for SPD. |
-| `qs_top50_elite_2026.json` | Definition of "elite" (QS Top-50). Use if you label any new paper. |
+| File | Kaggle dataset (search this name) | Note |
+|------|-----------------------------------|------|
+| `retrieval_results.json` | `fairsearch-qbio-queries-YB` | 150-query file; sits alongside the queries JSONs |
+| `qs_top50_elite_2026.json` | `fairsearch-qbio-elite-list` | Definition of "elite" (QS Top-50). NOTE: currently PRIVATE; ask Yan-Bo to make it public or add you as collaborator |
+| `qbio_embeddings.npy` + `embedding_info.json` | `fairsearch-qbio-embeddings-Raj-Jici-YB` | Needed for MMR diversity |
+| `qbio_papers.json` | `fairsearch-qbio-processed-Raj-Jici-YB` | Corpus metadata |
+| ChromaDB | `fairsearch-qbio-chromadb` | Prebuilt vector store |
+| `sample_labels_1000.json` + `retrieval_labels.json` | (NOT UPLOADED YET) | Option B labels; Yan-Bo will publish these before you need them |
 
-For MMR diversity you also need the embeddings (in `data/processed/`):
-`qbio_embeddings.npy` + `embedding_info.json`.
+Reminder: on Kaggle, dataset input paths follow
+`/kaggle/input/datasets/<username>/<dataset-slug>/<file>` (not the shorter
+documented form), so use auto-detect / rglob in the notebook rather than a
+hardcoded path.
 
 ---
 
