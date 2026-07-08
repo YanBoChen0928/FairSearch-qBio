@@ -182,3 +182,50 @@ baseline computation (5a and the query set are unchanged).
 - Methodology note to write regardless of choice: OpenAlex affiliation coverage
   is lower for non-elite / non-English institutions; acknowledge this as a
   limitation that runs in the same direction as RQ1.
+
+## 7. Elite institution list: QS World University Rankings 2026 (Top 50)
+
+Decision (this session): stop waiting for Raj's list. We adopt the QS World
+University Rankings 2026 (overall edition) Top 50 as the definitive elite list,
+and we build our own labeler so both Option B samples use one identical method.
+
+### Source
+- Ranking: QS World University Rankings 2026, overall table (published 19 June
+  2025 by Quacquarelli Symonds). This is the edition in force during our project
+  window and supersedes the earlier "QS Top-100" note in old README text.
+- Primary source for the names/ranks: QS official results page
+  (https://www.qs.com/insights/qs-world-university-rankings-2026) and the QS /
+  TopUniversities 2026 table (https://www.topuniversities.com/world-university-rankings/2026).
+- The full 1 to 50 order was compiled and cross-checked across:
+  timeout.com (top 20 with explicit ranks), universityguru.com QS-2026 overall
+  list (ranks 8 to 54), and a Kaggle mirror of the QS-2026 top-1500 table.
+  These agree on Top-50 membership.
+- Boundary anchor (why exactly 50): QS states Yonsei University "moves into 50th
+  position", and multiple sources place University of Bristol at 51. So rank 50
+  is Yonsei (included) and rank 51 is Bristol (excluded). This fixes the cutoff
+  unambiguously.
+
+### Stored file
+- Path: `data/qs_top50_elite_2026.json`
+- Format: a JSON array of 50 objects, each `{rank, name, country}`. `country`
+  uses ISO 2-letter codes, consistent with the `region` field in Raj v1 labels.
+- Tie handling: QS has tied ranks (for example rank 17 has both Tsinghua and
+  UC Berkeley, rank 22 has EPFL and TU Munich). Ties are listed as separate
+  entries carrying the same rank number. Counting ties, the file has exactly 50
+  institutions.
+
+### How this list is used in labeling
+- An affiliation counts as elite (`elite_label = 1`) if it matches any name in
+  this list; otherwise `elite_label = 0`; unknown affiliation stays `null` and
+  is excluded from SPD/SRR (same rule as v1).
+- Matching note: OpenAlex returns institution display names that will not always
+  be byte-identical to QS names (for example "Massachusetts Institute of
+  Technology" vs "MIT", "EPFL" vs "Ecole Polytechnique Federale de Lausanne").
+  The pilot will first measure raw coverage, then we decide whether to add a
+  small alias / normalization table. Both Option B samples (random baseline and
+  retrieved set) must use the exact same list and the exact same matching rule.
+
+### Note on QS year sensitivity
+QS updates ranks yearly, so Top-50 membership shifts a little between editions.
+We freeze on the 2026 edition for reproducibility. Any future re-run must state
+which QS edition it used, or the elite share is not comparable across runs.
