@@ -116,6 +116,52 @@ are scoped, the full delivery checklist goes in
 
 ---
 
+## RQ3 guidance for Jici (Step 6, re-ranking)
+
+Because RQ1 bias is small and NOT significant, do NOT frame RQ3 as "push elite
+down". There is no large bias to remove; forcing SPD down would over-correct an
+already-fair result (and our QS-Top-50 group is only ~14%, so pushing it lower
+makes it reverse-unfair).
+
+Suggested reframing (backed by prior work: Avery et al., cs6200_group_report_final.pdf,
+who also found NO elite bias at RQ1):
+
+- Change RQ3's fairness metric from SPD/SRR to DIVERSITY: number of unique
+  institutions and unique countries in the Top-10.
+- Run the lambda ablation and ask: can re-ranking raise diversity at a small
+  utility cost? Also watch for over-correction.
+- Keep NDCG@10 and MRR as the utility metrics (these are meaningful regardless
+  of whether bias exists).
+
+Avery et al.'s measured result (THEIR numbers, not ours, for reference only):
+a diversity-heavy setting raised institutional diversity +15.7% and geographic
+diversity +25.9% at only 0.93% NDCG cost. Takeaway: even with no bias to fix,
+re-ranking can still increase diversity with little quality loss.
+
+RQ3 story to aim for: "behavior of MMR under a low-bias start - can it raise
+diversity without hurting utility, and does it over-correct?" Any outcome is a
+valid, honest finding; significance is not required to justify doing RQ3.
+
+**This is ONE possible direction, not a locked decision.** I'm still not sure
+what's best. My original understanding was that RQ3 is designed around the RQ1
+discussion (re-ranking to adjust retrieval-stage bias). But since RQ1 shows
+little bias, it may be worth waiting for RQ2 first: if RQ2 finds bias at the
+generation stage, RQ3 could instead be framed as an intervention aimed at that.
+Note the mechanism: MMR re-ranking only changes WHICH papers are fed to the
+LLM (the context), so it can indirectly improve RQ2 bias that comes from the
+context - we can re-run RQ2's Framework A on the re-ranked context and compare.
+But if RQ2 bias comes from the LLM itself (fair context, still cites elite),
+re-ranking cannot fix that; the perspective-balanced prompt (Step 7) is the
+lever there. So let's treat the diversity framing as a strong candidate and
+finalize RQ3's direction together once RQ2 results are in.
+
+To verify RQ1 yourself: the Option B result files are `rq1_optionB_result.json`
+and `rq1_optionB_elite_share.png` (Kaggle output of
+`step5b_fairness_audit_optionB-yb`); labels are in the Kaggle dataset
+`fairsearch-qbio-1b-labels-Raj-Jici-YB`.
+
+---
+
 ## Honesty note (please keep this intact)
 
 Any SPD-reduction figure, optimal lambda, or Gemini citation share you may see
