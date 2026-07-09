@@ -1,0 +1,170 @@
+# Handoff Status: RQ1 -> Step 6 (Project Update 2)
+
+Status snapshot for teammates (Raj, Jici) picking up Step 6 onward.
+This is a PROGRESS file. The full delivery checklist (with RQ2/RQ3 plans)
+comes later in `handoff_for_step6-8_project_update2.md`.
+
+Last updated: 2026-07-08 (Step 5b done; RQ1 final result below)
+Owner of 1b->5b (RQ1): Yan-Bo
+
+---
+
+## TL;DR
+
+- Step 1b labeling is DONE (Option B). Two clean label files exist.
+- Step 5b is DONE. RQ1 final: SPD +0.029, SRR 1.28, bootstrap 95% CI
+  [-0.005, +0.065] crosses zero -> NOT statistically significant.
+- Do NOT start Step 6 evaluation against the OLD baseline (0.233) or the
+  OLD kagglehub label set. Use the new Option B files below (baseline 0.144).
+- Key implication for RQ3: the starting bias is small and non-significant, so
+  MMR has little to "fix". Frame RQ3 as MMR behavior under a low-bias start
+  (can it nudge SPD toward 0 without hurting utility, or does it over-correct?),
+  not as "removing a large bias".
+
+---
+
+## Where the pipeline stands (step by step)
+
+| Step | What | Status |
+|------|------|--------|
+| 1  | Data prep (~55,300 q-bio papers) | done |
+| 2  | Embeddings (all-MiniLM-L6-v2, 384-dim) | done |
+| 3  | ChromaDB (`qbio_papers`) | done |
+| 5a | Retrieval, 150 queries, top-10 | done |
+| 1b | Institution labeling (Option B) | done |
+| 5b | Formal fairness audit (SPD/SRR/CI) | done (RQ1: not significant) |
+| 6  | Fair MMR re-ranking (RQ3) | not started (your part) |
+| 7  | Gemini + balanced prompt (RQ2) | not started (your part) |
+| 8  | Evaluation (NDCG/MRR/SPD/RAGAS) | not started (your part) |
+| 9  | Streamlit demo | not started |
+
+Step 6-8 is the substantive work; Step 9 wraps it into a demo. All of the
+above (1b -> 8) belongs to Project Update 2.
+
+---
+
+## The four data files you will need (get them from Kaggle, not GitHub)
+
+These files are NOT in the GitHub repo (large / data artifacts live on Kaggle).
+Search each dataset by name on Kaggle (owner: `yanbochen928`) and add it as a
+notebook input. Full field-by-field docs are in `data/README_data.md`.
+
+| File | Kaggle dataset (search this name) | Note |
+|------|-----------------------------------|------|
+| `retrieval_results.json` | `fairsearch-qbio-queries-YB` | 150-query file; sits alongside the queries JSONs |
+| `qs_top50_elite_2026.json` | `fairsearch-qbio-elite-list` | Definition of "elite" (QS Top-50) |
+| `qbio_embeddings.npy` + `embedding_info.json` | `fairsearch-qbio-embeddings-Raj-Jici-YB` | Needed for MMR diversity |
+| `qbio_papers.json` | `fairsearch-qbio-processed-Raj-Jici-YB` | Corpus metadata |
+| ChromaDB | `fairsearch-qbio-chromadb` | Prebuilt vector store |
+| `sample_labels_1000.json` + `retrieval_labels.json` | `fairsearch-qbio-1b-labels-Raj-Jici-YB` | Option B labels (baseline share 0.144, retrieved share 0.177) |
+
+Reminder: on Kaggle, dataset input paths follow
+`/kaggle/input/datasets/<username>/<dataset-slug>/<file>` (not the shorter
+documented form), so use auto-detect / rglob in the notebook rather than a
+hardcoded path.
+
+---
+
+## Five things that WILL trip you up (read before Step 6)
+
+1. Baseline is 0.144, NOT 0.233. The old v1 baseline (0.233) was biased
+   (labeled subset over-represented elite schools). Option B replaces it with
+   an unbiased random-sample rate of 0.144. If you compute post-rerank SPD
+   against 0.233, it will not match RQ1.
+
+2. Do NOT use Raj's old kagglehub dataset
+   (`rajlucka/fairsearch-qbio-institution-labels`). That is the v1 whole-corpus
+   table. Use the Option B files above instead.
+
+3. Neutral only for the main metric. Queries q001-q100 are neutral (RQ1/RQ3);
+   q101-q150 are contradictory and held out for RQ2. Compute the main SPD on
+   neutral only.
+
+4. Coverage is ~44-58%, not 100%. Only papers with a findable affiliation are
+   labeled; the rest are excluded (not counted as elite or non-elite). Your
+   post-rerank SPD is computed over labeled slots only. Expect smaller effective
+   n than the raw slot count.
+
+5. Elite threshold is QS Top-50, not Top-100. Exact display-name match against
+   `qs_top50_elite_2026.json`.
+
+---
+
+## RQ1 final result (Step 5b, done)
+
+Design: Option B (same labeling method on a random sample vs the retrieved set).
+Scope: neutral queries only (q001-q100). Baseline = 0.144 (random 1000 sample,
+438 with findable affiliation). Retrieved = 0.177 (798 findable).
+
+- SPD (point) = +0.029
+- SRR = 1.28
+- Bootstrap 95% CI = [-0.005, +0.065]  -> crosses zero -> NOT significant
+- Binomial p = 0.046 (looks significant, but assumes independent papers;
+  within-query correlation violates this, so the bootstrap is authoritative)
+- Neutral labeled slots = 590 (elite = 102)
+
+Conclusion: weak, non-significant tilt toward elite institutions. Consistent
+with our PCA finding that the embedding encodes topic, not institutional origin,
+which suggests semantic retrieval is not the primary source of institutional
+bias. Result files (on Kaggle notebook output): `rq1_optionB_result.json`,
+`rq1_optionB_elite_share.png`.
+
+Done on my side: Step 1b labeling, label upload
+(`fairsearch-qbio-1b-labels-Raj-Jici-YB`), and Step 5b. Next: after RQ2/RQ3
+are scoped, the full delivery checklist goes in
+`handoff_for_step6-8_project_update2.md`.
+
+---
+
+## RQ3 guidance for Jici (Step 6, re-ranking)
+
+Because RQ1 bias is small and NOT significant, do NOT frame RQ3 as "push elite
+down". There is no large bias to remove; forcing SPD down would over-correct an
+already-fair result (and our QS-Top-50 group is only ~14%, so pushing it lower
+makes it reverse-unfair).
+
+Suggested reframing (backed by prior work: Avery et al., cs6200_group_report_final.pdf,
+who also found NO elite bias at RQ1):
+
+- Change RQ3's fairness metric from SPD/SRR to DIVERSITY: number of unique
+  institutions and unique countries in the Top-10.
+- Run the lambda ablation and ask: can re-ranking raise diversity at a small
+  utility cost? Also watch for over-correction.
+- Keep NDCG@10 and MRR as the utility metrics (these are meaningful regardless
+  of whether bias exists).
+
+Avery et al.'s measured result (THEIR numbers, not ours, for reference only):
+a diversity-heavy setting raised institutional diversity +15.7% and geographic
+diversity +25.9% at only 0.93% NDCG cost. Takeaway: even with no bias to fix,
+re-ranking can still increase diversity with little quality loss.
+
+RQ3 story to aim for: "behavior of MMR under a low-bias start - can it raise
+diversity without hurting utility, and does it over-correct?" Any outcome is a
+valid, honest finding; significance is not required to justify doing RQ3.
+
+**This is ONE possible direction, not a locked decision.** I'm still not sure
+what's best. My original understanding was that RQ3 is designed around the RQ1
+discussion (re-ranking to adjust retrieval-stage bias). But since RQ1 shows
+little bias, it may be worth waiting for RQ2 first: if RQ2 finds bias at the
+generation stage, RQ3 could instead be framed as an intervention aimed at that.
+Note the mechanism: MMR re-ranking only changes WHICH papers are fed to the
+LLM (the context), so it can indirectly improve RQ2 bias that comes from the
+context - we can re-run RQ2's Framework A on the re-ranked context and compare.
+But if RQ2 bias comes from the LLM itself (fair context, still cites elite),
+re-ranking cannot fix that; the perspective-balanced prompt (Step 7) is the
+lever there. So let's treat the diversity framing as a strong candidate and
+finalize RQ3's direction together once RQ2 results are in.
+
+To verify RQ1 yourself: the Option B result files are `rq1_optionB_result.json`
+and `rq1_optionB_elite_share.png` (Kaggle output of
+`step5b_fairness_audit_optionB-yb`); labels are in the Kaggle dataset
+`fairsearch-qbio-1b-labels-Raj-Jici-YB`.
+
+---
+
+## Honesty note (please keep this intact)
+
+Any SPD-reduction figure, optimal lambda, or Gemini citation share you may see
+in older draft diagrams are HYPOTHETICAL/EXPECTED values, not measured results.
+Do not present them as findings. Only report numbers your own run produces, or
+label them clearly as expected.
