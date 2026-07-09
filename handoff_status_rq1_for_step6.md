@@ -1,11 +1,10 @@
 # Handoff Status: RQ1 -> Step 6 (Project Update 2)
 
 Status snapshot for teammates (Raj, Jici) picking up Step 6 onward.
-This is a PROGRESS file. The full delivery checklist (with final
-SPD/SRR/CI numbers) comes after Step 5b runs, in
-`handoff_for_step6-8_project_update2.md`.
+This is a PROGRESS file. The full delivery checklist (with RQ2/RQ3 plans)
+comes later in `handoff_for_step6-8_project_update2.md`.
 
-Last updated: 2026-07-08
+Last updated: 2026-07-08 (Step 5b done; RQ1 final result below)
 Owner of 1b->5b (RQ1): Yan-Bo
 
 ---
@@ -13,10 +12,14 @@ Owner of 1b->5b (RQ1): Yan-Bo
 ## TL;DR
 
 - Step 1b labeling is DONE (Option B). Two clean label files exist.
-- Step 5b (formal SPD/SRR + CI + significance) is NOT run yet.
+- Step 5b is DONE. RQ1 final: SPD +0.029, SRR 1.28, bootstrap 95% CI
+  [-0.005, +0.065] crosses zero -> NOT statistically significant.
 - Do NOT start Step 6 evaluation against the OLD baseline (0.233) or the
-  OLD kagglehub label set. Use the new Option B files below.
-- Preview only: SPD = 0.177 - 0.144 = +0.033 (small; significance TBD in 5b).
+  OLD kagglehub label set. Use the new Option B files below (baseline 0.144).
+- Key implication for RQ3: the starting bias is small and non-significant, so
+  MMR has little to "fix". Frame RQ3 as MMR behavior under a low-bias start
+  (can it nudge SPD toward 0 without hurting utility, or does it over-correct?),
+  not as "removing a large bias".
 
 ---
 
@@ -29,7 +32,7 @@ Owner of 1b->5b (RQ1): Yan-Bo
 | 3  | ChromaDB (`qbio_papers`) | done |
 | 5a | Retrieval, 150 queries, top-10 | done |
 | 1b | Institution labeling (Option B) | done |
-| 5b | Formal fairness audit (SPD/SRR/CI) | NOT run yet |
+| 5b | Formal fairness audit (SPD/SRR/CI) | done (RQ1: not significant) |
 | 6  | Fair MMR re-ranking (RQ3) | not started (your part) |
 | 7  | Gemini + balanced prompt (RQ2) | not started (your part) |
 | 8  | Evaluation (NDCG/MRR/SPD/RAGAS) | not started (your part) |
@@ -49,11 +52,11 @@ notebook input. Full field-by-field docs are in `data/README_data.md`.
 | File | Kaggle dataset (search this name) | Note |
 |------|-----------------------------------|------|
 | `retrieval_results.json` | `fairsearch-qbio-queries-YB` | 150-query file; sits alongside the queries JSONs |
-| `qs_top50_elite_2026.json` | `fairsearch-qbio-elite-list` | Definition of "elite" (QS Top-50). NOTE: currently PRIVATE; ask Yan-Bo to make it public or add you as collaborator |
+| `qs_top50_elite_2026.json` | `fairsearch-qbio-elite-list` | Definition of "elite" (QS Top-50) |
 | `qbio_embeddings.npy` + `embedding_info.json` | `fairsearch-qbio-embeddings-Raj-Jici-YB` | Needed for MMR diversity |
 | `qbio_papers.json` | `fairsearch-qbio-processed-Raj-Jici-YB` | Corpus metadata |
 | ChromaDB | `fairsearch-qbio-chromadb` | Prebuilt vector store |
-| `sample_labels_1000.json` + `retrieval_labels.json` | (NOT UPLOADED YET) | Option B labels; Yan-Bo will publish these before you need them |
+| `sample_labels_1000.json` + `retrieval_labels.json` | `fairsearch-qbio-1b-labels-Raj-Jici-YB` | Option B labels (baseline share 0.144, retrieved share 0.177) |
 
 Reminder: on Kaggle, dataset input paths follow
 `/kaggle/input/datasets/<username>/<dataset-slug>/<file>` (not the shorter
@@ -87,16 +90,29 @@ hardcoded path.
 
 ---
 
-## What is still pending on my side (RQ1)
+## RQ1 final result (Step 5b, done)
 
-- Run Step 5b to produce the authoritative SPD, SRR, 95% CI, and binomial
-  p-value (neutral only). Preview SPD is +0.033; given how small it is, the CI
-  may cross zero (i.e. direction present but possibly not significant). That is
-  a valid, honest result and does not block Step 6.
-- Upload the two label files as one Kaggle dataset (planned:
-  `fairsearch-qbio-1b-labels`) so 5b and Step 6 notebooks can read them.
-- After 5b: write the full delivery checklist with final numbers in
-  `handoff_for_step6-8_project_update2.md`.
+Design: Option B (same labeling method on a random sample vs the retrieved set).
+Scope: neutral queries only (q001-q100). Baseline = 0.144 (random 1000 sample,
+438 with findable affiliation). Retrieved = 0.177 (798 findable).
+
+- SPD (point) = +0.029
+- SRR = 1.28
+- Bootstrap 95% CI = [-0.005, +0.065]  -> crosses zero -> NOT significant
+- Binomial p = 0.046 (looks significant, but assumes independent papers;
+  within-query correlation violates this, so the bootstrap is authoritative)
+- Neutral labeled slots = 590 (elite = 102)
+
+Conclusion: weak, non-significant tilt toward elite institutions. Consistent
+with our PCA finding that the embedding encodes topic, not institutional origin,
+which suggests semantic retrieval is not the primary source of institutional
+bias. Result files (on Kaggle notebook output): `rq1_optionB_result.json`,
+`rq1_optionB_elite_share.png`.
+
+Done on my side: Step 1b labeling, label upload
+(`fairsearch-qbio-1b-labels-Raj-Jici-YB`), and Step 5b. Next: after RQ2/RQ3
+are scoped, the full delivery checklist goes in
+`handoff_for_step6-8_project_update2.md`.
 
 ---
 
