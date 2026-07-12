@@ -67,11 +67,19 @@ handled as source="manual":
 - q143: two "or" ("...sizer mechanism or by a timer or adder mechanism?").
   The FIRST "or" is the boundary; "timer or adder" is one side.
 
-Freezing: all 50 records start reviewed=false. A human (Yan-Bo or a teammate)
-sweeps ALL 50 (not only flagged ones), confirming each Side A/B is faithful to
+Freezing: all 50 records start reviewed=false. A human sweeps ALL 50
+(Yan-Bo Chen), confirming each Side A/B is faithful to
 the original query, adds no new scientific claim, and did not mis-split. Only
 then reviewed is set true and the file is frozen. After the judge run starts,
 Side A/B definitions are NOT changed because of unfavorable results.
+
+The `source` field records HOW the initial Side A/B draft was derived
+(auto_split = split on the query's "or"; manual = special sentence handled by
+hand for q108/q129/q143). It does NOT indicate whether the final wording was
+human-reviewed. Some auto_split records still received minor grammatical
+completion (e.g. q130, q134 carry a shared clause into Side B; q106/q116/q122/
+q137 were made symmetric; q108 was corrected so Side B does not overclaim).
+Final human confirmation is indicated ONLY by reviewed=true, not by source.
 
 ## Context paper stance labels (three classes)
 

@@ -3,9 +3,9 @@
     "query_id": "q101",
     "query_text": "Is most non-coding DNA functional, or is it largely non-functional junk?",
     "side_a": "Most non-coding DNA is functional.",
-    "side_b": "Most non-coding DNA is largely non-functional junk.",
+    "side_b": "Most non-coding DNA is non-functional junk.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q102",
@@ -13,7 +13,7 @@
     "side_a": "Molecular evolution is driven mainly by neutral genetic drift.",
     "side_b": "Molecular evolution is driven mainly by natural selection.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q103",
@@ -21,7 +21,7 @@
     "side_a": "The gut microbiome causally shapes host behavior.",
     "side_b": "The reported gut microbiome-behavior links are mostly correlational.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q104",
@@ -29,7 +29,7 @@
     "side_a": "The brain operates near a critical point.",
     "side_b": "The evidence for neural criticality is overstated.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q105",
@@ -37,15 +37,15 @@
     "side_a": "Deep-learning-based protein structure prediction has effectively solved the protein folding problem.",
     "side_b": "Deep-learning-based protein structure prediction has solved only the structure prediction task.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q106",
     "query_text": "Are most GWAS-associated variants themselves causal, or mainly tags in linkage disequilibrium with causal variants?",
     "side_a": "Most GWAS-associated variants are themselves causal.",
-    "side_b": "Most GWAS-associated variants are mainly tags in linkage disequilibrium with causal variants.",
+    "side_b": "Most GWAS-associated variants are tags in linkage disequilibrium with causal variants rather than causal variants themselves.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q107",
@@ -53,15 +53,15 @@
     "side_a": "The missing heritability of complex traits is better explained by common small-effect variants.",
     "side_b": "The missing heritability of complex traits is better explained by rare variants.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q108",
     "query_text": "Does the omnigenic model explain complex-trait architecture better than the classical polygenic model?",
-    "side_a": "The omnigenic model better explains complex-trait architecture.",
-    "side_b": "The classical polygenic model better explains complex-trait architecture.",
+    "side_a": "The omnigenic model explains complex-trait architecture better than the classical polygenic model.",
+    "side_b": "The classical polygenic model explains complex-trait architecture at least as well as the omnigenic model.",
     "source": "manual",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q109",
@@ -69,7 +69,7 @@
     "side_a": "Three-dimensional chromatin organization is a cause of gene-expression regulation.",
     "side_b": "Three-dimensional chromatin organization is largely a consequence of gene-expression regulation.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q110",
@@ -77,7 +77,7 @@
     "side_a": "Speciation is driven mainly by natural selection.",
     "side_b": "Speciation is driven mainly by genetic drift and geographic isolation.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q111",
@@ -85,7 +85,7 @@
     "side_a": "Group selection meaningfully drives the evolution of altruism.",
     "side_b": "Kin selection is sufficient to explain the evolution of altruism.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q112",
@@ -93,7 +93,7 @@
     "side_a": "Large-scale evolutionary patterns are better explained by gradualism.",
     "side_b": "Large-scale evolutionary patterns are better explained by punctuated equilibrium.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q113",
@@ -101,7 +101,7 @@
     "side_a": "Rapid adaptation is driven mainly by new mutations.",
     "side_b": "Rapid adaptation is driven mainly by standing genetic variation.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q114",
@@ -109,7 +109,7 @@
     "side_a": "Neural computation is better described by firing-rate coding.",
     "side_b": "Neural computation is better described by precise spike timing.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q115",
@@ -117,15 +117,15 @@
     "side_a": "The brain implements predictive coding.",
     "side_b": "The predictive coding framework is overextended.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q116",
     "query_text": "Are grid-cell firing patterns primarily for spatial navigation or for more general cognitive mapping?",
     "side_a": "Grid-cell firing patterns are primarily for spatial navigation.",
-    "side_b": "Grid-cell firing patterns are for more general cognitive mapping.",
+    "side_b": "Grid-cell firing patterns are primarily for more general cognitive mapping.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q117",
@@ -133,7 +133,7 @@
     "side_a": "Long-term memory is stored mainly in synaptic weights.",
     "side_b": "Long-term memory is stored mainly in intrinsic molecular states of neurons.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q118",
@@ -141,7 +141,7 @@
     "side_a": "Protein function is better explained by well-defined folded structures.",
     "side_b": "Protein function is better explained by intrinsically disordered regions.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q119",
@@ -149,7 +149,7 @@
     "side_a": "Proteins fold along defined pathways.",
     "side_b": "Proteins fold through funnel-like landscapes with many routes.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q120",
@@ -157,7 +157,7 @@
     "side_a": "Enzyme catalysis is explained primarily by transition-state stabilization.",
     "side_b": "Enzyme catalysis is explained primarily by conformational dynamics.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q121",
@@ -165,15 +165,15 @@
     "side_a": "Allosteric regulation requires conformational change.",
     "side_b": "Allosteric regulation can occur through protein dynamics alone.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q122",
     "query_text": "Is aging primarily a programmed process or the result of accumulated molecular damage?",
     "side_a": "Aging is primarily a programmed process.",
-    "side_b": "Aging is the result of accumulated molecular damage.",
+    "side_b": "Aging primarily results from accumulated molecular damage.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q123",
@@ -181,7 +181,7 @@
     "side_a": "Biological complexity arises mainly from natural selection.",
     "side_b": "Biological complexity arises mainly from neutral non-adaptive processes.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q124",
@@ -189,7 +189,7 @@
     "side_a": "Allometric scaling laws are best explained by resource-transport network models.",
     "side_b": "Allometric scaling laws are best explained by alternative mechanisms.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q125",
@@ -197,7 +197,7 @@
     "side_a": "The origin of life is better explained by metabolism-first scenarios.",
     "side_b": "The origin of life is better explained by genetics-first scenarios.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q126",
@@ -205,7 +205,7 @@
     "side_a": "Mechanistic dynamical models are more appropriate for predicting biological systems.",
     "side_b": "Machine-learning models are more appropriate for predicting biological systems.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q127",
@@ -213,7 +213,7 @@
     "side_a": "Molecular noise in cells is mostly detrimental.",
     "side_b": "Molecular noise in cells is functionally exploited.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q128",
@@ -221,7 +221,7 @@
     "side_a": "Biological systems should be understood through modular decomposition.",
     "side_b": "Biological systems should be understood as globally integrated wholes.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q129",
@@ -229,7 +229,7 @@
     "side_a": "Power-law distributions in biological data are genuine.",
     "side_b": "Power-law distributions in biological data are artifacts of limited or poorly fit data.",
     "source": "manual",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q130",
@@ -237,7 +237,7 @@
     "side_a": "Quantitative genotype-phenotype maps can be predicted.",
     "side_b": "Epistasis is so context-dependent that quantitative genotype–phenotype maps cannot be reliably predicted.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q131",
@@ -245,7 +245,7 @@
     "side_a": "Biological robustness is produced mainly by network redundancy.",
     "side_b": "Biological robustness is produced mainly by specific regulatory feedback.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q132",
@@ -253,7 +253,7 @@
     "side_a": "Network motifs are functionally significant.",
     "side_b": "Network motifs are largely statistical byproducts of network growth.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q133",
@@ -261,7 +261,7 @@
     "side_a": "Cellular decision-making is governed more by network topology.",
     "side_b": "Cellular decision-making is governed more by reaction kinetics.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q134",
@@ -269,7 +269,7 @@
     "side_a": "Regulatory network structure can be reliably inferred from expression data alone.",
     "side_b": "Regulatory network structure is fundamentally underdetermined from expression data alone.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q135",
@@ -277,7 +277,7 @@
     "side_a": "Gene regulatory networks are best modeled as deterministic systems.",
     "side_b": "Gene regulatory networks are best modeled as inherently stochastic systems.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q136",
@@ -285,15 +285,15 @@
     "side_a": "Tissue patterning is governed mainly by morphogen gradients.",
     "side_b": "Tissue patterning is governed mainly by mechanical feedback.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q137",
     "query_text": "Is cancer primarily a genetic disease or a disease of tissue organization and microenvironment?",
     "side_a": "Cancer is primarily a genetic disease.",
-    "side_b": "Cancer is primarily a disease of tissue organization and microenvironment.",
+    "side_b": "Cancer is primarily a disease of tissue organization and the microenvironment.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q138",
@@ -301,7 +301,7 @@
     "side_a": "Tissue regeneration recapitulates developmental programs.",
     "side_b": "Tissue regeneration follows distinct mechanisms.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q139",
@@ -309,7 +309,7 @@
     "side_a": "Collective cell migration is driven by specialized leader cells.",
     "side_b": "Collective cell migration is driven by emergent group-level coordination.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q140",
@@ -317,7 +317,7 @@
     "side_a": "Stem-cell fate decisions are primarily intrinsically programmed.",
     "side_b": "Stem-cell fate decisions are primarily dictated by the niche.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q141",
@@ -325,7 +325,7 @@
     "side_a": "Cell-fate determination is mostly deterministic.",
     "side_b": "Cell-fate determination is driven by stochastic gene expression.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q142",
@@ -333,7 +333,7 @@
     "side_a": "Cell differentiation proceeds through discrete states.",
     "side_b": "Cell differentiation proceeds through a continuum of transitions.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q143",
@@ -341,7 +341,7 @@
     "side_a": "Cell size is controlled by a sizer mechanism.",
     "side_b": "Cell size is controlled by a timer or adder mechanism.",
     "source": "manual",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q144",
@@ -349,7 +349,7 @@
     "side_a": "The accuracy of chemotactic sensing is limited by physical noise.",
     "side_b": "The accuracy of chemotactic sensing is limited by intracellular signaling constraints.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q145",
@@ -357,7 +357,7 @@
     "side_a": "The cell cycle is governed by a central oscillator.",
     "side_b": "The cell cycle is governed by a sequence of checkpoint-dependent transitions.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q146",
@@ -365,7 +365,7 @@
     "side_a": "Membraneless organelles are best described as liquid droplets.",
     "side_b": "Membraneless organelles are best described as more solid-like assemblies.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q147",
@@ -373,7 +373,7 @@
     "side_a": "Intracellular transport is dominated by motor-driven directed motion.",
     "side_b": "Intracellular transport is dominated by diffusion.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q148",
@@ -381,7 +381,7 @@
     "side_a": "Cell shape is determined mainly by the cytoskeleton.",
     "side_b": "Cell shape is determined mainly by membrane mechanics.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q149",
@@ -389,7 +389,7 @@
     "side_a": "Mitochondrial function is best understood at the level of individual organelles.",
     "side_b": "Mitochondrial function is best understood as a dynamic connected network.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   },
   {
     "query_id": "q150",
@@ -397,6 +397,6 @@
     "side_a": "Organelle size is set by molecular rulers.",
     "side_b": "Organelle size is set by a dynamic balance of assembly and disassembly.",
     "source": "auto_split",
-    "reviewed": false
+    "reviewed": true
   }
 ]
