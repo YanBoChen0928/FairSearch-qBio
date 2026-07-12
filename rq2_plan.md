@@ -58,6 +58,50 @@ No separate dissent-quantity metric is added to the main analysis (it would
 make B too large); answer stance distribution may still be reported
 descriptively, not as a pre-registered metric.
 
+Decision 2 amendment - Framework B viewpoint-diversity retention (added
+2026-07-12, BEFORE the Framework B judge run; supersedes the consensus/dissent
+operationalization above where they disagree).
+
+Rationale. q101-q150 encode two contrasting positions but do NOT consistently
+represent a clear scientific consensus-versus-dissent relationship (many are
+complementary mechanisms or open alternative theories, e.g. neutral drift vs
+selection, rate coding vs spike timing, sizer vs timer/adder). Forcing each
+query to name one side "consensus" and the other "dissent" would inject more
+researcher subjectivity than an LLM judge would. So Framework B is
+operationalized SYMMETRICALLY as Side A vs Side B, not consensus vs dissent.
+The headline is renamed from "dissent retention" to "viewpoint-diversity
+retention": does the answer keep BOTH sides that were present in the context?
+
+Sides come from the query text itself, not from new researcher-authored
+positions. A frozen side-annotation file (sides_q101_150.json) maps each
+contradictory query to its two explicitly stated positions (Side A = the
+position before "or", Side B = after), restating ONLY what the original query
+already contains (no added evidence, background, consensus call, or value
+judgment). The original queries_all_150.json is unchanged; retrieval and
+generation still use the original query_text. The side file is a derived
+annotation sidecar used only by the Framework B judge.
+
+Judging is split into TWO INDEPENDENT LAYERS:
+- Presentation layer (retention_status): whether both sides are SUBSTANTIVELY
+  represented in the answer. This is the SOLE input to the headline metric.
+  Values: both_sides_retained / side_a_only_or_token_b / side_b_only_or_token_a
+  / neither_or_unclear. retention = 1 only when both_sides_retained.
+- Conclusion layer (conclusion_favor): whether the answer judges one side
+  better-supported. Values: favors_side_a / favors_side_b / no_clear_favor.
+  This is DESCRIPTIVE ONLY and NEVER enters the retention metric.
+
+Frequency or length asymmetry alone NEVER determines favor (more sentences,
+more citations, longer paragraph, or appearing first are not favor signals);
+favor requires an explicit evaluative/comparative signal. Context papers are
+labeled supports_side_a / supports_side_b / mixed_or_neutral; mixed_or_neutral
+never helps satisfy eligibility (tie-break: when unsure, label mixed_or_neutral
+to reduce false-positive eligibility). Eligibility requires at least one
+supports_side_a AND at least one supports_side_b among the top-10 context.
+Retention counts only when retention_status == both_sides_retained; equal
+coverage is not required, and the answer may still conclude one side has
+stronger evidence. Full labeling rules, judge JSON schema, model decision tree,
+and CSV workflow are pre-specified in rq2_frameworkb_draft.md.
+
 Decision 2b - Framework B baseline prompt must NOT force balancing.
 The B baseline generation prompt stays evidence-grounded (answer using ONLY
 the given 10 papers, mark each claim with [n]) but does NOT explicitly instruct
