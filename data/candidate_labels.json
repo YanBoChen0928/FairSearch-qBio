@@ -5,13 +5,13 @@
     "n_candidates_new": 3086,
     "elite_list": "QS World University Rankings 2026 Top 50",
     "coverage": {
-      "found": 1780,
-      "no_affiliation": 1242,
+      "found": 1782,
+      "no_affiliation": 1240,
       "not_found": 64
     },
-    "found": 1780,
-    "elite_found": 319,
-    "candidate_elite_share": 0.1792
+    "found": 1782,
+    "elite_found": 320,
+    "candidate_elite_share": 0.1796
   },
   "labels": [
     {
@@ -6506,7 +6506,7 @@
     {
       "paper_id": "1503.01915",
       "coverage": "found",
-      "institution": "Technische Universit\u00e4t Dresden",
+      "institution": "Center for Advancing Electronics Dresden",
       "country": "DE",
       "elite_label": 0
     },
@@ -9089,8 +9089,8 @@
     {
       "paper_id": "1703.03449",
       "coverage": "found",
-      "institution": "Max Planck Institute for Biophysical Chemistry",
-      "country": "DE",
+      "institution": "Consejo Nacional de Investigaciones Cient\u00edficas y T\u00e9cnicas",
+      "country": "AR",
       "elite_label": 0
     },
     {
@@ -14226,10 +14226,10 @@
     },
     {
       "paper_id": "2110.10260",
-      "coverage": "no_affiliation",
-      "institution": null,
-      "country": null,
-      "elite_label": null
+      "coverage": "found",
+      "institution": "Johns Hopkins University",
+      "country": "US",
+      "elite_label": 1
     },
     {
       "paper_id": "2110.12903",
@@ -17320,10 +17320,10 @@
     },
     {
       "paper_id": "2409.02644",
-      "coverage": "no_affiliation",
-      "institution": null,
-      "country": null,
-      "elite_label": null
+      "coverage": "found",
+      "institution": "Consejo Superior de Investigaciones Cient\u00edficas",
+      "country": "ES",
+      "elite_label": 0
     },
     {
       "paper_id": "2409.04772",
