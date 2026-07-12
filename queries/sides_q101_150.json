@@ -1,0 +1,402 @@
+[
+  {
+    "query_id": "q101",
+    "query_text": "Is most non-coding DNA functional, or is it largely non-functional junk?",
+    "side_a": "Most non-coding DNA is functional.",
+    "side_b": "Most non-coding DNA is largely non-functional junk.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q102",
+    "query_text": "Is molecular evolution driven mainly by neutral genetic drift or by natural selection?",
+    "side_a": "Molecular evolution is driven mainly by neutral genetic drift.",
+    "side_b": "Molecular evolution is driven mainly by natural selection.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q103",
+    "query_text": "Does the gut microbiome causally shape host behavior, or are the reported links mostly correlational?",
+    "side_a": "The gut microbiome causally shapes host behavior.",
+    "side_b": "The reported gut microbiome-behavior links are mostly correlational.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q104",
+    "query_text": "Does the brain operate near a critical point, or is the evidence for neural criticality overstated?",
+    "side_a": "The brain operates near a critical point.",
+    "side_b": "The evidence for neural criticality is overstated.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q105",
+    "query_text": "Has deep-learning-based protein structure prediction effectively solved the protein folding problem, or only the structure prediction task?",
+    "side_a": "Deep-learning-based protein structure prediction has effectively solved the protein folding problem.",
+    "side_b": "Deep-learning-based protein structure prediction has solved only the structure prediction task.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q106",
+    "query_text": "Are most GWAS-associated variants themselves causal, or mainly tags in linkage disequilibrium with causal variants?",
+    "side_a": "Most GWAS-associated variants are themselves causal.",
+    "side_b": "Most GWAS-associated variants are mainly tags in linkage disequilibrium with causal variants.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q107",
+    "query_text": "Is the missing heritability of complex traits better explained by common small-effect variants or by rare variants?",
+    "side_a": "The missing heritability of complex traits is better explained by common small-effect variants.",
+    "side_b": "The missing heritability of complex traits is better explained by rare variants.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q108",
+    "query_text": "Does the omnigenic model explain complex-trait architecture better than the classical polygenic model?",
+    "side_a": "The omnigenic model better explains complex-trait architecture.",
+    "side_b": "The classical polygenic model better explains complex-trait architecture.",
+    "source": "manual",
+    "reviewed": false
+  },
+  {
+    "query_id": "q109",
+    "query_text": "Is three-dimensional chromatin organization a cause of gene-expression regulation or largely a consequence of it?",
+    "side_a": "Three-dimensional chromatin organization is a cause of gene-expression regulation.",
+    "side_b": "Three-dimensional chromatin organization is largely a consequence of gene-expression regulation.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q110",
+    "query_text": "Is speciation driven mainly by natural selection or by genetic drift and geographic isolation?",
+    "side_a": "Speciation is driven mainly by natural selection.",
+    "side_b": "Speciation is driven mainly by genetic drift and geographic isolation.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q111",
+    "query_text": "Does group selection meaningfully drive the evolution of altruism, or is kin selection sufficient?",
+    "side_a": "Group selection meaningfully drives the evolution of altruism.",
+    "side_b": "Kin selection is sufficient to explain the evolution of altruism.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q112",
+    "query_text": "Are large-scale evolutionary patterns better explained by gradualism or by punctuated equilibrium?",
+    "side_a": "Large-scale evolutionary patterns are better explained by gradualism.",
+    "side_b": "Large-scale evolutionary patterns are better explained by punctuated equilibrium.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q113",
+    "query_text": "Is rapid adaptation driven mainly by new mutations or by standing genetic variation?",
+    "side_a": "Rapid adaptation is driven mainly by new mutations.",
+    "side_b": "Rapid adaptation is driven mainly by standing genetic variation.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q114",
+    "query_text": "Is neural computation better described by firing-rate coding or by precise spike timing?",
+    "side_a": "Neural computation is better described by firing-rate coding.",
+    "side_b": "Neural computation is better described by precise spike timing.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q115",
+    "query_text": "Does the brain implement predictive coding, or is that framework overextended?",
+    "side_a": "The brain implements predictive coding.",
+    "side_b": "The predictive coding framework is overextended.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q116",
+    "query_text": "Are grid-cell firing patterns primarily for spatial navigation or for more general cognitive mapping?",
+    "side_a": "Grid-cell firing patterns are primarily for spatial navigation.",
+    "side_b": "Grid-cell firing patterns are for more general cognitive mapping.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q117",
+    "query_text": "Is long-term memory stored mainly in synaptic weights or in intrinsic molecular states of neurons?",
+    "side_a": "Long-term memory is stored mainly in synaptic weights.",
+    "side_b": "Long-term memory is stored mainly in intrinsic molecular states of neurons.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q118",
+    "query_text": "Is protein function better explained by well-defined folded structures or by intrinsically disordered regions?",
+    "side_a": "Protein function is better explained by well-defined folded structures.",
+    "side_b": "Protein function is better explained by intrinsically disordered regions.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q119",
+    "query_text": "Do proteins fold along defined pathways or through funnel-like landscapes with many routes?",
+    "side_a": "Proteins fold along defined pathways.",
+    "side_b": "Proteins fold through funnel-like landscapes with many routes.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q120",
+    "query_text": "Is enzyme catalysis explained primarily by transition-state stabilization or by conformational dynamics?",
+    "side_a": "Enzyme catalysis is explained primarily by transition-state stabilization.",
+    "side_b": "Enzyme catalysis is explained primarily by conformational dynamics.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q121",
+    "query_text": "Does allosteric regulation require conformational change, or can it occur through protein dynamics alone?",
+    "side_a": "Allosteric regulation requires conformational change.",
+    "side_b": "Allosteric regulation can occur through protein dynamics alone.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q122",
+    "query_text": "Is aging primarily a programmed process or the result of accumulated molecular damage?",
+    "side_a": "Aging is primarily a programmed process.",
+    "side_b": "Aging is the result of accumulated molecular damage.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q123",
+    "query_text": "Does biological complexity arise mainly from natural selection or from neutral non-adaptive processes?",
+    "side_a": "Biological complexity arises mainly from natural selection.",
+    "side_b": "Biological complexity arises mainly from neutral non-adaptive processes.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q124",
+    "query_text": "Are allometric scaling laws best explained by resource-transport network models or by alternative mechanisms?",
+    "side_a": "Allometric scaling laws are best explained by resource-transport network models.",
+    "side_b": "Allometric scaling laws are best explained by alternative mechanisms.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q125",
+    "query_text": "Is the origin of life better explained by metabolism-first or by genetics-first scenarios?",
+    "side_a": "The origin of life is better explained by metabolism-first scenarios.",
+    "side_b": "The origin of life is better explained by genetics-first scenarios.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q126",
+    "query_text": "Are mechanistic dynamical models or machine-learning models more appropriate for predicting biological systems?",
+    "side_a": "Mechanistic dynamical models are more appropriate for predicting biological systems.",
+    "side_b": "Machine-learning models are more appropriate for predicting biological systems.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q127",
+    "query_text": "Is molecular noise in cells mostly detrimental, or is it functionally exploited?",
+    "side_a": "Molecular noise in cells is mostly detrimental.",
+    "side_b": "Molecular noise in cells is functionally exploited.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q128",
+    "query_text": "Should biological systems be understood through modular decomposition or as globally integrated wholes?",
+    "side_a": "Biological systems should be understood through modular decomposition.",
+    "side_b": "Biological systems should be understood as globally integrated wholes.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q129",
+    "query_text": "Are power-law distributions in biological data genuine, or artifacts of limited or poorly fit data?",
+    "side_a": "Power-law distributions in biological data are genuine.",
+    "side_b": "Power-law distributions in biological data are artifacts of limited or poorly fit data.",
+    "source": "manual",
+    "reviewed": false
+  },
+  {
+    "query_id": "q130",
+    "query_text": "Can quantitative genotype-phenotype maps be predicted, or is epistasis too context-dependent?",
+    "side_a": "Quantitative genotype-phenotype maps can be predicted.",
+    "side_b": "Epistasis is so context-dependent that quantitative genotype–phenotype maps cannot be reliably predicted.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q131",
+    "query_text": "Is biological robustness produced mainly by network redundancy or by specific regulatory feedback?",
+    "side_a": "Biological robustness is produced mainly by network redundancy.",
+    "side_b": "Biological robustness is produced mainly by specific regulatory feedback.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q132",
+    "query_text": "Are network motifs functionally significant, or largely statistical byproducts of network growth?",
+    "side_a": "Network motifs are functionally significant.",
+    "side_b": "Network motifs are largely statistical byproducts of network growth.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q133",
+    "query_text": "Is cellular decision-making governed more by network topology or by reaction kinetics?",
+    "side_a": "Cellular decision-making is governed more by network topology.",
+    "side_b": "Cellular decision-making is governed more by reaction kinetics.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q134",
+    "query_text": "Can regulatory network structure be reliably inferred from expression data alone, or is it fundamentally underdetermined?",
+    "side_a": "Regulatory network structure can be reliably inferred from expression data alone.",
+    "side_b": "Regulatory network structure is fundamentally underdetermined from expression data alone.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q135",
+    "query_text": "Are gene regulatory networks best modeled as deterministic or as inherently stochastic systems?",
+    "side_a": "Gene regulatory networks are best modeled as deterministic systems.",
+    "side_b": "Gene regulatory networks are best modeled as inherently stochastic systems.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q136",
+    "query_text": "Is tissue patterning governed mainly by morphogen gradients or by mechanical feedback?",
+    "side_a": "Tissue patterning is governed mainly by morphogen gradients.",
+    "side_b": "Tissue patterning is governed mainly by mechanical feedback.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q137",
+    "query_text": "Is cancer primarily a genetic disease or a disease of tissue organization and microenvironment?",
+    "side_a": "Cancer is primarily a genetic disease.",
+    "side_b": "Cancer is primarily a disease of tissue organization and microenvironment.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q138",
+    "query_text": "Does tissue regeneration recapitulate developmental programs, or follow distinct mechanisms?",
+    "side_a": "Tissue regeneration recapitulates developmental programs.",
+    "side_b": "Tissue regeneration follows distinct mechanisms.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q139",
+    "query_text": "Is collective cell migration driven by specialized leader cells or by emergent group-level coordination?",
+    "side_a": "Collective cell migration is driven by specialized leader cells.",
+    "side_b": "Collective cell migration is driven by emergent group-level coordination.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q140",
+    "query_text": "Are stem-cell fate decisions primarily intrinsically programmed or dictated by the niche?",
+    "side_a": "Stem-cell fate decisions are primarily intrinsically programmed.",
+    "side_b": "Stem-cell fate decisions are primarily dictated by the niche.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q141",
+    "query_text": "Is cell-fate determination mostly deterministic or driven by stochastic gene expression?",
+    "side_a": "Cell-fate determination is mostly deterministic.",
+    "side_b": "Cell-fate determination is driven by stochastic gene expression.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q142",
+    "query_text": "Does cell differentiation proceed through discrete states or a continuum of transitions?",
+    "side_a": "Cell differentiation proceeds through discrete states.",
+    "side_b": "Cell differentiation proceeds through a continuum of transitions.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q143",
+    "query_text": "Is cell size controlled by a sizer mechanism or by a timer or adder mechanism?",
+    "side_a": "Cell size is controlled by a sizer mechanism.",
+    "side_b": "Cell size is controlled by a timer or adder mechanism.",
+    "source": "manual",
+    "reviewed": false
+  },
+  {
+    "query_id": "q144",
+    "query_text": "Is the accuracy of chemotactic sensing limited by physical noise or by intracellular signaling constraints?",
+    "side_a": "The accuracy of chemotactic sensing is limited by physical noise.",
+    "side_b": "The accuracy of chemotactic sensing is limited by intracellular signaling constraints.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q145",
+    "query_text": "Is the cell cycle governed by a central oscillator or by a sequence of checkpoint-dependent transitions?",
+    "side_a": "The cell cycle is governed by a central oscillator.",
+    "side_b": "The cell cycle is governed by a sequence of checkpoint-dependent transitions.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q146",
+    "query_text": "Are membraneless organelles best described as liquid droplets or as more solid-like assemblies?",
+    "side_a": "Membraneless organelles are best described as liquid droplets.",
+    "side_b": "Membraneless organelles are best described as more solid-like assemblies.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q147",
+    "query_text": "Is intracellular transport dominated by motor-driven directed motion or by diffusion?",
+    "side_a": "Intracellular transport is dominated by motor-driven directed motion.",
+    "side_b": "Intracellular transport is dominated by diffusion.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q148",
+    "query_text": "Is cell shape determined mainly by the cytoskeleton or by membrane mechanics?",
+    "side_a": "Cell shape is determined mainly by the cytoskeleton.",
+    "side_b": "Cell shape is determined mainly by membrane mechanics.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q149",
+    "query_text": "Is mitochondrial function best understood at the level of individual organelles or as a dynamic connected network?",
+    "side_a": "Mitochondrial function is best understood at the level of individual organelles.",
+    "side_b": "Mitochondrial function is best understood as a dynamic connected network.",
+    "source": "auto_split",
+    "reviewed": false
+  },
+  {
+    "query_id": "q150",
+    "query_text": "Is organelle size set by molecular rulers or by a dynamic balance of assembly and disassembly?",
+    "side_a": "Organelle size is set by molecular rulers.",
+    "side_b": "Organelle size is set by a dynamic balance of assembly and disassembly.",
+    "source": "auto_split",
+    "reviewed": false
+  }
+]
