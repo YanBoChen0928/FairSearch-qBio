@@ -76,9 +76,67 @@ alongside NDCG@10 / MRR. RQ2 outputs are saved in a Step-8-reusable schema
 (query_id, query_text, retrieved context, paper_ids, generated_answer, parsed
 citations, citation status) so Step 8 does not re-run generation.
 
-Decision 4 - Generation model Gemini 1.5 Flash, fixed temperature (default 0),
-key in Kaggle Secrets (same pattern as OpenAlex). Judge model for B = Gemini
-1.5 Pro (fixed judge prompt + fixed temperature); confirmed when B starts.
+Decision 4 - Models (updated 2026-07-11; supersedes all earlier model choices).
+
+Model selection was forced to change several times by Google's deprecation
+schedule during setup. Recorded in full for reproducibility and the report:
+- Original plan: Gemini 1.5 Flash (gen) + 1.5 Pro (judge).
+- 1.5 series: removed. "gemini-1.5-flash" -> 404 NOT_FOUND; not in the model
+  list for our key.
+- gemini-2.0-flash / -flash-001: shut down (Google lists 2026-06-01). Calling
+  it returned 429 with "limit: 0" for the free tier (zero quota, i.e. not
+  usable), not a temporary rate-limit.
+- gemini-2.5-flash: listed by client.models.list() but NOT callable by our
+  (new) project: the call returned "This model models/gemini-2.5-flash is no
+  longer available to new users." KEY LESSON: appearing in models.list() does
+  NOT mean the project may call it; only an actual generateContent call proves
+  availability.
+- gemini-3.5-flash: callable, but this project's free-tier DAILY quota for it
+  was only 20 requests (429 with quotaId GenerateRequestsPerDayPerProjectPerModel,
+  quotaValue 20). 20/day cannot finish A's 100 queries (let alone B). Not the
+  RPM limit, the per-DAY limit. Enabling billing was rejected (course project).
+- FINAL, ACTUALLY USED: gemini-3.1-flash-lite. A flash-lite model has a much
+  higher free daily quota (order of 1000/day) and wider RPM, and the task
+  (read 10 abstracts, write an answer with [n]) is well within its capability.
+  Ran all 100 neutral queries with 0 failures, SLEEP=5.
+
+Final choices:
+- A generation + B baseline generation: gemini-3.1-flash-lite. SAME model for both,
+  matching Decision 2b (A and B share one generation prompt skeleton, so they
+  must share the model, or generation conditions would differ, confounding
+  framework effects with model-capability effects). No pinned "-NNN" snapshot
+  exists for it; we accept that (2.0-flash-001, the one pinned option, is
+  dead). We avoid "-latest" and "-preview" aliases because those drift and
+  hurt reproducibility.
+- B judge: a stronger current model, decided when B starts. gemini-2.5-pro is
+  not available to new projects (same "new users" restriction likely applies);
+  the current stable Pro-tier option to check at that time is
+  gemini-3.1-pro-preview (note: preview, so weaker reproducibility). Pick the
+  strongest STABLE model callable by the project when B begins; do not assume a
+  name from the list is callable until a real call succeeds.
+- Temperature fixed at 0 for all calls. Key in Kaggle Secrets, label
+  GEMINI_API_KEY. The new key format is NOT "AIza..."-prefixed, so code must
+  not assert that prefix; only check the key is non-empty and stripped.
+
+Known risk still open: if gemini-3.5-flash also returns 429 "limit: 0", the
+problem is the PROJECT having no free-tier quota (not the model name). Fix by
+creating a key in a fresh clean project, not by enabling billing (a course
+project should not need paid tier).
+
+Report note: state plainly that 1.5/2.0/2.5 were planned or attempted but were
+unavailable at run time, and that gemini-3.5-flash was used. Never silently
+swap models; record the actual model ID used.
+
+Robustness across models (OPTIONAL, not main line). Re-running the whole audit
+on a second model to check whether any amplification is model-specific is a
+nice-to-have, NOT required to answer RQ2 (a single model answers "does
+generation amplify institutional bias"). It roughly doubles the work (two
+generation passes, two parses, two metric sets, a comparison). Defer it to
+future work; only consider it IF the main run actually finds amplification
+(no effect -> nothing to test for robustness) AND time remains. If done, name
+it "model robustness check" with an explicit second model ID; do NOT call it
+"Framework B" (that name is already the dissent/viewpoint framework and the two
+must not be confused).
 
 Decision 5 - The processed corpus dataset must be added to the notebook.
 retrieval_results.json has NO title/abstract (only paper_id), so the prompt
@@ -170,6 +228,33 @@ limitation of LLM-based citation/judging. Repeated same-type errors trigger a
 prompt / parser / judge-prompt revision followed by RERUNNING the affected
 pipeline. We never manually correct individual sampled results and treat them
 as final metrics.
+
+## Framework A - MEASURED RESULT (completed 2026-07-12)
+
+Model: gemini-3.1-flash-lite, temperature 0. 100 neutral queries generated,
+0 failures, 0 invalid citation markers, 0 zero-citation queries. 99 queries
+used; 1 excluded by the empty-denominator rule (set null, not 0).
+
+Headline (unique cited-paper set):
+- mean amplification (cited_elite_share - context_elite_share) = +0.0041
+- median amplification = 0.0000
+- query-level bootstrap 95% CI (seed 42, 10,000 draws) = [-0.0254, +0.0342]
+- CI crosses zero -> NOT statistically significant
+- direction: 31 amplifying, 17 reducing, 51 unchanged
+- cited elite share 0.191 vs context elite share 0.187 (essentially equal)
+
+Conclusion: this is the NEUTRAL pre-registered outcome. No confirmed elite
+citation amplification at the generation stage. Consistent with RQ1 (weak,
+not significant) and the PCA topic-not-institution finding.
+
+Output files (Kaggle /kaggle/working, also backed up locally):
+rq2_gen_checkpoint.jsonl (raw), rq2_frameworkA_per_query.json,
+rq2_frameworkA_result.json, rq2_frameworkA_scatter.png.
+
+Caveats for report: "not significant" != proven zero; result is specific to
+gemini-3.1-flash-lite (model switch disclosed); measures cited-source
+attribution under a controlled RAG prompt, not token-level provenance; the
+54.3% figure from other sources is not comparable.
 
 ## Research-question chain (final framing)
 
