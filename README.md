@@ -15,12 +15,12 @@ This project audits a Retrieval-Augmented Generation (RAG) system built on the a
 
 We investigate three research questions across the full RAG pipeline:
 
-| RQ                     | Stage               | Question                                                                                                           |
-| ---------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| **RQ1**                | Retrieval (Step 5b)  | Does semantic vector search exhibit institutional homophily?                                                      |
-| **RQ2 (Framework A)**  | Generation (Step 7)  | Does the LLM disproportionately cite elite institutions when generating answers?                                  |
-| **RQ2 (Framework B)**  | Generation (Step 7)  | On two-sided debate queries, does the LLM flatten viewpoint diversity present in the retrieved context?           |
-| **RQ3**                | Re-ranking (Step 6)  | What is the fairness–utility tradeoff when applying MMR re-ranking?                                               |
+| RQ                    | Stage               | Question                                                                                                |
+| --------------------- | ------------------- | ------------------------------------------------------------------------------------------------------- |
+| **RQ1**               | Retrieval (Step 5b) | Does semantic vector search exhibit institutional homophily?                                            |
+| **RQ2 (Framework A)** | Generation (Step 7) | Does the LLM disproportionately cite elite institutions when generating answers?                        |
+| **RQ2 (Framework B)** | Generation (Step 7) | On two-sided debate queries, does the LLM flatten viewpoint diversity present in the retrieved context? |
+| **RQ3**               | Re-ranking (Step 6) | What is the fairness–utility tradeoff when applying MMR re-ranking?                                     |
 
 ---
 
@@ -50,7 +50,7 @@ Step 9   →  Streamlit diagnostic dashboard   [Not started]
 | Dataset              | arXiv metadata (Cornell University / Kaggle)                    |
 | Embedding model      | `all-MiniLM-L6-v2` (sentence-transformers)                      |
 | Vector database      | ChromaDB                                                        |
-| Generative LLM       | Google Gemini (`gemini-3.1-flash-lite`; see notes below)         |
+| Generative LLM       | Google Gemini (`gemini-3.1-flash-lite`; see notes below)        |
 | Institution metadata | OpenAlex API                                                    |
 | IR evaluation        | NDCG@10, MRR, Precision@K, Recall@K                             |
 | Fairness metrics     | SPD (Statistical Parity Difference), SRR (Selection Rate Ratio) |
@@ -109,21 +109,21 @@ FairSearch-qBio/
 
 ## Work Division
 
-| Step                                           | Owner  | Status      |
-| ---------------------------------------------- | ------ | ----------- |
-| Step 1 — Data preparation                      | Yan-Bo | ✅ Done     |
-| Step 2 — Embedding (all-MiniLM-L6-v2)          | Yan-Bo | ✅ Done     |
-| Step 3 — ChromaDB ingestion                    | Raj    | ✅ Done     |
+| Step                                                            | Owner  | Status      |
+| --------------------------------------------------------------- | ------ | ----------- |
+| Step 1 — Data preparation                                       | Yan-Bo | ✅ Done     |
+| Step 2 — Embedding (all-MiniLM-L6-v2)                           | Yan-Bo | ✅ Done     |
+| Step 3 — ChromaDB ingestion                                     | Raj    | ✅ Done     |
 | Step 4 — Query generation (150: 100 neutral + 50 contradictory) | Yan-Bo | ✅ Done     |
-| Step 5 — Baseline retrieval + Precision/Recall | Jici   | ✅ Done     |
-| Step 5b — Fairness audit (SPD/SRR) ← RQ1       | Yan-Bo | ✅ Done     |
-| Step 6 — Fair MMR re-ranking ← RQ3             | Jici   | ✅ Done     |
-| Step 7a — Gemini generation, Framework A ← RQ2 | Yan-Bo | ✅ Done     |
-| Step 7b — Gemini generation, Framework B ← RQ2 | Yan-Bo | ✅ Done     |
-| Step 8 — Full evaluation (NDCG, MRR, SPD, RAGAS) | TBD    | ⏳ Upcoming |
-| Step 9 — Streamlit dashboard                   | TBD    | ⏳ Upcoming |
-| Slides (Project Update 1)                      | Yan-Bo | ✅ Done     |
-| Report PDF (Project Update 1)                  | Jici   | ✅ Done     |
+| Step 5 — Baseline retrieval + Precision/Recall                  | Jici   | ✅ Done     |
+| Step 5b — Fairness audit (SPD/SRR) ← RQ1                        | Yan-Bo | ✅ Done     |
+| Step 6 — Fair MMR re-ranking ← RQ3                              | Jici   | ✅ Done     |
+| Step 7a — Gemini generation, Framework A ← RQ2                  | Yan-Bo | ✅ Done     |
+| Step 7b — Gemini generation, Framework B ← RQ2                  | Yan-Bo | ✅ Done     |
+| Step 8 — Full evaluation (NDCG, MRR, SPD, RAGAS)                | TBD    | ⏳ Upcoming |
+| Step 9 — Streamlit dashboard                                    | TBD    | ⏳ Upcoming |
+| Slides (Project Update 1)                                       | Yan-Bo | ✅ Done     |
+| Report PDF (Project Update 1)                                   | Jici   | ✅ Done     |
 
 ---
 
@@ -247,16 +247,16 @@ All Step 1–2 notebooks are developed and executed on Kaggle Notebooks, where t
 
 ## Milestones (14-Week Schedule)
 
-| Phase           | Week  | Milestone                                       | Status |
-| --------------- | ----- | ----------------------------------------------- | ------ |
-| I: Foundations  | 1–2   | Environment setup, data loading, ChromaDB index | ✅     |
-| I: Foundations  | 3–4   | Naive RAG baseline, Precision & Recall          | ✅     |
-| II: Audit       | 5–6   | Institution labeling via OpenAlex               | ✅     |
-| II: Audit       | 7–8   | SPD & SRR measurement ← RQ1                     | ✅     |
-| III: Mitigation | 9–10  | MMR & Fair-Top-K re-ranking ← RQ3               | ✅     |
+| Phase           | Week  | Milestone                                              | Status                                  |
+| --------------- | ----- | ------------------------------------------------------ | --------------------------------------- |
+| I: Foundations  | 1–2   | Environment setup, data loading, ChromaDB index        | ✅                                      |
+| I: Foundations  | 3–4   | Naive RAG baseline, Precision & Recall                 | ✅                                      |
+| II: Audit       | 5–6   | Institution labeling via OpenAlex                      | ✅                                      |
+| II: Audit       | 7–8   | SPD & SRR measurement ← RQ1                            | ✅                                      |
+| III: Mitigation | 9–10  | MMR & Fair-Top-K re-ranking ← RQ3                      | ✅                                      |
 | III: Mitigation | 11–12 | Generation-stage bias audit ← RQ2 (A + B) / RAGAS eval | 🔄 RQ2 done; RAGAS (Step 8) not started |
-| IV: Conclusion  | 13    | Streamlit dashboard                             | ⏳     |
-| IV: Conclusion  | 14    | Final presentation                              | ⏳     |
+| IV: Conclusion  | 13    | Streamlit dashboard                                    | ⏳                                      |
+| IV: Conclusion  | 14    | Final presentation                                     | ⏳                                      |
 
 ---
 
