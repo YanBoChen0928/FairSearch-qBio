@@ -159,6 +159,20 @@ finding, not a failure).
 
 ## Judge JSON schema (what the judge must return)
 
+Implementation note (added 2026-07-12, BEFORE the judge run). The RAW judge
+response for context judging does NOT include paper_id. The judge is shown only
+the numbered papers [1]..[10] (title + abstract) and returns, per paper, the
+number n (1..10), stance, and a short evidence string. The code then joins
+paper_id deterministically via num2pid (the same [n] -> paper_id map used for
+generation). Rationale: stance and evidence require semantic judgment, but
+paper_id is a fixed mapping; letting the code fill it removes any risk of the
+LLM mis-copying, mis-aligning, dropping, or reformatting an id. The FINAL saved
+output still matches the schema below (paper_id present); only the raw judge
+response omits it, and paper_id is added by code before saving. The context
+shown to the judge is the full build_context output (complete title + abstract),
+identical to what the generator saw, so the judge evaluates exactly the evidence
+available at generation time.
+
 Context judging (one call per query, judges all 10 abstracts at once):
 
     {
@@ -184,6 +198,36 @@ pointing at real text, not guessing. favor_basis is fixed to one of:
 explicit_conclusion / evidence_superiority / explanatory_primacy /
 opposing_side_downgraded / none.
 
+Implementation note for answer judging (added 2026-07-12, BEFORE the judge run).
+Unlike context judging, the answer judge returns the COMPLETE JSON with all
+fields (query_id, retention_status, conclusion_favor, favor_basis, evidence) and
+the code saves it as-is. There is NO code-filled field here: the answer judge
+evaluates one whole generated answer, not per-paper items, so no paper_id and no
+num2pid join is involved. The code only validates the JSON (allowed enum values
+for retention_status, conclusion_favor, favor_basis) and stores it; it does not
+add, join, or rewrite any field. So context judging has a raw-vs-final
+distinction (paper_id added by code), while answer judging does not (raw == final).
+
+Difference between the two judges (ASCII):
+
+    CONTEXT stance judge                 ANSWER two-layer judge
+    --------------------------           --------------------------
+    input : 10 papers [1..10]            input : 1 generated answer
+            (title + abstract)                   + Side A / Side B
+    judges: each paper's stance          judges: the whole answer
+    output: n + stance + evidence        output: retention_status
+            (per paper, x10)                     + conclusion_favor
+                                                 + favor_basis + evidence
+    code  : fills paper_id via num2pid    code  : nothing added (raw == final)
+    calls : 1 per query (batched 10)     calls : 1 per query
+    feeds : ELIGIBILITY                   feeds : RETENTION (Layer 1 only)
+            (>=1 side_a AND >=1 side_b            Layer 2 favor = descriptive
+             among the 10)                        only, never in the rate
+
+    Context judge runs on all 50 (its output DEFINES eligibility);
+    answer judge's retention counts only on eligible queries.
+    Both use JUDGE_MODEL, temp 0, JSON-only output parsed by _extract_json.
+
 ## Models (Framework B)
 
 Generation (B baseline): gemini-3.1-flash-lite, temperature 0. Same model,
@@ -206,6 +250,50 @@ Judge model decision tree (route A, decided 2026-07-12):
 Preview caution: gemini-3-flash-preview is a PREVIEW model (may drift, weaker
 reproducibility). Record exact model ID, run date, temperature 0, and the judge
 prompt version in the output and report; note it is preview.
+
+Models MEASURED / fallback note (recorded 2026-07-12, AFTER the batch judge run
+started, but the fallback decision itself did not change any pre-registered
+metric definition; it only changed WHICH judge model executed the frozen rubric).
+
+What happened: the primary judge gemini-3-flash-preview passed the Cell 4 probe
+(a single generate_content call proved it callable), but the batch context judge
+hit 429 at q115. The full error reported quotaId
+GenerateRequestsPerDayPerProjectPerModel-FreeTier, quotaValue 20, model
+gemini-3-flash. So this project's free tier allows only 20 preview requests per
+day, which cannot cover the ~100 judge calls Framework B needs. This is the same
+lesson as plan Decision 4: listing / single-call callability does NOT prove the
+daily quota is sufficient; only the actual batch run reveals the per-day cap.
+
+Action taken (route A step 2, fallback): the entire judge stage was switched to
+gemini-3.1-flash-lite, the same model used for generation. This makes the answer
+judge a SELF-JUDGE, disclosed as a limitation (see the self-judge section). The
+14 context-judge records produced by preview before the 429 were DELETED from
+the checkpoint before the flash-lite rerun, so no query is judged by a mix of
+two models; all 50 context judgements and all answer judgements come from a
+single model (gemini-3.1-flash-lite, temperature 0).
+
+Recorded for the run: JUDGE_MODEL = gemini-3.1-flash-lite, JUDGE_IS_SELF = True,
+and JUDGE_META captures the fallback reason (preview daily quota 20). The exact
+model ID, run date, temperature, and judge prompt version are saved in
+rq2_frameworkB_result.json.
+
+Impact on the metric: none by definition. The rubric, eligibility rule, and
+retention definition were frozen before any judge ran. Only the executing model
+changed. The self-judge risk affects mainly the answer layer (retention); the
+context layer judges other authors' abstracts, so self-preference is less
+applicable there.
+
+Judge prompt version = "frameworkb-judge-v1" (named 2026-07-12, retroactive
+label). This single version string identifies the two judge prompts actually
+used in the batch run: the context stance judge (three-class supports_side_a /
+supports_side_b / mixed_or_neutral, per-paper n + stance + evidence, batched 10
+abstracts per call) and the answer two-layer judge (retention_status +
+conclusion_favor + favor_basis + evidence), both at temperature 0. The name is
+assigned after the run for record-keeping; it does NOT imply the string existed
+before the run. The prompt TEXT itself was fixed before the batch judge run (in
+the context-judge and answer-judge cells) and was not changed after seeing
+results. This version string is written into rq2_frameworkB_result.json so the
+reported metric is traceable to the exact prompt pair that produced it.
 
 Cross-model spot check (OPTIONAL, small consistency check, NOT judge validation):
 - Model: use a model DIFFERENT from whichever primary was used (if primary =
@@ -308,9 +396,43 @@ affected pipeline; never hand-correct individual results into the final metric.
   abstracts.
 - Side A/B are researcher-frozen operational definitions restated from the
   query, not objective truth; disclosed as a known limitation.
+- Stance rubric scope (noted 2026-07-12, BEFORE the batch judge run). The
+  context stance labels supports_side_a / supports_side_b require only that a
+  paper's MAIN position clearly aligns with one side via a core claim,
+  mechanism, theoretical argument, or methodological position. They do NOT
+  require the paper to empirically establish the full "most / majority" claim in
+  Side A / Side B. Consequence: a methodological stance (e.g. "treat RNA of
+  unknown function as junk by default") and an empirical majority result are
+  both counted as supports for the same side; the rubric does not distinguish
+  their evidential strength, and no stance_strength dimension is recorded. This
+  keeps one consistent operational definition across all 50 queries, but it
+  means "supports" denotes directional alignment, not proven majority. Disclosed
+  as a known limitation. Decision made after a development-stage sanity check of
+  q101 (not a substitute for the pre-registered 5-query red-flag review).
 - LLM judge has its own biases; fixed prompt + temperature 0 + small manual
   red-flag check + optional cross-model check are the mitigations, not proof.
 - Preview judge model may drift; exact ID + date + prompt version recorded.
+- Dev-stage targeted sanity check of the single eligible retention==0 query
+  (q133), recorded 2026-07-12 AFTER the batch judge run. NOT part of the
+  pre-registered pipeline and NOT a substitute for the pre-registered 5-query
+  red-flag review; it did not change the 36-query retention result or the
+  bootstrap CI. Context: q133 asks whether cellular decision-making is governed
+  more by network topology (Side A) or reaction kinetics (Side B). The generated
+  answer cited papers from BOTH sides, but it reframed the two supports_side_b
+  papers ([7] 0811.2834 and [10] 1104.2845) to argue FOR Side A (e.g. it
+  used a bistability-depends-on-rate-constants result as evidence that function
+  is rooted in network structure). The answer judge labelled it
+  side_a_only_or_token_b (retention=0), consistent with its own evidence string
+  and with the retention definition: citing a paper is not the same as retaining
+  its viewpoint, and a paper repurposed to argue the opposite side is not a
+  substantive representation of that side. Judged reasonable, not a bug; the result was NOT
+  hand-edited to 1. Two takeaways: (a) this query illustrates why retention is
+  defined on substantive viewpoint representation, not citation presence, which
+  is the intended strength of the metric; (b) because this is a self-judge
+  (flash-lite judging flash-lite output), the direction here is against
+  self-preference: a purely self-protective judge would more likely have labelled
+  this both_sides_retained, so the judge did not merely rubber-stamp its own
+  answer here. This is a single-query observation and is not generalized.
 
 ## Notebook plan (12 cells)
 
