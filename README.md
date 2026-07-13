@@ -15,11 +15,12 @@ This project audits a Retrieval-Augmented Generation (RAG) system built on the a
 
 We investigate three research questions across the full RAG pipeline:
 
-| RQ      | Stage               | Question                                                                         |
-| ------- | ------------------- | -------------------------------------------------------------------------------- |
-| **RQ1** | Retrieval (Step 5)  | Does semantic vector search exhibit institutional homophily?                     |
-| **RQ2** | Generation (Step 7) | Does the LLM disproportionately cite elite institutions when generating answers? |
-| **RQ3** | Re-ranking (Step 6) | What is the fairness–utility tradeoff when applying MMR re-ranking?              |
+| RQ                    | Stage               | Question                                                                                                |
+| --------------------- | ------------------- | ------------------------------------------------------------------------------------------------------- |
+| **RQ1**               | Retrieval (Step 5b) | Does semantic vector search exhibit institutional homophily?                                            |
+| **RQ2 (Framework A)** | Generation (Step 7) | Does the LLM disproportionately cite elite institutions when generating answers?                        |
+| **RQ2 (Framework B)** | Generation (Step 7) | On two-sided debate queries, does the LLM flatten viewpoint diversity present in the retrieved context? |
+| **RQ3**               | Re-ranking (Step 6) | What is the fairness–utility tradeoff when applying MMR re-ranking?                                     |
 
 ---
 
@@ -27,16 +28,17 @@ We investigate three research questions across the full RAG pipeline:
 
 ```
 Step 1   →  Prepare dataset (55,301 q-bio abstracts; 55,300 after dedup)
-Step 1b  →  Enrich institution/region labels via OpenAlex   [Update 2]
+Step 1b  →  Enrich institution/region labels via OpenAlex   [Done]
 Step 2   →  Embed text with all-MiniLM-L6-v2
 Step 3   →  Store vectors in ChromaDB (55,300 records)
-Step 4   →  Generate 50 research queries
-Step 5a  →  Retrieve Top-K + Precision/Recall   ← baseline (Update 1)
-Step 5b  →  Join labels → SPD, SRR   ← RQ1   [Update 2]
-Step 6   →  Fair MMR re-ranking   ← RQ3 (NDCG@10, MRR)   [Update 2]
-Step 7   →  Gemini 1.5 Flash generation   ← RQ2 (citation bias)   [Update 2]
-Step 8   →  Evaluate (NDCG@10, MRR, SPD, RAGAS)   [Update 2]
-Step 9   →  Streamlit diagnostic dashboard   [Update 2]
+Step 4   →  Generate 150 research queries (100 neutral + 50 contradictory)   [Done]
+Step 5a  →  Retrieve Top-K + Precision/Recall   ← baseline   [Done]
+Step 5b  →  Join labels → SPD, SRR   ← RQ1   [Done]
+Step 6   →  Fair MMR re-ranking   ← RQ3 (NDCG@10, MRR, SPD)   [Done]
+Step 7a  →  Gemini generation, neutral queries   ← RQ2 Framework A (citation bias)   [Done]
+Step 7b  →  Gemini generation, contradictory queries   ← RQ2 Framework B (viewpoint retention)   [Done]
+Step 8   →  Evaluate (NDCG@10, MRR, SPD, RAGAS)   [Not started]
+Step 9   →  Streamlit diagnostic dashboard   [Not started]
 ```
 
 ---
@@ -48,7 +50,7 @@ Step 9   →  Streamlit diagnostic dashboard   [Update 2]
 | Dataset              | arXiv metadata (Cornell University / Kaggle)                    |
 | Embedding model      | `all-MiniLM-L6-v2` (sentence-transformers)                      |
 | Vector database      | ChromaDB                                                        |
-| Generative LLM       | Google Gemini 1.5 Flash                                         |
+| Generative LLM       | Google Gemini (`gemini-3.1-flash-lite`; see notes below)        |
 | Institution metadata | OpenAlex API                                                    |
 | IR evaluation        | NDCG@10, MRR, Precision@K, Recall@K                             |
 | Fairness metrics     | SPD (Statistical Parity Difference), SRR (Selection Rate Ratio) |
@@ -81,15 +83,18 @@ FairSearch-qBio/
 │   ├── metrics.py              # IR metrics (NDCG, MRR) & fairness metrics
 │   └── prompt_utils.py         # Helpers for LLM synthesis / prompt engineering
 │
-├── notebooks/                  # Step-by-step development notebooks
-│   ├── step1_data_prep.ipynb       # Yan-Bo: filter & clean q-bio papers (55,301)
-│   ├── step2_embedding.ipynb       # Yan-Bo: embed abstracts with all-MiniLM-L6-v2
-│   ├── step3_chromadb.ipynb         # Raj: store vectors in ChromaDB
-│   ├── step4_query_generation.ipynb # Yan-Bo: generate 50 research queries
-│   ├── step5_retrieval_baseline.ipynb # Jici: Top-K search + Precision/Recall
-│   ├── step6_reranking.ipynb       # Jici: Fair MMR / Fair-Top-K
-│   ├── step7_generation.ipynb      # Jici: Gemini generation + citation audit
-│   └── step8_evaluation.ipynb      # Both: NDCG, MRR, SPD, RAGAS
+├── notebooks/                  # Step-by-step development notebooks (actual filenames)
+│   ├── step1-data-prep.ipynb                      # Yan-Bo: filter & clean q-bio papers (55,301)
+│   ├── step1b-institution-labels-full-yb.ipynb     # Yan-Bo: OpenAlex institution labeling
+│   ├── step2-embedding.ipynb                       # Yan-Bo: embed abstracts with all-MiniLM-L6-v2
+│   ├── step3_chromadb.ipynb                        # Raj: store vectors in ChromaDB
+│   ├── step5-retrieval-baseline-yb-kaggle-150.ipynb # Jici: Top-K search + Precision/Recall (150 queries)
+│   ├── step5b_fairness_audit_optionB-yb.ipynb      # Yan-Bo: SPD/SRR ← RQ1 (authoritative Option B run)
+│   ├── step6_reranking.ipynb                       # Jici: Fair MMR / Fair-Top-K ← RQ3
+│   ├── step7-rq2-generation-frameworka-yb.ipynb    # Yan-Bo: Gemini generation + citation audit ← RQ2 Framework A
+│   └── (step7 Framework B notebook runs on Kaggle as step7_rq2_generation_frameworkb-yb;
+│        not yet downloaded into this local folder)
+│   # Step 8/9 notebooks not started yet.
 │
 ├── app/                        # Phase IV: Dashboard
 │   └── streamlit_app.py        # Streamlit interface: standard vs FairSearch
@@ -104,28 +109,74 @@ FairSearch-qBio/
 
 ## Work Division
 
-| Step                                           | Owner  | Status      |
-| ---------------------------------------------- | ------ | ----------- |
-| Step 1 — Data preparation                      | Yan-Bo | ✅ Done     |
-| Step 2 — Embedding (all-MiniLM-L6-v2)          | Yan-Bo | ✅ Done     |
-| Step 3 — ChromaDB ingestion                    | Raj    | ✅ Done     |
-| Step 4 — Query generation                      | Yan-Bo | ✅ Done     |
-| Step 5 — Baseline retrieval + Precision/Recall | Jici   | ✅ Done     |
-| Step 6 — Fair MMR re-ranking                   | TBD    | ⏳ Upcoming |
-| Step 7 — Gemini generation                     | TBD    | ⏳ Upcoming |
-| Step 8 — Full evaluation                       | TBD    | ⏳ Upcoming |
-| Step 9 — Streamlit dashboard                   | TBD    | ⏳ Upcoming |
-| Slides (Project Update 1)                      | Yan-Bo | ✅ Done     |
-| Report PDF (Project Update 1)                  | Jici   | ✅ Done     |
+| Step                                                            | Owner  | Status      |
+| --------------------------------------------------------------- | ------ | ----------- |
+| Step 1 — Data preparation                                       | Yan-Bo | ✅ Done     |
+| Step 2 — Embedding (all-MiniLM-L6-v2)                           | Yan-Bo | ✅ Done     |
+| Step 3 — ChromaDB ingestion                                     | Raj    | ✅ Done     |
+| Step 4 — Query generation (150: 100 neutral + 50 contradictory) | Yan-Bo | ✅ Done     |
+| Step 5 — Baseline retrieval + Precision/Recall                  | Jici   | ✅ Done     |
+| Step 5b — Fairness audit (SPD/SRR) ← RQ1                        | Yan-Bo | ✅ Done     |
+| Step 6 — Fair MMR re-ranking ← RQ3                              | Jici   | ✅ Done     |
+| Step 7a — Gemini generation, Framework A ← RQ2                  | Yan-Bo | ✅ Done     |
+| Step 7b — Gemini generation, Framework B ← RQ2                  | Yan-Bo | ✅ Done     |
+| Step 8 — Full evaluation (NDCG, MRR, SPD, RAGAS)                | TBD    | ⏳ Upcoming |
+| Step 9 — Streamlit dashboard                                    | TBD    | ⏳ Upcoming |
+| Slides (Project Update 1)                                       | Yan-Bo | ✅ Done     |
+| Report PDF (Project Update 1)                                   | Jici   | ✅ Done     |
 
 ---
 
-## Key Findings (Preliminary)
+## Key Findings
 
-> Results will be updated as experiments complete.
+RQ1, RQ2 (both frameworks), and RQ3 have measured results as of 2026-07-12.
+Step 8 (RAGAS + full evaluation) and Step 9 (dashboard) have not started.
+
+**RQ1 — Retrieval-stage institutional bias (Step 5b).** Elite defined as QS
+World University Rankings 2026 Top-50. SPD +0.029, SRR 1.28, bootstrap 95% CI
+[-0.005, +0.065] crossing zero: a weak elite tilt that is NOT statistically
+significant. Consistent with a PCA finding that the embedding model encodes
+topic, not institutional origin. See `handoff_status_rq1_for_step6.md` and
+`results/rq1_optionB_result.json`.
+
+**RQ2, Framework A — Generation-stage institutional citation bias (Step 7a).**
+Neutral queries (q001-q100). Mean amplification (cited elite share minus
+context elite share) = +0.0041, bootstrap 95% CI [-0.0254, +0.0342] crossing
+zero: NEUTRAL, no confirmed elite citation amplification at generation. Model:
+`gemini-3.1-flash-lite` (see model-history note below). See
+`rq2_frameworkA_summary.md`.
+
+**RQ2, Framework B — Generation-stage viewpoint-diversity retention (Step 7b).**
+Contradictory two-sided debate queries (q101-q150). Among 36/50 queries whose
+retrieved context contained evidence for both sides, 35 retained both
+viewpoints in the generated answer: retention rate 97.2%, bootstrap 95% CI
+[91.7%, 100.0%]. Judge fell back to a self-judge design
+(`gemini-3.1-flash-lite`, same model as generation) after the primary judge's
+free-tier daily quota was exhausted mid-run; disclosed as a limitation. A
+pre-registered 5-query human red-flag check found 2/5 answer-layer judgments
+questionable (judged non-systematic, not corrected). This result is reported
+descriptively, not as a formal "preserves diversity" verdict. See
+`rq2_frameworkB_summary.md`.
+
+**RQ3 — Fairness/utility tradeoff under MMR re-ranking (Step 6, owner: Jici).**
+Per `results/rq3_results.json`: institution-aware MMR at λ≈0.9-0.95 reduces SPD
+from a baseline 0.0278 to about 0.015-0.02 while NDCG@10 stays essentially flat
+(0.8092 → ~0.8096) and MRR is unchanged or slightly higher. Semantic-diversity
+MMR trades more NDCG for diversity as λ decreases. Because RQ2 Framework A
+found no generation-stage amplification to correct for, the optional "A x RQ3
+linkage" (re-running Framework A on RQ3's re-ranked context) was decided
+NOT necessary; see `rq2_rq3_linkage_plan.md`.
+
+**Model history note.** The original plan specified Gemini 1.5 Flash. Over the
+course of the project, 1.5-series and 2.0/2.5-series models were retired or
+became uncallable for this project (404s, zero daily quota, or "no longer
+available to new users") before any call was made; `gemini-3.1-flash-lite` was
+the model that actually completed all generation runs. Framework B's primary
+judge (`gemini-3-flash-preview`) was similarly blocked mid-run by a 20/day free
+quota and fell back to the same flash-lite model. Full details in
+`rq2_plan.md` (Decision 4) and `rq2_frameworkb_draft.md` (Models section).
 
 - **Baseline retrieval (Update 1):** Mean Precision@10 = 0.654 and HitRate@10 = 0.96 across 50 queries; per-subcategory Precision@10 ranges from 0.97 (q-bio.NC) down to 0.08 (q-bio.OT).
-- **Fairness metrics (SPD, SRR) and generation-stage citation analysis are deferred to Update 2** (require OpenAlex institution labeling, Step 1b).
 
 ---
 
@@ -196,16 +247,41 @@ All Step 1–2 notebooks are developed and executed on Kaggle Notebooks, where t
 
 ## Milestones (14-Week Schedule)
 
-| Phase           | Week  | Milestone                                       | Status |
-| --------------- | ----- | ----------------------------------------------- | ------ |
-| I: Foundations  | 1–2   | Environment setup, data loading, ChromaDB index | ✅     |
-| I: Foundations  | 3–4   | Naive RAG baseline, Precision & Recall          | 🔄     |
-| II: Audit       | 5–6   | Institution labeling via OpenAlex               | ⏳     |
-| II: Audit       | 7–8   | SPD & SRR measurement across 50 queries         | ⏳     |
-| III: Mitigation | 9–10  | MMR & Fair-Top-K re-ranking                     | ⏳     |
-| III: Mitigation | 11–12 | Perspective-Balanced Prompt + RAGAS eval        | ⏳     |
-| IV: Conclusion  | 13    | Streamlit dashboard                             | ⏳     |
-| IV: Conclusion  | 14    | Final presentation                              | ⏳     |
+| Phase           | Week  | Milestone                                              | Status                                  |
+| --------------- | ----- | ------------------------------------------------------ | --------------------------------------- |
+| I: Foundations  | 1–2   | Environment setup, data loading, ChromaDB index        | ✅                                      |
+| I: Foundations  | 3–4   | Naive RAG baseline, Precision & Recall                 | ✅                                      |
+| II: Audit       | 5–6   | Institution labeling via OpenAlex                      | ✅                                      |
+| II: Audit       | 7–8   | SPD & SRR measurement ← RQ1                            | ✅                                      |
+| III: Mitigation | 9–10  | MMR & Fair-Top-K re-ranking ← RQ3                      | ✅                                      |
+| III: Mitigation | 11–12 | Generation-stage bias audit ← RQ2 (A + B) / RAGAS eval | 🔄 RQ2 done; RAGAS (Step 8) not started |
+| IV: Conclusion  | 13    | Streamlit dashboard                                    | ⏳                                      |
+| IV: Conclusion  | 14    | Final presentation                                     | ⏳                                      |
+
+---
+
+## Possible Future Extensions (not started, not pre-registered)
+
+**Institutional skew within Framework B's Side A / Side B papers.** Framework A
+(institution) and Framework B (viewpoint) were deliberately split across two
+non-overlapping query sets (100 neutral queries for A, 50 contradictory
+queries for B) so that each Framework isolates one axis cleanly. Mixing both
+questions on the same debate queries would risk a confound: if Side A's papers
+happen to skew more elite than Side B's papers in the underlying corpus (quite
+plausible), then an observed "answer favors Side A" result becomes impossible
+to attribute cleanly to a substantive-position preference versus an
+elite-institution preference. This is why B's design note in `rq2_plan.md`
+states B's retention metric "does NOT depend on institutional bias" and stands
+on its own regardless of RQ1/A's results.
+
+A possible follow-up: after Framework B's retention/favor results are already
+final (as they are now), separately compute the elite share of Side A's cited
+papers vs Side B's cited papers within the 36 eligible debate queries, purely
+as a descriptive check of whether one side's literature happens to be more
+institutionally elite than the other's. This would be reported ALONGSIDE the
+existing retention_rate finding, never merged into it or used to revise it,
+to avoid retroactively contaminating an already pre-registered, completed
+metric. Not started; would need its own pre-registration if pursued.
 
 ---
 
