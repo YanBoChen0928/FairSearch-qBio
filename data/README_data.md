@@ -12,9 +12,16 @@ Quick map:
 | `sample_labels_1000.json` | Option B baseline: random corpus sample, labeled | sample_elite_share = 0.144 |
 | `retrieval_labels.json` | Option B retrieved set, labeled (same method) | retrieved_share = 0.177 |
 | `retrieval_results.json` | Step 5a output: top-10 papers per query | 150 queries |
+| `qs_top50_elite_2026_bio.json` | **Robustness check** elite list — QS subject ranking (Biological Sciences 2026), in progress | 50 schools |
 
 RQ1 headline: SPD = retrieved_share - sample_share = 0.177 - 0.144 = +0.033
 (preview; CI + significance computed in Step 5b).
+
+See `rq1_methodology.md` §10 for the parallel robustness-check pipeline using
+`qs_top50_elite_2026_bio.json` (source: QS World University Rankings by
+Subject 2026: Biological Sciences). That check produces its own `_bio`-suffixed
+sample/retrieval label files and result JSON, run alongside — never replacing
+— the files documented below.
 
 ---
 

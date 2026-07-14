@@ -1,0 +1,14 @@
+{
+  "n_queries": 65,
+  "n_elite_favored": 25,
+  "n_other_favored": 19,
+  "n_tied": 21,
+  "signed_mean": 0.0478,
+  "signed_median": 0.0,
+  "signed_mean_95ci": [
+    -0.0513,
+    0.1421
+  ],
+  "direction_significant": false,
+  "note": "This is the signed (directional) counterpart to delta_tpr_approx. If the CI crosses 0 while the abs()-based mean is large, the abs() mean is driven by query-to-query variance in both directions, not a systematic bias toward one group."
+}

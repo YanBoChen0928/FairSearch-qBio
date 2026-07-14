@@ -139,6 +139,21 @@ significant. Consistent with a PCA finding that the embedding model encodes
 topic, not institutional origin. See `handoff_status_rq1_for_step6.md` and
 `results/rq1_optionB_result.json`.
 
+**RQ1 robustness check — subject-specific elite definition (completed).**
+Following a suggestion from Prof. Sushmita, a second elite list drawn from the
+QS World University Rankings by Subject 2026: Biological Sciences
+(source: https://www.topuniversities.com/university-subject-rankings/biological-sciences)
+was run in full parallel against the original QS overall-ranking Top-50.
+Result: baseline elite share 0.158 (vs. 0.144), retrieved elite share 0.190
+(vs. 0.173, neutral only), SPD +0.031 (vs. +0.029) — bootstrap 95% CI
+[-0.005, +0.069] still crosses zero. Equalized Odds signed-direction mean was
+even smaller under this definition (+0.048 vs +0.085), CI still crossing
+zero. **Conclusion: RQ1's "weak, non-significant elite tilt" finding is
+robust to the choice of elite-institution definition** — it is not an
+artifact of using the overall QS ranking rather than a field-specific one.
+See `rq1_methodology.md` §10 for the full comparison table and
+`data/qs_top50_elite_2026_bio.json` for the list itself.
+
 **RQ2, Framework A — Generation-stage institutional citation bias (Step 7a).**
 Neutral queries (q001-q100). Mean amplification (cited elite share minus
 context elite share) = +0.0041, bootstrap 95% CI [-0.0254, +0.0342] crossing
