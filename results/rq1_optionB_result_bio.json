@@ -1,0 +1,22 @@
+{
+  "design": "Option B (same-method sample vs retrieved)",
+  "elite_threshold": "QS World University Rankings 2026 Top-50",
+  "analysis_scope": "neutral queries only (q001-q100)",
+  "baseline_elite_share": 0.1584,
+  "baseline_found_n": 442,
+  "retrieved_elite_share": 0.1927,
+  "retrieved_found_n": 799,
+  "neutral_labeled_slots": 591,
+  "neutral_elite_slots": 112,
+  "SPD_point": 0.0311,
+  "SRR": 1.2688,
+  "SPD_bootstrap_95CI": [
+    -0.005,
+    0.0687
+  ],
+  "bootstrap_crosses_zero": true,
+  "binomial_p": 0.0424,
+  "primary_method": "bootstrap (resamples queries, respects grouping)",
+  "significant": false,
+  "conclusion": "Direction: elite slightly over-represented (SPD point +0.0311, SRR 1.269). Bootstrap 95% CI [-0.0050, +0.0687] crosses 0 -> NOT statistically significant. Binomial p=0.0424 appears significant but assumes independent papers, which is violated by within-query correlation; the bootstrap (which resamples queries) is authoritative. Conclusion: weak, non-significant elite tilt, consistent with PCA finding that the embedding encodes topic, not institution."
+}

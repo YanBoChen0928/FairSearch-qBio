@@ -279,6 +279,82 @@ by Step 6 (RQ3) and must not be silently changed:
 
 ---
 
+## 10. Robustness check: subject-specific elite definition (completed)
+
+Following a suggestion from Prof. Sushmita, RQ1's full SPD/SRR/Equalized Odds
+analysis was re-run against a **second, independent elite-institution list**,
+to test whether the "weak, non-significant" conclusion in §6–§7 is robust to
+how "elite" is operationalized, or is an artifact of the specific ranking
+chosen.
+
+**Source:** QS World University Rankings by Subject 2026: Biological
+Sciences — https://www.topuniversities.com/university-subject-rankings/biological-sciences.
+Unlike the overall QS ranking used in §1–§9 (which weighs engineering,
+business, arts, etc. alongside science), this is a **subject-specific
+ranking** restricted to biological sciences — arguably a better-fitting
+definition of "elite" for a q-bio paper corpus.
+
+**Data provenance caveat:** the QS subject-ranking page renders its table via
+JavaScript and gates the full list behind a free-registration wall, so no
+official downloadable list exists. The Top-50 used here (`data/qs_top50_elite_2026_bio.json`)
+was reconstructed from a third-party mirror and cross-validated against facts
+stated on the official QS page itself (Harvard #1; Oxford the highest-ranked
+UK institution, found at #3 here; NUS the highest-ranked institution outside
+the US/UK, found at exactly #13 here) — both facts matched exactly, giving
+reasonable confidence in the mirror's accuracy, but this indirect sourcing
+should be disclosed in the report.
+
+**Design:** same Option B method (§3), run as a fully parallel pipeline —
+new notebooks (`step1b_institution_labels_full_bio_yb`,
+`step5b-fairness-audit-optionb-bio-yb`) and new output files (`sample_labels_1000_bio.json`,
+`retrieval_labels_bio.json`, `rq1_optionB_result_bio.json`) — so the original
+QS-overall-ranking results in §1–§9 are **never overwritten**. `retrieval_results.json`
+(the raw Top-10 retrieval output) is shared, unmodified, between both
+pipelines, since its contents — which papers were retrieved — do not depend
+on which elite list is used to label them afterward.
+
+**Result: full comparison**
+
+| Metric | QS overall (primary, §6–§7) | QS Biological Sciences (robustness check) |
+|---|---|---|
+| Baseline elite share | 0.1438 | 0.1584 |
+| Retrieved elite share (neutral) | 0.1729 | 0.1895 |
+| Neutral labeled slots | 590 (102 elite) | 591 (112 elite) |
+| **SPD (point)** | +0.0290 | **+0.0311** |
+| **SRR** | 1.2775 | **1.2688** |
+| SPD bootstrap 95% CI | [-0.0054, +0.0648] — crosses 0 | **[-0.0050, +0.0687]** — crosses 0 |
+| Binomial p | 0.0462 (nominal) | **0.0424** (nominal) |
+| **Significant (bootstrap, authoritative)** | **No** | **No** |
+| Equalized Odds — queries usable | 62 / 100 | 65 / 100 |
+| Delta_TPR (approx) mean | 0.2817 | **0.2872** |
+| Delta_TPR 95% CI | [0.2169, 0.3491] | **[0.2207, 0.3578]** |
+| Signed-direction mean | +0.0851 | **+0.0478** |
+| Signed-direction 95% CI | [-0.0100, +0.1759] — crosses 0 | **[-0.0513, +0.1421]** — crosses 0 |
+| **Direction significant** | **No** | **No** |
+
+**Conclusion: the RQ1 finding is robust to the choice of elite-institution
+definition.** Both the baseline and retrieved elite shares rose under the
+subject-specific ranking (+0.0146, +0.0166 respectively) — several
+biology/agriculture-focused institutions not in the overall Top-50 (e.g.
+University of Washington, KU Leuven, Heidelberg University, Wageningen
+University & Research) enter the Biological Sciences Top-50 — but because
+both shares rose together, **the SPD gap barely moved** (+0.029 → +0.031),
+and every significance test reaches the **same conclusion** under both
+definitions: a weak, statistically non-significant elite tilt at retrieval.
+Notably, the signed-direction mean was *smaller* under the subject-specific
+definition (+0.0478 vs +0.0851), providing additional support that the
+observed tilt reflects query-to-query noise rather than a systematic,
+definition-independent bias.
+
+**Minor note on sample-size drift:** neutral labeled slots increased slightly
+(590→591) and Equalized-Odds-usable queries increased (62→65) between the two
+Step 1b runs. This is unrelated to the elite list choice — it reflects
+OpenAlex's live, continuously-updated database returning marginally different
+`found`/`no_affiliation` splits across the two lookup dates (see §7 caveats),
+not a methodological change.
+
+---
+
 _This document consolidates the RQ1 methodology recorded across
 `summary_step1b_OptionB.md`, `handoff_status_rq1_for_step6.md`, and the
 `step5b-fairness-audit-optionb-yb.ipynb` notebook, for reuse in the Final
