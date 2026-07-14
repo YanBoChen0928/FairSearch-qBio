@@ -27,7 +27,7 @@ An earlier attempt (v1) tried to label institution affiliation for the full
 
 - **Coverage collapse:** ~82% of papers came back `not_found` in OpenAlex;
   only ~17% of the corpus was usable.
-- **Biased baseline:** the papers OpenAlex *could* match cleanly skewed toward
+- **Biased baseline:** the papers OpenAlex _could_ match cleanly skewed toward
   elite institutions (better metadata, more citations), inflating the
   corpus-wide elite base rate to 0.233 — an overstated reference point.
 
@@ -48,6 +48,7 @@ the exact same method**, so measurement bias cancels out on both sides:
    150 queries (`retrieval_labels.json`): 1,500 slots → 1,366 unique papers.
 
 **Labeling method (identical for both sets):**
+
 1. Query OpenAlex in batches of 50 arXiv ids (OR-syntax), authenticated with
    an API key.
 2. Primary lookup: match on `locations.landing_page_url` =
@@ -65,10 +66,10 @@ the exact same method**, so measurement bias cancels out on both sides:
 
 **Measured coverage and elite share:**
 
-| Set | n found (usable) | n elite | elite share |
-|---|---|---|---|
-| Baseline sample (n=1000) | 438 (44%) | 63 | **0.1438** |
-| Retrieved set (1,366 unique) | 798 (58%) | 141 | **0.1767** |
+| Set                          | n found (usable) | n elite | elite share |
+| ---------------------------- | ---------------- | ------- | ----------- |
+| Baseline sample (n=1000)     | 438 (44%)        | 63      | **0.1438**  |
+| Retrieved set (1,366 unique) | 798 (58%)        | 141     | **0.1767**  |
 
 Retrieved-set coverage is higher (58% vs 44%) because retrieved papers tend
 to be more mainstream/cited, and such papers are more likely to have
@@ -133,19 +134,27 @@ authoritative**.
 
 From `results/rq1_optionB_result.json`:
 
-| Metric | Value |
-|---|---|
-| Baseline elite share | 0.1438 (438 found, seed=42) |
-| Retrieved elite share | 0.1767 (798 found) |
-| Neutral labeled slots | 590 (102 elite) |
-| **SPD (point estimate)** | **+0.0290** |
-| **SRR** | **1.2775** |
-| SPD bootstrap 95% CI | **[-0.0054, +0.0648]** — crosses 0 |
-| Binomial p-value | 0.0462 (nominally "significant", but see §5) |
-| **Conclusion** | **Not statistically significant** |
+| Metric                   | Value                                        |
+| ------------------------ | -------------------------------------------- |
+| Baseline elite share     | 0.1438 (438 found, seed=42)                  |
+| Retrieved elite share (**all 150 queries, incl. contradictory — meta cross-check only, NOT used for SPD**) | 0.1767 (798 found) |
+| Neutral labeled slots    | 590 (102 elite)                              |
+| Retrieved elite share (**neutral only — this is what SPD is actually computed from**) | **0.1729** |
+| **SPD (point estimate)** | **+0.0290**                                  |
+| **SRR**                  | **1.2775**                                   |
+| SPD bootstrap 95% CI     | **[-0.0054, +0.0648]** — crosses 0           |
+| Binomial p-value         | 0.0462 (nominally "significant", but see §5) |
+| **Conclusion**           | **Not statistically significant**            |
+
+**Note:** the SPD headline is computed as **0.1729 − 0.1438**, not
+0.1767 − 0.1438, because `analysis_scope` is explicitly "neutral queries
+only (q001–q100)" — contradictory queries have no relevance proxy and are
+excluded from SPD/SRR. The 0.1767 figure is a separately-correct number
+(elite share across the full 150-query deduped retrieval set), kept only as
+a cross-check against the Option B meta data; it is not an input to SPD.
 
 **Reading:** elite institutions are retrieved at a slightly higher rate than
-their corpus baseline (17.7% vs 14.4%), but the gap is small and the
+their corpus baseline (17.3% vs 14.4%, on neutral queries), but the gap is small and the
 bootstrap CI crosses zero — the direction is present but not statistically
 distinguishable from no effect at α=0.05. This is consistent with a separate
 PCA finding that the embedding model encodes topic, not institutional origin.
@@ -157,8 +166,8 @@ PCA finding that the embedding model encodes topic, not institutional origin.
 ### 7.1 What true Equalized Odds requires vs. what we can compute
 
 Textbook Equalized Odds requires, per group (elite vs. other): the
-**True Positive Rate (TPR)** — the fraction of *all truly relevant papers in
-the full candidate pool* that get retrieved — and the **False Positive Rate
+**True Positive Rate (TPR)** — the fraction of _all truly relevant papers in
+the full candidate pool_ that get retrieved — and the **False Positive Rate
 (FPR)** on the same basis. Our retrieval log only records relevance labels
 for papers that were actually retrieved (the Top-10 slots per query), not for
 the full candidate pool. **We cannot compute a textbook TPR/FPR.**
@@ -191,14 +200,14 @@ there is nothing to compare within that query). Of 100 neutral queries,
 
 ### 7.3 Result
 
-| Metric | Value |
-|---|---|
-| Queries used | 62 / 100 |
-| Delta_TPR (approx) mean / median | 0.2817 / 0.2500 |
-| Delta_TPR 95% CI | [0.2169, 0.3491] |
-| Delta_FPR (approx) mean / median | 0.2817 / 0.2500 (identical by construction*) |
+| Metric                           | Value                                         |
+| -------------------------------- | --------------------------------------------- |
+| Queries used                     | 62 / 100                                      |
+| Delta_TPR (approx) mean / median | 0.2817 / 0.2500                               |
+| Delta_TPR 95% CI                 | [0.2169, 0.3491]                              |
+| Delta_FPR (approx) mean / median | 0.2817 / 0.2500 (identical by construction\*) |
 
-*Delta_FPR mirrors Delta_TPR here because, within a single query's Top-10,
+\*Delta_FPR mirrors Delta_TPR here because, within a single query's Top-10,
 the irrelevant-rate is just `1 - relevant-rate` per group, so the absolute
 gap is the same value.
 
@@ -220,16 +229,16 @@ signed_diff = rate_elite_relevant - rate_other_relevant
 
 **Result (same 62 queries):**
 
-| | Count |
-|---|---|
+|                                 | Count      |
+| ------------------------------- | ---------- |
 | Elite-favored (signed_diff > 0) | 26 queries |
 | Other-favored (signed_diff < 0) | 16 queries |
-| Tied (signed_diff = 0) | 20 queries |
+| Tied (signed_diff = 0)          | 20 queries |
 
-| Metric | Value |
-|---|---|
-| Signed mean | +0.0851 |
-| Signed median | 0.0000 |
+| Metric                         | Value                              |
+| ------------------------------ | ---------------------------------- |
+| Signed mean                    | +0.0851                            |
+| Signed median                  | 0.0000                             |
 | Signed mean 95% CI (bootstrap) | **[-0.0100, +0.1759]** — crosses 0 |
 
 **Conclusion:** the CI crosses zero, so there is **no statistically
@@ -270,7 +279,7 @@ by Step 6 (RQ3) and must not be silently changed:
 
 ---
 
-*This document consolidates the RQ1 methodology recorded across
+_This document consolidates the RQ1 methodology recorded across
 `summary_step1b_OptionB.md`, `handoff_status_rq1_for_step6.md`, and the
 `step5b-fairness-audit-optionb-yb.ipynb` notebook, for reuse in the Final
-Report's Methodology and Results sections.*
+Report's Methodology and Results sections._

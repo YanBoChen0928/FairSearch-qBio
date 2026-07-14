@@ -278,9 +278,15 @@ optional "Framework A × RQ3" linkage (re-running Framework A on RQ3's
 MMR-reranked context) was **not necessary** — there is no confirmed
 generation-stage amplification to correct for. See `rq2_rq3_linkage_plan.md`.
 
-Framework B's viewpoint-retention lens connects to RQ3's perspective-balanced
-prompting as a potential mitigation target, though since B's baseline result
-is already high (97.2%), this was not pursued as a required follow-up.
+Framework B's viewpoint-retention lens was originally planned to connect to
+a perspective-balanced prompting intervention (an explicit prompt instruction
+to present multiple perspectives, as distinct from the citation-only baseline
+prompt used in §3.2): if the baseline showed dissent suppression, the
+balanced prompt would be tested as the fix, analogous to how RQ3 tests MMR
+re-ranking as a fix for RQ1's retrieval-stage bias. Because Framework B's
+baseline retention rate is already high (97.2%), there was no suppression
+problem to fix, so this intervention was **not implemented** — no
+corresponding code or result exists in this project's Step 6/7 notebooks.
 
 ---
 
