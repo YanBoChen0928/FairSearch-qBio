@@ -84,12 +84,24 @@ the same free-tier-quota grounds that drove Framework B's fallback.
 
 ## 4. Technical approach (Gemini integration, current as of RAGAS docs Jan 2026)
 
+**Terminology note (to avoid a naming collision):** the `dataset` in the code
+below refers to a `datasets.Dataset` object — an in-memory table format from
+HuggingFace's `datasets` Python library (`pip install datasets`), unrelated
+to "Kaggle Dataset." No data leaves Kaggle and no HuggingFace account is
+needed; this is purely a Python-library data structure that Ragas requires
+as input, built from the same JSON files already stored as Kaggle Datasets
+(`retrieval_results.json`, Step 7a/7b outputs, etc.) by loading them with
+`json.load(...)` and converting to a `pandas.DataFrame` /
+`Dataset.from_pandas(...)` inside the same Kaggle notebook — all in one
+runtime, no platform change.
+
 ```python
 import os
 from google import genai
 from ragas.llms import llm_factory
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy, context_precision
+from datasets import Dataset  # HuggingFace `datasets` library, pip install only
 
 client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 evaluator_llm = llm_factory(
@@ -98,7 +110,8 @@ evaluator_llm = llm_factory(
     client=client,
 )
 
-# dataset: HuggingFace Dataset with columns question / contexts / answer
+# dataset: an in-memory Dataset object (question / contexts / answer columns),
+# built from the project's own Kaggle-hosted JSON — see terminology note above
 result = evaluate(
     dataset,
     metrics=[faithfulness, answer_relevancy, context_precision],
