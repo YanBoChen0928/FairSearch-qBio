@@ -1,0 +1,62 @@
+{
+  "operating_lambda": 0.8,
+  "n_queries": 100,
+  "reconstruction_note": "Institution-aware-at-lambda=0.8 per-query data reconstructed locally; baseline reproduces RQ1 exactly, institution-aware side is close but not bit-identical to the officially reported run (see notebook intro).",
+  "observed": {
+    "baseline_slots": 590,
+    "baseline_elite": 102,
+    "inst_aware_slots": 554,
+    "inst_aware_elite": 90,
+    "abs_spd_reconstructed": 0.0187,
+    "abs_spd_official": 0.0162,
+    "improvement_reconstructed": 0.0104,
+    "improvement_official": 0.0126
+  },
+  "absolute_spd_test": {
+    "power_curve": {
+      "0.0": 0.0575,
+      "0.01": 0.103,
+      "0.02": 0.2485,
+      "0.03": 0.47,
+      "0.04": 0.716,
+      "0.05": 0.8575,
+      "0.06": 0.955,
+      "0.08": 0.998,
+      "0.1": 1.0
+    },
+    "type1_error": 0.0575,
+    "mde_at_80pct_power": 0.0459,
+    "power_at_observed": 0.2289
+  },
+  "paired_improvement_test": {
+    "power_curve": {
+      "0.0": 0.0545,
+      "0.01": 0.088,
+      "0.02": 0.1655,
+      "0.03": 0.297,
+      "0.04": 0.4635,
+      "0.05": 0.6735,
+      "0.06": 0.8385,
+      "0.08": 0.984,
+      "0.1": 0.9985
+    },
+    "type1_error": 0.0545,
+    "mde_at_80pct_power": 0.0577,
+    "power_at_observed": 0.0913
+  },
+  "config": {
+    "n_boot_power": 3000,
+    "r_replicates": 2000,
+    "target_grid": [
+      0.0,
+      0.01,
+      0.02,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.08,
+      0.1
+    ]
+  }
+}
