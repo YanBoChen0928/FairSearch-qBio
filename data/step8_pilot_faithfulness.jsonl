@@ -1,0 +1,8 @@
+{"query_id": "q004", "type": "neutral", "n_context_papers": 10, "faithfulness_score": 1.0, "elapsed_sec": 14.62, "error": null}
+{"query_id": "q015", "type": "neutral", "n_context_papers": 10, "faithfulness_score": 1.0, "elapsed_sec": 14.1, "error": null}
+{"query_id": "q082", "type": "neutral", "n_context_papers": 10, "faithfulness_score": 0.9444444444444444, "elapsed_sec": 11.17, "error": null}
+{"query_id": "q095", "type": "neutral", "n_context_papers": 10, "faithfulness_score": 1.0, "elapsed_sec": 10.06, "error": null}
+{"query_id": "q109", "type": "contradictory", "n_context_papers": 10, "faithfulness_score": 1.0, "elapsed_sec": 10.18, "error": null}
+{"query_id": "q115", "type": "contradictory", "n_context_papers": 10, "faithfulness_score": 1.0, "elapsed_sec": 11.27, "error": null}
+{"query_id": "q116", "type": "contradictory", "n_context_papers": 10, "faithfulness_score": 1.0, "elapsed_sec": 10.69, "error": null}
+{"query_id": "q118", "type": "contradictory", "n_context_papers": 10, "faithfulness_score": 0.7777777777777778, "elapsed_sec": 11.92, "error": null}

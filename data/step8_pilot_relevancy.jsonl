@@ -1,0 +1,5 @@
+{"query_id": "q004", "type": "neutral", "answer_relevancy_score": null, "elapsed_sec": 6.95, "error": "ragas returned NaN/None for answer_relevancy — internal job failure"}
+{"query_id": "q015", "type": "neutral", "answer_relevancy_score": null, "elapsed_sec": 6.18, "error": "ragas returned NaN/None for answer_relevancy — internal job failure"}
+{"query_id": "q082", "type": "neutral", "answer_relevancy_score": null, "elapsed_sec": 6.09, "error": "ragas returned NaN/None for answer_relevancy — internal job failure"}
+{"query_id": "q095", "type": "neutral", "answer_relevancy_score": null, "elapsed_sec": 5.54, "error": "ragas returned NaN/None for answer_relevancy — internal job failure"}
+{"query_id": "q109", "type": "contradictory", "answer_relevancy_score": null, "elapsed_sec": 5.93, "error": "ragas returned NaN/None for answer_relevancy — internal job failure"}
