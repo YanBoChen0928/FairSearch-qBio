@@ -100,6 +100,23 @@ st.caption(
     "(`retrieval_results.json`)"
 )
 
+# ---------- Key metrics summary (moved to top per Prof. Sushmita's
+# feedback: "key metrics like NDCG@10 moved to the top of the interface") ----------
+st.markdown("---")
+d1, d2, d3, d4 = st.columns(4)
+with d1:
+    st.metric("ELITE SHARE (found)", "40%", "-40pp (mock)", delta_color="inverse")
+with d2:
+    st.metric("UNIQUE INSTITUTIONS", "4 (mock)", "+1")
+with d3:
+    st.metric("NDCG@10", "≈ flat", "per rq3_methodology.md §4.2")
+with d4:
+    st.markdown(
+        f'<div style="font-family:monospace; font-size:11px; color:{DIM};">DATA STATUS</div>'
+        f'<div style="color:{CORAL}; font-size:14px;">baseline real · intervention illustrative</div>',
+        unsafe_allow_html=True,
+    )
+
 # ---------- Balance strip (signature element) ----------
 st.markdown("---")
 st.caption("INSTITUTIONAL BALANCE · SHARE OF LABELED (found) PAPERS")
@@ -174,7 +191,7 @@ with col_base:
 
     st.markdown("**Institution mix (Top-10)**")
     fig = donut(4, 1, 5, [ELITE, NONELITE, "#2A3140"])
-    st.pyplot(fig, use_container_width=False)
+    st.pyplot(fig, width="content")
     st.caption("Elite: 4 · Non-elite: 1 · Unlabeled: 5 · Elite share of found: **80%**")
 
     st.markdown("**Retrieved papers**")
@@ -220,7 +237,7 @@ with col_inter:
 
     st.markdown("**Institution mix (Top-10, mocked)**")
     fig2 = donut(2, 3, 5, [ELITE, NONELITE, "#2A3140"])
-    st.pyplot(fig2, use_container_width=False)
+    st.pyplot(fig2, width="content")
     st.caption("Elite: 2 · Non-elite: 3 · Unlabeled: 5 · Elite share of found: **40%**")
 
     st.markdown("**Re-ranked papers (mock — real MMR output not yet generated)**")
@@ -239,22 +256,7 @@ with col_inter:
         )
     st.caption("+ 5 more papers (mock, not shown)")
 
-# ---------- Delta footer ----------
 st.markdown("---")
-d1, d2, d3, d4 = st.columns(4)
-with d1:
-    st.metric("ELITE SHARE (found)", "40%", "-40pp (mock)", delta_color="inverse")
-with d2:
-    st.metric("UNIQUE INSTITUTIONS", "4 (mock)", "+1")
-with d3:
-    st.metric("NDCG@10", "≈ flat", "per rq3_methodology.md §4.2")
-with d4:
-    st.markdown(
-        f'<div style="font-family:monospace; font-size:11px; color:{DIM};">DATA STATUS</div>'
-        f'<div style="color:{CORAL}; font-size:14px;">baseline real · intervention illustrative</div>',
-        unsafe_allow_html=True,
-    )
-
 st.caption(
     "FairSearch-qBio · Step 9 deployment dry run · 1 of 150 queries populated "
     "(q033 worked example) · tiered scope per step9_plan.md §8: Tier 1 is the "
