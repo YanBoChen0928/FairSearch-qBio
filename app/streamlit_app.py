@@ -280,6 +280,39 @@ with col_inter:
     st.caption("+ 5 more papers (mock, not shown)")
 
 st.markdown("---")
+
+# ---------- Step 8 RAGAS Faithfulness (real, measured) ----------
+# Deliberately placed in the footer rather than inside the baseline panel.
+# The answer text shown in panel (1) is PLACEHOLDER wording, but these scores
+# were computed against the real stored Gemini output. Putting them next to
+# the placeholder would imply they describe the text on screen, which is
+# false. Footer placement keeps them as system-level quality indicators.
+# Source: results/ragas_faithfulness_result.json (step8.md sec 4a.7).
+st.caption("RAG ANSWER QUALITY · RAGAS FAITHFULNESS (STEP 8)")
+st.markdown('<span class="pill-real">real data</span>', unsafe_allow_html=True)
+
+f1, f2, f3 = st.columns(3)
+with f1:
+    st.metric("FAITHFULNESS · q033", "1.000")
+    st.caption("this query's measured score")
+with f2:
+    st.metric("FAITHFULNESS · corpus mean", "0.9615")
+    st.caption("148 of 150 queries scored")
+with f3:
+    st.metric("NEUTRAL vs CONTRADICTORY", "0.9616 / 0.9613")
+    st.caption("no material difference by query type")
+
+st.caption(
+    "Faithfulness measures whether claims in the generated answer are "
+    "supported by the retrieved abstracts. Judge model gemini-3.1-flash-lite, "
+    "the same model used for generation, so this is a self-judge design "
+    "(disclosed in step8.md §3). Two queries (q032, q068) failed reproducibly "
+    "on an upstream structured-output error and are excluded rather than "
+    "imputed; RAGAS Answer Relevancy was attempted and found infeasible on "
+    "this stack (step8.md §4a.8)."
+)
+
+st.markdown("---")
 st.caption(
     "FairSearch-qBio · Step 9 deployment dry run · 1 of 150 queries populated "
     "(q033 worked example) · tiered scope per step9_plan.md §8: Tier 1 is the "

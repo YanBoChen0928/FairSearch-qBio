@@ -1,8 +1,40 @@
 # Step 9: Streamlit Deployment Guide (Dry Run First)
 
-**Status:** Written 2026-08-01, before any deployment attempt.
+**Status:** originally written 2026-08-01 before any deployment attempt.
+**Partially superseded the same day — read §0 first.**
 **Owner:** Yan-Bo
 **Audience:** first-time Streamlit user. Assumes no prior deployment experience.
+
+---
+
+## 0. Status update (added 2026-08-01, after local prep)
+
+Sections 1 to 7 below were written before `app/` contained anything. Three of
+the four blockers in §1 have since been fixed. This section records what is
+actually true now; where it conflicts with §1, this section wins.
+
+**Blocker status:**
+
+| Blocker | Original claim | Actual status now |
+|---|---|---|
+| 1. `matplotlib` undeclared | fatal, guaranteed | **FIXED.** `app/requirements.txt` created and declares it. |
+| 2. research `requirements.txt` too heavy | likely fatal, biggest risk | **FIXED.** `app/requirements.txt` is app-scoped and minimal. The research root file is untouched, as intended. Whether Streamlit Cloud actually reads the app-level file is still UNVERIFIED — that is what the cloud deploy tests (see §5 Failure D). |
+| 3. `data/processed/` gitignored | not yet active, a trap | **STILL OPEN.** `app/data/step9_bundle.json` does not exist yet, so the trap has not been sprung. Re-check with `git check-ignore -v` when 9-B produces the bundle. |
+| 4. filename / path inconsistency | cosmetic, avoidable rework | **FIXED.** The deployed path is `app/streamlit_app.py`. `step9_streamlit_demo_draft.py` has been marked SUPERSEDED and now names itself correctly in its own docstring. |
+
+**Correction to §3.1: the venv is named `.venv-cs5340-app`, not `.venv-app`.**
+That is the one that exists in the working directory and the one the clean
+install was tested in. Substitute that name wherever §3.1 says `.venv-app`.
+
+**Progress beyond this document:** `app/streamlit_app.py` and
+`app/requirements.txt` exist, ran successfully in the clean venv, and have
+been committed and merged to `main`. The app was also updated for Prof.
+Sushmita's feedback (key metrics moved to the top) and the deprecated
+`use_container_width` call was replaced with `width="content"`.
+
+**What has NOT happened yet:** no Streamlit Community Cloud deployment has
+been attempted. §3.2 onward is entirely still to do, and it remains the item
+with unknown failure modes. §3.1 is done.
 
 **Purpose.** Deploying to Streamlit Community Cloud is the only Step 9 task
 that depends on nothing else: not on Raj's quota, not on Prof. Sushmita's

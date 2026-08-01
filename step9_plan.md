@@ -262,6 +262,36 @@ coverage (e.g. "20 of 150 queries precomputed"), and the report must state
 the coverage and, if Tier 1 only, cite the sampling rule in
 `step9_query_subset.md`. Silent partial coverage is not acceptable.
 
+### 8a. The quota premise has now dissolved (added 2026-08-01, later same day)
+
+§8 above deliberately refused to freeze the scope "before the quota picture
+in `step8.md` §5a is resolved". That picture has since resolved in practice,
+and it removes the constraint rather than tightening it.
+
+What actually happened in Step 8 (see `step8.md` §4a.7 and §4a.8):
+
+| Step 8 tier | Planned cost | Actual outcome |
+|---|---|---|
+| Tier 1 Faithfulness | ~300 calls over 150 queries | COMPLETE. 148/150 succeeded, zero 429s. |
+| Tier 2 Answer Relevancy | ~150 calls | CLOSED as technically infeasible. Consumes nothing further. |
+| Tier 3 Context Precision | ~1,500 calls | Still deferred, pending the §2a rubric question. |
+
+So the free-tier headroom that §8 was waiting on is now demonstrated, not
+assumed: 150 sequential Gemini calls completed in one sitting without a
+single rate-limit error. Step 9-A's full-coverage cost (~150 calls, one per
+query) is the same order as a run that has already been shown to work.
+
+**Consequence.** Tier 2 (all 150 queries) is no longer gated on quota. What
+remains is engineering time before the 2026-08-11 deadline, plus the
+unresolved Tier 3 question, which would compete for the same daily quota if
+Prof. Sushmita's answer to §2a makes Context Precision mandatory.
+
+**This is not a decision, only a removed constraint.** The scope rule in §8
+stands as written: Tier 1 is still the guaranteed floor and the
+implementation must still be scope-agnostic. Choosing Tier 2 remains a
+judgement about available working time, and the disclosure requirement above
+applies unchanged.
+
 ---
 
 ## 9. Data architecture: additive, not a rewrite
