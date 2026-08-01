@@ -1,0 +1,246 @@
+"""
+FairSearch-qBio — Step 9 Diagnostic Interface (Concept Demo, Streamlit version)
+
+Status: concept demo, NOT final. Baseline panel uses real data from
+retrieval_results.json / retrieval_labels.json / qbio_papers.json for query
+q033. The RQ3-intervention panel is illustrative only — the real per-query
+MMR re-rank output has not been generated yet (see step9_plan.md §2, the
+Step 9-A gap). Do not present the intervention numbers as real results.
+
+Run locally:
+    pip install streamlit
+    streamlit run step9_streamlit_demo.py
+"""
+
+import streamlit as st
+
+st.set_page_config(
+    page_title="FairSearch-qBio · Diagnostic Interface",
+    page_icon="⚖️",
+    layout="wide",
+)
+
+# ---------- Theme (matches the HTML concept demo) ----------
+ELITE = "#D6A24C"
+NONELITE = "#4FB6AE"
+CORAL = "#E2735F"
+GOOD = "#6FBF8B"
+DIM = "#8791A3"
+
+st.markdown(
+    f"""
+    <style>
+    .stApp {{ background-color: #10141C; color: #EDEFF3; }}
+    .badge {{
+        font-family: monospace; font-size: 11px; padding: 3px 9px;
+        border-radius: 100px; border: 1px solid {CORAL}; color: {CORAL};
+        background: rgba(226,115,95,0.08); display:inline-block;
+    }}
+    .pill-real {{
+        font-family: monospace; font-size: 10.5px; padding: 2px 8px;
+        border-radius: 100px; border: 1px solid {GOOD}; color: {GOOD};
+        background: rgba(111,191,139,0.08);
+    }}
+    .pill-illustrative {{
+        font-family: monospace; font-size: 10.5px; padding: 2px 8px;
+        border-radius: 100px; border: 1px solid {CORAL}; color: {CORAL};
+        background: rgba(226,115,95,0.08);
+    }}
+    .paper-elite {{ border-left: 3px solid {ELITE}; padding: 6px 10px; margin-bottom:6px; background:#1D2330; border-radius:6px;}}
+    .paper-nonelite {{ border-left: 3px solid {NONELITE}; padding: 6px 10px; margin-bottom:6px; background:#1D2330; border-radius:6px;}}
+    .paper-unlabeled {{ border-left: 3px solid #2A3140; padding: 6px 10px; margin-bottom:6px; background:#1D2330; border-radius:6px;}}
+    .paper-mock {{ border-left: 3px solid {CORAL}; padding: 6px 10px; margin-bottom:6px; background:#1D2330; border-radius:6px;}}
+    a {{ color: {NONELITE}; }}
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+# ---------- Header ----------
+col_title, col_badge = st.columns([4, 1])
+with col_title:
+    st.markdown("## FairSearch-qBio · Diagnostic Interface")
+with col_badge:
+    st.markdown('<div class="badge">CONCEPT DEMO · NOT FINAL</div>', unsafe_allow_html=True)
+
+query_options = {
+    "q033": "q033 — ML approaches for regulatory elements (worked example)",
+    "q001": "q001 — SDE gene expression noise (pending Step 9-A)",
+    "q101": "q101 — junk DNA debate (pending Step 9-A)",
+}
+selected = st.selectbox("QUERY", options=list(query_options.keys()),
+                         format_func=lambda k: query_options[k])
+
+if selected != "q033":
+    st.warning(
+        "This query is not yet wired up — Step 9-A (per-query RQ3-intervention "
+        "generation) has not been run. q033 is currently the only fully "
+        "populated worked example in this concept demo."
+    )
+    st.stop()
+
+st.markdown(
+    "#### \"What machine learning approaches predict gene regulatory "
+    "elements from DNA sequence?\""
+)
+st.caption(
+    "Subcategory: **q-bio.GN** · Retrieved: **10 papers** · "
+    "Elite list: **QS Top-50** · Baseline data: **real** "
+    "(`retrieval_results.json`)"
+)
+
+import matplotlib.pyplot as plt
+
+# ---------- Balance strip (signature element) ----------
+st.markdown("---")
+st.caption("INSTITUTIONAL BALANCE · SHARE OF LABELED (found) PAPERS")
+
+def balance_bar(label, elite_pct, badge=None):
+    nonelite_pct = 100 - elite_pct
+    badge_html = f' <span style="color:{CORAL}">{badge}</span>' if badge else ""
+    st.markdown(f"**{label}**{badge_html}", unsafe_allow_html=True)
+    st.markdown(
+        f"""
+        <div style="display:flex; height:24px; border-radius:6px; overflow:hidden; background:#1D2330;">
+          <div style="width:{elite_pct}%; background:{ELITE}; display:flex; align-items:center; justify-content:flex-end; padding-right:6px;">
+            <span style="font-family:monospace; font-size:10px; color:#10141C;">ELITE {elite_pct}%</span>
+          </div>
+          <div style="width:{nonelite_pct}%; background:{NONELITE}; display:flex; align-items:center; padding-left:6px;">
+            <span style="font-family:monospace; font-size:10px; color:#10141C;">NON-ELITE {nonelite_pct}%</span>
+          </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+balance_bar("Baseline", 80)
+balance_bar("RQ3 λ=0.8", 40, badge="(illustrative)")
+
+# ---------- Comparison panel ----------
+st.markdown("---")
+col_base, col_inter = st.columns(2)
+
+def donut(elite, nonelite, unlabeled, colors):
+    fig, ax = plt.subplots(figsize=(2.2, 2.2))
+    fig.patch.set_alpha(0)
+    ax.pie(
+        [elite, nonelite, unlabeled],
+        colors=colors,
+        wedgeprops=dict(width=0.42, edgecolor="#10141C"),
+        startangle=90,
+    )
+    ax.set_aspect("equal")
+    return fig
+
+BASELINE_PAPERS = [
+    ("unlabeled", True,  "Advancing regulatory genomics with machine learning",
+     "2304.12963", "unlabeled"),
+    ("unlabeled", True, "Prediction of a Gene Regulatory Network from Gene Expression Profiles",
+     "1805.01506", "unlabeled"),
+    ("unlabeled", False, "Machine Learning Methods for Gene Regulatory Network Inference",
+     "2504.12610", "unlabeled"),
+    ("elite", False, "Predicting Genetic Regulatory Response using Classification: Yeast Stress Response",
+     "q-bio/0406016", "Columbia University · US · elite"),
+    ("elite", False, "Predicting Genetic Regulatory Response Using Classification",
+     "q-bio/0411028", "Columbia University · US · elite"),
+    ("elite", True, "Motif Discovery through Predictive Modeling of Gene Regulation",
+     "q-bio/0701021", "Columbia University · US · elite"),
+    ("unlabeled", True, "Prediction of Signal Sequences in Abiotic Stress Inducible Genes from Arabidopsis",
+     "1811.07269", "unlabeled"),
+    ("nonelite", False, "SIRENE: Supervised Inference of Regulatory Networks",
+     "0802.3959", "Inserm · FR · non-elite"),
+    ("unlabeled", True, "Learning to Discover Regulatory Elements for Gene Expression Prediction",
+     "2502.13991", "unlabeled"),
+    ("elite", True, "A multi-modal neural network for learning cis and trans regulation of stress response",
+     "1908.09426", "Stanford University · US · elite"),
+]
+
+with col_base:
+    st.markdown('#### ① Baseline retrieval → answer')
+    st.markdown('<span class="pill-real">real data</span>', unsafe_allow_html=True)
+
+    st.markdown("**Institution mix (Top-10)**")
+    fig = donut(4, 1, 5, [ELITE, NONELITE, "#2A3140"])
+    st.pyplot(fig, use_container_width=False)
+    st.caption("Elite: 4 · Non-elite: 1 · Unlabeled: 5 · Elite share of found: **80%**")
+
+    st.markdown("**Retrieved papers**")
+    for group, rel, title, pid, label in BASELINE_PAPERS:
+        css_class = f"paper-{group}"
+        rel_marker = "🟢" if rel else "⚪"
+        url = f"https://arxiv.org/abs/{pid}"
+        st.markdown(
+            f'<div class="{css_class}">{rel_marker} {title}<br>'
+            f'<a href="{url}" target="_blank" style="font-family:monospace; font-size:11px;">arXiv:{pid}</a>'
+            f' &nbsp; <span style="font-family:monospace; font-size:11px; color:{DIM};">{label}</span></div>',
+            unsafe_allow_html=True,
+        )
+
+    st.markdown("**Generated answer (Step 7a, illustrative wording)**")
+    st.info(
+        "Recent approaches combine sequence-based deep learning with classical "
+        "motif discovery [1][2]. Supervised classification methods trained on "
+        "expression profiles remain a strong baseline [4][5], while multi-modal "
+        "neural networks jointly model cis- and trans-acting elements [10]. "
+        "Motif-based predictive modeling continues to complement these methods [6].\n\n"
+        "*(placeholder wording — not the stored Gemini output; see rq2_methodology.md §2.1 for the real prompt design)*"
+    )
+
+INTERVENTION_PAPERS_MOCK = [
+    ("unlabeled", True, "Advancing regulatory genomics with machine learning",
+     "2304.12963", "unlabeled · kept"),
+    ("unlabeled", True, "Prediction of a Gene Regulatory Network from Gene Expression Profiles",
+     "1805.01506", "unlabeled · kept"),
+    ("elite", False, "Predicting Genetic Regulatory Response using Classification: Yeast Stress Response",
+     "q-bio/0406016", "Columbia University · US · elite · kept (highest-relevance duplicate)"),
+    ("elite", True, "Motif Discovery through Predictive Modeling of Gene Regulation",
+     "q-bio/0701021", "Columbia University · US · elite · kept"),
+    ("mock", False, "[mock swap-in — illustrative only] Regulatory network inference via graph neural networks",
+     None, "mock non-elite institution · replaces 2nd Columbia duplicate"),
+]
+
+with col_inter:
+    st.markdown("#### \u2461 RQ3 re-rank (\u03bb=0.8) \u2192 answer")
+    st.markdown('<span class="pill-illustrative">illustrative \u2014 pending Step 9-A</span>', unsafe_allow_html=True)
+
+    st.markdown("**Institution mix (Top-10, mocked)**")
+    fig2 = donut(2, 3, 5, [ELITE, NONELITE, "#2A3140"])
+    st.pyplot(fig2, use_container_width=False)
+    st.caption("Elite: 2 \u00b7 Non-elite: 3 \u00b7 Unlabeled: 5 \u00b7 Elite share of found: **40%**")
+
+    st.markdown("**Re-ranked papers (mock \u2014 real MMR output not yet generated)**")
+    for group, rel, title, pid, label in INTERVENTION_PAPERS_MOCK:
+        css_class = f"paper-{group}"
+        rel_marker = "\U0001F7E2" if rel else "\u26AA"
+        if pid:
+            link = f'<a href="https://arxiv.org/abs/{pid}" target="_blank" style="font-family:monospace; font-size:11px;">arXiv:{pid}</a>'
+        else:
+            link = ""
+        st.markdown(
+            f'<div class="{css_class}">{rel_marker} {title}<br>'
+            f'{link} &nbsp; <span style="font-family:monospace; font-size:11px; color:{CORAL};">{label}</span></div>',
+            unsafe_allow_html=True,
+        )
+    st.caption("+ 5 more papers (mock, not shown)")
+
+# ---------- Delta footer ----------
+st.markdown("---")
+d1, d2, d3, d4 = st.columns(4)
+with d1:
+    st.metric("ELITE SHARE (found)", "40%", "-40pp (mock)", delta_color="inverse")
+with d2:
+    st.metric("UNIQUE INSTITUTIONS", "4 (mock)", "+1")
+with d3:
+    st.metric("NDCG@10", "≈ flat", "per rq3_methodology.md §4.2")
+with d4:
+    st.markdown(
+        f'<div style="font-family:monospace; font-size:11px; color:{DIM};">DATA STATUS</div>'
+        f'<div style="color:{CORAL}; font-size:14px;">baseline real · intervention illustrative</div>',
+        unsafe_allow_html=True,
+    )
+
+st.caption(
+    "FairSearch-qBio · Step 9 concept demo · one worked query (q033) · "
+    "full 150-query build pending Prof. Sushmita's scope confirmation "
+    "(see step9_plan.md §5)"
+)

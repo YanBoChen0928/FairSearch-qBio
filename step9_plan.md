@@ -1,14 +1,13 @@
 # Step 9 Plan: Diagnostic Interface (Streamlit)
 
-**Status: PENDING — awaiting Prof. Sushmita's confirmation of scope.**
-The design below reflects the team's current interpretation of the
-"diagnostic interface" requirement, described in Yan-Bo's email to Prof.
-Sushmita (draft dated 2026-07-19). Nothing in this document has been
-implemented; this is an architecture plan written before any code, so the
-approach can be reviewed and adjusted once the professor responds — in
-particular, her answer to the open question in §5 (full 150-query coverage
-vs. a handful of representative queries) will materially change the scope of
-§6 (Step 9-A).
+**Status: Scope decided — representative subset (see §5).**
+The design below reflects the team's interpretation of the "diagnostic
+interface" requirement, described in Yan-Bo's email to Prof. Sushmita
+(draft dated 2026-07-19). Nothing in this document has been implemented yet;
+this is an architecture plan written before any code. The full-150 vs.
+representative-subset question raised in §5 has been resolved: the team is
+proceeding with a representative subset (~20 queries, see
+`step9_query_subset.md`), not full-150 coverage.
 
 ---
 
@@ -139,10 +138,10 @@ Under Route A, the runtime picture is simple:
 
 ---
 
-## 5. Open question — BLOCKS Step 9-A sizing, awaiting professor's answer
+## 5. Scope decision — representative subset (resolved)
 
-The professor's own email raises this question, and it directly determines
-how much work Step 9-A (§6) requires:
+The professor's own email had raised this question, which directly
+determines how much work Step 9-A (§6) requires:
 
 > "Should the interface focus on demonstrating a few representative queries
 > in depth, or are we expected to support and summarize the complete query
@@ -153,16 +152,21 @@ This matters because Step 9-A requires **calling Gemini a second time**
 generation on re-ranked context has never been run) — and per the Step 8
 quota-risk analysis (`step8.md` §5), 150 queries × multiple calls each risks
 hitting the same free-tier walls that broke Framework B's judge run. A
-"handful of representative queries" scope could be an order of magnitude
-cheaper than "all 150."
+representative-queries scope is an order of magnitude cheaper than "all 150."
 
-**No Step 9-A work should start until this is resolved** — starting the full
-150-query version now risks wasted work if the professor confirms a smaller
-representative-query scope (or vice versa).
+**Decision:** the team is proceeding with a representative subset, not full-
+150 coverage. The approach is a ~20-query subset chosen by a documented,
+seed-fixed sampling rule (stratified by subcategory for neutral queries,
+spread across debate topics for contradictory queries, seed=42, q033
+retained as a disclosed anchor) rather than hand-picked queries — see
+`step9_query_subset.md` for the full method, rationale, and limitations.
+This keeps the subset defensible against cherry-picking concerns and adds
+negligible API cost on top of Step 8's RAGAS quota usage (~20 extra calls
+vs. Step 8's ~1,500-2,000).
 
 ---
 
-## 6. Proposed step sequence (once scope is confirmed)
+## 6. Proposed step sequence (scope decided, §5)
 
 ```
 Step 9-A (Kaggle, new work): generate the RQ3-intervention's second LLM
@@ -185,11 +189,11 @@ Step 9-D (local test → deploy): `streamlit run` locally to verify, then
 
 ## 7. Decisions still needed before implementation
 
-- [ ] **BLOCKING:** professor's answer on full-150 vs. representative-subset
-      scope (§5).
-- [ ] If representative subset: how many queries, and how are they chosen
-      (e.g. one per subcategory, a mix of neutral + contradictory, or
-      queries that already show a visible baseline-vs-intervention shift)?
+- [x] Full-150 vs. representative-subset scope (§5) — **decided:**
+      representative subset (~20 queries), sampling method in
+      `step9_query_subset.md`.
+- [ ] Finalize the actual ~20-query list by running the sampling script
+      per `step9_query_subset.md` §2 (stratified by subcategory, seed=42).
 - [ ] RQ3 operating point to use for the intervention branch — per
       `rq3_methodology.md` §4.2, λ=0.8 (institution-aware MMR) was the
       pre-registered operating point; confirm this is still the one to
@@ -203,7 +207,7 @@ Step 9-D (local test → deploy): `streamlit run` locally to verify, then
 
 ---
 
-*This is a planning document, marked PENDING. Do not begin Step 9-A/B/C/D
-work until §5's blocking question is resolved with Prof. Sushmita. Update
-this file (or supersede it with a finalized `step9_methodology.md`) once her
-response is in hand.*
+*This is a planning document. §5's scope question is resolved (representative
+subset, ~20 queries). Step 9-A/B/C/D work can begin once the query list is
+finalized (see remaining items in §7). Update this file (or supersede it
+with a finalized `step9_methodology.md`) as implementation proceeds.*

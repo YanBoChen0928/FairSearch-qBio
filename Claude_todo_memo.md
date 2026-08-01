@@ -9,6 +9,7 @@ everything from scratch. Written at the end of the 2026-07-19 session.
 ## 1. What was decided / completed today
 
 ### RQ1 robustness check — COMPLETE
+
 - Ran a full parallel Step 1b → Step 5b pipeline using QS World University
   Rankings by Subject 2026: Biological Sciences (instead of the original QS
   overall ranking) as a second, independent elite-institution definition.
@@ -26,6 +27,7 @@ everything from scratch. Written at the end of the 2026-07-19 session.
   overwritten** — this is purely additive.
 
 ### Methodology documentation — COMPLETE
+
 - `query_generation_methodology.md`, `rq1_methodology.md`,
   `rq2_methodology.md`, `rq3_methodology.md` all written, cross-checked
   against each other and against the actual notebook code/output for
@@ -33,6 +35,7 @@ everything from scratch. Written at the end of the 2026-07-19 session.
   `rq1_methodology.md` §6 was found and fixed).
 
 ### Step 8 (RAGAS evaluation) — PLANNED, NOT STARTED
+
 - `step8.md` written: background on RAGAS, data mapping (existing files
   already have what's needed, no new data collection), judge model decided
   (`gemini-3.1-flash-lite`, self-judge, same free-tier reasoning as RQ2
@@ -42,6 +45,7 @@ everything from scratch. Written at the end of the 2026-07-19 session.
   call count / latency / quota headroom.
 
 ### Step 9 (Streamlit diagnostic interface) — PLANNED, BLOCKED
+
 - `step9_plan.md` written: ASCII flow of the professor's 5-step requirement,
   gap analysis against existing files (only real gap: RQ3-intervention's
   second Gemini call has never been run per-query, and the Streamlit app
@@ -99,5 +103,5 @@ everything from scratch. Written at the end of the 2026-07-19 session.
 
 ---
 
-*Update this file at the end of each future session with what changed, so
-the next fresh conversation window can pick up quickly.*
+_Update this file at the end of each future session with what changed, so
+the next fresh conversation window can pick up quickly._
