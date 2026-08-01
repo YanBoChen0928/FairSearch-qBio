@@ -4,6 +4,11 @@
 team's confirmed approach for Step 9. This document specifies how the
 subset is chosen.
 
+**AMENDED 2026-08-01 (see §6).** The subset is now Tier 1 of a tiered
+scope, not a fixed ceiling — full 150-query coverage (Tier 2) is pursued if
+quota allows, per `step9_plan.md` §8. Read §6 before relying on §1/§5's
+original framing.
+
 **Owner:** Yan-Bo
 **Depends on:** `queries/queries_all_150.json`, `queries/query_generation_methodology.md`
 
@@ -116,8 +121,50 @@ Step 9-A can proceed independently of however Step 8's quota situation
 resolves (see `step8.md` §5 and the Solution 1+2 approach already agreed
 with Raj).
 
----
+## 6. Amendment (added 2026-08-01): tiered scope, not a fixed ceiling
 
-*This document specifies the sampling method only. It does not yet implement
-the sampling script or select the final query list — that is the next step
-now that the subset approach is decided.*
+This section amends §1 and §5 above. It does NOT replace the sampling
+method in §2 — the ~20-query subset described there is still exactly how
+Tier 1 is chosen. What changes is that Tier 1 is no longer the ceiling.
+
+**Why.** §5's original argument was: ~20 extra Gemini calls is negligible
+next to Step 8's estimated 1,500-2,000 calls, so a small subset was
+justified purely on relative cost. `step8.md` §2a (2026-08-01) deferred
+Context Precision, cutting Step 8's committed run to roughly 450 calls.
+The relative-cost comparison this section relied on no longer holds at the
+same magnitude, so the fixed-20 decision is reopened — see full reasoning
+in `step9_plan.md` §8.
+
+**Amended rule (tiered, mirrors `step8.md`'s Faithfulness/Answer-Relevancy/
+Context-Precision tiering):**
+
+- **Tier 1 (do this first, unconditionally):** the ~20-query subset, chosen
+  exactly per §2's method (stratified, seed=42, q033 retained as anchor).
+  This is the guaranteed demo-ready floor regardless of how quota resolves.
+- **Tier 2 (extend if quota allows):** the remaining ~130 queries, i.e. full
+  150-query coverage.
+
+**Tier 2 is itself run in layers, not as one uninterrupted 130-query batch.**
+This mirrors the checkpointing discipline in `step8.md` §4/§6a and the
+project's general rule against a single all-or-nothing run:
+
+1. Run Tier 2 in fixed-size batches (e.g. 25-30 queries per batch), writing
+   each batch's per-query JSONL checkpoint before starting the next, same
+   pattern as `rq2_gen_checkpoint.jsonl`.
+2. After each batch, confirm quota headroom remains before starting the
+   next batch. If a 429 occurs mid-batch, stop, keep everything already
+   checkpointed, and do NOT delete/retry the whole 130-query run — only the
+   unfinished batch is at risk, consistent with the project's "delete
+   affected records and restart that stage" rule (not the entire run).
+3. Tier 2 shares the same free-tier `gemini-3.1-flash-lite` quota pool as
+   Step 8's Tier 1/Tier 2 run. Coordinate scheduling so the two do not
+   compete for the same daily allowance on the same day if quota turns out
+   to be tight (see `step8.md` §5a).
+4. Bundle assembly (`step9_plan.md` §10) must record actual coverage
+   achieved (e.g. "83 of 150 queries completed") rather than assuming all
+   batches finished. The interface displays this number; it is not
+   hard-coded to 150.
+
+**What does NOT change:** the sampling method in §2, the disclosure
+requirements in §4, and Tier 1 always running to completion before any
+Tier 2 batch starts.
