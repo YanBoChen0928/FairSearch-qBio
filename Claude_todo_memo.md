@@ -97,6 +97,42 @@ decision.
 | `results/README_results.md` | NEW. Results dictionary for the whole folder, with a full section on the Step 8 output |
 | `data/kaggle_datasets.md` | Step 8 usage added; `queries_all_150.json` documented as existing in two datasets |
 
+### Next step: Step 9-A/B build-out and deployment (supersedes §0b's critical path below)
+
+**This is now the critical path.** §0b below is stale — items 1 and 2 there
+(the quota discrepancy and the rubric confirmation) are the old Step 8
+blockers, already resolved or downgraded per §00 above. The ordered plan
+from here:
+
+1. **Step 9-0: freeze the bundle schema** (`step9_plan.md` §10) and decide
+   the scope call now that §8a removed the quota constraint — Tier 1
+   (~20 queries) as a guaranteed floor, or go straight for Tier 2 (all 150)
+   since the marginal cost is engineering time only, not API risk.
+2. **Step 9-A: generate the RQ3-intervention data.** For each query in
+   scope: re-rank with institution-aware MMR (λ=0.8, fixed operating
+   point per §0b item 6 below), then one extra Gemini generation call per
+   query on the re-ranked context. This is the actual gap — everything in
+   `app/streamlit_app.py` right now for the intervention panel
+   (`INTERVENTION_PAPERS_MOCK`) is illustrative, not this output.
+3. **Step 9-B: build `app/data/step9_bundle.json`** from 9-A's output,
+   schema per `step9_plan.md` §10, and confirm it is NOT gitignored
+   (`git check-ignore -v app/data/step9_bundle.json` must print nothing —
+   Blocker 3 in `step9_streamlit_deployment.md` is still open exactly
+   because this file doesn't exist yet).
+4. **Wire `app/streamlit_app.py` to read the bundle** instead of the
+   hardcoded `BASELINE_PAPERS` / `INTERVENTION_PAPERS_MOCK` lists, and
+   populate the query selectbox from the bundle's query list. Remove the
+   "illustrative — pending Step 9-A" pill once this lands, since it will no
+   longer be true.
+5. **Attempt the actual Streamlit Community Cloud deployment**
+   (`step9_streamlit_deployment.md` §3.2 onward — §3.1's local dry run is
+   already done). This has never been attempted end to end; treat it as
+   having unknown failure modes and budget time accordingly, per the
+   document's own reasoning for doing this early.
+6. Record the outcome (public URL, or the exact error) back into this memo,
+   per the deployment doc's §3.4 instruction — a silent, undocumented
+   attempt is explicitly called out there as worse than not trying.
+
 ### Two judgement calls worth preserving
 
 **Why Faithfulness went in the app footer, not the baseline panel.** The
