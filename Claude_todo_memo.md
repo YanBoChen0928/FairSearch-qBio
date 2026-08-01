@@ -11,6 +11,107 @@ presentation).
 
 ---
 
+## 00. Session 2026-08-01 (evening) — Step 8 COMPLETE, docs reconciled
+
+**Newest section. Supersedes §0 and §0b below wherever they disagree.**
+
+### Step 8 is finished
+
+**Tier 1 Faithfulness: DONE.** 148/150 (98.7%) succeeded. Mean 0.9615,
+median 1.0, neutral 0.9616 vs contradictory 0.9613 (a 0.0003 gap, i.e. query
+type does not affect grounding). Results in
+`results/ragas_faithfulness_result.json`, chart in
+`results/step8_faithfulness_chart.png`, raw checkpoints in `data/`. This is
+the rubric deliverable and it is met.
+
+**Two queries failed permanently: q032, q068.** Identical upstream
+`instructor` structured-output error on two separate runs, ~137s each vs a
+normal 6-11s. Four content hypotheses tested and ruled out (answer length,
+citation count, citation formatting, non-ASCII in context). Excluded, not
+imputed. Full trail in `step8.md` §4a.7.
+
+**Tier 2 Answer Relevancy: CLOSED as infeasible, not parked.** Five attempts.
+The `embed_query` defect was actually solved (modern
+`collections.AnswerRelevancy` + modern `GoogleEmbeddings`), but underneath it
+sits a closed contradiction: a notebook event loop forces the async
+`ascore()` path, `ascore()` needs an async LLM, an async LLM needs
+`client.aio`, and ragas's instructor adapter rejects `AsyncClient` by type.
+Attempt 4 ran the sync path inside a `ThreadPoolExecutor` thread, escaped the
+event-loop check, and still hit the client-typing error, which proves the
+deadlock is about client typing rather than the notebook. Report it as
+attempted-and-infeasible, never as skipped. `step8.md` §4a.8.
+
+**Tier 3 Context Precision: still deferred**, and now the only open Step 8
+question. It hinges entirely on the §2a rubric reading.
+
+**Decision: no `step8_methodology.md` will be written.** Cancelled as
+duplication. `step8.md` §4a already holds the method; a new §7 consolidates
+every reportable limitation in one citable list, and §7a holds the Step 8
+next-to-do. See `step8.md` §7a for the rationale.
+
+### The single most important open item
+
+**Ask Prof. Sushmita the §2a rubric question.** Is "RAGAS Faithfulness
+scores" the whole requirement, or shorthand for the RAGAS suite? One line of
+answer decides whether Tier 3 (~1,500 API calls) is optional or mandatory.
+Everything else in Step 8 is closed. This is now the best time to ask,
+because the message can state concrete status: Faithfulness done 148/150,
+Answer Relevancy infeasible with evidence, only Context Precision undecided.
+
+### Kaggle notebook: a trap worth remembering
+
+**Never use "Save & Run All" on `step8-ragas-faithfulness-pilot-yb`.**
+`/kaggle/working/` is session-scoped, so a fresh container starts with an
+empty checkpoint, Cell 7's resume logic concludes 0/150 are done, and the
+full 150-query pass re-runs at roughly 300 API calls. Quick Save is always
+safe. A warning markdown cell now sits at the very top of the notebook. If
+Save & Run All is ever genuinely needed, first publish
+`step8_faithfulness_full150.jsonl` as its own Kaggle Dataset and repoint
+Cell 7's `CKPT_PATH_FULL` at that input path.
+
+### Step 9: the quota premise has dissolved
+
+`step9_plan.md` §8 made Step 9's scope tiered (Tier 1 = ~20 queries, Tier 2 =
+all 150) and deliberately refused to freeze it until the Step 8 quota picture
+resolved. It has now resolved, in the permissive direction: 150 sequential
+Gemini calls completed in one sitting with zero 429s. Step 9-A's full
+coverage costs ~150 calls, the same order.
+
+**So Tier 2 is no longer quota-gated.** What is left is engineering time
+before 08-11, plus the risk that Tier 3 competes for the same daily quota if
+the professor's answer makes Context Precision mandatory. Recorded as
+`step9_plan.md` §8a. This removes a constraint; it does not make the
+decision.
+
+### Documentation reconciled this session
+
+| File | Change |
+|---|---|
+| `step8.md` | §4a.7 Tier 1 results + q032/q068 investigation; §4a.8 Tier 2 closure with all 5 attempts; §7 consolidated limitations; §7a next-to-do and the no-methodology-file decision; §6a items 4 and 5 updated |
+| `notebooks/step8-ragas-faithfulness-pilot-yb.ipynb` | Save & Run All warning at top; Cell 10 visualisation; Tier 2 summary table. Now 46 cells including the full 9b-9f investigation trail |
+| `step9_plan.md` | §8a added: the quota premise behind the tiered scope has dissolved |
+| `step9_streamlit_deployment.md` | §0 status update: blockers 1, 2, 4 FIXED; blocker 3 still open; venv is `.venv-cs5340-app` not `.venv-app`; §3.1 done, §3.2 onward untouched |
+| `step9_streamlit_demo_draft.py` | Marked SUPERSEDED, points to `app/streamlit_app.py`, self-referencing filename fixed |
+| `app/streamlit_app.py` | Faithfulness metrics added to the footer (q033 1.000, corpus mean 0.9615, by-type split) |
+| `data/README_data.md` | Step 8 raw checkpoints documented; RQ1 preview SPD +0.033 corrected to the reportable +0.029 |
+| `results/README_results.md` | NEW. Results dictionary for the whole folder, with a full section on the Step 8 output |
+| `data/kaggle_datasets.md` | Step 8 usage added; `queries_all_150.json` documented as existing in two datasets |
+
+### Two judgement calls worth preserving
+
+**Why Faithfulness went in the app footer, not the baseline panel.** The
+answer text displayed in panel 1 is placeholder wording, but the Faithfulness
+score was computed against the real stored Gemini output. Putting the score
+beside the placeholder would imply it describes the visible text. Footer
+placement keeps it honest as a system-level indicator.
+
+**Why no confidence interval on Faithfulness.** RQ1/RQ2/RQ3 need CIs because
+they test whether a quantity differs from zero. Faithfulness is descriptive
+system quality with no pre-registered null, so a CI would imply a hypothesis
+test that was never registered. Reported as means and stdevs only.
+
+---
+
 ## 0. Session 2026-08-01 — Step 8 and Step 9 scoping
 
 ### What changed today
@@ -86,9 +187,13 @@ Ordered. Items 1 and 2 gate the schedule; items 3 onward can start now.
 2. **[BLOCKING, both steps] Confirm the rubric reading with Prof. Sushmita
    or a TA:** is "RAGAS Faithfulness scores" the whole requirement, or
    shorthand for the RAGAS suite? Determines whether Tier 3 is optional.
-3. **Upload `rq2_frameworkB_generation_raw.jsonl`** to the Kaggle dataset
-   `step7-frameworka-for-raj`. Raj currently has only
-   `rq2_gen_checkpoint.jsonl` (100 records). That file being Framework-A-only
+3. **[DONE 2026-08-01]** `rq2_frameworkB_generation_raw.jsonl` uploaded to
+   the Kaggle dataset `step7-frameworka-for-raj` (display title renamed to
+   `step7_frameworkAB_result_for_Raj`; URL slug unchanged — see
+   `data/kaggle_datasets.md`). Confirmed working: the Step 8 pilot
+   notebook's Cell 1 resolves both `rq2_gen_checkpoint.jsonl` (100 records)
+   and `rq2_frameworkB_generation_raw.jsonl` (50 records) from it, 150/150
+   total. That file being Framework-A-only
    is BY DESIGN and is NOT data loss; the Framework B generations live in a
    separate file that has not been shared. Step 8's 150-query scope cannot
    run without it.
