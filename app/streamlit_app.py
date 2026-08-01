@@ -74,13 +74,36 @@ with col_title:
 with col_badge:
     st.markdown('<div class="badge">CONCEPT DEMO · NOT FINAL</div>', unsafe_allow_html=True)
 
-query_options = {
-    "q033": "q033 — ML approaches for regulatory elements (worked example)",
-    "q001": "q001 — SDE gene expression noise (pending Step 9-A)",
-    "q101": "q101 — junk DNA debate (pending Step 9-A)",
+# ---------- Query metadata (mock for now; Step 9-B will populate this
+# from step9_bundle.json without changing the selection logic below) ----------
+QUERY_META = {
+    "q033": {"type": "neutral", "tier": 1,
+             "short": "ML approaches for regulatory elements (worked example)"},
+    "q001": {"type": "neutral", "tier": 1,
+             "short": "SDE gene expression noise (pending Step 9-A)"},
+    "q101": {"type": "contradictory", "tier": 2,
+             "short": "junk DNA debate (pending Step 9-A)"},
 }
-selected = st.selectbox("QUERY", options=list(query_options.keys()),
-                        format_func=lambda k: query_options[k])
+
+show_all_tiers = st.checkbox(
+    "Show all 150 queries (Tier 2)",
+    value=False,
+    help="Off = the ~20-query Tier 1 subset only (step9_plan.md §8). "
+         "On = extends to full 150-query coverage if that tier has run.",
+)
+max_tier = 2 if show_all_tiers else 1
+visible_ids = [k for k, v in QUERY_META.items() if v["tier"] <= max_tier]
+
+st.caption(
+    f"Showing {len(visible_ids)} of {len(QUERY_META)} queries "
+    f"(tiered scope per step9_plan.md §8)"
+)
+
+selected = st.selectbox(
+    "QUERY",
+    options=visible_ids,
+    format_func=lambda k: f"[{QUERY_META[k]['type']}] {k} — {QUERY_META[k]['short']}",
+)
 
 if selected != "q033":
     st.warning(
