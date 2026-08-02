@@ -129,6 +129,38 @@ Context Precision was deferred on free-tier quota grounds. Omitting the two
 unrun metrics without explanation is not acceptable under this project's
 disclosure standard.
 
+### 2b. FINAL SCOPE DECISION (Yan-Bo, 2026-08-01). §2a is now CLOSED.
+
+**This subsection closes the §2a rubric question. Do not reopen it, and do
+not raise it as an open item in any future session.**
+
+The decision is Yan-Bo's, made deliberately, and it does NOT depend on a
+reply from Prof. Sushmita or a TA. No such question will be asked. The
+literal rubric reading in §2a stands as the stated basis; the "confirm
+before relying on it" caveat in §2a is hereby superseded by this decision
+and should be read as historical record only.
+
+**Committed Step 8 scope, final:**
+
+| Tier | Metric | Final disposition |
+|---|---|---|
+| 1 | Faithfulness | DONE. 148/150, mean 0.9615. The reported deliverable. (§4a.7) |
+| 2 | Answer Relevancy | CLOSED as attempted-and-infeasible, reported as a documented note with the full five-attempt evidence trail. Never described as skipped. (§4a.8, §7 limitation 3) |
+| 3 | Context Precision | NOT RUN. Carried as a reportable limitation (§7 limitation 4) and as future work. No further deliberation. |
+
+**Why this is defensible.** Tier 1 satisfies both rubric mentions of RAGAS
+verbatim. Tier 2's absence is an upstream library incompatibility with a
+documented five-attempt trail, not a shortcut. Tier 3's absence is a
+disclosed scope boundary stated plainly in the report, consistent with this
+project's standing disclosure practice (Framework B's self-judge fallback
+was handled the same way). Under the project's "report descriptively"
+principle, a disclosed boundary is an acceptable outcome; an undisclosed
+one is not.
+
+**What this changes downstream.** Tier 3's roughly 1,500 API calls are off
+the schedule permanently. They no longer compete with Step 9 for daily
+quota, and Step 9's scope decision can be made on engineering time alone.
+
 ### 5a. Quota discrepancy (open, blocking the schedule)
 
 Two contradictory observations of the same free-tier daily limit on
@@ -650,10 +682,14 @@ Each item links to the section holding the underlying evidence.
    error. It must be reported as attempted-and-infeasible, never as skipped.
    (§4a.8)
 
-4. **Context Precision was never run.** Deferred by plan, and still open.
-   The deferral is contingent on the unresolved rubric question in §2a, not
-   on a technical finding. If the answer to §2a makes it mandatory, this
-   becomes work rather than a limitation. See the next-to-do note below.
+4. **Context Precision was never run.** Deferred by plan and then closed by
+   decision, not left open. Per §2b (2026-08-01, final), Context Precision is
+   out of scope for this project and is carried here as a disclosed
+   limitation plus a future-work item. The deferral rests on free-tier quota
+   cost (roughly 1,500 additional calls, up to 10 per query) against a rubric
+   that names only Faithfulness. It is a scope boundary, not a technical
+   failure, and the report must say so plainly rather than omitting the
+   metric silently. (§2b)
 
 5. **Environment workarounds are load-bearing.** Getting ragas to import at
    all required stubbing a `langchain_community` submodule that this project
@@ -676,14 +712,14 @@ Each item links to the section holding the underlying evidence.
 
 ### 7a. Next to do (Step 8 specific)
 
-Everything else Step 8 owns is closed. Two items remain, both external:
+**Step 8 has no blocking items. It is closed.** Tier 1 is delivered, Tier 2
+is closed with evidence, and Tier 3 was closed by decision in §2b.
 
-1. **[BLOCKING] The §2a rubric question.** Ask Prof. Sushmita or a TA
-   whether "RAGAS Faithfulness scores" is the complete requirement or
-   shorthand for the RAGAS suite. This single answer decides whether Tier 3
-   Context Precision moves from limitation 4 above into required work. Ask
-   now: the answer costs one line, and the work it might trigger is roughly
-   1,500 API calls.
+1. **[CLOSED 2026-08-01] The §2a rubric question.** Resolved by Yan-Bo's own
+   decision in §2b, not by asking. No message to Prof. Sushmita or a TA is
+   required or planned. Tier 3 Context Precision stays as limitation 4 above
+   and as a future-work bullet in the report. Any future session that
+   proposes reopening this is working from stale notes.
 2. **[NON-BLOCKING] The §5a quota discrepancy with Raj.** Downgraded, not
    resolved. Tier 1 completed on Yan-Bo's key with zero 429s, so it no longer
    blocks anything in Step 8, but it still matters for anything Raj runs on
