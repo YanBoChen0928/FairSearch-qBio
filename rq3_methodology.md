@@ -228,6 +228,19 @@ From `results/rq3_results.json`:
 
 ---
 
+## 8a. Third mitigation arm: Fair-Top-K (contrast arm, rubric-named method)
+
+The rubric names Fair-Top-K alongside MMR under Mitigation. This project's
+own RQ1 result (SPD not significant) reframes it from a bias correction to
+a **contrast arm**: what does a hard quota cost, and how does it compare to
+MMR's soft penalty, at this project's own corpus-parity target (0.144, not
+50/50 demographic parity)? Full algorithm, pre-registration log, and the
+head-to-head comparison table against institution-aware MMR (lambda=0.8)
+live in `step6_fair-top-k_methodology.md` -- that file is the single
+authoritative source for this arm; do not duplicate its content here.
+
+---
+
 ## 9. Key limitations (for the report)
 
 1. **Candidate pool is capped at 50 per query** — diversity gains plateau at

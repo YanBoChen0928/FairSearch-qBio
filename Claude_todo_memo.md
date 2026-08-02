@@ -11,9 +11,174 @@ presentation).
 
 ---
 
+## 000. Session 2026-08-01 (late) — rubric reconciliation, Step 8 closed by decision
+
+**NEWEST SECTION. Read this first. Supersedes §00 and everything below it
+wherever they disagree.**
+
+### What this session produced
+
+1. **Step 8 §2a is CLOSED by Yan-Bo's decision, not by asking anyone.**
+   Written into `step8.md` §2b (new), §7 limitation 4, §7a, and into §00 of
+   this file. Tier 1 delivered, Tier 2 closed as attempted-and-infeasible,
+   Tier 3 Context Precision NOT RUN and carried as a disclosed limitation
+   plus future work. **Any future session that proposes asking Prof.
+   Sushmita about RAGAS scope is working from stale notes.**
+2. **New file `deliverables_checklist.md`** at WD root. Transcribes the Week
+   14 rubric and maps every line to a real artifact. §1 holds six verified
+   gaps, §1a holds the G1 cost survey.
+
+### Three findings worth carrying forward
+
+**A. Peer reports cannot be cited.** Three other groups' final reports are
+available, but they are classmates' unpublished coursework, not
+peer-reviewed literature. Do not quote their numbers in the report or use
+them as evidence. They may inform internal judgement only. An earlier draft
+of the G1 argument leaned on one of them and had to be rewritten.
+
+**B. `step5.md`'s "Fair MMR / Fair-Top-K" slash is NOT a valid defence.**
+That slash is this project's own earlier plan; the Week 14 rubric came later
+and names all three mitigation methods. A later course instruction outranks
+an earlier internal plan. It may appear as background, never as
+justification. This is why the G1 recommendation flipped to "implement it".
+
+**C. RQ3's `n_queries: 100` is by design and already documented.** Not a
+hole, and NOT caused by missing subcategory labels: all 150 queries carry a
+`subcategory` field, contradictory ones included. The real reason is in
+`handoff_status_rq1_for_step6.md`: q101-q150 are held out for RQ2 Experiment
+B, main SPD computed on neutral only. Carried into `rq3_methodology.md` §1
+as a locked convention.
+
+### The three quantitative arguments against a hard quota
+
+Derived this session from this project's own files. They belong in
+`rq3_methodology.md` as a new section, and they are the entire defence for
+G1 now that (B) removed the plan-level argument.
+
+1. **Resolution.** A quota over K=10 can only express elite shares in 10
+   percentage-point steps. Against a corpus baseline of 0.144, the reachable
+   SPD grid is -0.044 (1 slot) or +0.056 (2 slots). The quantity being
+   corrected is +0.029. The instrument's minimum step is more than three
+   times the effect. Worse in practice, since SPD is computed over labeled
+   slots only, roughly 5.9 of 10 per query.
+2. **Groupability.** A quota requires every candidate to have a group.
+   `data/retrieval_labels.json` meta: 1,366 unique retrieved papers, 798
+   found (58.4%), 553 no_affiliation, 15 not_found. Over 40% cannot be
+   assigned. MMR degrades gracefully here (zero penalty for unlabeled, per
+   `rq3_methodology.md` §9 limitation 2); a quota cannot.
+3. **Assumption replacing measurement.** A quota requires naming a target
+   share in advance. RQ1's SPD is +0.029 with 95% CI [-0.005, +0.065], which
+   contains zero and negative values. Fixing a target would convert the
+   quantity under study into an assumption.
+
+**Wording rule.** Say "we did not detect a significant disparity", never "we
+have no statistical difference". The point estimate is positive; only its
+distinguishability from zero is in question.
+
+### Should contradictory queries be added to RQ3?
+
+Discussed, not decided, priority LOW. Mechanically possible:
+`data/retrieval_results.json` holds all 150 queries with Top-10 each. But it
+would need a Kaggle re-run to rebuild 50-candidate pools for q101-q150.
+
+The one real methodological objection is that NDCG@10 relies on
+subcategory-match relevance, which is a reasonable proxy for neutral queries
+and breaks for debate queries, where a good answer must cover a side of the
+argument rather than merely share a subcategory. The same metric name would
+measure a different thing.
+
+If this is written up, frame the held-out split positively: a deliberate
+separation so no query set is used both to discover and to verify. Do NOT
+write engineering cost as a reason; that is internal only.
+
+### Next session entry point
+
+See §000a below.
+
+---
+
+## 000a. NEXT SESSION: exactly what to open and in what order
+
+**Say this at the start of the next window.** Working directory is
+`/Users/yanbochen/IdeaProjects/CS6200-Project`, desktop-commander is
+available.
+
+**Step 1, always.** Read `Claude_todo_memo.md` §000 and §000a (this
+section). That is the current state. Do not read further down unless a
+specific question needs it; §00 and below contain superseded text.
+
+**Step 2, pick the track.**
+
+*Track A, Step 9 build-out (the critical path).* Ask for these, in order:
+
+1. `step9_plan.md` **§10** (bundle schema draft) and **§11** (the 9-0 /
+   9-A / 9-B / 9-C / 9-D sequence with estimates). This is the master
+   implementation doc.
+2. `step9_query_subset.md` **§6** (tiered scope amendment) plus §2 for the
+   sampling method. Needed to settle the Tier 1 vs Tier 2 scope call in 9-0.
+3. `step9_plan.md` **§8a** for why the quota constraint on that scope call
+   has dissolved.
+4. Later, for deployment only: `step9_streamlit_deployment.md` **§3.2
+   onward**. §3.1 local dry run is already done. Blocker 3 is still open and
+   closes automatically once `app/data/step9_bundle.json` exists.
+
+The first concrete action in Track A is **9-0: freeze the bundle schema and
+make the scope call**. It is cheap and it unblocks 9-B and 9-C to run in
+parallel; skipping it forces them serial and costs about a day.
+
+*Track B, G1 Fair-Top-K contrast arm.* Ask for
+`deliverables_checklist.md` §1a (cost survey with the exact cell numbers)
+and `notebooks/step6-reranking-yb-optimized-basedon-jici.ipynb`. Roughly 20
+lines of new code, zero API calls. Then write the new
+`rq3_methodology.md` section using the three arguments in §000 above.
+
+*Track C, G5 citation count.* Fully independent of A and B, no
+prerequisites, purely mechanical. Count the report's reference list and
+classify each entry by venue against the SIGIR / FAccT / ECIR / CIKM / WWW /
+ACL requirement. Good filler work when energy is low.
+
+**Priority, REVISED by Yan-Bo 2026-08-02: B first, then A, then C.** This
+reverses the A-first ordering originally written here. Reason: Fair-Top-K is
+named explicitly in the rubric, its scope is bounded (about 20 lines, zero
+API calls, no unknown failure modes), and finishing it turns the README's
+Fair-Top-K checkmark from an overclaim into a fact. Step 9's deployment is
+the only step in the project with no known cost ceiling, so it gets the
+remaining calendar slack.
+
+**Condition attached: timebox Track B to one session.** If Fair-Top-K is not
+finished in one sitting, park it and switch to Track A. It must not eat the
+slack Step 9 needs.
+
+**Track B pre-registration item, must be decided BEFORE the run.** A hard
+quota needs a rule for the roughly 40% of candidates with no institution
+label. Decide and write down whether unlabeled papers form a third group
+used only as tiebreaker after both primary groups are exhausted, or are
+excluded from the quota entirely. Deciding this after seeing results would
+be a retroactive choice and must not happen.
+
+### Do NOT create `step9_implementation_deploy.md`
+
+Recommendation, for the same reason `step8_methodology.md` was cancelled:
+one authoritative home per fact, no duplication. Three Step 9 documents
+already exist and both already reserve the slots:
+
+- **Implementation record** goes into `step9_plan.md` as a new dated
+  section, next after §12.
+- **Deployment outcome** goes into `step9_streamlit_deployment.md` **§3.4
+  "Record the result"**, which exists for precisely this and explicitly says
+  a silent undocumented attempt is worse than not trying.
+
+A fourth file would mean four places to check and would fragment the record
+further. Only revisit this if `step9_plan.md` becomes unnavigable, in which
+case the right move is to split the superseded sections out, not to add a
+new document alongside them.
+
+---
+
 ## 00. Session 2026-08-01 (evening) — Step 8 COMPLETE, docs reconciled
 
-**Newest section. Supersedes §0 and §0b below wherever they disagree.**
+**Superseded in part by §000 above. Still authoritative for the Step 8
+results and the Step 9 build-out plan.**
 
 ### Step 8 is finished
 
@@ -99,17 +264,17 @@ decision.
 
 ### Documentation reconciled this session
 
-| File | Change |
-|---|---|
-| `step8.md` | §4a.7 Tier 1 results + q032/q068 investigation; §4a.8 Tier 2 closure with all 5 attempts; §7 consolidated limitations; §7a next-to-do and the no-methodology-file decision; §6a items 4 and 5 updated |
-| `notebooks/step8-ragas-faithfulness-pilot-yb.ipynb` | Save & Run All warning at top; Cell 10 visualisation; Tier 2 summary table. Now 46 cells including the full 9b-9f investigation trail |
-| `step9_plan.md` | §8a added: the quota premise behind the tiered scope has dissolved |
-| `step9_streamlit_deployment.md` | §0 status update: blockers 1, 2, 4 FIXED; blocker 3 still open; venv is `.venv-cs5340-app` not `.venv-app`; §3.1 done, §3.2 onward untouched |
-| `step9_streamlit_demo_draft.py` | Marked SUPERSEDED, points to `app/streamlit_app.py`, self-referencing filename fixed |
-| `app/streamlit_app.py` | Faithfulness metrics added to the footer (q033 1.000, corpus mean 0.9615, by-type split) |
-| `data/README_data.md` | Step 8 raw checkpoints documented; RQ1 preview SPD +0.033 corrected to the reportable +0.029 |
-| `results/README_results.md` | NEW. Results dictionary for the whole folder, with a full section on the Step 8 output |
-| `data/kaggle_datasets.md` | Step 8 usage added; `queries_all_150.json` documented as existing in two datasets |
+| File                                                | Change                                                                                                                                                                                                |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `step8.md`                                          | §4a.7 Tier 1 results + q032/q068 investigation; §4a.8 Tier 2 closure with all 5 attempts; §7 consolidated limitations; §7a next-to-do and the no-methodology-file decision; §6a items 4 and 5 updated |
+| `notebooks/step8-ragas-faithfulness-pilot-yb.ipynb` | Save & Run All warning at top; Cell 10 visualisation; Tier 2 summary table. Now 46 cells including the full 9b-9f investigation trail                                                                 |
+| `step9_plan.md`                                     | §8a added: the quota premise behind the tiered scope has dissolved                                                                                                                                    |
+| `step9_streamlit_deployment.md`                     | §0 status update: blockers 1, 2, 4 FIXED; blocker 3 still open; venv is `.venv-cs5340-app` not `.venv-app`; §3.1 done, §3.2 onward untouched                                                          |
+| `step9_streamlit_demo_draft.py`                     | Marked SUPERSEDED, points to `app/streamlit_app.py`, self-referencing filename fixed                                                                                                                  |
+| `app/streamlit_app.py`                              | Faithfulness metrics added to the footer (q033 1.000, corpus mean 0.9615, by-type split)                                                                                                              |
+| `data/README_data.md`                               | Step 8 raw checkpoints documented; RQ1 preview SPD +0.033 corrected to the reportable +0.029                                                                                                          |
+| `results/README_results.md`                         | NEW. Results dictionary for the whole folder, with a full section on the Step 8 output                                                                                                                |
+| `data/kaggle_datasets.md`                           | Step 8 usage added; `queries_all_150.json` documented as existing in two datasets                                                                                                                     |
 
 ### Next step: Step 9-A/B build-out and deployment (supersedes §0b's critical path below)
 
@@ -147,6 +312,26 @@ from here:
    per the deployment doc's §3.4 instruction — a silent, undocumented
    attempt is explicitly called out there as worse than not trying.
 
+### NEW 2026-08-01: `deliverables_checklist.md`
+
+Created at WD(working directory) root. Transcribes Prof. Sushmita's Week 14 rubric (12 slides,
+report sections, GitHub contents) and maps every line to a real artifact or
+marks it open. §1 of that file lists six verified gaps between the rubric
+and what exists. Three matter:
+
+- **G1 Fair-Top-K is not implemented.** The rubric names it under Mitigation
+  on Slide 8 and in Methodology. `results/rq3_results.json` contains only
+  `mmr_semantic_by_lambda` and `mmr_institution_by_lambda`.
+- **G2 Perspective-balanced prompting is not implemented.** Known and
+  reasoned (§3 below), but currently reads as an omission rather than a
+  choice. Needs an explicit sentence on Slide 8 and in Methodology.
+- **G5 Background needs 20+ peer-reviewed conference papers**, venue-checked.
+  Never counted. Most mechanical remaining risk, fully front-loadable.
+
+Also recorded there: `results/rq3_results.json` `config.n_queries` is **100,
+not 150**. RQ3 was run on the neutral set only. This interacts with the
+"100-query audit" GitHub deliverable wording and with Step 9's scope call.
+
 ### Two judgement calls worth preserving
 
 **Why Faithfulness went in the app footer, not the baseline panel.** The
@@ -174,6 +359,7 @@ added scope, not a course requirement. NOTE: this is a literal reading, not
 confirmed with Prof. Sushmita or a TA.
 
 **`step8.md` amended (§2a, §5a, §6a added; §4 and header updated).**
+
 - Metrics are now tiered: Tier 1 Faithfulness (required, all 150 queries),
   Tier 2 Answer Relevancy (opportunistic, cheapest of the three), Tier 3
   Context Precision (DEFERRED, not part of the committed run).
@@ -185,6 +371,7 @@ confirmed with Prof. Sushmita or a TA.
   checkpointing is required, not optional.
 
 **`step9_plan.md` amended (§8-§12 added).**
+
 - §5's fixed ~20-query subset became a tiered scope: Tier 1 the ~20-query
   subset (guaranteed floor), Tier 2 all 150 if quota allows.
 - Reason: Step 9-A costs exactly one Gemini call per query, so 20 vs 150 is
@@ -207,6 +394,7 @@ confirmed with Prof. Sushmita or a TA.
 
 **Step 8, Tier 1 + Tier 2 over 150 queries = ~450 API calls.** Wall clock
 depends entirely on the unresolved quota question:
+
 - at ~1,000/day (Yan-Bo's Step 7a observation): one sitting, ~1.5-2.5 hours
 - at ~50/day (Raj's observation): ~9 days, which does not fit before 08-11
 
