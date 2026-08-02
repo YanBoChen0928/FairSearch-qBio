@@ -220,6 +220,24 @@
     ],
     "significant": true
   },
+  "spd_absolute_ci": {
+    "lambda": 0.8,
+    "mean": 0.01620271383806924,
+    "ci95": [
+      -0.01394902730016781,
+      0.048374428721058606
+    ]
+  },
+  "spd_improvement_ci": {
+    "lambda": 0.8,
+    "lambda_selection": "chosen from the Section 7b sweep (diversity plateau, lowest SPD, no NDCG loss), not selected via this test",
+    "mean_improvement": 0.0126,
+    "ci95": [
+      0.0013,
+      0.0254
+    ],
+    "significant": true
+  },
   "config": {
     "baseline_share": 0.144,
     "n_candidates": 50,
