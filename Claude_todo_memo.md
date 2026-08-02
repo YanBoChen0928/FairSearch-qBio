@@ -41,22 +41,36 @@ event-loop check, and still hit the client-typing error, which proves the
 deadlock is about client typing rather than the notebook. Report it as
 attempted-and-infeasible, never as skipped. `step8.md` §4a.8.
 
-**Tier 3 Context Precision: still deferred**, and now the only open Step 8
-question. It hinges entirely on the §2a rubric reading.
+**Tier 3 Context Precision: NOT RUN, closed by decision.** See the §2a
+closure note below and `step8.md` §2b. It is a disclosed limitation, not an
+open question.
 
 **Decision: no `step8_methodology.md` will be written.** Cancelled as
 duplication. `step8.md` §4a already holds the method; a new §7 consolidates
 every reportable limitation in one citable list, and §7a holds the Step 8
 next-to-do. See `step8.md` §7a for the rationale.
 
-### The single most important open item
+### The §2a rubric question is CLOSED. Do not raise it again.
 
-**Ask Prof. Sushmita the §2a rubric question.** Is "RAGAS Faithfulness
-scores" the whole requirement, or shorthand for the RAGAS suite? One line of
-answer decides whether Tier 3 (~1,500 API calls) is optional or mandatory.
-Everything else in Step 8 is closed. This is now the best time to ask,
-because the message can state concrete status: Faithfulness done 148/150,
-Answer Relevancy infeasible with evidence, only Context Precision undecided.
+**DECIDED by Yan-Bo, 2026-08-01, final. Recorded in `step8.md` §2b.**
+
+No question will be asked of Prof. Sushmita or a TA about the RAGAS scope.
+The decision was made on the project's own judgement and does not await
+anyone's reply:
+
+- **Tier 1 Faithfulness**: delivered, 148/150, mean 0.9615. This is the
+  RAGAS deliverable.
+- **Tier 2 Answer Relevancy**: closed as attempted-and-infeasible, reported
+  as a documented note with the five-attempt evidence trail. Never worded as
+  skipped.
+- **Tier 3 Context Precision**: NOT RUN. Carried as a report limitation
+  (`step8.md` §7 item 4) and as a future-work bullet. Off the schedule
+  permanently, so its ~1,500 calls no longer compete with Step 9 for quota.
+
+**Instruction to any future session:** Step 8 has zero blocking items. If a
+stale section further down this file, or §0b item 2, or §2 item 1, still
+frames the rubric question as open, that text is superseded by this
+paragraph. Do not re-propose asking the professor about RAGAS scope.
 
 ### Kaggle notebook: a trap worth remembering
 
@@ -220,9 +234,11 @@ Ordered. Items 1 and 2 gate the schedule; items 3 onward can start now.
    9-day job. Jici has since given Raj a separate key (Solution 3); if that
    key is in the ~1,000/day tier the problem dissolves. Record which
    key/project produced the reported numbers.
-2. **[BLOCKING, both steps] Confirm the rubric reading with Prof. Sushmita
-   or a TA:** is "RAGAS Faithfulness scores" the whole requirement, or
-   shorthand for the RAGAS suite? Determines whether Tier 3 is optional.
+2. **[CLOSED 2026-08-01, STALE TEXT BELOW]** ~~Confirm the rubric reading
+   with Prof. Sushmita or a TA: is "RAGAS Faithfulness scores" the whole
+   requirement, or shorthand for the RAGAS suite?~~ Superseded by §00's
+   closure note and `step8.md` §2b. Decided internally, no one is being
+   asked, Tier 3 is out of scope as a disclosed limitation.
 3. **[DONE 2026-08-01]** `rq2_frameworkB_generation_raw.jsonl` uploaded to
    the Kaggle dataset `step7-frameworka-for-raj` (display title renamed to
    `step7_frameworkAB_result_for_Raj`; URL slug unchanged — see
