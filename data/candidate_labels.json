@@ -10,8 +10,8 @@
       "not_found": 64
     },
     "found": 1782,
-    "elite_found": 320,
-    "candidate_elite_share": 0.1796
+    "elite_found": 319,
+    "candidate_elite_share": 0.179
   },
   "labels": [
     {
@@ -6807,9 +6807,9 @@
     {
       "paper_id": "1505.06440",
       "coverage": "found",
-      "institution": "Harvard University",
-      "country": "US",
-      "elite_label": 1
+      "institution": "University of Oslo",
+      "country": "NO",
+      "elite_label": 0
     },
     {
       "paper_id": "1505.07335",
@@ -9670,7 +9670,7 @@
     {
       "paper_id": "1709.05429",
       "coverage": "found",
-      "institution": "Science for Life Laboratory",
+      "institution": "Karolinska Institutet",
       "country": "SE",
       "elite_label": 0
     },
