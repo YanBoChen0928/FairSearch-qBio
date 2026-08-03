@@ -309,7 +309,7 @@ def render_answer(text, cited_ids, context_key):
     st.markdown(
         f'<div class="answerbox">{linked_text}</div>', unsafe_allow_html=True
     )
-    st.caption(f"cited papers: {len(cited_ids)} unique · [n] markers link to the paper card below")
+    st.caption(f"cited papers: {len(cited_ids)} unique · [n] markers link to the paper card above")
 
 
 # ---------- Shared metric strip ----------
@@ -546,7 +546,7 @@ if not is_neutral:
             css = stance_css.get(s["stance"], "paper-unlabeled")
             title = p.get("title") or "(title unavailable)"
             st.markdown(
-                f'<div class="{css}">'
+                f'<div class="{css}" id="cite-fwb-{selected_id}-{s["n"]}">'
                 f'<span style="font-family:monospace; color:{DIM}; font-size:11px;">{s["n"]}</span> '
                 f"{title}<br>"
                 f'<a href="https://arxiv.org/abs/{pid}" target="_blank" '
@@ -556,6 +556,20 @@ if not is_neutral:
                 f'"{s["evidence"]}"</div></div>',
                 unsafe_allow_html=True,
             )
+
+        st.markdown("**Generated answer being judged**")
+        render_answer(
+            rec["baseline"]["answer_text"],
+            rec["baseline"]["cited_paper_ids"],
+            context_key=f"fwb-{selected_id}",
+        )
+        st.caption(
+            "This is the same stored answer shown in the baseline column "
+            "above, repeated here because it is the object of the judgment "
+            "below: the judge reads the stance-labelled context together "
+            "with this answer, then decides whether both sides survived "
+            "into it."
+        )
 
         st.markdown("**Answer-layer judgment**")
         st.markdown(
