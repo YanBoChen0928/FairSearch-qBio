@@ -5,13 +5,13 @@
     "n_candidates_new": 3086,
     "elite_list": "QS World University Rankings 2026 Top 50",
     "coverage": {
-      "found": 1782,
-      "no_affiliation": 1240,
+      "found": 1787,
+      "no_affiliation": 1235,
       "not_found": 64
     },
-    "found": 1782,
-    "elite_found": 319,
-    "candidate_elite_share": 0.179
+    "found": 1787,
+    "elite_found": 311,
+    "candidate_elite_share": 0.174
   },
   "labels": [
     {
@@ -570,7 +570,7 @@
     {
       "paper_id": "0806.0215",
       "coverage": "found",
-      "institution": "Institut Curie",
+      "institution": "ParisTech",
       "country": "FR",
       "elite_label": 0
     },
@@ -703,8 +703,8 @@
     {
       "paper_id": "0808.3870",
       "coverage": "found",
-      "institution": "The University of Texas at Dallas",
-      "country": "US",
+      "institution": "Otto-von-Guericke-Universit\u00e4t Magdeburg",
+      "country": "DE",
       "elite_label": 0
     },
     {
@@ -787,8 +787,8 @@
     {
       "paper_id": "0811.0903",
       "coverage": "found",
-      "institution": "University College London",
-      "country": "GB",
+      "institution": "Cornell University",
+      "country": "US",
       "elite_label": 1
     },
     {
@@ -871,9 +871,9 @@
     {
       "paper_id": "0812.1086",
       "coverage": "found",
-      "institution": "University of California, Berkeley",
+      "institution": "Center for Theoretical Biological Physics",
       "country": "US",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "0812.2184",
@@ -1025,8 +1025,8 @@
     {
       "paper_id": "0902.4552",
       "coverage": "found",
-      "institution": "Institute for Cross-Disciplinary Physics and Complex Systems",
-      "country": "ES",
+      "institution": "Universidade Federal de Pernambuco",
+      "country": "BR",
       "elite_label": 0
     },
     {
@@ -1291,8 +1291,8 @@
     {
       "paper_id": "0908.3600",
       "coverage": "found",
-      "institution": "Genopole (France)",
-      "country": "FR",
+      "institution": "Max Planck Institute for Mathematics in the Sciences",
+      "country": "DE",
       "elite_label": 0
     },
     {
@@ -1368,7 +1368,7 @@
     {
       "paper_id": "0910.2043",
       "coverage": "found",
-      "institution": "Center for Systems Biology",
+      "institution": "Johnson University",
       "country": "US",
       "elite_label": 0
     },
@@ -1403,9 +1403,9 @@
     {
       "paper_id": "0910.5572",
       "coverage": "found",
-      "institution": "The University of Tokyo",
+      "institution": "Tokyo University of Science",
       "country": "JP",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "0911.0656",
@@ -1459,7 +1459,7 @@
     {
       "paper_id": "0912.2288",
       "coverage": "found",
-      "institution": "Bariloche Atomic Centre",
+      "institution": "Balseiro Institute",
       "country": "AR",
       "elite_label": 0
     },
@@ -1620,9 +1620,9 @@
     {
       "paper_id": "1003.3165",
       "coverage": "found",
-      "institution": "ETH Zurich",
-      "country": "CH",
-      "elite_label": 1
+      "institution": "Santa Fe Institute",
+      "country": "US",
+      "elite_label": 0
     },
     {
       "paper_id": "1003.5839",
@@ -1970,7 +1970,7 @@
     {
       "paper_id": "1009.4536",
       "coverage": "found",
-      "institution": "University of Western Australia",
+      "institution": "The University of Western Australia",
       "country": "AU",
       "elite_label": 0
     },
@@ -2117,9 +2117,9 @@
     {
       "paper_id": "1012.0121",
       "coverage": "found",
-      "institution": "The University of Tokyo",
+      "institution": "Japan Science and Technology Agency",
       "country": "JP",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "1012.0682",
@@ -2299,8 +2299,8 @@
     {
       "paper_id": "1103.4649",
       "coverage": "found",
-      "institution": "Universidade de S\u00e3o Paulo",
-      "country": "BR",
+      "institution": "\u00c9cole Polytechnique",
+      "country": "FR",
       "elite_label": 0
     },
     {
@@ -2390,7 +2390,7 @@
     {
       "paper_id": "1105.3295",
       "coverage": "found",
-      "institution": "Italian institute for Genomic Medicine",
+      "institution": "Politecnico di Torino",
       "country": "IT",
       "elite_label": 0
     },
@@ -2502,7 +2502,7 @@
     {
       "paper_id": "1107.3278",
       "coverage": "found",
-      "institution": "Osaka University",
+      "institution": "Protein Research Foundation",
       "country": "JP",
       "elite_label": 0
     },
@@ -2789,7 +2789,7 @@
     {
       "paper_id": "1111.7243",
       "coverage": "found",
-      "institution": "Ashland (United States)",
+      "institution": "Randolph\u2013Macon College",
       "country": "US",
       "elite_label": 0
     },
@@ -2859,7 +2859,7 @@
     {
       "paper_id": "1112.5685",
       "coverage": "found",
-      "institution": "University of Western Australia",
+      "institution": "The University of Western Australia",
       "country": "AU",
       "elite_label": 0
     },
@@ -2943,7 +2943,7 @@
     {
       "paper_id": "1202.0836",
       "coverage": "found",
-      "institution": "Centre Inria de Saclay",
+      "institution": "Commissariat \u00e0 l'\u00c9nergie Atomique et aux \u00c9nergies Alternatives",
       "country": "FR",
       "elite_label": 0
     },
@@ -3244,8 +3244,8 @@
     {
       "paper_id": "1206.0616",
       "coverage": "found",
-      "institution": "Universitat Polit\u00e8cnica de Val\u00e8ncia",
-      "country": "ES",
+      "institution": "University of Pinar del R\u00edo",
+      "country": "CU",
       "elite_label": 0
     },
     {
@@ -3440,7 +3440,7 @@
     {
       "paper_id": "1208.3225",
       "coverage": "found",
-      "institution": "Michigan United",
+      "institution": "University of Idaho",
       "country": "US",
       "elite_label": 0
     },
@@ -3510,14 +3510,14 @@
     {
       "paper_id": "1209.5046",
       "coverage": "found",
-      "institution": "Universitat de les Illes Balears",
-      "country": "ES",
+      "institution": "National Institute of Chemical Physics and Biophysics",
+      "country": "EE",
       "elite_label": 0
     },
     {
       "paper_id": "1209.5231",
       "coverage": "found",
-      "institution": "Irvine University",
+      "institution": "University of California, Irvine",
       "country": "US",
       "elite_label": 0
     },
@@ -3636,7 +3636,7 @@
     {
       "paper_id": "1210.4784",
       "coverage": "found",
-      "institution": "University of Ontario Institute of Technology",
+      "institution": "Ontario Tech University",
       "country": "CA",
       "elite_label": 0
     },
@@ -3755,7 +3755,7 @@
     {
       "paper_id": "1211.7192",
       "coverage": "found",
-      "institution": "Universitat Polit\u00e8cnica de Val\u00e8ncia",
+      "institution": "Valencia Catholic University Saint Vincent Martyr",
       "country": "ES",
       "elite_label": 0
     },
@@ -3965,8 +3965,8 @@
     {
       "paper_id": "1301.7187",
       "coverage": "found",
-      "institution": "University of Sheffield",
-      "country": "GB",
+      "institution": "University of Antwerp",
+      "country": "BE",
       "elite_label": 0
     },
     {
@@ -4014,8 +4014,8 @@
     {
       "paper_id": "1302.4559",
       "coverage": "found",
-      "institution": "Norwegian University of Life Sciences",
-      "country": "NO",
+      "institution": "Instytut Biologii Do\u015bwiadczalnej im. Marcelego Nenckiego",
+      "country": "PL",
       "elite_label": 0
     },
     {
@@ -4119,9 +4119,9 @@
     {
       "paper_id": "1303.7006",
       "coverage": "found",
-      "institution": "University College London",
+      "institution": "The Francis Crick Institute",
       "country": "GB",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "1303.7475",
@@ -4182,7 +4182,7 @@
     {
       "paper_id": "1304.3880",
       "coverage": "found",
-      "institution": "Commissariat \u00e0 l'\u00c9nergie Atomique et aux \u00c9nergies Alternatives",
+      "institution": "Institut national de recherche en sciences et technologies du num\u00e9rique",
       "country": "FR",
       "elite_label": 0
     },
@@ -4343,9 +4343,9 @@
     {
       "paper_id": "1305.7478",
       "coverage": "found",
-      "institution": "King's College London",
-      "country": "GB",
-      "elite_label": 1
+      "institution": "Fondazione Edmund Mach",
+      "country": "IT",
+      "elite_label": 0
     },
     {
       "paper_id": "1306.0180",
@@ -4721,7 +4721,7 @@
     {
       "paper_id": "1309.2462",
       "coverage": "found",
-      "institution": "Universidad de Zaragoza",
+      "institution": "Consejo Superior de Investigaciones Cient\u00edficas",
       "country": "ES",
       "elite_label": 0
     },
@@ -4804,10 +4804,10 @@
     },
     {
       "paper_id": "1309.6928",
-      "coverage": "no_affiliation",
-      "institution": null,
-      "country": null,
-      "elite_label": null
+      "coverage": "found",
+      "institution": "University of Szeged",
+      "country": "HU",
+      "elite_label": 0
     },
     {
       "paper_id": "1309.7157",
@@ -4931,9 +4931,9 @@
     {
       "paper_id": "1311.2665",
       "coverage": "found",
-      "institution": "Beijing Computing Center",
+      "institution": "Peking University",
       "country": "CN",
-      "elite_label": 0
+      "elite_label": 1
     },
     {
       "paper_id": "1311.3214",
@@ -5281,7 +5281,7 @@
     {
       "paper_id": "1403.0379",
       "coverage": "found",
-      "institution": "Polytechnic University of Turin",
+      "institution": "Politecnico di Torino",
       "country": "IT",
       "elite_label": 0
     },
@@ -5624,7 +5624,7 @@
     {
       "paper_id": "1405.6571",
       "coverage": "found",
-      "institution": "Houston Museum of Natural Science",
+      "institution": "Louisiana State University",
       "country": "US",
       "elite_label": 0
     },
@@ -5715,7 +5715,7 @@
     {
       "paper_id": "1406.6612",
       "coverage": "found",
-      "institution": "University of Buenos Aires",
+      "institution": "Consejo Nacional de Investigaciones Cient\u00edficas y T\u00e9cnicas",
       "country": "AR",
       "elite_label": 0
     },
@@ -5911,7 +5911,7 @@
     {
       "paper_id": "1408.2963",
       "coverage": "found",
-      "institution": "Max Planck Institute for Dynamics and Self-Organization",
+      "institution": "Bernstein Center for Computational Neuroscience G\u00f6ttingen",
       "country": "DE",
       "elite_label": 0
     },
@@ -6044,7 +6044,7 @@
     {
       "paper_id": "1409.4927",
       "coverage": "found",
-      "institution": "\u00c9cole Normale Sup\u00e9rieure - PSL",
+      "institution": "Centre National de la Recherche Scientifique",
       "country": "FR",
       "elite_label": 0
     },
@@ -6170,8 +6170,8 @@
     {
       "paper_id": "1410.8087",
       "coverage": "found",
-      "institution": "Heidelberg University",
-      "country": "DE",
+      "institution": "Zimmer Biomet (Netherlands)",
+      "country": "NL",
       "elite_label": 0
     },
     {
@@ -6352,7 +6352,7 @@
     {
       "paper_id": "1501.00022",
       "coverage": "found",
-      "institution": "Universit\u00e9 Paris Cit\u00e9",
+      "institution": "Centre National de la Recherche Scientifique",
       "country": "FR",
       "elite_label": 0
     },
@@ -6373,7 +6373,7 @@
     {
       "paper_id": "1501.01745",
       "coverage": "found",
-      "institution": "Life Science Institute",
+      "institution": "Tokyo Institute of Technology",
       "country": "JP",
       "elite_label": 0
     },
@@ -6443,7 +6443,7 @@
     {
       "paper_id": "1502.05176",
       "coverage": "found",
-      "institution": "Pompeu Fabra University",
+      "institution": "Instituci\u00f3 Catalana de Recerca i Estudis Avan\u00e7ats",
       "country": "ES",
       "elite_label": 0
     },
@@ -6527,14 +6527,14 @@
     {
       "paper_id": "1503.03889",
       "coverage": "found",
-      "institution": "Institute for Cross-Disciplinary Physics and Complex Systems",
-      "country": "ES",
-      "elite_label": 0
+      "institution": "Princeton University",
+      "country": "US",
+      "elite_label": 1
     },
     {
       "paper_id": "1503.04558",
       "coverage": "found",
-      "institution": "Central China Normal University",
+      "institution": "Qilu University of Technology",
       "country": "CN",
       "elite_label": 0
     },
@@ -6590,7 +6590,7 @@
     {
       "paper_id": "1504.00043",
       "coverage": "found",
-      "institution": "University of California, San Diego",
+      "institution": "University of California San Diego",
       "country": "US",
       "elite_label": 0
     },
@@ -6674,9 +6674,9 @@
     {
       "paper_id": "1505.00655",
       "coverage": "found",
-      "institution": "University of Chicago",
-      "country": "US",
-      "elite_label": 1
+      "institution": "Institut national de recherche en sciences et technologies du num\u00e9rique",
+      "country": "FR",
+      "elite_label": 0
     },
     {
       "paper_id": "1505.01141",
@@ -6708,10 +6708,10 @@
     },
     {
       "paper_id": "1505.02423",
-      "coverage": "found",
-      "institution": "Massachusetts Institute of Technology",
-      "country": "US",
-      "elite_label": 1
+      "coverage": "no_affiliation",
+      "institution": null,
+      "country": null,
+      "elite_label": null
     },
     {
       "paper_id": "1505.02831",
@@ -6751,7 +6751,7 @@
     {
       "paper_id": "1505.03889",
       "coverage": "found",
-      "institution": "Ohio University",
+      "institution": "Boston University",
       "country": "US",
       "elite_label": 0
     },
@@ -7003,7 +7003,7 @@
     {
       "paper_id": "1507.08008",
       "coverage": "found",
-      "institution": "Lanzhou University",
+      "institution": "Institute of Theoretical Physics",
       "country": "CN",
       "elite_label": 0
     },
@@ -7227,7 +7227,7 @@
     {
       "paper_id": "1509.03513",
       "coverage": "found",
-      "institution": "Max Planck Institute of Molecular Cell Biology and Genetics",
+      "institution": "Center for Systems Biology Dresden",
       "country": "DE",
       "elite_label": 0
     },
@@ -8101,10 +8101,10 @@
     },
     {
       "paper_id": "1606.06559",
-      "coverage": "no_affiliation",
-      "institution": null,
-      "country": null,
-      "elite_label": null
+      "coverage": "found",
+      "institution": "Universidade Estadual de Campinas (UNICAMP)",
+      "country": "BR",
+      "elite_label": 0
     },
     {
       "paper_id": "1606.06668",
@@ -8270,7 +8270,7 @@
     {
       "paper_id": "1607.08161",
       "coverage": "found",
-      "institution": "Universit\u00e9 Paris Sciences et Lettres",
+      "institution": "Inserm",
       "country": "FR",
       "elite_label": 0
     },
@@ -8452,9 +8452,9 @@
     {
       "paper_id": "1609.08880",
       "coverage": "found",
-      "institution": "University of Massachusetts Amherst",
+      "institution": "University of California, Los Angeles",
       "country": "US",
-      "elite_label": 0
+      "elite_label": 1
     },
     {
       "paper_id": "1609.09421",
@@ -8494,7 +8494,7 @@
     {
       "paper_id": "1610.02282",
       "coverage": "found",
-      "institution": "Laboratoire Interdisciplinaire de Physique",
+      "institution": "Centre National de la Recherche Scientifique",
       "country": "FR",
       "elite_label": 0
     },
@@ -9383,7 +9383,7 @@
     {
       "paper_id": "1706.02775",
       "coverage": "found",
-      "institution": "Friedrich Schiller University Jena",
+      "institution": "University of Bonn",
       "country": "DE",
       "elite_label": 0
     },
@@ -9670,7 +9670,7 @@
     {
       "paper_id": "1709.05429",
       "coverage": "found",
-      "institution": "Karolinska Institutet",
+      "institution": "Science for Life Laboratory",
       "country": "SE",
       "elite_label": 0
     },
@@ -9964,7 +9964,7 @@
     {
       "paper_id": "1711.08927",
       "coverage": "found",
-      "institution": "Genomics (United Kingdom)",
+      "institution": "Roslin Institute",
       "country": "GB",
       "elite_label": 0
     },
@@ -10146,7 +10146,7 @@
     {
       "paper_id": "1801.07318",
       "coverage": "found",
-      "institution": "John Brown University",
+      "institution": "Brown University",
       "country": "US",
       "elite_label": 0
     },
@@ -10503,7 +10503,7 @@
     {
       "paper_id": "1805.06681",
       "coverage": "found",
-      "institution": "Pompeu Fabra University",
+      "institution": "Universitat Pompeu Fabra",
       "country": "ES",
       "elite_label": 0
     },
@@ -10783,7 +10783,7 @@
     {
       "paper_id": "1808.06565",
       "coverage": "found",
-      "institution": "Centre for Energy Research",
+      "institution": "HUN-REN Centre for Energy Research",
       "country": "HU",
       "elite_label": 0
     },
@@ -11140,9 +11140,9 @@
     {
       "paper_id": "1811.10781",
       "coverage": "found",
-      "institution": "University of Melbourne",
+      "institution": "The University of Melbourne",
       "country": "AU",
-      "elite_label": 0
+      "elite_label": 1
     },
     {
       "paper_id": "1811.11341",
@@ -11483,7 +11483,7 @@
     {
       "paper_id": "1904.06326",
       "coverage": "found",
-      "institution": "Universidad Nacional de C\u00f3rdoba",
+      "institution": "Consejo Nacional de Investigaciones Cient\u00edficas y T\u00e9cnicas",
       "country": "AR",
       "elite_label": 0
     },
@@ -11959,7 +11959,7 @@
     {
       "paper_id": "1909.07540",
       "coverage": "found",
-      "institution": "The University of Texas Health Science Center at Houston",
+      "institution": "Texas Medical Center",
       "country": "US",
       "elite_label": 0
     },
@@ -12323,7 +12323,7 @@
     {
       "paper_id": "1912.13190",
       "coverage": "found",
-      "institution": "University of Rochester Medical Center",
+      "institution": "University of Rochester Medicine",
       "country": "US",
       "elite_label": 0
     },
@@ -12848,7 +12848,7 @@
     {
       "paper_id": "2006.10416",
       "coverage": "found",
-      "institution": "Laboratoire Charles Coulomb",
+      "institution": "Centre National de la Recherche Scientifique",
       "country": "FR",
       "elite_label": 0
     },
@@ -13345,9 +13345,9 @@
     {
       "paper_id": "2012.12127",
       "coverage": "found",
-      "institution": "ETH Zurich",
+      "institution": "SIB Swiss Institute of Bioinformatics",
       "country": "CH",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "2012.13039",
@@ -13723,7 +13723,7 @@
     {
       "paper_id": "2104.13059",
       "coverage": "found",
-      "institution": "Life Science Institute",
+      "institution": "Kanazawa University",
       "country": "JP",
       "elite_label": 0
     },
@@ -14080,8 +14080,8 @@
     {
       "paper_id": "2109.01571",
       "coverage": "found",
-      "institution": "Stockholm University",
-      "country": "SE",
+      "institution": "University of East Anglia",
+      "country": "GB",
       "elite_label": 0
     },
     {
@@ -14591,9 +14591,9 @@
     {
       "paper_id": "2202.04324",
       "coverage": "found",
-      "institution": "University of Pennsylvania",
+      "institution": "Boston University",
       "country": "US",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "2202.05731",
@@ -15445,8 +15445,8 @@
     {
       "paper_id": "2302.02942",
       "coverage": "found",
-      "institution": "University of Macau",
-      "country": "MO",
+      "institution": "University of Nottingham",
+      "country": "GB",
       "elite_label": 0
     },
     {
@@ -15697,9 +15697,9 @@
     {
       "paper_id": "2305.01821",
       "coverage": "found",
-      "institution": "Technical University of Munich",
+      "institution": "University of Bonn",
       "country": "DE",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "2305.03962",
@@ -17418,10 +17418,10 @@
     },
     {
       "paper_id": "2409.19294",
-      "coverage": "no_affiliation",
-      "institution": null,
-      "country": null,
-      "elite_label": null
+      "coverage": "found",
+      "institution": "Imperial College London",
+      "country": "GB",
+      "elite_label": 1
     },
     {
       "paper_id": "2409.19482",
@@ -17678,7 +17678,7 @@
     {
       "paper_id": "2412.15711",
       "coverage": "found",
-      "institution": "Center for Translational Neurophysiology of Speech and Communication",
+      "institution": "University of Ferrara",
       "country": "IT",
       "elite_label": 0
     },
@@ -17957,10 +17957,10 @@
     },
     {
       "paper_id": "2503.22133",
-      "coverage": "no_affiliation",
-      "institution": null,
-      "country": null,
-      "elite_label": null
+      "coverage": "found",
+      "institution": "Pacific Northwest National Laboratory",
+      "country": "US",
+      "elite_label": 0
     },
     {
       "paper_id": "2503.23545",
@@ -18587,10 +18587,10 @@
     },
     {
       "paper_id": "2509.02496",
-      "coverage": "no_affiliation",
-      "institution": null,
-      "country": null,
-      "elite_label": null
+      "coverage": "found",
+      "institution": "Iowa State University",
+      "country": "US",
+      "elite_label": 0
     },
     {
       "paper_id": "2509.03765",
@@ -18818,10 +18818,10 @@
     },
     {
       "paper_id": "2511.04637",
-      "coverage": "no_affiliation",
-      "institution": null,
-      "country": null,
-      "elite_label": null
+      "coverage": "found",
+      "institution": "Icahn School of Medicine at Mount Sinai",
+      "country": "US",
+      "elite_label": 0
     },
     {
       "paper_id": "2511.05510",
@@ -19582,8 +19582,8 @@
     {
       "paper_id": "cond-mat/0009398",
       "coverage": "found",
-      "institution": "Polish Academy of Sciences",
-      "country": "PL",
+      "institution": "University of Cologne",
+      "country": "DE",
       "elite_label": 0
     },
     {
@@ -19680,9 +19680,9 @@
     {
       "paper_id": "cond-mat/0205181",
       "coverage": "found",
-      "institution": "Northwestern University",
-      "country": "US",
-      "elite_label": 1
+      "institution": "E\u00f6tv\u00f6s Lor\u00e1nd University",
+      "country": "HU",
+      "elite_label": 0
     },
     {
       "paper_id": "cond-mat/0206443",
@@ -19715,7 +19715,7 @@
     {
       "paper_id": "cond-mat/0208382",
       "coverage": "found",
-      "institution": "Medical University of Vienna",
+      "institution": "University of Vienna",
       "country": "AT",
       "elite_label": 0
     },
@@ -20198,7 +20198,7 @@
     {
       "paper_id": "physics/0009002",
       "coverage": "found",
-      "institution": "Institute of Theoretical Physics",
+      "institution": "University of Science and Technology of China",
       "country": "CN",
       "elite_label": 0
     },
@@ -20366,7 +20366,7 @@
     {
       "paper_id": "physics/0609227",
       "coverage": "found",
-      "institution": "Istituto Nazionale di Fisica Nucleare, Sezione di Trieste",
+      "institution": "University of Trieste",
       "country": "IT",
       "elite_label": 0
     },
@@ -20492,7 +20492,7 @@
     {
       "paper_id": "q-bio/0312001",
       "coverage": "found",
-      "institution": "University of Michigan\u2013Ann Arbor",
+      "institution": "University of Michigan",
       "country": "US",
       "elite_label": 0
     },
@@ -20870,7 +20870,7 @@
     {
       "paper_id": "q-bio/0502003",
       "coverage": "found",
-      "institution": "John Brown University",
+      "institution": "Brown University",
       "country": "US",
       "elite_label": 0
     },
@@ -20982,7 +20982,7 @@
     {
       "paper_id": "q-bio/0505033",
       "coverage": "found",
-      "institution": "VIB-UGent Center for Plant Systems Biology",
+      "institution": "Ghent University",
       "country": "BE",
       "elite_label": 0
     },
@@ -21038,7 +21038,7 @@
     {
       "paper_id": "q-bio/0507018",
       "coverage": "found",
-      "institution": "Johnson & Johnson (United Kingdom)",
+      "institution": "Rothamsted Research",
       "country": "GB",
       "elite_label": 0
     },
@@ -21241,7 +21241,7 @@
     {
       "paper_id": "q-bio/0601041",
       "coverage": "found",
-      "institution": "Lawrence Livermore National Laboratory",
+      "institution": "University of Notre Dame",
       "country": "US",
       "elite_label": 0
     },
@@ -21353,7 +21353,7 @@
     {
       "paper_id": "q-bio/0605040",
       "coverage": "found",
-      "institution": "Center for Systems Biology",
+      "institution": "Institute for Advanced Study",
       "country": "US",
       "elite_label": 0
     },
@@ -21395,9 +21395,9 @@
     {
       "paper_id": "q-bio/0608025",
       "coverage": "found",
-      "institution": "The University of Tokyo",
+      "institution": "Tokyo University of Pharmacy and Life Sciences",
       "country": "JP",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "q-bio/0608031",
@@ -21423,9 +21423,9 @@
     {
       "paper_id": "q-bio/0609040",
       "coverage": "found",
-      "institution": "Harvard University",
+      "institution": "Boston University",
       "country": "US",
-      "elite_label": 1
+      "elite_label": 0
     },
     {
       "paper_id": "q-bio/0610025",
@@ -21528,9 +21528,9 @@
     {
       "paper_id": "q-bio/0702042",
       "coverage": "found",
-      "institution": "Core Laboratories (United States)",
+      "institution": "Cornell University",
       "country": "US",
-      "elite_label": 0
+      "elite_label": 1
     },
     {
       "paper_id": "q-bio/0702052",
