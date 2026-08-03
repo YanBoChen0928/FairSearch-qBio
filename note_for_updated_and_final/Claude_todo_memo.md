@@ -1,4 +1,4 @@
-# Claude Todo Memo — last updated 2026-08-01
+# Claude Todo Memo — last updated 2026-08-03
 
 **Purpose:** reference this file when opening a new Claude conversation
 window for this project, to pick up context without re-explaining
@@ -9,12 +9,164 @@ disagrees with an older section below, the most recent dated section wins.
 (6-10 pages), GitHub repo link inside the report, and slides (12 max, 15-min
 presentation).
 
+**File location note (2026-08-03).** This file, `deliverables_checklist.md`,
+and `fairsearch_project_takeaway.md` were moved into a `note_for_updated_and_final/`
+subfolder. `next_session_prompt.md` and `temp/*.md` live there too. Update
+any stale root-path references in older sections below when you notice them;
+do not assume root paths without checking.
+
+---
+
+## 0000. Session 2026-08-03 — Track B (Fair-Top-K) implemented and analyzed on Kaggle. WD sync incomplete — one file still missing.
+
+**NEWEST SECTION. Read this first. Supersedes §000 and everything below it
+wherever they disagree.**
+
+### Track B is functionally complete
+
+Implemented `rerank_fair_top_k` in
+`notebooks/step6-reranking-yb-optimized-basedon-jici.ipynb`, per
+`step6_fair-top-k_methodology.md` §3.2/§4 (Option A: quota target =
+corpus-parity baseline 0.144, `ELITE_QUOTA = round(10 * 0.144) = 1`, NOT 1:1
+demographic parity). Four new sections added to the notebook, in order,
+after the existing §7d forest plot and before the old §8 (Save results):
+
+- **§7e** — `rerank_fair_top_k` function + `evaluate()` call.
+- **§7f** — bootstrap CI on Fair-Top-K's SPD, reusing §6/§7c's
+  `per_query_elite_found` / `bootstrap_spd` machinery: absolute SPD CI, and
+  a paired-bootstrap improvement-vs-baseline CI (checked both-tailed, since
+  the sign was unknown in advance, unlike §7c's one-tailed check).
+- **§7g** — three-way bar comparison (baseline / institution-aware MMR
+  lambda=0.8 / Fair-Top-K) across NDCG@10, MRR, uniq_institutions, SPD, with
+  significance annotations pulled from §6/§7f rather than raw point
+  estimates. Saved as `rq3_three_way_comparison.png`.
+- **§8** (existing, edited) — `out` dict gained two new keys: `fair_top_k`
+  and `fair_top_k_spd_ci`.
+- **§9** (new) — Conclusion markdown cell, English, four numbered findings;
+  full text mirrored into `fairsearch_project_takeaway.md` §5 (see below).
+
+### Measured results (from this session's Kaggle run, "run 3")
+
+| Metric | Baseline | Institution-aware MMR (lambda=0.8) | Fair-Top-K |
+|---|---|---|---|
+| NDCG@10 | 0.8092 | 0.8090 | 0.8108 |
+| MRR | 0.7506 | 0.7520 | 0.7819 |
+| uniq_institutions | 5.49 | 5.73 | 9.35 |
+| SPD | +0.0289 | +0.0163 | **-0.0460** |
+| labeled_slots | 590 | 574 | **1000** |
+
+Bootstrap checks (10,000 resamples, seed 42, same query-resampling method as
+RQ1/§6/§7c):
+
+- Institution-aware MMR SPD: **not** significant (95% CI
+  [-0.0139, +0.0484], crosses zero).
+- Institution-aware MMR diversity gain (uniq_institutions, lambda=0.9 sweep
+  point): significant (+0.170, CI [0.090, 0.260], excludes zero).
+- **Fair-Top-K SPD: significant** (-0.0460, 95% CI [-0.0490, -0.0440],
+  entirely negative -- excludes zero).
+- Fair-Top-K SPD improvement vs baseline: significant (+0.0748, 95% CI
+  [0.0409, 0.1108]), but this number is the raw share difference
+  (`share_base - share_ftk`), NOT evidence of moving cleanly toward
+  parity -- the sign flip past zero means it is a **confirmed
+  over-correction into reverse bias**, not a clean fix.
+
+### Two interpretation caveats, load-bearing for how this gets reported
+
+1. **Fair-Top-K's NDCG@10/MRR are not degraded relative to baseline** (in
+   fact both are higher). This is NOT evidence that hard quotas carry no
+   relevance cost -- the `relevance()` function used for NDCG/MRR is a
+   coarse binary subcategory-string-match proxy, not a graded relevance
+   judgment, so the quota's reordering can coincidentally help this
+   specific proxy metric without implying the candidates are more relevant
+   in any richer sense. Do not report "no relevance cost" as a general
+   claim about hard quotas.
+2. **Fair-Top-K's `uniq_institutions = 9.35` is partly a rule artifact, not
+   purely a diversity gain.** `labeled_slots` jumped from 590 (baseline) to
+   1000 (= 100 queries x 10 slots, i.e. every slot labeled) because the
+   quota rule only falls back to unlabeled ("unknown") candidates once both
+   elite and non-elite are exhausted, which this run of the algorithm
+   essentially never needed to do. This must be disclosed alongside the
+   headline diversity number.
+
+### `candidate_labels.json` drift, third observed run
+
+This session's Kaggle run produced `elite_found = 311`,
+`candidate_elite_share = 0.174` (found = 1,787), down from the prior
+session's 319/0.179. This is the third distinct value across three runs
+(320 -> 319 -> 311), confirming the OpenAlex authorship-order
+non-reproducibility documented in `fairsearch_project_takeaway.md` §2 is not
+a one-off -- the drift trended larger on this run (8 papers vs 1 the first
+time) rather than staying fixed. Does not change any conclusion; the
+Fair-Top-K numbers above are internally consistent because they were
+computed against this same run's `label_of` dict within one uninterrupted
+Kaggle session (this notebook required a full top-to-bottom re-run this
+session since the prior kernel had gone idle).
+
+### Documentation updated this session
+
+- **`note_for_updated_and_final/deliverables_checklist.md`** -- new §1b:
+  drafted the exact disclosure sentence for G2 (perspective-balanced
+  prompting not triggered), ready to paste into Slide 8 and report §3.4.
+  G1 (Fair-Top-K) itself is now implemented but its checklist row/status
+  has **not yet** been updated to reflect that -- still says "not
+  implemented" as of this memo. Do that next.
+- **`note_for_updated_and_final/fairsearch_project_takeaway.md`** -- §2
+  updated with the third `candidate_labels.json` run (above); new §5 "Key
+  Takeaways for Slide 10 / Report Conclusion" added, explicitly scoped as a
+  convenience draft of confirmed findings (not a new lead like §1-4), four
+  numbered takeaways covering RQ1 (null retrieval bias), RQ2 (no
+  generation-stage amplification/suppression), RQ3 (MMR clean gain vs
+  Fair-Top-K significant over-correction), and the untriggered
+  perspective-balanced-prompting mitigation.
+- **File reorg** (not content, just location): `Claude_todo_memo.md`,
+  `deliverables_checklist.md`, `fairsearch_project_takeaway.md` moved from
+  WD root into `note_for_updated_and_final/`. Two Step 9 prototype HTMLs
+  moved into `prototype/`; one new prototype HTML snapshot added there too.
+- **Git**: 3 commits made this session on
+  `20260801_step8_step9_after_update_work_for_final_yb` (not yet pushed):
+  file-reorg commit, deliverables_checklist §1b commit, takeaway §2+§5
+  commit. **Going forward, Yan-Bo runs all `git add`/`commit`/`push`
+  himself.** Claude supplies commit message text only (length depends on
+  what's asked for that turn), never executes `git commit`.
+
+### Track B documentation gaps -- CLOSED 2026-08-03 (same session, after this section was first written)
+
+The three items below were listed as open when this section was first
+written. All three are now done, same session:
+
+1. ~~`results/rq3_results.json` missing from WD~~ -- **fixed**, Yan-Bo
+   confirmed the file is present and contains `fair_top_k` /
+   `fair_top_k_spd_ci`.
+2. ~~`rq3_methodology.md` §8a and §10 not updated~~ -- **done**. §8a now
+   carries the full Fair-Top-K measured table + both bootstrap checks +
+   the two interpretation caveats; §10 rewritten as the three-way
+   (baseline / MMR / Fair-Top-K) synthesis.
+3. ~~`step6_fair-top-k_methodology.md` §7/§8 pending~~ -- **done**. §7's
+   table is filled with all three arms plus an interpretation paragraph;
+   §9 (open items) updated to mark all three prior open questions
+   resolved, with the actual numbers.
+
+Also done, not originally listed as a gap: `deliverables_checklist.md` G1
+row updated from "not implemented" to "RESOLVED 2026-08-03", and §1a
+annotated as a historical record rather than an open recommendation.
+
+**Track B is now fully closed** -- code, results, and documentation all
+consistent. Next entry point is Track A (Step 9); see
+`next_session_prompt.md`.
+
+### Next session entry point
+
+See `next_session_prompt.md`, fully rewritten this session per this file's
+own convention (prompt = single-session snapshot, rewritten each time, not
+appended).
+
 ---
 
 ## 000. Session 2026-08-01 (late) — rubric reconciliation, Step 8 closed by decision
 
-**NEWEST SECTION. Read this first. Supersedes §00 and everything below it
-wherever they disagree.**
+**Superseded by §0000 above for Track B / Fair-Top-K status. Still
+authoritative for the Step 8 closure decision and the rubric reconciliation
+work below.**
 
 ### What this session produced
 

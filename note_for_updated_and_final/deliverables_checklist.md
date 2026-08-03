@@ -24,7 +24,7 @@ disclosure standard.
 
 | # | Gap | Evidence | Options |
 |---|---|---|---|
-| G1 | **Fair-Top-K re-ranking not implemented.** Rubric names it in Slide 8 and in Methodology/Mitigation. | `results/rq3_results.json` holds exactly two mitigation families: `mmr_semantic_by_lambda` and `mmr_institution_by_lambda`. No Fair-Top-K anywhere. | **Recommendation changed 2026-08-01: implement it.** See §1a for the cost survey and the reason the earlier "argue it away" option was downgraded. |
+| G1 | ~~**Fair-Top-K re-ranking not implemented.**~~ **RESOLVED 2026-08-03.** Rubric names it in Slide 8 and in Methodology/Mitigation. | Implemented in `notebooks/step6-reranking-yb-optimized-basedon-jici.ipynb` §7e; measured results in `results/rq3_results.json` (`fair_top_k`, `fair_top_k_spd_ci`) and written up in `rq3_methodology.md` §8a/§10 and `step6_fair-top-k_methodology.md` §7/§9. Headline: SPD -0.046, 95% CI [-0.049, -0.044], a statistically significant over-correction into reverse bias, distinct in kind from institution-aware MMR's non-significant SPD. | Done. No further action; §1a below is now a historical cost-survey record, not an open recommendation. |
 | G2 | **Prompt engineering for perspective balancing not implemented.** Rubric names it in Slide 8 and Methodology/Mitigation. | `Claude_todo_memo.md` §3: planned in `rq2_plan.md`, never built, because Framework B retention was already 97.2% so there was no suppression to fix. Already documented in `rq2_methodology.md`. | Keep the decision, but surface the rationale explicitly on Slide 8 and in Methodology. As written it currently reads as an omission rather than a reasoned choice. |
 | G3 | **Model mismatch.** Rubric Slide 5 says "Gemini 1.5 Flash". This project used `gemini-3.1-flash-lite` throughout. | Step 7a/7b generation, Step 8 judge, RQ2 Framework B judge. | One line on Slide 5 and in Methodology naming the actual model and version. Do not silently print the rubric's model name. |
 | G4 | **"100-query audit" vs the pre-registered 150.** GitHub deliverable asks for "JSON file containing results of the 100-query audit". | Pre-registered scope is 150 (100 neutral + 50 contradictory). RQ1 and RQ3 both run on **q001-q100 neutral only**; q101-q150 are deliberately held out for RQ2 Experiment B. Source: `handoff_status_rq1_for_step6.md` ("q101-q150 are contradictory and held out for RQ2. Compute the main SPD on neutral only"), carried into `rq3_methodology.md` §1 as a locked convention and §8 as "100 (neutral, q001-q100)". This is BY DESIGN and already documented. Note it is NOT caused by missing subcategory labels: every one of the 150 queries carries a `subcategory` field, contradictory ones included (q150 = `q-bio.SC`). | Low risk. State once in the README that "the 100-query audit" refers to the neutral Experiment A set, and that the other 50 are the Experiment B set. Make sure Raj and Jici use the same wording. |
@@ -34,6 +34,12 @@ disclosure standard.
 ---
 
 ## 1a. G1 Fair-Top-K: cost survey and recommendation (2026-08-01)
+
+**Historical record as of 2026-08-03 — G1 is now resolved (see the table
+above).** This section is kept because the cost survey and the "why
+implementing beats defending" reasoning are still useful context for how
+the report frames Fair-Top-K, but the recommendation itself has been acted
+on; nothing below is still an open decision.
 
 **Recommendation: implement it.** An earlier draft of this file offered
 "argue it away" as an equal option. That has been downgraded, for two

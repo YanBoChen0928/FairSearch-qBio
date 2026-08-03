@@ -6,9 +6,10 @@ file is the single authoritative source for the Fair-Top-K algorithm
 specifically. `rq3_methodology.md` should link here, not duplicate this
 content, once this file exists.
 
-**Status: design spec, not yet run.** Verified against the notebook cells
-below on 2026-08-02, before writing a line of new code, per this project's
-"verify before coding" rule.
+**Status: implemented and run 2026-08-03.** Design verified against the
+notebook cells below on 2026-08-02, before writing a line of new code, per
+this project's "verify before coding" rule. Measured results are in §7 and
+§9; `rq3_methodology.md` §8a carries the report-ready write-up.
 
 ---
 
@@ -364,16 +365,30 @@ diversity/utility-plateau grounds (not chosen via this comparison).
 | Ranker | NDCG@10 | MRR | uniq_institutions | uniq_countries | elite_share | SPD |
 |---|---|---|---|---|---|---|
 | Baseline | 0.8092 | 0.7506 | 5.49 | 4.04 | 0.1729 | +0.0289 |
-| Institution-aware MMR (lambda=0.8) | 0.8090 | 0.7520 | 5.73 | 4.17 | -- | +0.016 |
-| Fair-Top-K (Option A) | -- | -- | -- | -- | -- | -- |
+| Institution-aware MMR (lambda=0.8) | 0.8090 | 0.7520 | 5.73 | 4.17 | 0.1603 | +0.0163 |
+| Fair-Top-K (Option A) | 0.8108 | 0.7819 | 9.35 | 5.98 | 0.0980 | -0.0460 |
 
-Baseline and MMR rows are the only measured values that exist as of
-2026-08-02 (from `results/rq3_results.json`); the MMR row's `elite_share` is
-not separately stored in that file (only SPD is), and the Fair-Top-K row is
-entirely pending the Kaggle run. **Do not fill in placeholder numbers before
-the run.** A one-paragraph interpretation should sit under this table once
-real numbers exist, addressing: which method moves `uniq_institutions` more,
-which moves `SPD` more, and what each costs in `NDCG@10`.
+Measured 2026-08-03 (Kaggle run), from `results/rq3_results.json`. All three
+rows are now real values; no placeholders remain.
+
+**Interpretation.** Fair-Top-K moves `uniq_institutions` the most (9.35 vs
+5.73 for MMR vs 5.49 baseline), but a large part of that gap is a rule
+artifact, not pure diversity: `labeled_slots` for Fair-Top-K is 1000 (every
+slot labeled) versus MMR's 574 and baseline's 590, because the quota only
+falls back to unlabeled candidates once both elite and non-elite pools are
+exhausted, which this run essentially never needed. Fair-Top-K also moves
+`SPD` the most in absolute terms (-0.046 vs +0.016 for MMR), but in the
+wrong direction relative to the fairness target: bootstrap CI [-0.0490,
+-0.0440] (see §9, resolved) confirms this is a statistically significant
+swing *past* parity into favoring non-elite institutions, not a corrected
+bias. MMR's own SPD (+0.016) is not itself distinguishable from zero (CI
+crosses zero, `rq3_methodology.md` §6.1) -- a materially different risk
+profile from Fair-Top-K's confirmed overshoot. Neither method costs
+`NDCG@10`: both are flat-to-slightly-higher than baseline, but this reflects
+the coarseness of the `relevance()` subcategory-string-match proxy
+(`rq3_methodology.md` §5, where `relevance()` is defined), not evidence
+that a hard quota carries no relevance cost in general -- do not
+generalize "no NDCG cost" beyond this specific proxy metric.
 
 ---
 
@@ -391,16 +406,27 @@ which moves `SPD` more, and what each costs in `NDCG@10`.
 
 ---
 
-## 9. Open items, not yet decided
+## 9. Open items -- updated 2026-08-03 after the run
 
-- Whether to also report a per-query composition table (elite / non_elite /
-  unknown counts actually realized), given section 6's caveat. Recommended:
-  yes, at least as a summary distribution, since the realized composition
-  is not guaranteed by construction (section 3.3).
-- Whether Fair-Top-K needs its own bootstrap CI (mirroring Cell 25's
-  `bootstrap_spd`) for comparability with the two MMR arms. Not yet
-  decided; cheap to add once the base run exists, since `bootstrap_spd()`
-  is already generic over any `(elites, founds)` arrays.
-- Whether the pooled-level resolution effect (section 3.2a) turns out to be
-  material once the run completes -- flagged as an open empirical question,
-  not something this document can resolve in advance.
+- **Still open.** Whether to also report a per-query composition table
+  (elite / non_elite / unknown counts actually realized), given section 6's
+  caveat. Not yet built; recommended if time allows, as a summary
+  distribution, since the realized composition is not guaranteed by
+  construction (section 3.3). Lower priority than the items below, since
+  the pooled-level numbers already carry the headline finding.
+- **Resolved.** Fair-Top-K does have its own bootstrap CI now (mirroring
+  `bootstrap_spd()`, computed 2026-08-03): absolute SPD -0.0460, 95% CI
+  [-0.0490, -0.0440]; improvement vs. baseline +0.0748, 95% CI
+  [0.0409, 0.1108]. Both exclude zero. See §7's interpretation paragraph
+  and `rq3_methodology.md` §8a for the full write-up.
+- **Resolved, and the answer is yes -- the pooled-level effect is
+  material, and it worsened rather than merely diluted.** Section 3.2a
+  flagged this as an open empirical question before the run: would pooling
+  over 100 queries average out the per-query integer-rounding coarseness of
+  a quota of 1, the way discrete draws can approximate a continuous target?
+  The measured result answers no. `labeled_slots` reached 1000 (saturation
+  -- effectively every slot ended up labeled, per §6's caveat), and the
+  pooled elite share landed at 0.098 -- not close to the 0.144 target from
+  either direction, and on the *opposite* side of it from baseline's 0.173.
+  The quota's per-query coarseness did not average toward the target; it
+  produced a confirmed, statistically significant overshoot past it.
