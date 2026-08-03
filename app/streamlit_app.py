@@ -28,6 +28,7 @@ Run locally (inside the clean venv, see step9_streamlit_deployment.md section 3.
 """
 
 import json
+import re
 from pathlib import Path
 
 import streamlit as st
@@ -75,6 +76,10 @@ st.markdown(
     div[data-testid="stButton"] button p {{
         white-space: nowrap; font-size: 13px;
     }}
+    /* Anchor jump targets: Streamlit's toolbar is fixed at the top of the
+       viewport, so a plain #anchor scroll lands the card underneath it and
+       the NEXT card is what the reader sees. Offset the scroll position. */
+    div[id^="cite-"] {{ scroll-margin-top: 90px; }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -203,8 +208,13 @@ def balance_bar(papers):
         )
 
 
-def render_papers(papers, cited_ids, baseline_ids=None):
-    """List every paper. Never collapse to '+N more' (section 10b)."""
+def render_papers(papers, cited_ids, context_key, baseline_ids=None):
+    """List every paper. Never collapse to '+N more' (section 10b).
+
+    context_key namespaces the anchor ids (e.g. 'base-q018' vs
+    'fair_top_k-q018') so citation links in render_answer() jump to the
+    right card even when baseline and an intervention are both on screen
+    for the same query with different papers at the same rank number."""
     cited = set(cited_ids or [])
     base = set(baseline_ids) if baseline_ids is not None else None
     for p in papers:
@@ -213,6 +223,7 @@ def render_papers(papers, cited_ids, baseline_ids=None):
                "unlabeled": "paper-unlabeled"}[grp]
         pid = p["paper_id"]
         title = p.get("title") or "(title unavailable)"
+        anchor_id = f"cite-{context_key}-{p['rank']}"
 
         if grp == "unlabeled":
             meta = f"{p.get('coverage', 'not_found')} · unlabeled"
@@ -230,7 +241,7 @@ def render_papers(papers, cited_ids, baseline_ids=None):
             tags += f' <span style="color:{CORAL}; font-family:monospace; font-size:11px;">· swapped in</span>'
 
         st.markdown(
-            f'<div class="{css}">'
+            f'<div class="{css}" id="{anchor_id}">'
             f'<span style="font-family:monospace; color:{DIM}; font-size:11px;">{p["rank"]}</span> '
             f"{title}{tags}<br>"
             f'<a href="https://arxiv.org/abs/{pid}" target="_blank" '
@@ -285,11 +296,20 @@ def ir_quality_line(diag):
         )
 
 
-def render_answer(text, cited_ids):
+def render_answer(text, cited_ids, context_key):
+    """Turn every [n] marker into a clickable link to that paper's card
+    (anchor ids set in render_papers with the same context_key), so a
+    citation can be checked in one click instead of counting rank numbers
+    by eye."""
+    def linkify(match):
+        n = match.group(1)
+        return (f'<a href="#cite-{context_key}-{n}" '
+                f'style="color:{NONELITE}; text-decoration:none; font-weight:600;">[{n}]</a>')
+    linked_text = re.sub(r"\[(\d+)\]", linkify, text)
     st.markdown(
-        f'<div class="answerbox">{text}</div>', unsafe_allow_html=True
+        f'<div class="answerbox">{linked_text}</div>', unsafe_allow_html=True
     )
-    st.caption(f"cited papers: {len(cited_ids)} unique")
+    st.caption(f"cited papers: {len(cited_ids)} unique · [n] markers link to the paper card below")
 
 
 # ---------- Shared metric strip ----------
@@ -367,10 +387,11 @@ with col_base:
     ir_quality_line(rec["baseline"]["diagnostics"])
 
     st.markdown(f"**Retrieved papers (all {btot} shown)**")
-    render_papers(base_papers, rec["baseline"]["cited_paper_ids"])
+    render_papers(base_papers, rec["baseline"]["cited_paper_ids"], context_key=f"base-{selected_id}")
 
     st.markdown("**Generated answer**")
-    render_answer(rec["baseline"]["answer_text"], rec["baseline"]["cited_paper_ids"])
+    render_answer(rec["baseline"]["answer_text"], rec["baseline"]["cited_paper_ids"],
+                  context_key=f"base-{selected_id}")
 
     if is_neutral:
         framework_a_table(rec["baseline"]["diagnostics"])
@@ -438,6 +459,19 @@ with col_inter:
         balance_bar(iv["papers"])
         ir_quality_line(iv["diagnostics"])
 
+        st.markdown(f"**Re-ranked papers (all {len(iv['papers'])} shown)**")
+        render_papers(
+            iv["papers"],
+            iv["cited_paper_ids"],
+            context_key=f"{method}-{selected_id}",
+            baseline_ids=[p["paper_id"] for p in base_papers],
+        )
+
+        st.markdown("**Generated answer from re-ranked context**")
+        render_answer(iv["answer_text"], iv["cited_paper_ids"], context_key=f"{method}-{selected_id}")
+
+        framework_a_table(iv["diagnostics"])
+
         if mm["family"] == "soft_penalty":
             st.caption(
                 f"**Soft penalty** (\u03bb={mm['lambda']}) \u2014 scores adjusted, no seat "
@@ -449,22 +483,14 @@ with col_inter:
                 f"target share {mm['target_share']}; measured corpus-wide as a "
                 "significant over-correction into reverse bias."
             )
-
-        st.markdown(f"**Re-ranked papers (all {len(iv['papers'])} shown)**")
-        st.caption(
-            "`cited` = appears in the generated answer below · "
-            "`swapped in` = not in the baseline Top-10, added by this re-ranking method"
+        st.markdown(
+            f'<div style="font-size:12px; color:{DIM};">'
+            f'<span style="font-family:monospace; color:{NONELITE};">cited</span> = appears '
+            "in the generated answer above &nbsp;\u00b7&nbsp; "
+            f'<span style="font-family:monospace; color:{CORAL}; font-weight:600;">swapped in</span> '
+            "= not in the baseline Top-10, added by this re-ranking method</div>",
+            unsafe_allow_html=True,
         )
-        render_papers(
-            iv["papers"],
-            iv["cited_paper_ids"],
-            baseline_ids=[p["paper_id"] for p in base_papers],
-        )
-
-        st.markdown("**Generated answer from re-ranked context**")
-        render_answer(iv["answer_text"], iv["cited_paper_ids"])
-
-        framework_a_table(iv["diagnostics"])
 
 # ---------- Delta block, neutral only ----------
 if is_neutral:
