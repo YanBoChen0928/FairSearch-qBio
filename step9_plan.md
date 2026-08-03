@@ -292,6 +292,30 @@ implementation must still be scope-agnostic. Choosing Tier 2 remains a
 judgement about available working time, and the disclosure requirement above
 applies unchanged.
 
+### 8b. SCOPE DECISION (Yan-Bo, 2026-08-02). This resolves §8 and §8a.
+
+**Decided: run Tier 1 first. If Tier 1 goes end-to-end and deploys
+successfully, extend to Tier 2.**
+
+Tier 1 is roughly 20 queries per `step9_query_subset.md` §2's sampling rule.
+Tier 2 is the full neutral set, **upper bound 100 queries (q001-q100), not
+150** -- q101-q150 are contradictory and held out for RQ2 Experiment B per
+`handoff_status_rq1_for_step6.md`, and RQ3 has no re-ranking output for
+them (`results/rq3_results.json` `config.n_queries` = 100). The "full 150"
+wording in §8's tier table and in §8a predates that check and is superseded
+here.
+
+**Framing requirement.** Tier 1 is the first stage of a staged rollout used
+to prove the pipeline works, not a reduced final deliverable. If time runs
+out and only Tier 1 ships, the report describes it as the completed first
+stage of a staged plan with a stated extension criterion, never as an
+unfinished attempt at full coverage. The §8 disclosure requirement (the
+interface must show its actual coverage) applies unchanged.
+
+**Unchanged by this decision.** The scope-agnostic implementation
+requirement in §8 still holds: a single `QUERY_SCOPE` list drives the loop,
+and moving to Tier 2 must be a list change, not a code change.
+
 ---
 
 ## 9. Data architecture: additive, not a rewrite
@@ -331,10 +355,12 @@ confident elite share.
 
 ---
 
-## 10. Bundle schema (draft, resolves the open item in §7)
+## 10. Bundle schema (SUPERSEDED — see §10a)
 
-One JSON file, one record per query in scope. Field names below are chosen
-to match the existing files' conventions.
+The draft below is kept as history. It was written before the interface
+decisions in §10b and before the generation-output files were located.
+**Do not implement this version.** Four things changed; §10a is the version
+to build.
 
 ```jsonc
 {
@@ -420,6 +446,190 @@ to match the existing files' conventions.
   aggregate statistical claims stay grounded in `results/rq3_results.json`,
   and the interface should not present per-query numbers as evidence for
   the headline RQ3 conclusion.
+
+---
+
+## 10a. Bundle schema, REVISED (2026-08-02). Build this one.
+
+Four changes from §10, each with its reason:
+
+| # | Change | Why |
+|---|---|---|
+| 1 | `intervention` object becomes an `interventions` **map**, keyed by method id | The interface offers a method toggle (MMR / Fair-Top-K), so a single hard-coded intervention slot cannot hold both. §10b. |
+| 2 | `meta.rerank_operating_point` becomes `meta.rerank_methods`, a list | Same reason: one operating point per method, not one for the bundle. |
+| 3 | New optional `framework_b` block, present only on contradictory records | Contradictory queries carry viewpoint-retention data that has no home in the baseline/intervention structure. |
+| 4 | Records carry `num2pid` and the answer provenance file | Located 2026-08-02: `data/rq2_gen_checkpoint.jsonl` (100 neutral) and `data/rq2_frameworkB_generation_raw.jsonl` (50 contradictory) already store `answer_text`, `num2pid`, `cited_pids_unique`. Carrying `num2pid` lets the UI turn `[n]` markers into links without re-parsing text. |
+
+```jsonc
+{
+  "meta": {
+    "generated_at": "2026-08-__",
+    "tier": 1,
+    "n_queries_in_bundle": 20,
+    "n_queries_neutral_total": 100,      // RQ1/RQ3 universe
+    "n_queries_contradictory_total": 50, // Experiment B universe
+    "rerank_methods": [                  // CHANGE 2: list, not a single point
+      { "id": "institution_aware_mmr", "label": "Institution-aware MMR",
+        "lambda": 0.8, "family": "soft_penalty" },
+      { "id": "fair_top_k", "label": "Fair-Top-K",
+        "elite_quota": 1, "target_share": 0.144, "family": "hard_quota" }
+    ],
+    "generation_model": "gemini-3.1-flash-lite",
+    "generation_temperature": 0,
+    "prompt_skeleton": "step7a_evidence_grounded_no_balancing",
+    "elite_list": "QS World University Rankings 2026 Top 50",
+    "sampling_seed": 42,
+    "answer_sources": {                  // CHANGE 4: provenance, not re-generated
+      "neutral": "data/rq2_gen_checkpoint.jsonl",
+      "contradictory": "data/rq2_frameworkB_generation_raw.jsonl"
+    }
+  },
+  "queries": [
+    {
+      "query_id": "q033",
+      "query_text": "...",
+      "subcategory": "q-bio.GN",
+      "type": "neutral",                 // drives which blocks render, §10b
+      "is_anchor": true,
+
+      "baseline": {
+        "papers": [
+          {
+            "rank": 1,
+            "paper_id": "1610.07213",
+            "title": "...",
+            "institution": "University of Freiburg",
+            "country": "DE",
+            "coverage": "found",
+            "elite_label": 0,
+            "arxiv_url": "https://arxiv.org/abs/1610.07213",
+            "was_cited": true
+          }
+        ],
+        "answer_text": "...",
+        "num2pid": { "1": "1610.07213" },   // CHANGE 4
+        "cited_paper_ids": ["1610.07213"],
+        "invalid_markers": [],
+        "diagnostics": {
+          "n_labeled": 7,
+          "n_unknown": 3,
+          "context_elite_share": 0.1429,
+          "cited_elite_share": 0.2000,
+          "amplification": 0.0571,
+          "uniq_institutions": 6,
+          "uniq_countries": 4
+        }
+      },
+
+      // CHANGE 1: a map keyed by method id, so the UI toggle just swaps key.
+      // Empty {} for contradictory records — see §10b.
+      "interventions": {
+        "institution_aware_mmr": {
+          "papers": [], "answer_text": "...", "num2pid": {},
+          "cited_paper_ids": [], "invalid_markers": [], "diagnostics": {},
+          "delta_vs_baseline": {
+            "context_elite_share": -0.0429,
+            "cited_elite_share": -0.0500,
+            "amplification": -0.0321,
+            "uniq_institutions": 1,
+            "uniq_countries": 0,
+            "n_papers_changed": 4
+          }
+        },
+        "fair_top_k": { "...": "same shape" }
+      },
+
+      // CHANGE 3: present ONLY when type == "contradictory". Absent, not null,
+      // on neutral records, so a missing key is unambiguous.
+      "framework_b": {
+        "side_a": "Most non-coding DNA is functional.",
+        "side_b": "Most non-coding DNA is non-functional junk.",
+        "context_stances": [
+          { "n": 1, "paper_id": "1601.06047", "stance": "supports_side_b",
+            "evidence": "..." }
+        ],
+        "eligibility": true,
+        "retention_status": "both_sides_retained",
+        "retention": 1,
+        "conclusion_favor": "favors_side_b",
+        "favor_basis": "explicit_conclusion",
+        "judge_evidence": "..."
+      }
+    }
+  ]
+}
+```
+
+**Revised schema notes.** The §10 notes still apply, plus:
+
+- `interventions` is `{}` on contradictory records. The UI must treat an
+  empty map as "not applicable by design" and render the §10b explanation,
+  never as a loading state or an error.
+- `framework_b.context_stances` mirrors
+  `data/rq2_frameworkB_context_judge.jsonl` one-to-one, including the
+  `evidence` quote, so the stance colouring in the UI is auditable against
+  the judge output rather than re-derived.
+- `delta_vs_baseline` moved inside each intervention. With two methods there
+  is no single delta, and a top-level `delta` would silently belong to
+  whichever method happened to be written first.
+- Adding a third re-ranking method later requires no schema change: one more
+  key in `meta.rerank_methods` and one more key in `interventions`.
+
+---
+
+## 10b. Interface decisions (2026-08-02)
+
+Confirmed against an HTML layout prototype before implementation.
+
+**Three-tier conditional structure.**
+
+```
+Shared, every query
+  - top metric strip
+  - baseline retrieval panel   (real, all 150 have it)
+  - RAGAS Faithfulness footer  (real, 148 of 150)
+
+Neutral only, q001-q100
+  - RQ2 Framework A, inside BOTH columns
+  - RQ3 intervention column + method toggle
+  - baseline -> intervention delta block
+
+Contradictory only, q101-q150
+  - RQ2 Framework B, full width
+  - intervention column shows "not applicable by design"
+```
+
+**Side-by-side, not stacked.** Baseline and intervention sit in two columns,
+per the professor's §1 step 5 ("side-by-side comparison") and matching the
+existing `st.columns(2)` implementation. An earlier prototype stacked them
+vertically to make room for Framework A; that was wrong and is rejected.
+
+**Framework A lives inside both columns, not below them.** Both `baseline`
+and each `interventions[*]` carry their own `diagnostics.amplification`, so
+citation amplification is a before/after quantity, not a baseline-only one.
+
+**Method toggle is buttons, not a dropdown.** Two options only. Buttons keep
+both methods visible at once, which is itself part of the argument that the
+two target different axes; a dropdown hides the unchosen one. Selecting a
+method swaps the paper list, the institutional balance bar, the Framework A
+table, and the explanatory line (soft penalty vs hard quota).
+
+**Contradictory queries get no intervention panel.** Reason is recorded in
+`fairsearch_project_takeaway.md` §1: the pre-registered held-out split
+(`rq2_methodology.md` §1) keeps the institution axis and the viewpoint axis
+separable. The interface states this explicitly rather than leaving an empty
+panel. Note this is a judgement, not a hard prohibition: the strongest
+counter-argument is the untested lead that debate queries may surface a
+higher elite share, also recorded in that file.
+
+**List all 10 papers, do not collapse to "+N more".** The point of the
+side-by-side view is to see which papers changed. Hiding 7 of 10 behind an
+expander forces two clicks before any comparison can start. Collapsing is
+still used for whole sections (`st.expander`), just not for the paper lists.
+
+**Framework B shows the generated answer, not only the verdict.** The
+answer-layer judgment is a claim about a specific text, so that text has to
+be on screen for the judgment to be checkable.
 
 ---
 

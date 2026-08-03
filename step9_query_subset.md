@@ -123,6 +123,11 @@ with Raj).
 
 ## 6. Amendment (added 2026-08-01): tiered scope, not a fixed ceiling
 
+> **DECIDED 2026-08-02: Tier 1 first, extend to Tier 2 only if Tier 1 runs
+> end-to-end and deploys. Tier 2's upper bound is 100 queries (q001-q100),
+> not 150. The authoritative statement of this decision is
+> `step9_plan.md` §8b — do not restate or amend it here.**
+
 This section amends §1 and §5 above. It does NOT replace the sampling
 method in §2 — the ~20-query subset described there is still exactly how
 Tier 1 is chosen. What changes is that Tier 1 is no longer the ceiling.
