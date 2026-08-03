@@ -631,6 +631,40 @@ still used for whole sections (`st.expander`), just not for the paper lists.
 answer-layer judgment is a claim about a specific text, so that text has to
 be on screen for the judgment to be checkable.
 
+**Institutional-balance bar must show three segments, not two (added
+2026-08-03).** Found during a UI review of the mock version of
+`app/streamlit_app.py`, which currently renders a two-segment bar (e.g.
+"Elite 80% | Non-elite 20%") spanning the full width. This is misleading:
+the 80/20 split is the elite share **among labeled papers only** (e.g. 4
+elite / 1 non-elite out of 10, with 5 unlabeled), but a full-width
+two-segment bar reads as if 8 of 10 Top-10 papers are elite. This directly
+violates the standing rule from §9 ("the interface must show the unknown
+count rather than hiding it") -- the current mock bar is a concrete
+instance of that violation, not a new rule.
+
+**Required fix for 9-C:** the bar must have three segments proportional to
+the actual Top-10 composition (elite / non-elite / unlabeled, e.g. 40% /
+10% / 50% for 4/1/5), plus a separate text line stating the labeled-only
+share explicitly, e.g. "Elite share among labeled: 80% (4 elite / 1
+non-elite)". This gives the viewer both quantities at once: the true
+Top-10 composition, and the labeled-only ratio that RQ1/RQ2's fairness
+metrics are actually computed from. Do not fix this in the current mock
+data (`app/streamlit_app.py` as of 2026-08-02) -- the mock's numbers are
+illustrative only and will be replaced by the real bundle in 9-C; fix the
+*component design* when 9-C is actually implemented, not the mock values.
+
+**Horizontal stacked bar confirmed over a donut chart for this layout.**
+Considered during the same review: a donut/pie alternative was raised and
+rejected for this per-query diagnostic view, though it remains reasonable
+for a separate whole-corpus summary page if one is ever built. Reasoning:
+(1) side-by-side baseline-vs-intervention comparison needs a shared 0-100%
+axis so a shift (e.g. the elite segment shrinking) is visually obvious at a
+glance -- comparing two arc angles across two donuts is harder than
+comparing two bar segments at the same horizontal position; (2) a donut
+per column would consume much more vertical space than a bar, pushing the
+paper list and generated answer further down the page, which works against
+the "list all 10 papers, do not collapse" requirement above.
+
 ---
 
 ## 11. Step-by-step implementation sequence
