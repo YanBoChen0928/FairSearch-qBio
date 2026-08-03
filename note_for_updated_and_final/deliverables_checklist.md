@@ -85,6 +85,28 @@ coursework, not peer-reviewed literature. Do not cite them.
 
 ---
 
+## 1b. G2 prompt engineering: disclosure sentence (drafted 2026-08-03)
+
+Recommendation unchanged: do not implement perspective-balanced prompting
+retroactively just to fill the slot. The reasoning already in `rq2_plan.md`
+and `rq2_methodology.md` is sound — Framework B's baseline retention was
+already 97.2%, so there was no suppression problem for the mitigation to
+fix. What was missing was an explicit sentence surfacing that reasoning on
+Slide 8 and in Methodology, so it reads as a checked-and-not-needed decision
+rather than an omission. Drafted sentence, ready to paste into both
+locations:
+
+> Perspective-balanced prompting was planned as a Framework B mitigation
+> but was not triggered: baseline retention was already 97.2% (35/36
+> eligible queries), leaving no dissent-suppression problem to correct.
+> RQ3's mitigation results (this slide) therefore cover MMR and Fair-Top-K
+> only.
+
+Use as-is on Slide 8 (short form) and in report §3.4 Mitigation (can expand
+with the exact retention CI [91.7%, 100.0%] if space allows).
+
+---
+
 ## 2. Slides (maximum 12, 15-minute presentation)
 
 Current deck: `FairSearch_qBio_deck_v1_2_MODIFIED.pptx`. Confirm the deck
