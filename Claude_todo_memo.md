@@ -91,6 +91,47 @@ If this is written up, frame the held-out split positively: a deliberate
 separation so no query set is used both to discover and to verify. Do NOT
 write engineering cost as a reason; that is internal only.
 
+### Step 9 design is now settled (added later on 2026-08-02)
+
+**Scope: `step9_plan.md` §8b.** Tier 1 (~20 queries) first; extend to Tier 2
+only if Tier 1 runs end-to-end and deploys. Tier 2's ceiling is **100
+queries (q001-q100), not 150** — §8 and §8a said "full 150" before anyone
+checked, and RQ3 has no output for q101-q150.
+
+**Bundle schema: `step9_plan.md` §10a.** §10 is superseded and marked as
+such. Four changes: `interventions` is now a map keyed by method id (so the
+MMR / Fair-Top-K toggle works), `meta.rerank_methods` is a list, a
+`framework_b` block appears only on contradictory records, and records carry
+`num2pid`.
+
+**Interface: `step9_plan.md` §10b.** Three-tier conditional structure,
+baseline and intervention side by side, Framework A inside both columns,
+method toggle as buttons, all 10 papers listed rather than "+N more",
+Framework B shows the generated answer and not just the verdict.
+Contradictory queries get no intervention panel, stated on screen as a
+design decision.
+
+### Generation outputs were located (2026-08-02) — no re-generation needed
+
+Framework A had been missing from the interface entirely, even though the
+professor's §1 step 2 asks for it. The data was never the blocker:
+
+| File | Records | Scope |
+|---|---|---|
+| `data/rq2_gen_checkpoint.jsonl` | 100 | q001-q100, Step 7a |
+| `data/rq2_frameworkB_generation_raw.jsonl` | 50 | q101-q150, Step 7b |
+
+Both carry `answer_text`, `num2pid`, `retrieved_paper_ids`,
+`cited_pids_unique`, `invalid_markers`. `num2pid` is the useful one: it maps
+`[n]` citation markers straight to paper ids, so the UI does not re-parse
+answer text and `papers[].was_cited` is derivable.
+
+Per-paper stance labels for Framework B are in
+`data/rq2_frameworkB_context_judge.jsonl` (500 labels: side_a 178, side_b
+132, mixed_or_neutral 190, each with an evidence quote), and the
+answer-layer verdicts with `favor_basis` are in
+`data/rq2_frameworkB_answer_judge.jsonl`.
+
 ### Next session entry point
 
 See §000a below.

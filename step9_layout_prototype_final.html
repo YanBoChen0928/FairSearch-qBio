@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FairSearch-qBio · Step 9 layout prototype (final)</title>
+<style>
+  :root{
+    --bg:#10141C; --panel:#1D2330; --sunk:#171C27; --line:#2A3140; --ink:#EDEFF3;
+    --elite:#D6A24C; --nonelite:#4FB6AE; --coral:#E2735F; --good:#6FBF8B; --dim:#8791A3;
+    --sidea:#C084D8; --sideb:#5FA8E0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+       font-size:14px;line-height:1.55;padding:26px 20px 60px}
+  .wrap{max-width:1280px;margin:0 auto}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  h1{font-size:21px;margin:0 0 3px;font-weight:600}
+  .sub{color:var(--dim);font-size:12px;margin-bottom:20px}
+  hr{border:0;border-top:1px solid var(--line);margin:20px 0}
+
+  .protobar{border:1px dashed var(--coral);border-radius:8px;padding:11px 14px;
+            margin-bottom:18px;background:rgba(226,115,95,.06);font-size:12.5px}
+
+  .pill{font-family:ui-monospace,monospace;font-size:10.5px;padding:2px 8px;
+        border-radius:100px;display:inline-block;white-space:nowrap}
+  .real{border:1px solid var(--good);color:var(--good);background:rgba(111,191,139,.08)}
+  .illus{border:1px solid var(--coral);color:var(--coral);background:rgba(226,115,95,.08)}
+  .nodata{border:1px solid var(--dim);color:var(--dim);background:rgba(135,145,163,.08)}
+
+  .eyebrow{font-family:ui-monospace,monospace;font-size:10.5px;color:var(--dim);
+           letter-spacing:.09em;text-transform:uppercase;margin:13px 0 6px}
+
+  select{background:var(--panel);color:var(--ink);border:1px solid var(--line);
+         border-radius:7px;padding:9px 12px;font-size:13.5px;width:100%;max-width:680px}
+
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+  .metric{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:12px 14px}
+  .metric .k{font-family:ui-monospace,monospace;font-size:10px;color:var(--dim);
+             letter-spacing:.07em;text-transform:uppercase}
+  .metric .v{font-size:20px;font-weight:600;margin-top:5px}
+  .metric .d{font-size:11.5px;color:var(--dim);margin-top:2px}
+
+  .bar{display:flex;height:22px;border-radius:6px;overflow:hidden;background:var(--line);margin:4px 0 10px}
+  .bar div{display:flex;align-items:center;font-family:ui-monospace,monospace;font-size:10px;color:#10141C}
+  .bar .e{background:var(--elite);justify-content:flex-end;padding-right:6px}
+  .bar .n{background:var(--nonelite);padding-left:6px}
+
+  details{background:var(--panel);border:1px solid var(--line);border-radius:9px;
+          margin-bottom:14px;overflow:hidden}
+  details[open]{border-color:#39424f}
+  summary{cursor:pointer;padding:13px 16px;font-weight:600;font-size:14px;
+          list-style:none;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸";color:var(--dim);font-size:12px;transition:transform .15s}
+  details[open] summary::before{transform:rotate(90deg)}
+  .body{padding:0 16px 16px}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:9px;
+       padding:14px 15px;min-width:0}
+  .col.dim{opacity:.72}
+  .colhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+           font-weight:600;font-size:14px;margin-bottom:4px}
+
+  .paper{border-left:3px solid var(--line);padding:5px 9px;margin-bottom:5px;
+         background:var(--sunk);border-radius:6px;font-size:12.5px}
+  .paper.e{border-left-color:var(--elite)}
+  .paper.n{border-left-color:var(--nonelite)}
+  .paper.sa{border-left-color:var(--sidea)}
+  .paper.sb{border-left-color:var(--sideb)}
+  .paper.swap{background:#1E1A22}
+  .paper .meta{font-family:ui-monospace,monospace;font-size:10.5px;color:var(--dim)}
+  .paper .ev{font-size:11.5px;color:#AEB6C4;font-style:italic;margin-top:3px}
+  .num{font-family:ui-monospace,monospace;color:var(--dim);font-size:11px;margin-right:4px}
+  .citedot{color:var(--nonelite);font-family:ui-monospace,monospace;font-size:11px}
+
+  .toggle{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:9px}
+  .toggle button{background:transparent;border:1px solid var(--line);border-radius:7px;
+                 color:var(--dim);padding:7px 11px;font-size:12px;cursor:pointer;
+                 font-family:inherit;flex:1 1 auto;min-width:0;
+                 transition:background .12s,color .12s,border-color .12s}
+  .toggle button:hover{color:var(--ink);border-color:#3d4656}
+  .toggle button.on{background:var(--ink);border-color:var(--ink);
+                    color:#10141C;font-weight:600}
+  .toggle button.on:hover{background:var(--ink);color:#10141C}
+  .toggle button:focus-visible{outline:2px solid var(--nonelite);outline-offset:2px}
+
+  .note{border-left:3px solid var(--dim);background:var(--sunk);padding:10px 13px;
+        border-radius:0 6px 6px 0;font-size:12.5px;color:#C6CCD6}
+  .note strong{color:var(--ink)}
+  .answer{background:var(--sunk);border:1px solid var(--line);border-radius:7px;
+          padding:11px 13px;font-size:12.5px;color:#D5DAE3}
+  .cite{color:var(--nonelite);font-family:ui-monospace,monospace;font-size:11.5px;
+        cursor:help;border-bottom:1px dotted var(--nonelite)}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+  th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line)}
+  th{font-family:ui-monospace,monospace;font-size:10px;color:var(--dim);
+     letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+  td.n{font-family:ui-monospace,monospace}
+  .sa-t{color:var(--sidea)} .sb-t{color:var(--sideb)}
+  .up{color:var(--coral)} .dn{color:var(--good)}
+  .hide{display:none}
+  @media(max-width:900px){.compare{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="protobar">
+    <strong>Layout prototype — placeholder data.</strong>
+    Implements every decision in <span class="mono">step9_plan.md</span> §10b.
+    Switch the query to see the neutral and contradictory states; click the method
+    buttons to see the toggle drive four things at once. Collapsible sections map to
+    <span class="mono">st.expander()</span>; paper lists are deliberately not collapsed.
+  </div>
+
+  <h1>FairSearch-qBio · Diagnostic Interface</h1>
+  <div class="sub">Institutional bias audit over ~55,300 arXiv q-bio papers</div>
+
+  <div class="eyebrow" style="margin-top:0">Query</div>
+  <select id="q" onchange="render()">
+    <option value="neutral">[neutral] q033 — ML approaches predicting gene regulatory elements</option>
+    <option value="contradictory">[contradictory] q101 — Is most non-coding DNA functional, or largely junk?</option>
+  </select>
+
+  <div class="metrics">
+    <div class="metric"><div class="k">Elite share (found)</div><div class="v" id="m1">80%</div><div class="d">baseline top-10</div></div>
+    <div class="metric"><div class="k">Unique institutions</div><div class="v" id="m2">4</div><div class="d">of labeled slots</div></div>
+    <div class="metric"><div class="k" id="m3k">NDCG@10</div><div class="v" id="m3">0.809</div><div class="d" id="m3d">baseline</div></div>
+    <div class="metric"><div class="k">Coverage</div><div class="v" style="font-size:14px">20 of 100</div><div class="d">Tier 1, neutral set</div></div>
+  </div>
+
+  <div class="compare">
+
+    <!-- LEFT COLUMN -->
+    <div class="col">
+      <div class="colhead">① Baseline retrieval <span class="pill real">real · all 150</span></div>
+
+      <div class="eyebrow">Institutional balance</div>
+      <div class="bar"><div class="e" style="width:80%">ELITE 80%</div><div class="n" style="width:20%">NON-ELITE 20%</div></div>
+      <div style="color:var(--dim);font-size:11px;margin-top:-4px">
+        Elite 4 · non-elite 1 · unknown 5. Unknown papers are excluded from the share, never counted as 0.
+      </div>
+
+      <div class="eyebrow">Retrieved papers (all 10 shown)</div>
+      <div id="baseList"></div>
+
+      <div class="eyebrow">Generated answer · Step 7a, stored</div>
+      <div class="answer" id="baseAnswer"></div>
+
+      <div id="fwaBase">
+        <div class="eyebrow">RQ2 · Framework A — citation amplification</div>
+        <table>
+          <tr><th>Quantity</th><th>Value</th></tr>
+          <tr><td>context_elite_share</td><td class="n">0.143</td></tr>
+          <tr><td>cited_elite_share</td><td class="n">0.200</td></tr>
+          <tr><td><strong>amplification</strong></td><td class="n up"><strong>+0.057</strong></td></tr>
+        </table>
+        <div style="color:var(--dim);font-size:11px;margin-top:6px">
+          Empty denominator renders as <span class="mono">not evaluable</span>, never 0.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col" id="colRight">
+
+      <div id="interNeutral">
+        <div class="colhead">② RQ3 intervention <span class="pill illus">pending Step 9-A</span></div>
+
+        <div class="eyebrow">Re-ranking method</div>
+        <div class="toggle" role="group" aria-label="Re-ranking method">
+          <button class="on" id="btnMmr" onclick="setM('mmr')" aria-pressed="true">Institution-aware MMR (λ=0.8)</button>
+          <button id="btnFtk" onclick="setM('ftk')" aria-pressed="false">Fair-Top-K</button>
+        </div>
+        <div class="note" id="methodNote"></div>
+
+        <div class="eyebrow">Institutional balance</div>
+        <div class="bar" id="ibar"></div>
+        <div style="color:var(--dim);font-size:11px;margin-top:-4px" id="ibarNote"></div>
+
+        <div class="eyebrow">Re-ranked papers (all 10 shown)</div>
+        <div id="interList"></div>
+
+        <div class="eyebrow">Answer from re-ranked context</div>
+        <div class="answer">Second Gemini generation on the re-ranked top-10, one call per
+          query. This text does not exist yet — it is the Step 9-A gap.</div>
+
+        <div class="eyebrow">RQ2 · Framework A — citation amplification</div>
+        <table>
+          <tr><th>Quantity</th><th>Value</th></tr>
+          <tr><td>context_elite_share</td><td class="n" id="fa1">0.100</td></tr>
+          <tr><td>cited_elite_share</td><td class="n" id="fa2">0.125</td></tr>
+          <tr><td><strong>amplification</strong></td><td class="n up" id="fa3"><strong>+0.025</strong></td></tr>
+        </table>
+      </div>
+
+      <div id="interContra" class="hide">
+        <div class="colhead">RQ3 intervention <span class="pill nodata">not applicable</span></div>
+        <div class="note" style="margin-top:10px"><strong>By design, not missing.</strong>
+        q101–q150 were pre-registered as the Experiment B set and held out of RQ1 and RQ3,
+        so the institution axis and the viewpoint axis stay separable
+        (<span class="mono">rq2_methodology.md</span> §1). No re-ranking output exists for
+        these queries, and Framework A is not computed for them either.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DELTA, neutral only -->
+  <div id="deltaBlock">
+    <details open style="margin-top:14px">
+      <summary>Baseline → intervention delta <span class="pill illus">pending Step 9-A</span></summary>
+      <div class="body">
+        <table id="deltaTable"></table>
+        <div style="color:var(--dim);font-size:11.5px;margin-top:8px">
+          Precomputed per method in the bundle, not derived in Streamlit, so the UI stays a
+          pure renderer (<span class="mono">step9_plan.md</span> §10a).
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- FRAMEWORK B, contradictory only -->
+  <div id="fwbBlock" class="hide">
+    <details open style="margin-top:14px">
+      <summary>RQ2 · Framework B — viewpoint retention <span class="pill real">real · 50 queries</span></summary>
+      <div class="body">
+        <div class="eyebrow" style="margin-top:6px">The two stated positions for this query</div>
+        <table>
+          <tr><th>Side</th><th>Position</th></tr>
+          <tr><td class="sa-t">side_a</td><td class="sa-t">Most non-coding DNA is functional.</td></tr>
+          <tr><td class="sb-t">side_b</td><td class="sb-t">Most non-coding DNA is non-functional junk.</td></tr>
+        </table>
+
+        <div class="eyebrow">Retrieved context, coloured by stance rather than institution</div>
+        <div id="fwbList"></div>
+
+        <div class="eyebrow">Generated answer being judged · Step 7b, stored</div>
+        <div class="answer">Genomes contain both functional and non-functional parts, with the
+          latter referred to as "rubbish DNA" <span class="cite" title="1601.06047">[1]</span>.
+          This non-functional fraction includes junk DNA
+          <span class="cite" title="1410.5690">[3]</span>, while other work reports
+          genome-wide purifying selection on non-coding regions
+          <span class="cite" title="q-bio/0611059">[4]</span>.
+          <em style="color:var(--dim)">(excerpt — full stored text renders here)</em></div>
+
+        <div class="eyebrow">Answer-layer judgment</div>
+        <table>
+          <tr><th>Field</th><th>Value</th></tr>
+          <tr><td>eligibility</td><td>eligible — context contains both sides</td></tr>
+          <tr><td>retention_status</td><td><strong>both_sides_retained</strong></td></tr>
+          <tr><td>conclusion_favor</td><td class="sb-t">favors_side_b</td></tr>
+          <tr><td>favor_basis</td><td>explicit_conclusion</td></tr>
+        </table>
+        <div class="note" style="margin-top:9px">"The text explicitly concludes that 'the human
+        genome contains vast quantities of junk DNA' after presenting arguments for both sides."</div>
+
+        <div style="color:var(--dim);font-size:11.5px;margin-top:10px">
+          Corpus level: 36 of 50 eligible, 35 retained both sides, retention 97.2%,
+          95% CI [91.7%, 100.0%]. Stance labels across all 50 queries: side_a 178,
+          side_b 132, mixed_or_neutral 190. Favouring one side is not a failure —
+          retention asks whether both sides survived into the answer, not whether the
+          answer stayed undecided. q101 is <span class="mono">both_sides_retained</span>
+          and <span class="mono">favors_side_b</span> at the same time.
+        </div>
+      </div>
+    </details>
+  </div>
+
+  <!-- SHARED FOOTER -->
+  <details open style="margin-top:14px">
+    <summary>RAGAS Faithfulness · Step 8 <span class="pill real">real · 148 of 150</span></summary>
+    <div class="body">
+      <div class="metrics" style="margin-top:4px">
+        <div class="metric"><div class="k">This query</div><div class="v">1.000</div><div class="d">measured</div></div>
+        <div class="metric"><div class="k">Corpus mean</div><div class="v">0.9615</div><div class="d">148 scored</div></div>
+        <div class="metric"><div class="k">Neutral</div><div class="v">0.9616</div><div class="d">n = 98</div></div>
+        <div class="metric"><div class="k">Contradictory</div><div class="v">0.9613</div><div class="d">n = 50</div></div>
+      </div>
+      <div style="color:var(--dim);font-size:11.5px">
+        Self-judge design: the judging model is the same one used for generation.
+        Two queries failed reproducibly and are excluded, not imputed.
+      </div>
+    </div>
+  </details>
+
+  <hr>
+  <div style="color:var(--dim);font-size:11.5px" class="mono">
+    Layout prototype · structure only · numbers are placeholders
+  </div>
+</div>
+
+<script>
+var BASE = [
+  ["e",1,"Predicting genetic regulatory response using classification","q-bio/0411028","Columbia University · US · elite",true],
+  ["",2,"Advancing regulatory genomics with machine learning","2304.12963","unlabeled",true],
+  ["n",3,"SIRENE: supervised inference of regulatory networks","0802.3959","Inserm · FR · non-elite",false],
+  ["e",4,"Motif discovery through predictive modeling of gene regulation","q-bio/0701021","Columbia University · US · elite",true],
+  ["",5,"Prediction of a gene regulatory network from expression profiles","1805.01506","unlabeled",false],
+  ["e",6,"Predicting genetic regulatory response: yeast stress response","q-bio/0406016","Columbia University · US · elite",false],
+  ["",7,"Prediction of signal sequences in stress-inducible genes","1811.07269","unlabeled",false],
+  ["e",8,"A multi-modal network for cis and trans regulation","1908.09426","Stanford University · US · elite",true],
+  ["",9,"Learning to discover regulatory elements","2502.13991","unlabeled",false],
+  ["",10,"Machine learning methods for regulatory network inference","2504.12610","unlabeled",false]
+];
+var MMR = [
+  ["e",1,"Predicting genetic regulatory response using classification","q-bio/0411028","kept · highest-relevance elite",false],
+  ["",2,"Advancing regulatory genomics with machine learning","2304.12963","kept · unlabeled",false],
+  ["n",3,"SIRENE: supervised inference of regulatory networks","0802.3959","kept · non-elite",false],
+  ["n",4,"Regulatory network inference via graph neural networks","2504.12610","promoted · non-elite",true],
+  ["",5,"Prediction of a gene regulatory network from expression profiles","1805.01506","kept · unlabeled",false],
+  ["e",6,"A multi-modal network for cis and trans regulation","1908.09426","kept · elite",false],
+  ["",7,"Prediction of signal sequences in stress-inducible genes","1811.07269","kept · unlabeled",false],
+  ["n",8,"Inferring regulatory networks in plants","1902.00011","promoted · non-elite",true],
+  ["",9,"Learning to discover regulatory elements","2502.13991","kept · unlabeled",false],
+  ["",10,"Deep models of chromatin accessibility","2011.00123","promoted · unlabeled",true]
+];
+var FTK = [
+  ["e",1,"Predicting genetic regulatory response using classification","q-bio/0411028","elite quota seat 1 of 1",false],
+  ["n",2,"SIRENE: supervised inference of regulatory networks","0802.3959","non-elite","false"],
+  ["n",3,"Regulatory network inference via graph neural networks","2504.12610","promoted · non-elite",true],
+  ["n",4,"Inferring regulatory networks in plants","1902.00011","promoted · non-elite",true],
+  ["",5,"Advancing regulatory genomics with machine learning","2304.12963","unlabeled",false],
+  ["",6,"Prediction of a gene regulatory network from expression profiles","1805.01506","unlabeled",false],
+  ["",7,"Prediction of signal sequences in stress-inducible genes","1811.07269","unlabeled",false],
+  ["",8,"Learning to discover regulatory elements","2502.13991","unlabeled",false],
+  ["",9,"Deep models of chromatin accessibility","2011.00123","unlabeled",true],
+  ["",10,"Sequence models for enhancer prediction","2108.04412","unlabeled",true]
+];
+var FWB = [
+  ["sb",1,"Evidence for vast quantities of junk DNA in the human genome","1601.06047","supports_side_b","discuss the evidence for the existence of vast quantities of junk DNA"],
+  ["sb",2,"RNA molecules of unknown function","1709.01429","supports_side_b","must be considered junk RNA in the absence of falsifying evidence"],
+  ["sa",3,"Role of junk DNA in mutation probability","1410.5690","supports_side_a","the role of junk DNA is to preserve the mutations probability"],
+  ["sa",4,"Purifying selection on non-coding regions","q-bio/0611059","supports_side_a","genome-wide evidences of purifying selection acting on non-coding regions"],
+  ["",5,"Evolutionary coding styles","math/0103109","mixed_or_neutral","without taking a stance on the functional fraction of non-coding DNA"],
+  ["",6,"Statistical properties of genomic sequences","cond-mat/0109299","mixed_or_neutral","methodological, no position on functionality"],
+  ["",7,"Adaptive organisation in genomes","adap-org/9709007","mixed_or_neutral","no explicit stance"],
+  ["sa",8,"Conserved non-coding elements across species","1906.11062","supports_side_a","conservation implies functional constraint"],
+  ["sb",9,"Genome size and the C-value paradox","1312.4902","supports_side_b","large fractions appear dispensable"],
+  ["",10,"Long-range correlations in DNA","cond-mat/0306636","mixed_or_neutral","descriptive statistics only"]
+];
+
+function papers(list, target, swapKey){
+  document.getElementById(target).innerHTML = list.map(function(p){
+    var cls = p[0] ? " " + p[0] : "";
+    var swap = (p[5] === true && swapKey) ? " swap" : "";
+    var cited = (p[5] === true && !swapKey) ? ' <span class="citedot">· cited</span>' : "";
+    return '<div class="paper' + cls + swap + '">' +
+      '<span class="num">' + p[1] + '</span>' + p[2] + cited +
+      '<div class="meta">arXiv:' + p[3] + ' · ' + p[4] + '</div></div>';
+  }).join("");
+}
+function stancePapers(){
+  document.getElementById("fwbList").innerHTML = FWB.map(function(p){
+    var cls = p[0] ? " " + p[0] : "";
+    return '<div class="paper' + cls + '">' +
+      '<span class="num">' + p[1] + '</span>' + p[2] +
+      '<div class="meta">arXiv:' + p[3] + ' · ' + p[4] + '</div>' +
+      '<div class="ev">"' + p[5] + '"</div></div>';
+  }).join("");
+}
+
+var BASE_ANSWER = 'Sequence-based deep learning is combined with classical motif discovery '
+  + '<span class="cite" title="q-bio/0411028">[1]</span>'
+  + '<span class="cite" title="2304.12963">[2]</span>. Supervised classification on expression '
+  + 'profiles remains a strong baseline <span class="cite" title="q-bio/0701021">[4]</span>, and '
+  + 'multi-modal networks jointly model cis- and trans-acting elements '
+  + '<span class="cite" title="1908.09426">[8]</span>. '
+  + '<em style="color:var(--dim)">(markers resolved through num2pid; hover to see the paper id)</em>';
+
+function setM(kind){
+  var mmr = kind === "mmr";
+  document.getElementById("btnMmr").classList.toggle("on", mmr);
+  document.getElementById("btnFtk").classList.toggle("on", !mmr);
+  document.getElementById("btnMmr").setAttribute("aria-pressed", mmr);
+  document.getElementById("btnFtk").setAttribute("aria-pressed", !mmr);
+
+  document.getElementById("methodNote").innerHTML = mmr
+    ? '<strong>Soft penalty.</strong> Scores are adjusted, no seat is fixed. Targets repeated institutions, so it moves <span class="mono">uniq_institutions</span> most.'
+    : '<strong>Hard quota.</strong> Elite seats capped at the corpus baseline (0.144 × 10 ≈ 1 seat). Targets <span class="mono">elite_share</span> directly and pays for it in relevance.';
+
+  document.getElementById("ibar").innerHTML = mmr
+    ? '<div class="e" style="width:40%">ELITE 40%</div><div class="n" style="width:60%">NON-ELITE 60%</div>'
+    : '<div class="e" style="width:20%">ELITE 20%</div><div class="n" style="width:80%">NON-ELITE 80%</div>';
+  document.getElementById("ibarNote").textContent = mmr
+    ? "Elite 2 · non-elite 3 · unknown 5"
+    : "Elite 1 · non-elite 3 · unknown 6";
+
+  papers(mmr ? MMR : FTK, "interList", true);
+
+  document.getElementById("fa1").textContent = mmr ? "0.100" : "0.077";
+  document.getElementById("fa2").textContent = mmr ? "0.125" : "0.083";
+  document.getElementById("fa3").innerHTML = mmr ? "<strong>+0.025</strong>" : "<strong>+0.006</strong>";
+
+  var rows = mmr
+    ? [["elite_share (found)","0.80","0.40","−0.40"],["uniq_institutions","4","5","+1"],
+       ["amplification","+0.057","+0.025","−0.032"],["papers changed","—","—","3 of 10"]]
+    : [["elite_share (found)","0.80","0.20","−0.60"],["uniq_institutions","4","4","0"],
+       ["amplification","+0.057","+0.006","−0.051"],["papers changed","—","—","5 of 10"]];
+  document.getElementById("deltaTable").innerHTML =
+    "<tr><th>Metric</th><th>Baseline</th><th>Intervention</th><th>Δ</th></tr>" +
+    rows.map(function(r){
+      return "<tr><td>" + r[0] + '</td><td class="n">' + r[1] + '</td><td class="n">' + r[2]
+        + '</td><td class="n dn">' + r[3] + "</td></tr>";
+    }).join("");
+}
+
+function render(){
+  var c = document.getElementById("q").value === "contradictory";
+  document.getElementById("interNeutral").classList.toggle("hide", c);
+  document.getElementById("interContra").classList.toggle("hide", !c);
+  document.getElementById("fwaBase").classList.toggle("hide", c);
+  document.getElementById("deltaBlock").classList.toggle("hide", c);
+  document.getElementById("fwbBlock").classList.toggle("hide", !c);
+  document.getElementById("colRight").classList.toggle("dim", c);
+  document.getElementById("m3k").textContent = c ? "RETENTION (CORPUS)" : "NDCG@10";
+  document.getElementById("m3").textContent  = c ? "97.2%" : "0.809";
+  document.getElementById("m3d").textContent = c ? "35 of 36 eligible" : "baseline";
+  document.getElementById("m1").textContent  = c ? "62%" : "80%";
+  document.getElementById("m2").textContent  = c ? "5" : "4";
+  papers(BASE, "baseList", false);
+  document.getElementById("baseAnswer").innerHTML = BASE_ANSWER;
+  stancePapers();
+}
+render();
+setM("mmr");
+</script>
+</body>
+</html>
