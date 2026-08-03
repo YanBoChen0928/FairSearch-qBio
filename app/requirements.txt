@@ -12,4 +12,3 @@
 # Every line here is install time on every rebuild. Keep it short.
 
 streamlit>=1.45
-matplotlib>=3.9
