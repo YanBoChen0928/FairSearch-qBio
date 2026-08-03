@@ -186,7 +186,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 8,
-          "uniq_countries": 6
+          "uniq_countries": 6,
+          "ndcg_at_10": 0.611,
+          "mrr": 0.3333,
+          "n_relevant": 4
         }
       },
       "interventions": {
@@ -311,13 +314,18 @@
             "cited_elite_share": 0.0,
             "amplification": 0.0,
             "uniq_institutions": 8,
-            "uniq_countries": 6
+            "uniq_countries": 6,
+            "ndcg_at_10": 0.611,
+            "mrr": 0.3333,
+            "n_relevant": 4
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -439,13 +447,18 @@
             "cited_elite_share": 0.2,
             "amplification": 0.1,
             "uniq_institutions": 10,
-            "uniq_countries": 6
+            "uniq_countries": 6,
+            "ndcg_at_10": 0.6255,
+            "mrr": 0.3333,
+            "n_relevant": 4
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
             "uniq_institutions": 2,
             "uniq_countries": 0,
-            "n_papers_changed": 4
+            "n_papers_changed": 4,
+            "ndcg_at_10": 0.0145,
+            "mrr": 0.0
           }
         }
       },
@@ -580,7 +593,10 @@
           "cited_elite_share": 0.0,
           "amplification": -0.25,
           "uniq_institutions": 8,
-          "uniq_countries": 6
+          "uniq_countries": 6,
+          "ndcg_at_10": 0.9842,
+          "mrr": 1.0,
+          "n_relevant": 9
         }
       },
       "interventions": {
@@ -704,13 +720,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.25,
             "uniq_institutions": 8,
-            "uniq_countries": 6
+            "uniq_countries": 6,
+            "ndcg_at_10": 0.9842,
+            "mrr": 1.0,
+            "n_relevant": 9
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -832,13 +853,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1,
             "uniq_institutions": 9,
-            "uniq_countries": 7
+            "uniq_countries": 7,
+            "ndcg_at_10": 1.0,
+            "mrr": 1.0,
+            "n_relevant": 10
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.15,
             "uniq_institutions": 1,
             "uniq_countries": 1,
-            "n_papers_changed": 6
+            "n_papers_changed": 6,
+            "ndcg_at_10": 0.0158,
+            "mrr": 0.0
           }
         }
       },
@@ -973,7 +999,10 @@
           "cited_elite_share": 0.0,
           "amplification": -0.16666666666666666,
           "uniq_institutions": 6,
-          "uniq_countries": 5
+          "uniq_countries": 5,
+          "ndcg_at_10": 0.9605,
+          "mrr": 1.0,
+          "n_relevant": 8
         }
       },
       "interventions": {
@@ -1096,13 +1125,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1667,
             "uniq_institutions": 6,
-            "uniq_countries": 5
+            "uniq_countries": 5,
+            "ndcg_at_10": 0.9605,
+            "mrr": 1.0,
+            "n_relevant": 8
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -1222,13 +1256,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1,
             "uniq_institutions": 9,
-            "uniq_countries": 6
+            "uniq_countries": 6,
+            "ndcg_at_10": 0.977,
+            "mrr": 1.0,
+            "n_relevant": 9
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.0667,
             "uniq_institutions": 3,
             "uniq_countries": 1,
-            "n_papers_changed": 8
+            "n_papers_changed": 8,
+            "ndcg_at_10": 0.0165,
+            "mrr": 0.0
           }
         }
       },
@@ -1367,7 +1406,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 4,
-          "uniq_countries": 2
+          "uniq_countries": 2,
+          "ndcg_at_10": 0.8329,
+          "mrr": 0.5,
+          "n_relevant": 9
         }
       },
       "interventions": {
@@ -1495,13 +1537,18 @@
             "cited_elite_share": 0.0,
             "amplification": 0.0,
             "uniq_institutions": 4,
-            "uniq_countries": 2
+            "uniq_countries": 2,
+            "ndcg_at_10": 0.8329,
+            "mrr": 0.5,
+            "n_relevant": 9
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -1626,13 +1673,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1,
             "uniq_institutions": 9,
-            "uniq_countries": 4
+            "uniq_countries": 4,
+            "ndcg_at_10": 0.9196,
+            "mrr": 1.0,
+            "n_relevant": 9
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
             "uniq_institutions": 5,
             "uniq_countries": 2,
-            "n_papers_changed": 12
+            "n_papers_changed": 12,
+            "ndcg_at_10": 0.0867,
+            "mrr": 0.5
           }
         }
       },
@@ -1769,7 +1821,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 7,
-          "uniq_countries": 6
+          "uniq_countries": 6,
+          "ndcg_at_10": 0.9608,
+          "mrr": 1.0,
+          "n_relevant": 6
         }
       },
       "interventions": {
@@ -1894,13 +1949,18 @@
             "cited_elite_share": 0.0,
             "amplification": 0.0,
             "uniq_institutions": 7,
-            "uniq_countries": 6
+            "uniq_countries": 6,
+            "ndcg_at_10": 0.9608,
+            "mrr": 1.0,
+            "n_relevant": 6
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -2024,13 +2084,18 @@
             "cited_elite_share": 0.1429,
             "amplification": 0.0429,
             "uniq_institutions": 10,
-            "uniq_countries": 9
+            "uniq_countries": 9,
+            "ndcg_at_10": 0.7536,
+            "mrr": 0.5,
+            "n_relevant": 6
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
             "uniq_institutions": 3,
             "uniq_countries": 3,
-            "n_papers_changed": 6
+            "n_papers_changed": 6,
+            "ndcg_at_10": -0.2072,
+            "mrr": -0.5
           }
         }
       },
@@ -2167,7 +2232,10 @@
           "cited_elite_share": 1.0,
           "amplification": 0.19999999999999996,
           "uniq_institutions": 3,
-          "uniq_countries": 2
+          "uniq_countries": 2,
+          "ndcg_at_10": 0.8807,
+          "mrr": 1.0,
+          "n_relevant": 6
         }
       },
       "interventions": {
@@ -2291,13 +2359,18 @@
             "cited_elite_share": 1.0,
             "amplification": 0.5,
             "uniq_institutions": 4,
-            "uniq_countries": 2
+            "uniq_countries": 2,
+            "ndcg_at_10": 0.898,
+            "mrr": 1.0,
+            "n_relevant": 6
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.3,
             "uniq_institutions": 1,
             "uniq_countries": 0,
-            "n_papers_changed": 4
+            "n_papers_changed": 4,
+            "ndcg_at_10": 0.0173,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -2422,13 +2495,18 @@
             "cited_elite_share": 0.125,
             "amplification": 0.025,
             "uniq_institutions": 10,
-            "uniq_countries": 7
+            "uniq_countries": 7,
+            "ndcg_at_10": 0.5257,
+            "mrr": 0.25,
+            "n_relevant": 3
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.7,
             "uniq_institutions": 7,
             "uniq_countries": 5,
-            "n_papers_changed": 16
+            "n_papers_changed": 16,
+            "ndcg_at_10": -0.355,
+            "mrr": -0.75
           }
         }
       },
@@ -2565,7 +2643,10 @@
           "cited_elite_share": 0.16666666666666666,
           "amplification": 0.04166666666666666,
           "uniq_institutions": 7,
-          "uniq_countries": 4
+          "uniq_countries": 4,
+          "ndcg_at_10": 0.7326,
+          "mrr": 0.5,
+          "n_relevant": 6
         }
       },
       "interventions": {
@@ -2691,13 +2772,18 @@
             "cited_elite_share": 0.1429,
             "amplification": 0.0179,
             "uniq_institutions": 8,
-            "uniq_countries": 5
+            "uniq_countries": 5,
+            "ndcg_at_10": 0.745,
+            "mrr": 0.5,
+            "n_relevant": 7
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 1,
             "uniq_countries": 1,
-            "n_papers_changed": 2
+            "n_papers_changed": 2,
+            "ndcg_at_10": 0.0124,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -2823,13 +2909,18 @@
             "cited_elite_share": 0.1111,
             "amplification": 0.0111,
             "uniq_institutions": 9,
-            "uniq_countries": 6
+            "uniq_countries": 6,
+            "ndcg_at_10": 0.9794,
+            "mrr": 1.0,
+            "n_relevant": 8
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.025,
             "uniq_institutions": 2,
             "uniq_countries": 2,
-            "n_papers_changed": 4
+            "n_papers_changed": 4,
+            "ndcg_at_10": 0.2468,
+            "mrr": 0.5
           }
         }
       },
@@ -2964,7 +3055,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 7,
-          "uniq_countries": 4
+          "uniq_countries": 4,
+          "ndcg_at_10": 0.8255,
+          "mrr": 1.0,
+          "n_relevant": 5
         }
       },
       "interventions": {
@@ -3087,13 +3181,18 @@
             "cited_elite_share": 0.0,
             "amplification": 0.0,
             "uniq_institutions": 7,
-            "uniq_countries": 4
+            "uniq_countries": 4,
+            "ndcg_at_10": 0.8255,
+            "mrr": 1.0,
+            "n_relevant": 5
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -3215,13 +3314,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1,
             "uniq_institutions": 9,
-            "uniq_countries": 5
+            "uniq_countries": 5,
+            "ndcg_at_10": 0.9292,
+            "mrr": 1.0,
+            "n_relevant": 6
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
             "uniq_institutions": 2,
             "uniq_countries": 1,
-            "n_papers_changed": 6
+            "n_papers_changed": 6,
+            "ndcg_at_10": 0.1037,
+            "mrr": 0.0
           }
         }
       },
@@ -3358,7 +3462,10 @@
           "cited_elite_share": 0.0,
           "amplification": -0.16666666666666666,
           "uniq_institutions": 6,
-          "uniq_countries": 5
+          "uniq_countries": 5,
+          "ndcg_at_10": 0.0,
+          "mrr": 0.0,
+          "n_relevant": 0
         }
       },
       "interventions": {
@@ -3484,13 +3591,18 @@
             "cited_elite_share": 0.2,
             "amplification": 0.0333,
             "uniq_institutions": 6,
-            "uniq_countries": 5
+            "uniq_countries": 5,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0,
+            "n_relevant": 0
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -3611,13 +3723,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1,
             "uniq_institutions": 10,
-            "uniq_countries": 7
+            "uniq_countries": 7,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0,
+            "n_relevant": 0
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.0667,
             "uniq_institutions": 4,
             "uniq_countries": 2,
-            "n_papers_changed": 8
+            "n_papers_changed": 8,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         }
       },
@@ -3750,7 +3867,10 @@
           "cited_elite_share": 0.0,
           "amplification": -0.16666666666666666,
           "uniq_institutions": 6,
-          "uniq_countries": 5
+          "uniq_countries": 5,
+          "ndcg_at_10": 0.2891,
+          "mrr": 0.1,
+          "n_relevant": 1
         }
       },
       "interventions": {
@@ -3873,13 +3993,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1667,
             "uniq_institutions": 6,
-            "uniq_countries": 5
+            "uniq_countries": 5,
+            "ndcg_at_10": 0.2891,
+            "mrr": 0.1,
+            "n_relevant": 1
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -3999,13 +4124,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1,
             "uniq_institutions": 10,
-            "uniq_countries": 8
+            "uniq_countries": 8,
+            "ndcg_at_10": 0.3956,
+            "mrr": 0.1667,
+            "n_relevant": 2
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.0667,
             "uniq_institutions": 4,
             "uniq_countries": 3,
-            "n_papers_changed": 8
+            "n_papers_changed": 8,
+            "ndcg_at_10": 0.1065,
+            "mrr": 0.0667
           }
         }
       },
@@ -4141,7 +4271,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 4,
-          "uniq_countries": 4
+          "uniq_countries": 4,
+          "ndcg_at_10": 1.0,
+          "mrr": 1.0,
+          "n_relevant": 10
         }
       },
       "interventions": {
@@ -4265,13 +4398,18 @@
             "cited_elite_share": 0.0,
             "amplification": 0.0,
             "uniq_institutions": 4,
-            "uniq_countries": 4
+            "uniq_countries": 4,
+            "ndcg_at_10": 1.0,
+            "mrr": 1.0,
+            "n_relevant": 10
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -4395,13 +4533,18 @@
             "cited_elite_share": 0.1429,
             "amplification": 0.0429,
             "uniq_institutions": 10,
-            "uniq_countries": 7
+            "uniq_countries": 7,
+            "ndcg_at_10": 1.0,
+            "mrr": 1.0,
+            "n_relevant": 10
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
             "uniq_institutions": 6,
             "uniq_countries": 3,
-            "n_papers_changed": 12
+            "n_papers_changed": 12,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         }
       },
@@ -4539,7 +4682,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 5,
-          "uniq_countries": 3
+          "uniq_countries": 3,
+          "ndcg_at_10": 0.9972,
+          "mrr": 1.0,
+          "n_relevant": 9
         }
       },
       "interventions": {
@@ -4665,13 +4811,18 @@
             "cited_elite_share": 0.0,
             "amplification": 0.0,
             "uniq_institutions": 6,
-            "uniq_countries": 3
+            "uniq_countries": 3,
+            "ndcg_at_10": 0.9963,
+            "mrr": 1.0,
+            "n_relevant": 8
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 1,
             "uniq_countries": 0,
-            "n_papers_changed": 2
+            "n_papers_changed": 2,
+            "ndcg_at_10": -0.0009,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -4795,13 +4946,18 @@
             "cited_elite_share": 0.0,
             "amplification": -0.1,
             "uniq_institutions": 9,
-            "uniq_countries": 3
+            "uniq_countries": 3,
+            "ndcg_at_10": 0.9794,
+            "mrr": 1.0,
+            "n_relevant": 8
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
             "uniq_institutions": 4,
             "uniq_countries": 0,
-            "n_papers_changed": 8
+            "n_papers_changed": 8,
+            "ndcg_at_10": -0.0178,
+            "mrr": 0.0
           }
         }
       },
@@ -4940,7 +5096,10 @@
           "cited_elite_share": 0.2,
           "amplification": 0.033333333333333354,
           "uniq_institutions": 6,
-          "uniq_countries": 4
+          "uniq_countries": 4,
+          "ndcg_at_10": 0.9371,
+          "mrr": 1.0,
+          "n_relevant": 7
         }
       },
       "interventions": {
@@ -5066,13 +5225,18 @@
             "cited_elite_share": 0.25,
             "amplification": 0.0833,
             "uniq_institutions": 6,
-            "uniq_countries": 4
+            "uniq_countries": 4,
+            "ndcg_at_10": 0.9371,
+            "mrr": 1.0,
+            "n_relevant": 7
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -5196,13 +5360,18 @@
             "cited_elite_share": 0.1429,
             "amplification": 0.0429,
             "uniq_institutions": 10,
-            "uniq_countries": 5
+            "uniq_countries": 5,
+            "ndcg_at_10": 0.9375,
+            "mrr": 1.0,
+            "n_relevant": 7
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.0667,
             "uniq_institutions": 4,
             "uniq_countries": 1,
-            "n_papers_changed": 8
+            "n_papers_changed": 8,
+            "ndcg_at_10": 0.0004,
+            "mrr": 0.0
           }
         }
       },
@@ -5342,7 +5511,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 4,
-          "uniq_countries": 3
+          "uniq_countries": 3,
+          "ndcg_at_10": 0.6781,
+          "mrr": 0.3333,
+          "n_relevant": 6
         }
       },
       "interventions": {
@@ -5470,13 +5642,18 @@
             "cited_elite_share": 0.0,
             "amplification": 0.0,
             "uniq_institutions": 4,
-            "uniq_countries": 3
+            "uniq_countries": 3,
+            "ndcg_at_10": 0.6781,
+            "mrr": 0.3333,
+            "n_relevant": 6
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
-            "n_papers_changed": 0
+            "n_papers_changed": 0,
+            "ndcg_at_10": 0.0,
+            "mrr": 0.0
           }
         },
         "fair_top_k": {
@@ -5601,13 +5778,18 @@
             "cited_elite_share": 0.125,
             "amplification": 0.025,
             "uniq_institutions": 10,
-            "uniq_countries": 8
+            "uniq_countries": 8,
+            "ndcg_at_10": 0.5438,
+            "mrr": 0.3333,
+            "n_relevant": 2
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
             "uniq_institutions": 6,
             "uniq_countries": 5,
-            "n_papers_changed": 12
+            "n_papers_changed": 12,
+            "ndcg_at_10": -0.1343,
+            "mrr": 0.0
           }
         }
       },
@@ -5743,7 +5925,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 3,
-          "uniq_countries": 3
+          "uniq_countries": 3,
+          "ndcg_at_10": 1.0,
+          "mrr": 1.0,
+          "n_relevant": 8
         }
       },
       "interventions": {},
@@ -5944,7 +6129,10 @@
           "cited_elite_share": null,
           "amplification": null,
           "uniq_institutions": 3,
-          "uniq_countries": 2
+          "uniq_countries": 2,
+          "ndcg_at_10": 0.7882,
+          "mrr": 0.5,
+          "n_relevant": 7
         }
       },
       "interventions": {},
@@ -6151,7 +6339,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 6,
-          "uniq_countries": 4
+          "uniq_countries": 4,
+          "ndcg_at_10": 1.0,
+          "mrr": 1.0,
+          "n_relevant": 10
         }
       },
       "interventions": {},
@@ -6357,7 +6548,10 @@
           "cited_elite_share": 0.0,
           "amplification": 0.0,
           "uniq_institutions": 2,
-          "uniq_countries": 1
+          "uniq_countries": 1,
+          "ndcg_at_10": 1.0,
+          "mrr": 1.0,
+          "n_relevant": 10
         }
       },
       "interventions": {},
@@ -6562,7 +6756,10 @@
           "cited_elite_share": 0.1667,
           "amplification": 0.0238,
           "uniq_institutions": 6,
-          "uniq_countries": 3
+          "uniq_countries": 3,
+          "ndcg_at_10": 0.9139,
+          "mrr": 1.0,
+          "n_relevant": 8
         }
       },
       "interventions": {},
@@ -6770,7 +6967,10 @@
           "cited_elite_share": 0.4,
           "amplification": -0.1,
           "uniq_institutions": 4,
-          "uniq_countries": 3
+          "uniq_countries": 3,
+          "ndcg_at_10": 0.6657,
+          "mrr": 0.3333,
+          "n_relevant": 5
         }
       },
       "interventions": {},
