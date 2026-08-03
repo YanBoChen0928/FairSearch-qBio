@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "seed": 42,
+    "target_neutral": 14,
+    "target_contra": 6,
+    "anchor": "q033",
+    "contra_sampling": "plain seeded random, NOT topic-stratified (see cell markdown)"
+  },
+  "neutral": [
+    "q005",
+    "q010",
+    "q013",
+    "q018",
+    "q022",
+    "q033",
+    "q038",
+    "q043",
+    "q050",
+    "q055",
+    "q063",
+    "q071",
+    "q085",
+    "q086"
+  ],
+  "contradictory": [
+    "q102",
+    "q106",
+    "q114",
+    "q115",
+    "q133",
+    "q139"
+  ]
+}

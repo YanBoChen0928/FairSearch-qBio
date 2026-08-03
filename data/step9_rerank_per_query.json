@@ -1,0 +1,3922 @@
+{
+  "q005": {
+    "query_text": "How are agent-based models applied to simulate collective behavior in bacterial colonies?",
+    "subcategory": "q-bio.QM",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "1904.11372",
+        "title": "A Multi-agent approach for $\\textit{in silico}$ simulations of micro-biological systems",
+        "institution": "University of Luxembourg",
+        "country": "LU",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "1612.06267",
+        "title": "New Insights into the Dynamics of Swarming Bacteria: A Theoretical Study",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2006.00688",
+        "title": "A Mathematical Description of Bacterial Chemotaxis in Response to Two Stimuli",
+        "institution": "SUNY New Paltz",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "0712.0744",
+        "title": "Computational Chemotaxis in Ants and Bacteria over Dynamic Environments",
+        "institution": "Instituto de Engenharia de Sistemas e Computadores Investiga\u00e7\u00e3o e Desenvolvimento",
+        "country": "PT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1708.06305",
+        "title": "Effect of Local Population Uncertainty on Cooperation in Bacteria",
+        "institution": "University of Ottawa",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1211.1146",
+        "title": "Discrete modelling of bacterial conjugation dynamics",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 7,
+        "paper_id": "1705.04182",
+        "title": "Exploring the onset of collective motion in self-organised trails of social organisms",
+        "institution": "Universidade Federal do Rio de Janeiro",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "adap-org/9306002",
+        "title": "Swarms, Phase Transitions, and Collective Intelligence",
+        "institution": "Santa Fe Institute",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1702.08091",
+        "title": "Modeling mechanical interactions in growing populations of rod-shaped bacteria",
+        "institution": "University of Houston",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "2112.01167",
+        "title": "Multi-scale simulation of COVID-19 epidemics",
+        "institution": "Institut polytechnique de Grenoble",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "1904.11372",
+        "title": "A Multi-agent approach for $\\textit{in silico}$ simulations of micro-biological systems",
+        "institution": "University of Luxembourg",
+        "country": "LU",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "1612.06267",
+        "title": "New Insights into the Dynamics of Swarming Bacteria: A Theoretical Study",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2006.00688",
+        "title": "A Mathematical Description of Bacterial Chemotaxis in Response to Two Stimuli",
+        "institution": "SUNY New Paltz",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "0712.0744",
+        "title": "Computational Chemotaxis in Ants and Bacteria over Dynamic Environments",
+        "institution": "Instituto de Engenharia de Sistemas e Computadores Investiga\u00e7\u00e3o e Desenvolvimento",
+        "country": "PT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1708.06305",
+        "title": "Effect of Local Population Uncertainty on Cooperation in Bacteria",
+        "institution": "University of Ottawa",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1211.1146",
+        "title": "Discrete modelling of bacterial conjugation dynamics",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 7,
+        "paper_id": "1705.04182",
+        "title": "Exploring the onset of collective motion in self-organised trails of social organisms",
+        "institution": "Universidade Federal do Rio de Janeiro",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "adap-org/9306002",
+        "title": "Swarms, Phase Transitions, and Collective Intelligence",
+        "institution": "Santa Fe Institute",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1702.08091",
+        "title": "Modeling mechanical interactions in growing populations of rod-shaped bacteria",
+        "institution": "University of Houston",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "2112.01167",
+        "title": "Multi-scale simulation of COVID-19 epidemics",
+        "institution": "Institut polytechnique de Grenoble",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1410.8091",
+        "title": "A Dynamic Network Formation Model for Understanding Bacterial Self-Organization into Micro-Colonies",
+        "institution": "University of California, Los Angeles",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "1904.11372",
+        "title": "A Multi-agent approach for $\\textit{in silico}$ simulations of micro-biological systems",
+        "institution": "University of Luxembourg",
+        "country": "LU",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2006.00688",
+        "title": "A Mathematical Description of Bacterial Chemotaxis in Response to Two Stimuli",
+        "institution": "SUNY New Paltz",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "0712.0744",
+        "title": "Computational Chemotaxis in Ants and Bacteria over Dynamic Environments",
+        "institution": "Instituto de Engenharia de Sistemas e Computadores Investiga\u00e7\u00e3o e Desenvolvimento",
+        "country": "PT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1708.06305",
+        "title": "Effect of Local Population Uncertainty on Cooperation in Bacteria",
+        "institution": "University of Ottawa",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1705.04182",
+        "title": "Exploring the onset of collective motion in self-organised trails of social organisms",
+        "institution": "Universidade Federal do Rio de Janeiro",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "adap-org/9306002",
+        "title": "Swarms, Phase Transitions, and Collective Intelligence",
+        "institution": "Santa Fe Institute",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1702.08091",
+        "title": "Modeling mechanical interactions in growing populations of rod-shaped bacteria",
+        "institution": "University of Houston",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "2112.01167",
+        "title": "Multi-scale simulation of COVID-19 epidemics",
+        "institution": "Institut polytechnique de Grenoble",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1603.06986",
+        "title": "Spatial Dispersal of Bacterial Colonies Induces a Dynamical Transition From Local to Global Quorum Sensing",
+        "institution": "University of Southern California",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q010": {
+    "query_text": "How does natural selection shape genetic diversity in small isolated populations?",
+    "subcategory": "q-bio.PE",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "1510.05918",
+        "title": "New thoughts on an old riddle: what determines genetic diversity within and between species?",
+        "institution": "Central South University",
+        "country": "CN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2508.06719",
+        "title": "Speciation by local adaptation and isolation by distance in extended environments",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "1010.2478",
+        "title": "The structure of allelic diversity in the presence of purifying selection",
+        "institution": "Center for Systems Biology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1908.08190",
+        "title": "Diversity in Biology: definitions, quantification, and models",
+        "institution": "Stanford University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 5,
+        "paper_id": "2007.02569",
+        "title": "Dismantling a dogma: the inflated significance of neutral genetic diversity in conservation genetics",
+        "institution": "The University of Adelaide",
+        "country": "AU",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "cond-mat/9801069",
+        "title": "Genetic Polymorphism in Evolving Population",
+        "institution": "Seoul National University",
+        "country": "KR",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 7,
+        "paper_id": "2202.11510",
+        "title": "Diversity patterns and speciation processes in a two-island system with continuous migration",
+        "institution": "Universidade Estadual de Campinas (UNICAMP)",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1306.1215",
+        "title": "Interference limits resolution of selection pressures from linked neutral diversity",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "2001.03926",
+        "title": "Invasion rate versus diversity in population dynamics with catastrophes",
+        "institution": "Bar-Ilan University",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1102.2634",
+        "title": "How likely is speciation in neutral ecology ?",
+        "institution": "University of Illinois Chicago",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "1510.05918",
+        "title": "New thoughts on an old riddle: what determines genetic diversity within and between species?",
+        "institution": "Central South University",
+        "country": "CN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2508.06719",
+        "title": "Speciation by local adaptation and isolation by distance in extended environments",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "1010.2478",
+        "title": "The structure of allelic diversity in the presence of purifying selection",
+        "institution": "Center for Systems Biology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1908.08190",
+        "title": "Diversity in Biology: definitions, quantification, and models",
+        "institution": "Stanford University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 5,
+        "paper_id": "2007.02569",
+        "title": "Dismantling a dogma: the inflated significance of neutral genetic diversity in conservation genetics",
+        "institution": "The University of Adelaide",
+        "country": "AU",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "cond-mat/9801069",
+        "title": "Genetic Polymorphism in Evolving Population",
+        "institution": "Seoul National University",
+        "country": "KR",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 7,
+        "paper_id": "2202.11510",
+        "title": "Diversity patterns and speciation processes in a two-island system with continuous migration",
+        "institution": "Universidade Estadual de Campinas (UNICAMP)",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1306.1215",
+        "title": "Interference limits resolution of selection pressures from linked neutral diversity",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "2001.03926",
+        "title": "Invasion rate versus diversity in population dynamics with catastrophes",
+        "institution": "Bar-Ilan University",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1102.2634",
+        "title": "How likely is speciation in neutral ecology ?",
+        "institution": "University of Illinois Chicago",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1908.08190",
+        "title": "Diversity in Biology: definitions, quantification, and models",
+        "institution": "Stanford University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "1510.05918",
+        "title": "New thoughts on an old riddle: what determines genetic diversity within and between species?",
+        "institution": "Central South University",
+        "country": "CN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "1010.2478",
+        "title": "The structure of allelic diversity in the presence of purifying selection",
+        "institution": "Center for Systems Biology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "2007.02569",
+        "title": "Dismantling a dogma: the inflated significance of neutral genetic diversity in conservation genetics",
+        "institution": "The University of Adelaide",
+        "country": "AU",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2202.11510",
+        "title": "Diversity patterns and speciation processes in a two-island system with continuous migration",
+        "institution": "Universidade Estadual de Campinas (UNICAMP)",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "2001.03926",
+        "title": "Invasion rate versus diversity in population dynamics with catastrophes",
+        "institution": "Bar-Ilan University",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1102.2634",
+        "title": "How likely is speciation in neutral ecology ?",
+        "institution": "University of Illinois Chicago",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1302.1148",
+        "title": "Genetic draft, selective interference, and population genetics of rapid adaptation",
+        "institution": "Max Planck Institute for Developmental Biology",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1005.5536",
+        "title": "Selective sweeps for recessive alleles and for other modes of dominance",
+        "institution": "University of Vienna",
+        "country": "AT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1208.3185",
+        "title": "Genealogies of rapidly adapting populations",
+        "institution": "Max Planck Institute for Developmental Biology",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q013": {
+    "query_text": "What factors determine the rate of speciation in geographically isolated populations?",
+    "subcategory": "q-bio.PE",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "2202.11510",
+        "title": "Diversity patterns and speciation processes in a two-island system with continuous migration",
+        "institution": "Universidade Estadual de Campinas (UNICAMP)",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2508.06719",
+        "title": "Speciation by local adaptation and isolation by distance in extended environments",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2412.06565",
+        "title": "The transition to speciation in the finite genome Derrida-Higgs model: a heuristic solution",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "nlin/0006005",
+        "title": "Waiting time to (and duration of) parapatric speciation",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "cond-mat/9409015",
+        "title": "Geographic speciation in the Derrida-Higgs model of species formation",
+        "institution": "Sapienza University of Rome",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1102.2634",
+        "title": "How likely is speciation in neutral ecology ?",
+        "institution": "University of Illinois Chicago",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "cond-mat/0307317",
+        "title": "Modes of speciation in heterogeneous space",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "adap-org/9807006",
+        "title": "Rapid parapatric speciation on holey adaptive landscapes",
+        "institution": "University of Tennessee at Knoxville",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1602.01672",
+        "title": "The Generalised Isolation-With-Migration Model: a Maximum-Likelihood Implementation for Multilocus Data Sets",
+        "institution": "University College London",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 10,
+        "paper_id": "1209.5242",
+        "title": "Non-stationary patterns of isolation-by-distance: inferring measures of local genetic differentiation with Bayesian kriging",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "2202.11510",
+        "title": "Diversity patterns and speciation processes in a two-island system with continuous migration",
+        "institution": "Universidade Estadual de Campinas (UNICAMP)",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2508.06719",
+        "title": "Speciation by local adaptation and isolation by distance in extended environments",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2412.06565",
+        "title": "The transition to speciation in the finite genome Derrida-Higgs model: a heuristic solution",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "nlin/0006005",
+        "title": "Waiting time to (and duration of) parapatric speciation",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "cond-mat/9409015",
+        "title": "Geographic speciation in the Derrida-Higgs model of species formation",
+        "institution": "Sapienza University of Rome",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1102.2634",
+        "title": "How likely is speciation in neutral ecology ?",
+        "institution": "University of Illinois Chicago",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "cond-mat/0307317",
+        "title": "Modes of speciation in heterogeneous space",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "adap-org/9807006",
+        "title": "Rapid parapatric speciation on holey adaptive landscapes",
+        "institution": "University of Tennessee at Knoxville",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1602.01672",
+        "title": "The Generalised Isolation-With-Migration Model: a Maximum-Likelihood Implementation for Multilocus Data Sets",
+        "institution": "University College London",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 10,
+        "paper_id": "1209.5242",
+        "title": "Non-stationary patterns of isolation-by-distance: inferring measures of local genetic differentiation with Bayesian kriging",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1602.01672",
+        "title": "The Generalised Isolation-With-Migration Model: a Maximum-Likelihood Implementation for Multilocus Data Sets",
+        "institution": "University College London",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "2202.11510",
+        "title": "Diversity patterns and speciation processes in a two-island system with continuous migration",
+        "institution": "Universidade Estadual de Campinas (UNICAMP)",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "cond-mat/9409015",
+        "title": "Geographic speciation in the Derrida-Higgs model of species formation",
+        "institution": "Sapienza University of Rome",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1102.2634",
+        "title": "How likely is speciation in neutral ecology ?",
+        "institution": "University of Illinois Chicago",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "adap-org/9807006",
+        "title": "Rapid parapatric speciation on holey adaptive landscapes",
+        "institution": "University of Tennessee at Knoxville",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1209.5242",
+        "title": "Non-stationary patterns of isolation-by-distance: inferring measures of local genetic differentiation with Bayesian kriging",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1303.7006",
+        "title": "Evolutionary stochastic dynamics of speciation and a simple genotype-phenotype map for protein binding DNA",
+        "institution": "The Francis Crick Institute",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1111.4643",
+        "title": "The role of sex separation in neutral speciation",
+        "institution": "Universidade Estadual de Campinas (UNICAMP)",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "q-bio/0508017",
+        "title": "Monte carlo simulations of parapatric speciation",
+        "institution": "University of Stuttgart",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "q-bio/0402038",
+        "title": "A model of sympatric speciation through assortative mating",
+        "institution": "University of Florence",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q018": {
+    "query_text": "What network models describe the emergence of spatial memory in the hippocampus?",
+    "subcategory": "q-bio.NC",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "cond-mat/9807101",
+        "title": "Attractor neural networks storing multiple space representations: a model for hippocampal place fields",
+        "institution": "Scuola Internazionale Superiore di Studi Avanzati",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2605.21356",
+        "title": "A simple model of co-emergence of grid and place fields",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "0804.3176",
+        "title": "Model of the hippocampal formation explains the coexistence of grid cells and place cells",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "1606.02765",
+        "title": "Transient cell assembly networks encode persistent spatial memories",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "1811.00941",
+        "title": "Replays of spatial memories suppress topological fluctuations in cognitive map",
+        "institution": "Rice University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1509.01677",
+        "title": "Combinatorics of Place Cell Coactivity and Hippocampal Maps",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 7,
+        "paper_id": "2308.03563",
+        "title": "Global cognitive graph properties dynamics of hippocampal formation",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "1710.11279",
+        "title": "The Importance of Forgetting: Limiting Memory Improves Recovery of Topological Characteristics from Neural Data",
+        "institution": "The Ohio State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1503.07707",
+        "title": "Self-organization of grid fields under supervision of place cells in the model of neuron with associative plasticity",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 10,
+        "paper_id": "1909.07536",
+        "title": "From topological analyses to functional modeling: the case of hippocampus",
+        "institution": "The University of Texas Health Science Center at Houston",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "cond-mat/9807101",
+        "title": "Attractor neural networks storing multiple space representations: a model for hippocampal place fields",
+        "institution": "Scuola Internazionale Superiore di Studi Avanzati",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2605.21356",
+        "title": "A simple model of co-emergence of grid and place fields",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "0804.3176",
+        "title": "Model of the hippocampal formation explains the coexistence of grid cells and place cells",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "1606.02765",
+        "title": "Transient cell assembly networks encode persistent spatial memories",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "1811.00941",
+        "title": "Replays of spatial memories suppress topological fluctuations in cognitive map",
+        "institution": "Rice University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1509.01677",
+        "title": "Combinatorics of Place Cell Coactivity and Hippocampal Maps",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 7,
+        "paper_id": "2308.03563",
+        "title": "Global cognitive graph properties dynamics of hippocampal formation",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "1710.11279",
+        "title": "The Importance of Forgetting: Limiting Memory Improves Recovery of Topological Characteristics from Neural Data",
+        "institution": "The Ohio State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1503.07707",
+        "title": "Self-organization of grid fields under supervision of place cells in the model of neuron with associative plasticity",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 10,
+        "paper_id": "1909.07536",
+        "title": "From topological analyses to functional modeling: the case of hippocampus",
+        "institution": "The University of Texas Health Science Center at Houston",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1901.02270",
+        "title": "Neural-network simulations of memory consolidation and reconsolidation",
+        "institution": "McGill University",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "cond-mat/9807101",
+        "title": "Attractor neural networks storing multiple space representations: a model for hippocampal place fields",
+        "institution": "Scuola Internazionale Superiore di Studi Avanzati",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "1811.00941",
+        "title": "Replays of spatial memories suppress topological fluctuations in cognitive map",
+        "institution": "Rice University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1710.11279",
+        "title": "The Importance of Forgetting: Limiting Memory Improves Recovery of Topological Characteristics from Neural Data",
+        "institution": "The Ohio State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1909.07536",
+        "title": "From topological analyses to functional modeling: the case of hippocampus",
+        "institution": "The University of Texas Health Science Center at Houston",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1710.05967",
+        "title": "Topological Schemas of Memory Spaces",
+        "institution": "Rice University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1909.07540",
+        "title": "Topological stability of the hippocampal spatial map and synaptic transience",
+        "institution": "Texas Medical Center",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "q-bio/0507002",
+        "title": "A learning rule for place fields in a cortical model: theta phase precession as a network effect",
+        "institution": "University of Salerno",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "q-bio/0502003",
+        "title": "Autoassociative Memory Retrieval and Spontaneous Activity Bumps in Small-World Networks of Integrate-and-Fire Neurons",
+        "institution": "Brown University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "q-bio/0607022",
+        "title": "Structural network heterogeneities and network dynamics: a possible dynamical mechanism for hippocampal memory reactivation",
+        "institution": "Center for Social and Economic Research",
+        "country": "PL",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q022": {
+    "query_text": "What structural features determine the binding affinity of proteins to DNA regulatory regions?",
+    "subcategory": "q-bio.BM",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "1111.2998",
+        "title": "DNA sequence correlations shape nonspecific transcription factor-DNA binding affinity",
+        "institution": "Ben-Gurion University of the Negev",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "0812.3910",
+        "title": "Fundamentally different strategies for transcriptional regulation are revealed by information-theoretical analysis of binding motifs",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "1104.0910",
+        "title": "Classes of fast and specific search mechanisms for proteins on DNA",
+        "institution": "Vrije Universiteit Amsterdam",
+        "country": "NL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1506.01923",
+        "title": "Discovery and information-theoretic characterization of transcription factor binding sites that act cooperatively",
+        "institution": "Michigan State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1605.09489",
+        "title": "Theory on the mechanism of site-specific DNA-protein interactions in the presence of traps",
+        "institution": "Indian Institute of Technology Madras",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "0809.4080",
+        "title": "Predicting Transcription Factor Specificity with All-Atom Models",
+        "institution": "Harvard\u2013MIT Division of Health Sciences and Technology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "2007.14922",
+        "title": "Structural representations of DNA regulatory substrates can enhance sequence-based algorithms by associating functional sequence variants",
+        "institution": "Chalmers University of Technology",
+        "country": "SE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "q-bio/0310040",
+        "title": "Computational identification of transcription factor binding sites by functional analysis of sets of genes sharing overrepresented upstream motifs",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1711.10547",
+        "title": "Predicting variation of DNA shape preferences in protein-DNA interaction in cancer cells with a new biophysical model",
+        "institution": "Oslo University Hospital",
+        "country": "NO",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "physics/0201033",
+        "title": "Finding regulatory sites from statistical analysis of nucleotide frequencies in the upstream region of eukaryotic genes",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "1111.2998",
+        "title": "DNA sequence correlations shape nonspecific transcription factor-DNA binding affinity",
+        "institution": "Ben-Gurion University of the Negev",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "0812.3910",
+        "title": "Fundamentally different strategies for transcriptional regulation are revealed by information-theoretical analysis of binding motifs",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "1104.0910",
+        "title": "Classes of fast and specific search mechanisms for proteins on DNA",
+        "institution": "Vrije Universiteit Amsterdam",
+        "country": "NL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1506.01923",
+        "title": "Discovery and information-theoretic characterization of transcription factor binding sites that act cooperatively",
+        "institution": "Michigan State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1605.09489",
+        "title": "Theory on the mechanism of site-specific DNA-protein interactions in the presence of traps",
+        "institution": "Indian Institute of Technology Madras",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "0809.4080",
+        "title": "Predicting Transcription Factor Specificity with All-Atom Models",
+        "institution": "Harvard\u2013MIT Division of Health Sciences and Technology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "2007.14922",
+        "title": "Structural representations of DNA regulatory substrates can enhance sequence-based algorithms by associating functional sequence variants",
+        "institution": "Chalmers University of Technology",
+        "country": "SE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "q-bio/0310040",
+        "title": "Computational identification of transcription factor binding sites by functional analysis of sets of genes sharing overrepresented upstream motifs",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1711.10547",
+        "title": "Predicting variation of DNA shape preferences in protein-DNA interaction in cancer cells with a new biophysical model",
+        "institution": "Oslo University Hospital",
+        "country": "NO",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "physics/0201033",
+        "title": "Finding regulatory sites from statistical analysis of nucleotide frequencies in the upstream region of eukaryotic genes",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1404.5544",
+        "title": "Estimating binding properties of transcription factors from genome-wide binding profiles",
+        "institution": "University of Cambridge",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "1111.2998",
+        "title": "DNA sequence correlations shape nonspecific transcription factor-DNA binding affinity",
+        "institution": "Ben-Gurion University of the Negev",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "1104.0910",
+        "title": "Classes of fast and specific search mechanisms for proteins on DNA",
+        "institution": "Vrije Universiteit Amsterdam",
+        "country": "NL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1506.01923",
+        "title": "Discovery and information-theoretic characterization of transcription factor binding sites that act cooperatively",
+        "institution": "Michigan State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1605.09489",
+        "title": "Theory on the mechanism of site-specific DNA-protein interactions in the presence of traps",
+        "institution": "Indian Institute of Technology Madras",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "0809.4080",
+        "title": "Predicting Transcription Factor Specificity with All-Atom Models",
+        "institution": "Harvard\u2013MIT Division of Health Sciences and Technology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "2007.14922",
+        "title": "Structural representations of DNA regulatory substrates can enhance sequence-based algorithms by associating functional sequence variants",
+        "institution": "Chalmers University of Technology",
+        "country": "SE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1711.10547",
+        "title": "Predicting variation of DNA shape preferences in protein-DNA interaction in cancer cells with a new biophysical model",
+        "institution": "Oslo University Hospital",
+        "country": "NO",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1311.7496",
+        "title": "Protein-DNA electrostatics: toward a new paradigm for protein sliding",
+        "institution": "Sorbonne Universit\u00e9",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1012.3607",
+        "title": "Accurate prediction of gene expression by integration of DNA sequence statistics with detailed modeling of transcription regulation",
+        "institution": "Ikerbasque",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q033": {
+    "query_text": "What machine learning approaches predict gene regulatory elements from DNA sequence?",
+    "subcategory": "q-bio.GN",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "2304.12963",
+        "title": "Advancing regulatory genomics with machine learning",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 2,
+        "paper_id": "1805.01506",
+        "title": "Prediction of a Gene Regulatory Network from Gene Expression Profiles With Linear Regression and Pearson Correlation Coefficient",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2504.12610",
+        "title": "Machine Learning Methods for Gene Regulatory Network Inference",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "q-bio/0406016",
+        "title": "Predicting Genetic Regulatory Response using Classification: Yeast Stress Response",
+        "institution": "Columbia University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 5,
+        "paper_id": "q-bio/0411028",
+        "title": "Predicting Genetic Regulatory Response Using Classification",
+        "institution": "Columbia University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 6,
+        "paper_id": "q-bio/0701021",
+        "title": "Motif Discovery through Predictive Modeling of Gene Regulation",
+        "institution": "Columbia University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 7,
+        "paper_id": "1811.07269",
+        "title": "Prediction of Signal Sequences in Abiotic Stress Inducible Genes from Main Crops by Association Rule Mining",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "0802.3959",
+        "title": "SIRENE: Supervised Inference of Regulatory Networks",
+        "institution": "Inserm",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "2502.13991",
+        "title": "Learning to Discover Regulatory Elements for Gene Expression Prediction",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 10,
+        "paper_id": "1908.09426",
+        "title": "A multi-modal neural network for learning cis and trans regulation of stress response in yeast",
+        "institution": "Stanford University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "2304.12963",
+        "title": "Advancing regulatory genomics with machine learning",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 2,
+        "paper_id": "1805.01506",
+        "title": "Prediction of a Gene Regulatory Network from Gene Expression Profiles With Linear Regression and Pearson Correlation Coefficient",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2504.12610",
+        "title": "Machine Learning Methods for Gene Regulatory Network Inference",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "q-bio/0406016",
+        "title": "Predicting Genetic Regulatory Response using Classification: Yeast Stress Response",
+        "institution": "Columbia University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 5,
+        "paper_id": "1811.07269",
+        "title": "Prediction of Signal Sequences in Abiotic Stress Inducible Genes from Main Crops by Association Rule Mining",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 6,
+        "paper_id": "0802.3959",
+        "title": "SIRENE: Supervised Inference of Regulatory Networks",
+        "institution": "Inserm",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "2502.13991",
+        "title": "Learning to Discover Regulatory Elements for Gene Expression Prediction",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "1908.09426",
+        "title": "A multi-modal neural network for learning cis and trans regulation of stress response in yeast",
+        "institution": "Stanford University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 9,
+        "paper_id": "1805.03771",
+        "title": "Transcription Factor-DNA Binding Via Machine Learning Ensembles",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 10,
+        "paper_id": "1608.03530",
+        "title": "Semi-Supervised Prediction of Gene Regulatory Networks Using Machine Learning Algorithms",
+        "institution": "New Jersey Institute of Technology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "q-bio/0406016",
+        "title": "Predicting Genetic Regulatory Response using Classification: Yeast Stress Response",
+        "institution": "Columbia University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "0802.3959",
+        "title": "SIRENE: Supervised Inference of Regulatory Networks",
+        "institution": "Inserm",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "1608.03530",
+        "title": "Semi-Supervised Prediction of Gene Regulatory Networks Using Machine Learning Algorithms",
+        "institution": "New Jersey Institute of Technology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "q-bio/0312007",
+        "title": "What can we learn from noncoding regions of similarity between genomes?",
+        "institution": "Wellcome Sanger Institute",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1301.1083",
+        "title": "Supervised, semi-supervised and unsupervised inference of gene regulatory networks",
+        "institution": "ARC Centre of Excellence in Advanced Molecular Imaging",
+        "country": "AU",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "0803.3180",
+        "title": "Understanding Distal Transcriptional Regulation from Sequence Motif, Network Inference and Interactome Perspectives",
+        "institution": "University of Michigan",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "2504.03733",
+        "title": "Artificial Intelligence and Deep Learning Algorithms for Epigenetic Sequence Analysis: A Review for Epigeneticists and AI Experts",
+        "institution": "University of Manitoba",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "0904.1298",
+        "title": "Reverse-engineering transcriptional modules from gene expression data",
+        "institution": "VIB-UGent Center for Plant Systems Biology",
+        "country": "BE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1012.3607",
+        "title": "Accurate prediction of gene expression by integration of DNA sequence statistics with detailed modeling of transcription regulation",
+        "institution": "Ikerbasque",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1312.0335",
+        "title": "Inferring Regulatory Networks by Combining Perturbation Screens and Steady State Gene Expression Profiles",
+        "institution": "University of Washington",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q038": {
+    "query_text": "How do cells sense and respond to mechanical forces from the extracellular environment?",
+    "subcategory": "q-bio.CB",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "1404.0389",
+        "title": "The mechano-chemistry of cytoskeletal force generation",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 2,
+        "paper_id": "2112.09997",
+        "title": "Cell crawling on a compliant substrate: a biphasic relation with linear friction",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2501.14538",
+        "title": "Active Intracellular Mechanics: A Key to Cellular Function and Organization",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "2104.05580",
+        "title": "What do cells regulate in soft tissues on short time scales?",
+        "institution": "Universit\u00e4t Hamburg",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1412.0369",
+        "title": "Cell reorientation under cyclic stretching",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "2105.05792",
+        "title": "Linear correlation between active and resistive stresses informs on force generation and stress transmission in adherent cells",
+        "institution": "Universit\u00e9 Claude Bernard Lyon 1",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "q-bio/0608006",
+        "title": "Focal adhesions as mechanosensors: the two-spring model",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1906.08962",
+        "title": "Cell Shape and Durotaxis Follow from Mechanical Cell-Substrate Reciprocity and Focal Adhesion Dynamics: A Unifying Mathematical Model",
+        "institution": "University of British Columbia",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 9,
+        "paper_id": "cond-mat/0308187",
+        "title": "Cell organization in soft media due to active mechanosensing",
+        "institution": "Max Planck Society",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1302.4002",
+        "title": "An asymmetry between pushing and pulling for crawling cells",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "1404.0389",
+        "title": "The mechano-chemistry of cytoskeletal force generation",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 2,
+        "paper_id": "2112.09997",
+        "title": "Cell crawling on a compliant substrate: a biphasic relation with linear friction",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2501.14538",
+        "title": "Active Intracellular Mechanics: A Key to Cellular Function and Organization",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "2104.05580",
+        "title": "What do cells regulate in soft tissues on short time scales?",
+        "institution": "Universit\u00e4t Hamburg",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1412.0369",
+        "title": "Cell reorientation under cyclic stretching",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "2105.05792",
+        "title": "Linear correlation between active and resistive stresses informs on force generation and stress transmission in adherent cells",
+        "institution": "Universit\u00e9 Claude Bernard Lyon 1",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "q-bio/0608006",
+        "title": "Focal adhesions as mechanosensors: the two-spring model",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1906.08962",
+        "title": "Cell Shape and Durotaxis Follow from Mechanical Cell-Substrate Reciprocity and Focal Adhesion Dynamics: A Unifying Mathematical Model",
+        "institution": "University of British Columbia",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 9,
+        "paper_id": "cond-mat/0308187",
+        "title": "Cell organization in soft media due to active mechanosensing",
+        "institution": "Max Planck Society",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1910.11173",
+        "title": "Contour models of cellular adhesion",
+        "institution": "Lorentz Center",
+        "country": "NL",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1906.08962",
+        "title": "Cell Shape and Durotaxis Follow from Mechanical Cell-Substrate Reciprocity and Focal Adhesion Dynamics: A Unifying Mathematical Model",
+        "institution": "University of British Columbia",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "2112.09997",
+        "title": "Cell crawling on a compliant substrate: a biphasic relation with linear friction",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2104.05580",
+        "title": "What do cells regulate in soft tissues on short time scales?",
+        "institution": "Universit\u00e4t Hamburg",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1412.0369",
+        "title": "Cell reorientation under cyclic stretching",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2105.05792",
+        "title": "Linear correlation between active and resistive stresses informs on force generation and stress transmission in adherent cells",
+        "institution": "Universit\u00e9 Claude Bernard Lyon 1",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "q-bio/0608006",
+        "title": "Focal adhesions as mechanosensors: the two-spring model",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "cond-mat/0308187",
+        "title": "Cell organization in soft media due to active mechanosensing",
+        "institution": "Max Planck Society",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1302.4002",
+        "title": "An asymmetry between pushing and pulling for crawling cells",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1910.11173",
+        "title": "Contour models of cellular adhesion",
+        "institution": "Lorentz Center",
+        "country": "NL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1806.00502",
+        "title": "Random Walker Models for Durotaxis",
+        "institution": "University of Michigan",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q043": {
+    "query_text": "What mechanisms regulate the selective transport of proteins across the nuclear envelope?",
+    "subcategory": "q-bio.SC",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "0903.2638",
+        "title": "Nucleocytoplasmic transport: a thermodynamic mechanism",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "q-bio/0609043",
+        "title": "Efficiency, selectivity and robustness of the nuclear pore complex transport",
+        "institution": "Rockefeller University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2304.03230",
+        "title": "Improving the Hole Picture: Towards a Consensus on the Mechanism of Nuclear Transport",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "1307.7043",
+        "title": "Quantitative analysis of intra-Golgi transport reveals inter-cisternal exchange for all cargo",
+        "institution": "Chimie ParisTech",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1103.6111",
+        "title": "Cooperative protein transport in cellular organelles",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "2504.06452",
+        "title": "Mathematical model of Nucleocytoplasmic Transport and Nuclear-to-Cell Ratio in a growing cell",
+        "institution": "Brandeis University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "q-bio/0311036",
+        "title": "Peptide size dependent active transport in the proteasome",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "1404.7529",
+        "title": "Cell development obeys maximum Fisher information",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1603.03355",
+        "title": "A thermodynamic paradigm for solution demixing inspired by nuclear transport in living cells",
+        "institution": "Boston University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "0706.3758",
+        "title": "Diffusion of Macromolecules across the Nuclear Pore Complex",
+        "institution": "Indian Institute of Technology Bombay",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "0903.2638",
+        "title": "Nucleocytoplasmic transport: a thermodynamic mechanism",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "q-bio/0609043",
+        "title": "Efficiency, selectivity and robustness of the nuclear pore complex transport",
+        "institution": "Rockefeller University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2304.03230",
+        "title": "Improving the Hole Picture: Towards a Consensus on the Mechanism of Nuclear Transport",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "1307.7043",
+        "title": "Quantitative analysis of intra-Golgi transport reveals inter-cisternal exchange for all cargo",
+        "institution": "Chimie ParisTech",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1103.6111",
+        "title": "Cooperative protein transport in cellular organelles",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "2504.06452",
+        "title": "Mathematical model of Nucleocytoplasmic Transport and Nuclear-to-Cell Ratio in a growing cell",
+        "institution": "Brandeis University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "q-bio/0311036",
+        "title": "Peptide size dependent active transport in the proteasome",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "1404.7529",
+        "title": "Cell development obeys maximum Fisher information",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1603.03355",
+        "title": "A thermodynamic paradigm for solution demixing inspired by nuclear transport in living cells",
+        "institution": "Boston University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "0706.3758",
+        "title": "Diffusion of Macromolecules across the Nuclear Pore Complex",
+        "institution": "Indian Institute of Technology Bombay",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1710.02346",
+        "title": "Particle transport across a channel via an oscillating potential",
+        "institution": "University of Cambridge",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "0903.2638",
+        "title": "Nucleocytoplasmic transport: a thermodynamic mechanism",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "q-bio/0609043",
+        "title": "Efficiency, selectivity and robustness of the nuclear pore complex transport",
+        "institution": "Rockefeller University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1307.7043",
+        "title": "Quantitative analysis of intra-Golgi transport reveals inter-cisternal exchange for all cargo",
+        "institution": "Chimie ParisTech",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1103.6111",
+        "title": "Cooperative protein transport in cellular organelles",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "2504.06452",
+        "title": "Mathematical model of Nucleocytoplasmic Transport and Nuclear-to-Cell Ratio in a growing cell",
+        "institution": "Brandeis University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1603.03355",
+        "title": "A thermodynamic paradigm for solution demixing inspired by nuclear transport in living cells",
+        "institution": "Boston University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "0706.3758",
+        "title": "Diffusion of Macromolecules across the Nuclear Pore Complex",
+        "institution": "Indian Institute of Technology Bombay",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1712.04519",
+        "title": "Deciphering the 'fuzzy' interaction of FG nucleoporins and transport factors using SANS",
+        "institution": "Albert Einstein College of Medicine",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1006.4758",
+        "title": "Facilitated diffusion of proteins on chromatin",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q050": {
+    "query_text": "What mathematical models explain the emergence of multicellularity from single-cell ancestors?",
+    "subcategory": "q-bio.OT",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "2102.03422",
+        "title": "Mechanistic models of cell-fate transitions from single-cell data",
+        "institution": "Pompeu Fabra University",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "1403.3217",
+        "title": "In silico transitions to multicellularity",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "1111.4597",
+        "title": "Division of labour and the evolution of multicellularity",
+        "institution": "Universidad de Santiago de Chile",
+        "country": "CL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1803.06132",
+        "title": "Selection for synchronized cell division in simple multicellular organisms",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "2011.10873",
+        "title": "Bridging from single to collective cell migration: A review of models and links to experiments",
+        "institution": "University of British Columbia",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 6,
+        "paper_id": "1511.02079",
+        "title": "Emergence of proto-organisms from bistable stochastic differentiation and adhesion",
+        "institution": "Universitat Pompeu Fabra",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "2403.06753",
+        "title": "Complementing cell taxonomies with a multicellular functional analysis of tissues",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1802.01039",
+        "title": "Stochastic simulation of pattern formation in growing tissue: a multilevel approach",
+        "institution": "Uppsala University",
+        "country": "SE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1506.04611",
+        "title": "Emergence of self-reinforcing information bottlenecks in multilevel selection",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 10,
+        "paper_id": "1602.08526",
+        "title": "Progress towards quantitative design principles of multicellular systems",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "2102.03422",
+        "title": "Mechanistic models of cell-fate transitions from single-cell data",
+        "institution": "Pompeu Fabra University",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "1403.3217",
+        "title": "In silico transitions to multicellularity",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "1111.4597",
+        "title": "Division of labour and the evolution of multicellularity",
+        "institution": "Universidad de Santiago de Chile",
+        "country": "CL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1803.06132",
+        "title": "Selection for synchronized cell division in simple multicellular organisms",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "2011.10873",
+        "title": "Bridging from single to collective cell migration: A review of models and links to experiments",
+        "institution": "University of British Columbia",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 6,
+        "paper_id": "1511.02079",
+        "title": "Emergence of proto-organisms from bistable stochastic differentiation and adhesion",
+        "institution": "Universitat Pompeu Fabra",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "2403.06753",
+        "title": "Complementing cell taxonomies with a multicellular functional analysis of tissues",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1802.01039",
+        "title": "Stochastic simulation of pattern formation in growing tissue: a multilevel approach",
+        "institution": "Uppsala University",
+        "country": "SE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1506.04611",
+        "title": "Emergence of self-reinforcing information bottlenecks in multilevel selection",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 10,
+        "paper_id": "1602.08526",
+        "title": "Progress towards quantitative design principles of multicellular systems",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "2011.10873",
+        "title": "Bridging from single to collective cell migration: A review of models and links to experiments",
+        "institution": "University of British Columbia",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "2102.03422",
+        "title": "Mechanistic models of cell-fate transitions from single-cell data",
+        "institution": "Pompeu Fabra University",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "1111.4597",
+        "title": "Division of labour and the evolution of multicellularity",
+        "institution": "Universidad de Santiago de Chile",
+        "country": "CL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1511.02079",
+        "title": "Emergence of proto-organisms from bistable stochastic differentiation and adhesion",
+        "institution": "Universitat Pompeu Fabra",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2403.06753",
+        "title": "Complementing cell taxonomies with a multicellular functional analysis of tissues",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1802.01039",
+        "title": "Stochastic simulation of pattern formation in growing tissue: a multilevel approach",
+        "institution": "Uppsala University",
+        "country": "SE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1812.05872",
+        "title": "Bridging the gap between individual-based and continuum models of growing cell populations",
+        "institution": "University of St Andrews",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "2511.07847",
+        "title": "Matters of Life and Death in Computational Cell Biology",
+        "institution": "Indiana University Bloomington",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1904.08182",
+        "title": "Mathematical modeling of variability in intracellular signaling",
+        "institution": "Helmholtz Zentrum M\u00fcnchen",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1404.0196",
+        "title": "Emergence of multicellularity in a model of cell growth, death and aggregation under size-dependent selection",
+        "institution": "Instituci\u00f3 Catalana de Recerca i Estudis Avan\u00e7ats",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q055": {
+    "query_text": "How do optimal-control frameworks describe resource-allocation trade-offs in growing cells?",
+    "subcategory": "q-bio.QM",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "1906.03919",
+        "title": "Dynamic metabolic resource allocation based on the maximum entropy principle",
+        "institution": "Columbia University Irving Medical Center",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "1608.08612",
+        "title": "The influence of the composition of tradeoffs on the generation of differentiated cells",
+        "institution": "Universidade Federal de Pernambuco",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2303.08042",
+        "title": "Evolutionary advantage of cell size control",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "1704.02189",
+        "title": "Optimality in cellular storage via the Pontryagin Maximum Principle",
+        "institution": "KU Leuven",
+        "country": "BE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2601.22613",
+        "title": "Effects of multi-phase control mechanism on fibroblast dynamics: A segmented mathematical modeling approach",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 6,
+        "paper_id": "1612.03125",
+        "title": "Paradoxes in Leaky Microbial Trade",
+        "institution": "Santa Fe Institute",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1701.01725",
+        "title": "Effective Potential for Cellular Size Control",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "2409.09548",
+        "title": "Dynamic landscapes and statistical limits on growth during cell fate specification",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1305.7147",
+        "title": "Cell Growth and Size Homeostasis in Silico",
+        "institution": "Tsinghua University",
+        "country": "CN",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 10,
+        "paper_id": "1410.4771",
+        "title": "Single-cell analysis of growth in budding yeast and bacteria reveals a common size regulation strategy",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "1906.03919",
+        "title": "Dynamic metabolic resource allocation based on the maximum entropy principle",
+        "institution": "Columbia University Irving Medical Center",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "1608.08612",
+        "title": "The influence of the composition of tradeoffs on the generation of differentiated cells",
+        "institution": "Universidade Federal de Pernambuco",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2303.08042",
+        "title": "Evolutionary advantage of cell size control",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "1704.02189",
+        "title": "Optimality in cellular storage via the Pontryagin Maximum Principle",
+        "institution": "KU Leuven",
+        "country": "BE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2601.22613",
+        "title": "Effects of multi-phase control mechanism on fibroblast dynamics: A segmented mathematical modeling approach",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 6,
+        "paper_id": "1612.03125",
+        "title": "Paradoxes in Leaky Microbial Trade",
+        "institution": "Santa Fe Institute",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1701.01725",
+        "title": "Effective Potential for Cellular Size Control",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "2409.09548",
+        "title": "Dynamic landscapes and statistical limits on growth during cell fate specification",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1305.7147",
+        "title": "Cell Growth and Size Homeostasis in Silico",
+        "institution": "Tsinghua University",
+        "country": "CN",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 10,
+        "paper_id": "1410.4771",
+        "title": "Single-cell analysis of growth in budding yeast and bacteria reveals a common size regulation strategy",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1305.7147",
+        "title": "Cell Growth and Size Homeostasis in Silico",
+        "institution": "Tsinghua University",
+        "country": "CN",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "1906.03919",
+        "title": "Dynamic metabolic resource allocation based on the maximum entropy principle",
+        "institution": "Columbia University Irving Medical Center",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "1608.08612",
+        "title": "The influence of the composition of tradeoffs on the generation of differentiated cells",
+        "institution": "Universidade Federal de Pernambuco",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1704.02189",
+        "title": "Optimality in cellular storage via the Pontryagin Maximum Principle",
+        "institution": "KU Leuven",
+        "country": "BE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1612.03125",
+        "title": "Paradoxes in Leaky Microbial Trade",
+        "institution": "Santa Fe Institute",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1410.4771",
+        "title": "Single-cell analysis of growth in budding yeast and bacteria reveals a common size regulation strategy",
+        "institution": "Weizmann Institute of Science",
+        "country": "IL",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1809.11030",
+        "title": "Exploration-exploitation tradeoffs dictate the optimal distributions of phenotypes for populations subject to fitness fluctuations",
+        "institution": "Istituto di Nanotecnologia",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1205.2769",
+        "title": "Von Neumann's growth model: statistical mechanics and biological applications",
+        "institution": "Sapienza University of Rome",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1402.0757",
+        "title": "The evolution of carrying capacity in constrained and expanding tumour cell populations",
+        "institution": "Chalmers University of Technology",
+        "country": "SE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "2506.20776",
+        "title": "Balancing the cellular budget: lessons in metabolism from microbes to cancer",
+        "institution": "Indian Institute of Science Bangalore",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q063": {
+    "query_text": "How do reinforcement-learning models account for decision-making under uncertainty in the brain?",
+    "subcategory": "q-bio.NC",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "2007.01099",
+        "title": "Reinforcement Learning and its Connections with Neuroscience and Psychology",
+        "institution": "Birla Institute of Technology and Science, Pilani",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2306.03162",
+        "title": "Navigation through the complex world -- the neurophysiology of decision-making processes",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2509.22209",
+        "title": "A Bio-Inspired Minimal Model for Non-Stationary K-Armed Bandits",
+        "institution": null,
+        "country": null,
+        "coverage": "not_found",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "1912.07660",
+        "title": "Neural Mechanisms of Human Decision-Making",
+        "institution": "University of Colorado Boulder",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2411.11143",
+        "title": "Integrated Ising Model with global inhibition for decision making",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 6,
+        "paper_id": "2210.01691",
+        "title": "Adaptive Synaptic Failure Enables Sampling from Posterior Predictive Distributions in the Brain",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 7,
+        "paper_id": "2207.00636",
+        "title": "Action-modulated midbrain dopamine activity arises from distributed control policies",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "1802.00718",
+        "title": "Hippocampal and striatal involvement in cognitive tasks: a computational model",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1804.04324",
+        "title": "Local reservoir model for choice-based learning",
+        "institution": "National Institute of Information and Communications Technology",
+        "country": "JP",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1810.11248",
+        "title": "Sequence-dependent sensitivity explains the accuracy of decisions when cues are separated with a gap",
+        "institution": "Institute for Research in Fundamental Sciences",
+        "country": "IR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "2007.01099",
+        "title": "Reinforcement Learning and its Connections with Neuroscience and Psychology",
+        "institution": "Birla Institute of Technology and Science, Pilani",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2306.03162",
+        "title": "Navigation through the complex world -- the neurophysiology of decision-making processes",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2509.22209",
+        "title": "A Bio-Inspired Minimal Model for Non-Stationary K-Armed Bandits",
+        "institution": null,
+        "country": null,
+        "coverage": "not_found",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "1912.07660",
+        "title": "Neural Mechanisms of Human Decision-Making",
+        "institution": "University of Colorado Boulder",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2411.11143",
+        "title": "Integrated Ising Model with global inhibition for decision making",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 6,
+        "paper_id": "2210.01691",
+        "title": "Adaptive Synaptic Failure Enables Sampling from Posterior Predictive Distributions in the Brain",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 7,
+        "paper_id": "2207.00636",
+        "title": "Action-modulated midbrain dopamine activity arises from distributed control policies",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "1802.00718",
+        "title": "Hippocampal and striatal involvement in cognitive tasks: a computational model",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1804.04324",
+        "title": "Local reservoir model for choice-based learning",
+        "institution": "National Institute of Information and Communications Technology",
+        "country": "JP",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1810.11248",
+        "title": "Sequence-dependent sensitivity explains the accuracy of decisions when cues are separated with a gap",
+        "institution": "Institute for Research in Fundamental Sciences",
+        "country": "IR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1710.05945",
+        "title": "Rats optimally accumulate and discount evidence in a dynamic environment",
+        "institution": "Princeton University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "2007.01099",
+        "title": "Reinforcement Learning and its Connections with Neuroscience and Psychology",
+        "institution": "Birla Institute of Technology and Science, Pilani",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "1912.07660",
+        "title": "Neural Mechanisms of Human Decision-Making",
+        "institution": "University of Colorado Boulder",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1804.04324",
+        "title": "Local reservoir model for choice-based learning",
+        "institution": "National Institute of Information and Communications Technology",
+        "country": "JP",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1810.11248",
+        "title": "Sequence-dependent sensitivity explains the accuracy of decisions when cues are separated with a gap",
+        "institution": "Institute for Research in Fundamental Sciences",
+        "country": "IR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1509.01972",
+        "title": "The Brain Uses Reliability of Stimulus Information when Making Perceptual Decisions",
+        "institution": "Technische Universit\u00e4t Dresden",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1908.04696",
+        "title": "Inverse Rational Control with Partially Observable Continuous Nonlinear Dynamics",
+        "institution": "Soongsil University",
+        "country": "KR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1505.04195",
+        "title": "Stochastic models of evidence accumulation in changing environments",
+        "institution": "University of Houston",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "2103.03679",
+        "title": "Episodic memory governs choices: An RNN-based reinforcement learning model for decision-making task",
+        "institution": "South China University of Technology",
+        "country": "CN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "2202.04324",
+        "title": "Studying the neural representations of uncertainty",
+        "institution": "Boston University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q071": {
+    "query_text": "How do Boolean network models simulate the logic of gene regulatory circuits?",
+    "subcategory": "q-bio.MN",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "2407.01337",
+        "title": "Computation of Immediate Neighbours of Monotone Boolean Functions",
+        "institution": "Universidade Federal de Santa Catarina",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2302.01694",
+        "title": "Coevolving Boolean and Multi-Valued Regulatory Networks",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "0807.1013",
+        "title": "From differential equations to Boolean networks: A Case Study in modeling regulatory networks",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "0907.0285",
+        "title": "Reduction of Boolean Networks",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "2009.01216",
+        "title": "A meta-analysis of Boolean network models reveals design principles of gene regulatory networks",
+        "institution": "Iowa State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1102.3739",
+        "title": "Regulatory patterns in molecular interaction networks",
+        "institution": "Virginia Tech",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1901.07623",
+        "title": "Partial Order on the set of Boolean Regulatory Functions",
+        "institution": "Universidade Federal de Santa Catarina",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1011.3848",
+        "title": "Boolean Threshold Networks: Virtues and Limitations for Biological Modeling",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "q-bio/0606022",
+        "title": "Mean Field Model of Genetic Regulatory Networks",
+        "institution": "University of Calgary",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "0908.3037",
+        "title": "Parameter estimation for Boolean models of biological networks",
+        "institution": "Clemson University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "2407.01337",
+        "title": "Computation of Immediate Neighbours of Monotone Boolean Functions",
+        "institution": "Universidade Federal de Santa Catarina",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2302.01694",
+        "title": "Coevolving Boolean and Multi-Valued Regulatory Networks",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "0807.1013",
+        "title": "From differential equations to Boolean networks: A Case Study in modeling regulatory networks",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "0907.0285",
+        "title": "Reduction of Boolean Networks",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "2009.01216",
+        "title": "A meta-analysis of Boolean network models reveals design principles of gene regulatory networks",
+        "institution": "Iowa State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1102.3739",
+        "title": "Regulatory patterns in molecular interaction networks",
+        "institution": "Virginia Tech",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1011.3848",
+        "title": "Boolean Threshold Networks: Virtues and Limitations for Biological Modeling",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "q-bio/0606022",
+        "title": "Mean Field Model of Genetic Regulatory Networks",
+        "institution": "University of Calgary",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "0908.3037",
+        "title": "Parameter estimation for Boolean models of biological networks",
+        "institution": "Clemson University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "2006.13334",
+        "title": "Circuits with broken fibration symmetries perform core logic computations in biological networks",
+        "institution": "City College of New York",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "2107.13099",
+        "title": "Inference on the structure of gene regulatory networks",
+        "institution": "University of California, Los Angeles",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "2407.01337",
+        "title": "Computation of Immediate Neighbours of Monotone Boolean Functions",
+        "institution": "Universidade Federal de Santa Catarina",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "2009.01216",
+        "title": "A meta-analysis of Boolean network models reveals design principles of gene regulatory networks",
+        "institution": "Iowa State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1102.3739",
+        "title": "Regulatory patterns in molecular interaction networks",
+        "institution": "Virginia Tech",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1901.07623",
+        "title": "Partial Order on the set of Boolean Regulatory Functions",
+        "institution": "Universidade Federal de Santa Catarina",
+        "country": "BR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "q-bio/0606022",
+        "title": "Mean Field Model of Genetic Regulatory Networks",
+        "institution": "University of Calgary",
+        "country": "CA",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "0908.3037",
+        "title": "Parameter estimation for Boolean models of biological networks",
+        "institution": "Clemson University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "2006.13334",
+        "title": "Circuits with broken fibration symmetries perform core logic computations in biological networks",
+        "institution": "City College of New York",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "0811.2209",
+        "title": "Boolean modeling of collective effects in complex networks",
+        "institution": "Center for Systems Biology",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1508.05317",
+        "title": "Identification of control targets in Boolean molecular network models via computational algebra",
+        "institution": "Murray State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q085": {
+    "query_text": "What models describe oxygen transport and consumption in tissue microenvironments?",
+    "subcategory": "q-bio.TO",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "1902.08578",
+        "title": "Quantifying the impact of tissue metabolism on solute transport in feto-placental microvascular networks",
+        "institution": "University of Manchester",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2201.11584",
+        "title": "Modelling the effect of vascular status on tumour evolution and outcome after thermal therapy",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2404.14224",
+        "title": "Modeling principles for a physiology-based whole-body model of human metabolism",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "0712.4339",
+        "title": "Global dynamical model of the cardiovascular system",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "1512.06475",
+        "title": "Analytic and Numerical Models of Oxygen and Nutrient Diffusion, Metabolism Dynamics, and Architecture Optimization in Three-Dimensional Tissue Constructs with Applications and Insights in Cerebral Organoids",
+        "institution": "University of Oxford",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 6,
+        "paper_id": "1609.00981",
+        "title": "Allometric scaling in-vitro",
+        "institution": "University of Pisa",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1410.6364",
+        "title": "Inferring metabolic phenotypes from the exometabolome through a thermodynamic variational principle",
+        "institution": "Italian Institute of Technology",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "2202.01104",
+        "title": "Optimal fenestration of the Fontan circulation",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1812.09992",
+        "title": "A new model for the emergence of blood capillary networks",
+        "institution": "North Carolina State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1305.5949",
+        "title": "Homogenization approach to water transport in plant tissues with periodic microstructures",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "1902.08578",
+        "title": "Quantifying the impact of tissue metabolism on solute transport in feto-placental microvascular networks",
+        "institution": "University of Manchester",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "2201.11584",
+        "title": "Modelling the effect of vascular status on tumour evolution and outcome after thermal therapy",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2404.14224",
+        "title": "Modeling principles for a physiology-based whole-body model of human metabolism",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "0712.4339",
+        "title": "Global dynamical model of the cardiovascular system",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 5,
+        "paper_id": "1512.06475",
+        "title": "Analytic and Numerical Models of Oxygen and Nutrient Diffusion, Metabolism Dynamics, and Architecture Optimization in Three-Dimensional Tissue Constructs with Applications and Insights in Cerebral Organoids",
+        "institution": "University of Oxford",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 6,
+        "paper_id": "1609.00981",
+        "title": "Allometric scaling in-vitro",
+        "institution": "University of Pisa",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "1410.6364",
+        "title": "Inferring metabolic phenotypes from the exometabolome through a thermodynamic variational principle",
+        "institution": "Italian Institute of Technology",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "2202.01104",
+        "title": "Optimal fenestration of the Fontan circulation",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 9,
+        "paper_id": "1812.09992",
+        "title": "A new model for the emergence of blood capillary networks",
+        "institution": "North Carolina State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1305.5949",
+        "title": "Homogenization approach to water transport in plant tissues with periodic microstructures",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1512.06475",
+        "title": "Analytic and Numerical Models of Oxygen and Nutrient Diffusion, Metabolism Dynamics, and Architecture Optimization in Three-Dimensional Tissue Constructs with Applications and Insights in Cerebral Organoids",
+        "institution": "University of Oxford",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "1902.08578",
+        "title": "Quantifying the impact of tissue metabolism on solute transport in feto-placental microvascular networks",
+        "institution": "University of Manchester",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "1609.00981",
+        "title": "Allometric scaling in-vitro",
+        "institution": "University of Pisa",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "1410.6364",
+        "title": "Inferring metabolic phenotypes from the exometabolome through a thermodynamic variational principle",
+        "institution": "Italian Institute of Technology",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1812.09992",
+        "title": "A new model for the emergence of blood capillary networks",
+        "institution": "North Carolina State University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1305.5949",
+        "title": "Homogenization approach to water transport in plant tissues with periodic microstructures",
+        "institution": "Heidelberg University",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "2005.12362",
+        "title": "The origin of the allometric scaling of lung ventilation in mammals",
+        "institution": "Institut National de Recherche pour l'Agriculture, l'Alimentation et l'Environnement",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1906.08392",
+        "title": "Key biology you should have learned in physics class: Using ideal-gas mixtures to understand biomolecular machines",
+        "institution": "Oregon Health & Science University",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1405.4835",
+        "title": "Optimal villi density for maximal oxygen uptake in the human placenta",
+        "institution": "Centre National de la Recherche Scientifique",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1707.05616",
+        "title": "Flow rate of transport network controls uniform metabolite supply to tissue",
+        "institution": "Google (United States)",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  },
+  "q086": {
+    "query_text": "How do models describe the dynamics of the cell cycle and its checkpoints?",
+    "subcategory": "q-bio.CB",
+    "baseline": [
+      {
+        "rank": 1,
+        "paper_id": "1309.0870",
+        "title": "A hybrid mammalian cell cycle model",
+        "institution": "Universit\u00e9 de Rennes",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "1312.5204",
+        "title": "A globally attractive cycle driven by sequential bifurcations containing ghost effects in a 3-node yeast cell cycle model",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2603.06751",
+        "title": "Parameter Identifiability Under Limited Experimental Data in Age-Structured Models of the Cell Cycle",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "physics/0703007",
+        "title": "Ab initio phenomenological simulation of the growth of large tumor cell populations",
+        "institution": "University of Verona",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2503.23254",
+        "title": "Simulating cell populations with explicit cell cycle length -- implications to cell cycle dependent tumour therapy",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 6,
+        "paper_id": "1707.02930",
+        "title": "Exploring the underlying mechanisms of Xenopus laevis embryonic cell cycle",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 7,
+        "paper_id": "2605.06598",
+        "title": "Mathematical Modeling of Early Embryonic Cell Cycles of Drosophila melanogaster",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "q-bio/0510012",
+        "title": "Gene Copy Number and Cell Cycle Arrest",
+        "institution": "Bose Institute",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "2203.15888",
+        "title": "Cusp Bifurcation in Metastatic Breast Cancer Cells",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 10,
+        "paper_id": "1112.1590",
+        "title": "The contribution of age structure to cell population responses to targeted therapeutics",
+        "institution": "Institut de Math\u00e9matiques de Jussieu-Paris Rive Gauche",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "institution_aware_mmr": [
+      {
+        "rank": 1,
+        "paper_id": "1309.0870",
+        "title": "A hybrid mammalian cell cycle model",
+        "institution": "Universit\u00e9 de Rennes",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 2,
+        "paper_id": "1312.5204",
+        "title": "A globally attractive cycle driven by sequential bifurcations containing ghost effects in a 3-node yeast cell cycle model",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 3,
+        "paper_id": "2603.06751",
+        "title": "Parameter Identifiability Under Limited Experimental Data in Age-Structured Models of the Cell Cycle",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 4,
+        "paper_id": "physics/0703007",
+        "title": "Ab initio phenomenological simulation of the growth of large tumor cell populations",
+        "institution": "University of Verona",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "2503.23254",
+        "title": "Simulating cell populations with explicit cell cycle length -- implications to cell cycle dependent tumour therapy",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 6,
+        "paper_id": "1707.02930",
+        "title": "Exploring the underlying mechanisms of Xenopus laevis embryonic cell cycle",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 7,
+        "paper_id": "2605.06598",
+        "title": "Mathematical Modeling of Early Embryonic Cell Cycles of Drosophila melanogaster",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 8,
+        "paper_id": "q-bio/0510012",
+        "title": "Gene Copy Number and Cell Cycle Arrest",
+        "institution": "Bose Institute",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "2203.15888",
+        "title": "Cusp Bifurcation in Metastatic Breast Cancer Cells",
+        "institution": null,
+        "country": null,
+        "coverage": "no_affiliation",
+        "elite_label": null
+      },
+      {
+        "rank": 10,
+        "paper_id": "1112.1590",
+        "title": "The contribution of age structure to cell population responses to targeted therapeutics",
+        "institution": "Institut de Math\u00e9matiques de Jussieu-Paris Rive Gauche",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ],
+    "fair_top_k": [
+      {
+        "rank": 1,
+        "paper_id": "1411.3801",
+        "title": "Fixation times in differentiation and evolution in the presence of bottlenecks, deserts, and oases",
+        "institution": "University of California, Los Angeles",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 1
+      },
+      {
+        "rank": 2,
+        "paper_id": "1309.0870",
+        "title": "A hybrid mammalian cell cycle model",
+        "institution": "Universit\u00e9 de Rennes",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 3,
+        "paper_id": "physics/0703007",
+        "title": "Ab initio phenomenological simulation of the growth of large tumor cell populations",
+        "institution": "University of Verona",
+        "country": "IT",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 4,
+        "paper_id": "q-bio/0510012",
+        "title": "Gene Copy Number and Cell Cycle Arrest",
+        "institution": "Bose Institute",
+        "country": "IN",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 5,
+        "paper_id": "1112.1590",
+        "title": "The contribution of age structure to cell population responses to targeted therapeutics",
+        "institution": "Institut de Math\u00e9matiques de Jussieu-Paris Rive Gauche",
+        "country": "FR",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 6,
+        "paper_id": "1707.03185",
+        "title": "Funneled Potential and Flux Landscapes Dictate the Stabilities of both the States and the Flow: Fission Yeast Cell Cycle",
+        "institution": "University of Arkansas at Little Rock",
+        "country": "US",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 7,
+        "paper_id": "0707.1579",
+        "title": "Stable stochastic dynamics in yeast cell cycle",
+        "institution": "Nagoya University",
+        "country": "JP",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 8,
+        "paper_id": "1705.09718",
+        "title": "A multi-stage representation of cell proliferation as a Markov process",
+        "institution": "University of Bath",
+        "country": "GB",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 9,
+        "paper_id": "1411.6531",
+        "title": "Dynamics and bifurcations in a simple quasispecies model of tumorigenesis",
+        "institution": "Universitat Polit\u00e8cnica de Catalunya",
+        "country": "ES",
+        "coverage": "found",
+        "elite_label": 0
+      },
+      {
+        "rank": 10,
+        "paper_id": "1706.02775",
+        "title": "A Mathematical Framework for Kinetochore-Driven Activation Feedback in the Mitotic Checkpoint",
+        "institution": "University of Bonn",
+        "country": "DE",
+        "coverage": "found",
+        "elite_label": 0
+      }
+    ]
+  }
+}
