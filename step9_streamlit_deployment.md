@@ -26,6 +26,20 @@ actually true now; where it conflicts with §1, this section wins.
 That is the one that exists in the working directory and the one the clean
 install was tested in. Substitute that name wherever §3.1 says `.venv-app`.
 
+### 0a. Layout superseded 2026-08-02 — does NOT affect the deployment steps below
+
+Wherever this document's earlier sections describe or show the app's layout
+(stacked panels, a single intervention slot, no Framework A/B blocks), that
+description is superseded by `step9_plan.md` section 10b. Reference
+implementation: `step9_layout_prototype_final.html` in the project root.
+
+**This does not touch anything below in this file.** Sections 2 onward (repo
+layout, the dry-run steps, failure modes, the checklist) describe how to get
+a Streamlit app onto Community Cloud and are layout-agnostic — they apply
+the same way regardless of what `app/streamlit_app.py` renders. Only the
+*content* of that file changes when 9-C rebuilds it; the *deployment*
+procedure does not.
+
 **Progress beyond this document:** `app/streamlit_app.py` and
 `app/requirements.txt` exist, ran successfully in the clean venv, and have
 been committed and merged to `main`. The app was also updated for Prof.

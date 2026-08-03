@@ -12,6 +12,16 @@ This file is kept only as the historical concept demo that established the
 layout. Any change intended for the deployed app must go into
 `app/streamlit_app.py` instead, or the two will silently diverge further.
 
+*** LAYOUT SUPERSEDED AGAIN 2026-08-02 ***
+The stacked baseline/intervention layout shown below is no longer the target
+layout. The authoritative layout is `step9_plan.md` section 10b: baseline and
+intervention side by side (not stacked), Framework A inside both columns,
+a two-button method toggle (institution-aware MMR / Fair-Top-K), Framework B
+as a full-width block for contradictory queries only, and all 10 papers
+listed rather than collapsed behind "+N more". A working HTML reference is
+`step9_layout_prototype_final.html` in the project root. Do not use this
+file's layout as a reference for the rebuild.
+
 Status of the content below: concept demo, NOT final. Baseline panel uses real
 data from retrieval_results.json / retrieval_labels.json / qbio_papers.json for
 query q033. The RQ3-intervention panel is illustrative only — the real
