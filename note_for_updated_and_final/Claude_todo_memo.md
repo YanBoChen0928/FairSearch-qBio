@@ -1,4 +1,4 @@
-# Claude Todo Memo — last updated 2026-08-03
+# Claude Todo Memo — last updated 2026-08-03 (Track A: 9-A/9-B complete)
 
 **Purpose:** reference this file when opening a new Claude conversation
 window for this project, to pick up context without re-explaining
@@ -17,10 +17,84 @@ do not assume root paths without checking.
 
 ---
 
+## 00000. Session 2026-08-03 (continued) — Track A, Step 9-A and 9-B both complete
+
+**NEWEST SECTION. Read this first. Supersedes §0000 and everything below
+it wherever they disagree.**
+
+### 9-A complete (Kaggle): `notebooks/step9a-rerank-generation-yb.ipynb`
+
+Sampled the Tier 1 scope (14 neutral, stratified across all 10
+subcategories + q033 anchor; 6 contradictory, plain seeded random --
+disclosed simplification, not topic-stratified), built candidate pools for
+the 14 neutral queries, ran both re-rankers (institution-aware MMR
+lambda=0.8, Fair-Top-K), and generated a second answer per (query, method)
+pair. **Corrected cost estimate: 28 API calls (14 x 2 methods), not the
+~20 in the older planning docs** -- that estimate predated Fair-Top-K
+existing as a second demoed method. All 28 calls succeeded, zero failures,
+zero retries needed.
+
+`data/candidate_labels.json` merge fully covered this subset's candidate
+pools -- **zero new OpenAlex calls were needed** (`candidates still
+unlabeled after Cell 4 merge: 0`), confirming the design bet that reusing
+Step 6's candidate labels would be sufficient.
+
+Outputs, now in WD: `data/step9_query_scope.json`,
+`data/step9_rerank_per_query.json`, `data/step9_gen_checkpoint.jsonl`
+(28 records).
+
+### 9-B complete (local): `notebooks/step9b-bundle-assembly-yb.ipynb`
+
+Pure JSON/JSONL merge, zero API, zero embeddings -- ran entirely locally.
+Combined 9-A's outputs with existing RQ2 baseline generations
+(`rq2_gen_checkpoint.jsonl`, `rq2_frameworkB_generation_raw.jsonl`),
+Framework A per-query diagnostics (reused for baseline, freshly computed
+for both interventions using the same formula -- verified against the
+existing file's own numbers before trusting it, see chat log), Framework B
+sources for the 6 contradictory queries, and RAGAS Faithfulness per query.
+
+**Output: `app/data/step9_bundle.json` (296 KB, 20 records: 14 neutral + 6
+contradictory).** Schema matches `step9_plan.md` §10a exactly
+(`interventions` keyed by method id, empty `{}` on contradictory records,
+`framework_b` present only on contradictory records). Validated with
+fail-loud asserts: record count matches scope exactly, every neutral record
+has non-empty interventions, every contradictory record has an empty one
+and a `framework_b` block.
+
+**Cross-check that increases confidence:** q033's `context_elite_share`
+computed here is 0.8, matching the "Elite 80%" figure already used in the
+team's earlier concept-demo mock -- the new pipeline reproduces the number
+that was previously eyeballed by hand.
+
+**Blocker 3 in `step9_streamlit_deployment.md` is now resolved as a side
+effect**: `app/data/step9_bundle.json` exists and
+`git check-ignore -v app/data/step9_bundle.json` returns nothing (not
+ignored), which is exactly the condition that section was waiting on.
+
+### What's left in Track A
+
+- **9-C**: rewrite `app/streamlit_app.py` to read `app/data/step9_bundle.json`
+  instead of `BASELINE_PAPERS` / `INTERVENTION_PAPERS_MOCK`. Must implement
+  the three-segment institutional-balance bar fix recorded in
+  `step9_plan.md` §10b (2026-08-03 addition) -- do not carry over the
+  mock's two-segment bar.
+- **9-D**: local `streamlit run` test, then Streamlit Community Cloud
+  deployment (never attempted by this team before; budget buffer).
+- Two new notebooks (`step9a-rerank-generation-yb.ipynb`,
+  `step9b-bundle-assembly-yb.ipynb`) and `data/step9_*` /
+  `app/data/step9_bundle.json` are new, uncommitted files -- not yet
+  git-committed as of this memo entry.
+
+### Next session entry point
+
+See `next_session_prompt.md`, rewritten this session.
+
+---
+
 ## 0000. Session 2026-08-03 — Track B (Fair-Top-K) implemented and analyzed on Kaggle. WD sync incomplete — one file still missing.
 
-**NEWEST SECTION. Read this first. Supersedes §000 and everything below it
-wherever they disagree.**
+**Superseded by §00000 above for Track A status. Still authoritative for
+the Track B / Fair-Top-K record below.**
 
 ### Track B is functionally complete
 
