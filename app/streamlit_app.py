@@ -52,7 +52,7 @@ SIDE_B = "#5FA8E0"
 st.markdown(
     f"""
     <style>
-    .stApp {{ background-color: #10141C; color: #EDEFF3; }}
+    .stApp {{ background-color: #10141C; }}
     .pill-real {{
         font-family: monospace; font-size: 10.5px; padding: 2px 8px;
         border-radius: 100px; border: 1px solid {GOOD}; color: {GOOD};
@@ -513,7 +513,7 @@ if is_neutral:
             | amplification | {fmt(bd.get('amplification'), signed=True)} | {fmt(idg.get('amplification'), signed=True)} | — |
             | uniq_institutions | {bd.get('uniq_institutions')} | {idg.get('uniq_institutions')} | {d.get('uniq_institutions'):+d} |
             | uniq_countries | {bd.get('uniq_countries')} | {idg.get('uniq_countries')} | {d.get('uniq_countries'):+d} |
-            | papers changed | — | — | {d.get('n_papers_changed')} of {len(base_papers)} |
+            | papers changed | — | — | {d.get('n_papers_changed') // 2} of {len(base_papers)} swapped ({d.get('n_papers_changed')} slot changes) |
             """
         )
         st.caption(
