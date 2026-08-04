@@ -143,6 +143,22 @@ st.caption(
     + ("  ·  ★ disclosed sampling anchor" if rec.get("is_anchor") else "")
 )
 
+st.markdown(
+    '<div class="notebox" style="margin-top:8px;">'
+    '<strong>RQ1 — retrieval fairness.</strong> Who gets surfaced by the '
+    'vector search itself. &nbsp;·&nbsp; '
+    '<strong>RQ2 — generation fairness.</strong> Whether the LLM adds bias '
+    'retrieval did not show: Framework A (who gets cited) on neutral '
+    'queries, Framework B (whether both sides survive) on contradictory '
+    'ones. &nbsp;·&nbsp; '
+    '<strong>RQ3 — re-ranking tradeoff.</strong> What institution-aware MMR '
+    'and Fair-Top-K cost in ranking quality. &nbsp;·&nbsp; '
+    '<strong>Step 8 — answer quality.</strong> RAGAS Faithfulness, scoped '
+    'separately from RQ2 by design (rq2_methodology.md §1).'
+    '</div>',
+    unsafe_allow_html=True,
+)
+
 
 # ---------- Shared helpers ----------
 def paper_group(p):
@@ -319,44 +335,94 @@ be, bn, bu, btot = composition(base_papers)
 b_labeled = be + bn
 
 bdg = rec["baseline"]["diagnostics"]
-m1, m2, m3, m4, m5 = st.columns(5)
-with m1:
-    st.metric(
-        "ELITE SHARE (labeled only)",
-        f"{100 * be / b_labeled:.0f}%" if b_labeled else "n/a",
-        help="Elite papers as a fraction of LABELED papers only. Unlabeled "
-             "papers are excluded from the denominator, never counted as 0. "
-             "0% is common and expected: the corpus-wide retrieved elite share "
-             "is only about 17%, so with roughly 6 labeled slots per query, "
-             "many queries legitimately retrieve no elite paper at all.",
+
+# Method is resolved HERE, above the strip, because the intervention row below
+# reads it. Initialising it inside col_inter (as it was before 2026-08-03)
+# meant anything above that point failed on first load.
+method_ids = [m["id"] for m in META["rerank_methods"]]
+if "method" not in st.session_state or st.session_state.method not in method_ids:
+    st.session_state.method = method_ids[0]
+method = st.session_state.method
+
+# Coverage describes the bundle, not either arm, so it gets its own line
+# instead of occupying a slot in the two comparison rows.
+n_neu = sum(1 for q in bundle["queries"] if q["type"] == "neutral")
+n_con = sum(1 for q in bundle["queries"] if q["type"] == "contradictory")
+st.caption(
+    f"**COVERAGE** · {n_neu} of {META['n_queries_neutral_total']} neutral · "
+    f"{n_con} of {META['n_queries_contradictory_total']} contradictory "
+    "precomputed. Interventions are neutral-only by design."
+)
+
+ELITE_HELP = (
+    "Elite papers as a fraction of LABELED papers only. Unlabeled papers are "
+    "excluded from the denominator, never counted as 0. 0% is common and "
+    "expected: the corpus-wide retrieved elite share is only about 17%, so "
+    "with roughly 6 labeled slots per query, many queries legitimately "
+    "retrieve no elite paper at all."
+)
+NDCG_HELP = (
+    "Per-query NDCG@10 under the binary subcategory-match relevance proxy "
+    "(the same proxy RQ3 uses). Coarse by construction: it asks only whether "
+    "a paper's arXiv categories string contains the query's target "
+    "subcategory, not whether it is semantically relevant. Illustrative per "
+    "query; the aggregate figure lives in rq3_methodology.md."
+)
+
+
+def metric_row(elite_txt, uniq, ndcg, mrr_v, faith_txt, faith_help):
+    c1, c2, c3, c4, c5 = st.columns(5)
+    with c1:
+        st.metric("ELITE SHARE (labeled only)", elite_txt, help=ELITE_HELP)
+    with c2:
+        st.metric("UNIQUE INSTITUTIONS", uniq)
+    with c3:
+        st.metric("NDCG@10", f"{ndcg:.3f}" if ndcg is not None else "n/a",
+                  help=NDCG_HELP)
+    with c4:
+        st.metric("MRR", f"{mrr_v:.3f}" if mrr_v is not None else "n/a")
+    with c5:
+        st.metric("FAITHFULNESS", faith_txt, help=faith_help)
+
+
+st.markdown(
+    "**Baseline** &nbsp;·&nbsp; RQ1 retrieval → RQ2 Framework A/B → "
+    "Step 8 Faithfulness"
+)
+fa = rec["faithfulness"]
+metric_row(
+    f"{100 * be / b_labeled:.0f}%" if b_labeled else "n/a",
+    bdg.get("uniq_institutions", "n/a"),
+    bdg.get("ndcg_at_10"),
+    bdg.get("mrr"),
+    f"{fa['score']:.3f}" if fa.get("score") is not None else fa.get("status", "n/a"),
+    "RAGAS Faithfulness, Step 8. Scores the BASELINE answer only. Self-judge "
+    "design (same model as generation), disclosed in step8.md section 3.",
+)
+
+if is_neutral:
+    _iv = rec["interventions"][method]
+    _idg = _iv["diagnostics"]
+    ie, inn, iu, itot = composition(_iv["papers"])
+    i_labeled = ie + inn
+    st.markdown(
+        f"**Intervention: {METHOD_LABEL[method]}** &nbsp;·&nbsp; RQ3 "
+        "re-ranking → Step 8 Faithfulness not measured"
     )
-with m2:
-    st.metric("UNIQUE INSTITUTIONS", bdg.get("uniq_institutions", "n/a"))
-with m3:
-    st.metric(
-        "NDCG@10 (baseline)",
-        f"{bdg['ndcg_at_10']:.3f}" if bdg.get("ndcg_at_10") is not None else "n/a",
-        help="Per-query NDCG@10 under the binary subcategory-match relevance "
-             "proxy (the same proxy RQ3 uses). Coarse by construction: it asks "
-             "only whether a paper's arXiv categories string contains the "
-             "query's target subcategory, not whether it is semantically "
-             "relevant. Illustrative per query; the aggregate figure lives in "
-             "rq3_methodology.md.",
+    metric_row(
+        f"{100 * ie / i_labeled:.0f}%" if i_labeled else "n/a",
+        _idg.get("uniq_institutions", "n/a"),
+        _idg.get("ndcg_at_10"),
+        _idg.get("mrr"),
+        "not measured",
+        "The re-ranked answers were never RAGAS-scored. Step 8 covered the "
+        "baseline answers only and that scope is unchanged. This is a "
+        "disclosed limitation, not a zero and not a missing value.",
     )
-with m4:
-    fa = rec["faithfulness"]
-    st.metric(
-        "FAITHFULNESS (this query)",
-        f"{fa['score']:.3f}" if fa.get("score") is not None else fa.get("status", "n/a"),
-        help="RAGAS Faithfulness, Step 8. Self-judge design (same model as "
-             "generation), disclosed in step8.md section 3.",
-    )
-with m5:
-    st.metric(
-        "COVERAGE",
-        f"{META['n_queries_in_bundle']} queries",
-        help="Tier 1 precomputed scope. The interface shows its real coverage "
-             "rather than implying full-corpus coverage.",
+else:
+    st.caption(
+        "No intervention row. q101-q150 were pre-registered as the Experiment "
+        "B set and held out of RQ1 and RQ3, so no re-ranked arm exists here."
     )
 
 st.caption(
@@ -601,22 +667,25 @@ with st.expander("RAG answer quality — RAGAS Faithfulness (Step 8)", expanded=
     fmean = META["faithfulness_corpus_mean"]
     fbytype = META["faithfulness_by_type"]
 
-    f1, f2, f3 = st.columns(3)
+    f1, f2, f3, f4 = st.columns(4)
     with f1:
-        fa = rec["faithfulness"]
+        fq = rec["faithfulness"]
         st.metric(
             f"THIS QUERY · {selected_id}",
-            f"{fa['score']:.3f}" if fa.get("score") is not None else fa.get("status"),
+            f"{fq['score']:.3f}" if fq.get("score") is not None else fq.get("status"),
         )
+        st.caption("baseline answer")
     with f2:
         st.metric("CORPUS MEAN", f"{fmean['mean']:.4f}")
-        st.caption(f"{fmean['n']} of 150 queries scored")
-    with f3:
-        parts = []
-        for k, v in fbytype.items():
-            mval = v.get("mean") if isinstance(v, dict) else v
-            parts.append(f"{k} {mval:.4f}" if isinstance(mval, float) else f"{k} {mval}")
-        st.metric("BY QUERY TYPE", " / ".join(parts) if parts else "n/a")
+        st.caption(f"{fmean['n']} of 150 scored")
+    for _col, _key in ((f3, "neutral"), (f4, "contradictory")):
+        _v = fbytype.get(_key)
+        with _col:
+            if isinstance(_v, dict):
+                st.metric(_key.upper(), f"{_v['mean']:.4f}")
+                st.caption(f"n = {_v['n']}")
+            else:
+                st.metric(_key.upper(), "n/a")
 
     st.caption(
         "Faithfulness measures whether claims in the generated answer are "
@@ -624,7 +693,10 @@ with st.expander("RAG answer quality — RAGAS Faithfulness (Step 8)", expanded=
         f"{META['generation_model']}, the same model used for generation, so "
         "this is a self-judge design (step8.md §3). Two queries (q032, q068) "
         "failed reproducibly on an upstream structured-output error and are "
-        "excluded rather than imputed. RAGAS Answer Relevancy was attempted "
+        "excluded rather than imputed. Scores cover the BASELINE answers only: "
+        "the Step 9-A re-ranked answers were never RAGAS-scored, which is a "
+        "disclosed limitation rather than a null result. RAGAS Answer "
+        "Relevancy was attempted "
         "and found infeasible on this stack; Context Precision was not run and "
         "is carried as a disclosed limitation (step8.md §2b, §4a.8)."
     )
