@@ -144,17 +144,20 @@ st.caption(
 )
 
 st.markdown(
-    '<div class="notebox" style="margin-top:8px;">'
-    '<strong>RQ1 — retrieval fairness.</strong> Who gets surfaced by the '
-    'vector search itself. &nbsp;·&nbsp; '
-    '<strong>RQ2 — generation fairness.</strong> Whether the LLM adds bias '
-    'retrieval did not show: Framework A (who gets cited) on neutral '
+    '<div class="notebox" style="margin-top:8px; line-height:1.7;">'
+    '<div><strong>RQ1 — retrieval fairness.</strong> Who gets surfaced by '
+    'the vector search itself.</div>'
+    '<div><strong>RQ2 — generation fairness.</strong> Whether the LLM adds '
+    'bias retrieval did not show: Framework A (who gets cited) on neutral '
     'queries, Framework B (whether both sides survive) on contradictory '
-    'ones. &nbsp;·&nbsp; '
-    '<strong>RQ3 — re-ranking tradeoff.</strong> What institution-aware MMR '
-    'and Fair-Top-K cost in ranking quality. &nbsp;·&nbsp; '
-    '<strong>Step 8 — answer quality.</strong> RAGAS Faithfulness, scoped '
-    'separately from RQ2 by design (rq2_methodology.md §1).'
+    'ones.</div>'
+    '<div><strong>RQ3 — re-ranking tradeoff.</strong> What institution-aware '
+    'MMR and Fair-Top-K cost in ranking quality. Many queries show identical '
+    'baseline/MMR metrics because MMR only swaps papers when the same '
+    'institution repeats in the top-10; if the baseline set is already '
+    'institution-diverse, there is nothing to penalize.</div>'
+    '<div><strong>Step 8 — answer quality.</strong> RAGAS Faithfulness, '
+    'scoped separately from RQ2 by design (rq2_methodology.md §1).</div>'
     '</div>',
     unsafe_allow_html=True,
 )
