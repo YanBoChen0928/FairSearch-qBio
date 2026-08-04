@@ -10,6 +10,73 @@ promoted to a finding.
 
 ---
 
+## 0. Consider to do (open items, added 2026-08-03)
+
+Deliberately placed at the top so it is seen on every read. Nothing here is
+decided. Each item states the trigger that would move it from "consider" to
+"do", so that a later decision is a judgement call and not a rediscovery.
+Full reasoning for all three lives in §6.
+
+### C1. Independent-judge validation subset (covers BOTH Framework B and Step 8)
+
+**Status: agreed in principle 2026-08-03, not scheduled.** Prof. Sushmita
+named the independent judge as a final-phase priority. The current position
+is that a full Framework B re-run is out of scope before 2026-08-11, but a
+validation subset is not a re-run and remains on the table.
+
+Why it is one task and not two: `gemini-3.1-flash-lite` was the generator
+AND the judge in both places -- Framework B (`rq2_methodology.md` §3.4) and
+Step 8 RAGAS Faithfulness (`self_judge_disclosure` in
+`results/ragas_faithfulness_result.json`, `step8.md` §3). One
+independent-judge pass over a shared subset answers both disclosures.
+
+What it produces: an inter-judge agreement rate reported alongside the
+original numbers, as a disclosed robustness check. It does NOT replace any
+headline figure.
+
+Preconditions before any run, per this project's pre-registration
+discipline: fix and date the subset size, the selection rule, the second
+model, and the agreement statistic BEFORE judging anything. A subset chosen
+after seeing results is not a robustness check.
+
+### C2. RAGAS Faithfulness on the re-ranked (intervention) answers
+
+**Status: decided NOT to run on 2026-08-03 (see §6, item 3), with one
+condition that would reopen it.**
+
+The condition: if Prof. Sushmita's feedback is confirmed to mean that the
+intervention answers should also be scored, then running it is compliance
+with an instructor request, not a self-initiated scope expansion. That
+distinction matters, because the main argument against it was
+pre-registration discipline, and that argument does not apply to a change
+the instructor asks for. It would still need a new dated subsection in
+`step8.md` stating that the original Tier 1/2/3 scope is unchanged and that
+this is an addition made on request.
+
+Feasibility if reopened, so the answer is not re-derived under time
+pressure: at Tier 1 it is 14 neutral queries x 2 methods = 28 answers, on
+the order of 56 calls at roughly 2 sub-calls per query, which is cheap. At
+full scope it is 100 neutral x 2 methods, on the order of 400 calls, which
+competes directly with the remaining 130-query Step 9 expansion for the same
+daily allocation. The binding constraint is not quota at Tier 1 scale; it is
+that `step8-ragas-faithfulness-pilot-yb.ipynb` reads its key through
+`kaggle_secrets.UserSecretsClient` and therefore is a Kaggle job, not a
+local rerun, unless the key handling is rewritten.
+
+Action before deciding: ask Prof. Sushmita directly whether the intervention
+answers are in or out of what she meant. Do not infer it either way.
+
+### C3. Interface disclosure that the Faithfulness score is baseline-only
+
+**Status: required regardless of how C2 resolves.** The metric currently
+reads `FAITHFULNESS (this query)`, which implies it covers whichever arm the
+reader is looking at. It covers the baseline answer only. This becomes more
+misleading, not less, once baseline and intervention metrics are shown side
+by side, because a reader will parse a missing intervention value as "no
+change" rather than "not measured".
+
+---
+
 ## 1. Contradictory queries may retrieve more elite papers than neutral ones (LEAD, not a finding)
 
 ### What was observed
@@ -216,3 +283,95 @@ should apply mitigations conditionally on a measured problem existing, not
 apply every technique named in prior work by default; stating "checked, not
 needed" is a defensible finding in its own right, not an implementation
 gap.
+
+---
+
+## 6. Prof. Sushmita's final-phase feedback and how it was handled (logged 2026-08-03)
+
+**Status: logged for discussion, not yet acted on.** This entry records the
+feedback verbatim, checks each item against the evidence in the repository,
+and states what is decided versus still open. It is not itself a finding.
+
+### The feedback, as received
+
+> The main gap heading into the final phase is RAGAS -- it's designed but
+> not run -- and Framework B's self-judge limitation needs the independent
+> judge you've already planned. Prioritize both; everything else here is in
+> excellent shape.
+
+### Item 1: "RAGAS designed but not run" -- accurate when written, since closed
+
+This was correct at the time the feedback was given: Step 8 had not yet run.
+It has since been executed. `results/ragas_faithfulness_result.json`
+records Tier 1 Faithfulness executed over the full pre-registered scope:
+`query_scope = {target_total: 150, succeeded: 148, failed: 2}`,
+`faithfulness_overall.mean = 0.9615`, with by-type means of 0.9616 (neutral,
+n=98) and 0.9613 (contradictory, n=50). The two failures (q032 and one
+other) failed reproducibly across two separate executions and are excluded
+rather than imputed, consistent with the project's fail-loud rule.
+
+The most likely explanation is that the feedback predates the run. Action:
+reply with the result rather than
+treating this as an open gap. Tier 2 (Answer Relevancy) and Tier 3 (Context
+Precision) scope decisions in `step8.md` §2b are unchanged by this.
+
+### Item 2: independent judge for Framework B -- open, and broader than stated
+
+Yan-Bo's position as of 2026-08-03 is that a full Framework B re-run with an
+independent judge is out of scope this late, given the 2026-08-11 deadline.
+That position is recorded here rather than silently dropped.
+
+Two points that should inform the eventual decision:
+
+1. **The self-judge issue is not confined to Framework B.** Step 8 RAGAS
+   used the same design: `self_judge_disclosure` in
+   `results/ragas_faithfulness_result.json` states that
+   `gemini-3.1-flash-lite` was used for both generation (Step 7a/7b) and
+   Faithfulness judging (Step 8), and `step8.md` §3 discloses it with the
+   same wording as `rq2_methodology.md` §3.4. A single independent-judge
+   pass could therefore address both disclosures at once, which changes the
+   cost-benefit relative to treating it as a Framework B-only task.
+2. **A validation subset is not the same as a re-run.** Re-judging a
+   pre-registered subset with a different model, and reporting the agreement
+   rate against the original judge, is a disclosed robustness check, not a
+   replacement of the headline numbers. It is materially cheaper than
+   re-running Framework B end to end and it directly answers the concern
+   raised. If this route is taken, the subset size and selection rule must
+   be fixed and dated before the run, per the project's pre-registration
+   discipline.
+
+### Item 3: RAGAS on the re-ranked (intervention) answers -- decided not to run
+
+Recorded because the reasoning is easy to misstate later.
+
+Step 9-A generated a second answer per (query, method) pair from the
+re-ranked context. Those answers were never RAGAS-scored. The decision on
+2026-08-03 was not to score them.
+
+**The reason is not API quota, and the report must not claim it is.**
+`step8.md` §2a puts Faithfulness at roughly 2 sub-calls per query, and the
+completed run covered 150 queries successfully. The Tier 1 intervention set
+is 14 neutral queries x 2 methods = 28 answers, on the order of 56 calls,
+well under what has already run without incident. Quota only becomes a real
+constraint at full scale (100 neutral x 2 methods is on the order of 400
+calls), where it would compete directly with the remaining 130-query Step 9
+expansion for the same daily allocation.
+
+The actual reasons are:
+
+1. **Execution dependency.** `step8-ragas-faithfulness-pilot-yb.ipynb` reads
+   the key through `kaggle_secrets.UserSecretsClient`, so this is a Kaggle
+   job, not a local rerun, unless the key handling is rewritten.
+2. **Scope discipline.** Step 8 is closed and written up with a stated Tier
+   1/2/3 scope. Scoring a new class of answers is an expansion of the
+   evaluation scope, not a bug fix. If it is ever done, it must be a new
+   dated subsection stating explicitly that the original scope is unchanged.
+3. **Priority.** The feedback above names the independent judge as a
+   priority and does not mention intervention faithfulness. Spending the
+   remaining API budget on the former is better aligned with what was asked.
+
+**Disclosure requirement.** The interface and the report must state that
+RAGAS Faithfulness applies to the baseline answers only, and that the
+re-ranked answers are unscored. Presenting the baseline score next to
+intervention metrics without that note would imply a coverage the run does
+not have.
