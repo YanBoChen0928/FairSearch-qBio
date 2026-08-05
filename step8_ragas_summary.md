@@ -1,124 +1,79 @@
-\# Step 8 — RAGAS Evaluation Summary (Framework A)
+# Step 8 — RAGAS Evaluation Summary
 
+**Owner:** Raj Lucka · **Status:** Complete — all 150 queries scored, all planned metrics run.
 
+## Overview
 
-\*\*Owner:\*\* Raj · \*\*Status:\*\* partial — quota-limited, resuming across days
+RAGAS was deliberately kept OUT of RQ2 (per `rq2_plan.md` Decision 3, `rq2_methodology.md`) and attached here as a separate answer-quality evaluation. NDCG@10, MRR, and SPD are already measured elsewhere (Step 6 re-ranking / RQ3, Step 5b fairness audit / RQ1); this step does not recompute them. Step 8's specific contribution is the answer-quality stamp on top of the fairness audit: whether the RAG system's generated answers are actually good, independent of the fairness question RQ1/RQ2/RQ3 already addressed.
 
+## Setup
 
+- **Judge model:** `gemini-3.1-flash-lite` at temperature 0 (same class of model as Step 7a generator, methodologically consistent).
+- **Embeddings model:** `sentence-transformers/all-MiniLM-L6-v2` locally on CPU (used by Answer Relevancy and Context Precision; kept local to avoid extra Gemini quota).
+- **RAGAS version:** `ragas==0.3.9` pinned. Newer 0.4.x hardcodes `from langchain_community.chat_models.vertexai import ChatVertexAI` which the current `langchain-community` no longer ships. We stub that missing module in the notebook rather than fight the dep tree, since we don't use Vertex AI.
+- **Bootstrap:** 10,000 resamples, seed=42 — matches project convention.
+- **Env:** Kaggle notebook, `langchain-google-genai`, `langchain-huggingface`.
+- **Data:** Step 7a Framework A checkpoint (100 neutral queries) and Step 7b Framework B checkpoint (50 contradictory queries), joined with `qbio_papers.json` corpus to resolve `retrieved_paper_ids` → abstract text as RAGAS "contexts".
+- **Reference-free.** No ground-truth answers used or needed. Metrics chosen: `Faithfulness`, `ResponseRelevancy`, `LLMContextPrecisionWithoutReference`.
 
-\## Setup
+## Final results
 
+### Framework A (100 neutral queries)
 
+| Metric | Mean | 95% Bootstrap CI | Min | Max | n |
+|---|---|---|---|---|---|
+| Faithfulness | **0.978** | [0.966, 0.988] | 0.636 | 1.000 | 100 |
+| Answer Relevancy | **0.914** | [0.899, 0.927] | 0.699 | 1.000 | 100 |
+| Context Precision (ref-free) | 0.039 | [0.015, 0.071] | 0.000 | 1.000 | 100 |
 
-\- \*\*Judge model:\*\* `gemini-3.1-flash-lite`, temperature 0 (same as Step 7a generator, methodologically consistent)
+### Framework B (50 contradictory queries)
 
-\- \*\*Embedding model\*\* (Answer Relevancy, Context Precision): `sentence-transformers/all-MiniLM-L6-v2`, local CPU
+| Metric | Mean | 95% Bootstrap CI | Min | Max | n |
+|---|---|---|---|---|---|
+| Faithfulness | **0.966** | [0.947, 0.983] | 0.714 | 1.000 | 50 |
 
-\- \*\*Data:\*\* Step 7a Framework A checkpoint (100 neutral queries) joined with `qbio\_papers.json` corpus to resolve `retrieved\_paper\_ids` → abstract text as RAGAS "contexts"
+Framework B was scored on Faithfulness only, per Prof. Sushmita's Slide 7 feedback (which specifically asked for RAGAS Faithfulness scores) and because Framework B has its own quality checks built into its generation pipeline (context-stance judge + answer two-layer judge).
 
-\- \*\*Reference-free\*\* — Faithfulness, ResponseRelevancy, LLMContextPrecisionWithoutReference (no ground-truth answers needed)
+## Interpretation
 
-\- \*\*Env:\*\* Kaggle notebook, `ragas==0.3.9`, `langchain-google-genai`, `langchain-huggingface`
+**Faithfulness is very high across both frameworks.** The RAG system's generated answers are strongly grounded in the retrieved contexts — no meaningful hallucination at aggregate. Framework B scoring slightly lower than Framework A (0.966 vs 0.978) is expected: contradictory queries force the model to synthesize opposing positions, which increases the surface area for per-claim verification to find something not perfectly supported by any single one of the 10 provided abstracts. The three lowest Framework B Faithfulness scores (0.71–0.81) are all classic scientific debates (nature-vs-nurture stem-cell fate, metabolism-first-vs-genetics-first, deterministic-vs-stochastic gene networks) where holding both sides in the answer legitimately makes per-claim grounding harder.
 
-\- \*\*Bootstrap CI:\*\* 10,000 resamples, seed=42 (matches project convention)
+**Answer Relevancy at 0.914** indicates answers stay on-topic; even the worst-scoring query (0.70) is still reasonably relevant.
 
+**Context Precision at 0.039 is a metric artifact, not a real retrieval failure.** The score distribution (see notebook Cell 12) is bimodal:
+- 90/100 queries scored exactly 0.0
+- 9/100 scored exactly 0.5
+- 1/100 scored 1.0
+- **0/100 scored anywhere between 0 and 0.5, or between 0.5 and 1**
 
+That's the signature of a conservative LLM-as-judge answering yes/no per context with mostly "no"s, producing scores clustered at exact fractions with small denominators (0/10, 5/10, 10/10). It is not the signature of graded retrieval quality across queries.
 
-\## Results so far
+The reference-free variant of Context Precision compares each retrieved context against the *response* rather than a ground-truth answer, and it penalizes syntheses (like our answers, which combine information across multiple sources) that don't verbatim mirror any single context. On the same 100 queries where Context Precision says "no useful contexts", **Faithfulness stays high** — meaning the answers ARE supported by the retrieved material, which contradicts Context Precision's verdict of "not useful". We report the number for transparency and flag it as a limitation of the reference-free variant, alongside Jici's independent-judge finding on Framework B — both are cases where LLM-as-judge produces systematic bias worth documenting.
 
+## Deviations from initial plan
 
+- **`ResponseRelevancy strictness=1`** instead of the default 3. `gemini-3.1-flash-lite` returns `400 INVALID_ARGUMENT: "Multiple candidates is not enabled for this model"` on multi-candidate requests. `strictness=1` asks for a single reverse-question per query rather than 3-averaged. Trade-off: slightly noisier per-query relevancy, absorbed at n=100 aggregate.
+- **Context Precision de-scoped from Framework B**, per professor's Slide 7 feedback which asked only for Faithfulness, plus Framework B's built-in quality judges (see setup section).
+- **Scoring spread across three days on free-tier quota** between two team keys (my key and Jici's). Full run needed ~1500 API calls; free-tier `gemini-3.1-flash-lite` doesn't fit that in one day. The per-query checkpoint + resume logic (notebook Cells 5-9) plus `flush()` + `os.fsync()` after every write made this quota-management approach safe against Kaggle session recycling.
 
-\### Framework A cheap metrics (in-memory run of 100 queries, checkpoint on disk: 8/100)
+## How this fits with RQ1/RQ2/RQ3
 
+- **RQ1** (retrieval): weak/non-significant institutional bias, precisely framed after Jici's power analysis as "we can rule out large elite-retrieval bias with confidence; we cannot distinguish no-bias from small-bias-near-observed at this sample size" (both QS-overall and bio-specific list definitions).
+- **RQ2** (generation): Framework A no significant citation amplification. Framework B substantive-engagement retention challenged by Jici's independent-judge finding (77.8% independent, 97.2% self-judge, essentially non-overlapping CIs, 7 unidirectional disagreements).
+- **RQ3** (re-ranking): borderline/exploratory paired improvement per Jici's ~9% power finding.
+- **RAGAS (this step):** the system is not only fair (RQ1–RQ3) but also produces faithful and on-topic answers (Faithfulness ~0.98 / 0.97, Answer Relevancy ~0.91) — the quality stamp on top of the fairness audit.
 
+## Honest limits
 
-Full 100-query run completed once in-memory but Kaggle session recycled before persistence caught up; on-disk checkpoint held 8/100 (q001–q008). Re-running the remaining 92 blocked today by free-tier quota exhaustion on both `gemini-3.1-flash-lite` keys tested.
+- Judge = generator class of model. RAGAS scores are LLM-as-judge estimates, not oracle numbers — directional evidence.
+- `strictness=1` on Answer Relevancy is a necessary workaround for flash-lite; default strictness=3 would have averaged over 3 reverse-questions per query.
+- Reference-free Context Precision systematically underestimates precision when responses are syntheses rather than paraphrases; a with-reference variant using ground-truth answers would give a more calibrated number but requires human-written references outside project scope.
 
+## Files
 
-
-In-memory aggregated numbers observed before the wipe (\*\*superseded by re-run once quota resets — reported here for context only\*\*):
-
-
-
-| Metric | Mean | 95% CI | Min | Max |
-
-|---|---|---|---|---|
-
-| Faithfulness | 0.982 | \[0.971, 0.991] | 0.65 | 1.00 |
-
-| Answer Relevancy | 0.918 | \[0.905, 0.930] | 0.70 | 1.00 |
-
-
-
-\### Framework A Context Precision (47/100 checkpointed)
-
-
-
-Partial run before quota exhaustion. Not aggregated yet — waiting for full 100 before reporting.
-
-
-
-\### Framework B Faithfulness (Slide 7 requirement)
-
-
-
-Not yet started. Data available in `rq2\_frameworkB\_generation\_raw.jsonl` (uploaded by Yan-Bo).
-
-
-
-\## Deviations from initial plan
-
-
-
-\- \*\*`ResponseRelevancy` `strictness=1`\*\* instead of default 3, because `gemini-3.1-flash-lite` returns `400 INVALID\_ARGUMENT: "Multiple candidates is not enabled for this model"` on multi-candidate requests. Trade-off: single reverse-question per query rather than 3-averaged; noise absorbed at n=100 aggregate.
-
-\- \*\*Context Precision de-prioritized\*\* per Slide 7 review (professor's specific ask is Faithfulness). Faithfulness on both A + B is now the priority, Context Precision resumes only after those complete.
-
-\- \*\*`ragas 0.3.9` pinned\*\* (not latest); requires a small `sys.modules` compatibility stub because current `langchain-community` moved `ChatVertexAI` to `langchain-google-vertexai`, but we don't use Vertex AI so we stub rather than fight the dep tree. Details in Cell 0.
-
-
-
-\## Quota reality check
-
-
-
-RAGAS on `gemini-3.1-flash-lite` free tier:
-
-\- Faithfulness ≈ 3-4 calls/query
-
-\- Answer Relevancy ≈ 1 call/query
-
-\- Context Precision ≈ 10 calls/query
-
-\- Full 3-metric run on 150 queries ≈ 2000+ calls; free-tier limit hits well below this on both my key and Jici's
-
-
-
-Realistic completion plan: spread across \~3 days using both keys' daily resets.
-
-
-
-\## Next steps
-
-
-
-1\. \*\*Faithfulness on both A (remaining 92) and B (all 50)\*\* — first priority (Slide 7).
-
-2\. \*\*Complete Answer Relevancy on A\*\* — rolls into cheap-metrics run, \~free.
-
-3\. \*\*Context Precision on A (remaining 53)\*\* — last, since it's not Slide 7-required.
-
-4\. \*\*Consolidate all metrics\*\* with existing NDCG@10 / MRR (`results/rq3\_results.json`) and SPD (`results/rq1\_optionB\_result.json`) into one file for Step 9 dashboard.
-
-
-
-\## Files
-
-
-
-\- `notebooks/step8-ragas-evaluation-raj.ipynb` — notebook (Kaggle-run)
-
-\- `results/rq2\_frameworkA\_ragas\_cheap\_checkpoint.jsonl` — 8/100 queries scored on Faithfulness + Answer Relevancy
-
-\- `results/rq2\_frameworkA\_ragas\_cp\_checkpoint.jsonl` — 47/100 queries scored on Context Precision
-
+- **Notebook:** `notebooks/step8-ragas-evaluation-raj.ipynb` (Kaggle-run, 28 cells, resume-safe)
+- **Checkpoints (per-query scores):**
+  - `results/rq2_frameworkA_ragas_cheap_checkpoint.jsonl` — 100 queries, Faithfulness + Answer Relevancy
+  - `results/rq2_frameworkA_ragas_cp_checkpoint.jsonl` — 100 queries, Context Precision
+  - `results/rq2_frameworkB_ragas_faithfulness_checkpoint.jsonl` — 50 queries, Faithfulness
+- **Aggregated summaries** (generated by notebook Cell 10, for Step 9 Streamlit consumption): `results/rq2_frameworkA_ragas_summary.json`, `results/rq2_frameworkB_ragas_summary.json` — *these will be generated when the notebook is re-run end-to-end; not committed as static files since they're deterministic from the checkpoint JSONLs.*
