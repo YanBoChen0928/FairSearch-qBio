@@ -1,0 +1,75 @@
+{
+  "meta": {
+    "role": "rq2_frameworkB_judge_disagreement_cases",
+    "note": "The 7 queries where the self-judge (gemini-3.1-flash-lite) and the independent judge (openai/gpt-oss-20b) disagree on retention_status. All 7 disagreements are unidirectional: independent judge always rates retention absent where self-judge rated it present, never the reverse.",
+    "n_disagreements": 7,
+    "n_eligible_total": 36,
+    "self_judge_model": "gemini-3.1-flash-lite",
+    "independent_judge_model": "openai/gpt-oss-20b"
+  },
+  "cases": [
+    {
+      "query_id": "q103",
+      "query_text": "Does the gut microbiome causally shape host behavior, or are the reported links mostly correlational?",
+      "side_a": "The gut microbiome causally shapes host behavior.",
+      "side_b": "The reported gut microbiome-behavior links are mostly correlational.",
+      "self_judge": "both_sides_retained",
+      "independent_judge": "side_b_only_or_token_a",
+      "independent_evidence": "The answer states that many reported links are based on associations that may be spurious, indicating a substantive claim for Side\u202fB, while Side\u202fA is only mentioned as a hypothesis without evidence or mechanism, and no explicit evaluative or comparative statement is made to favor either side."
+    },
+    {
+      "query_id": "q105",
+      "query_text": "Has deep-learning-based protein structure prediction effectively solved the protein folding problem, or only the structure prediction task?",
+      "side_a": "Deep-learning-based protein structure prediction has effectively solved the protein folding problem.",
+      "side_b": "Deep-learning-based protein structure prediction has solved only the structure prediction task.",
+      "self_judge": "both_sides_retained",
+      "independent_judge": "side_b_only_or_token_a",
+      "independent_evidence": "The answer states that deep\u2011learning methods \"have not fully solved the protein folding problem\" and that they \"remain a foundational component within a larger, ongoing effort to fully understand and simulate the complex process of protein folding,\" while providing no substantive claim supporting the idea that the folding problem has been effectively solved."
+    },
+    {
+      "query_id": "q112",
+      "query_text": "Are large-scale evolutionary patterns better explained by gradualism or by punctuated equilibrium?",
+      "side_a": "Large-scale evolutionary patterns are better explained by gradualism.",
+      "side_b": "Large-scale evolutionary patterns are better explained by punctuated equilibrium.",
+      "self_judge": "both_sides_retained",
+      "independent_judge": "side_b_only_or_token_a",
+      "independent_evidence": "The answer states that the difficulty in capturing macroevolutionary features suggests that decoupling micro\u2011 and macro\u2011evolutionary mechanisms may be necessary to fully explain patterns like punctuated equilibrium, implying it is the primary explanatory model."
+    },
+    {
+      "query_id": "q122",
+      "query_text": "Is aging primarily a programmed process or the result of accumulated molecular damage?",
+      "side_a": "Aging is primarily a programmed process.",
+      "side_b": "Aging primarily results from accumulated molecular damage.",
+      "self_judge": "both_sides_retained",
+      "independent_judge": "side_b_only_or_token_a",
+      "independent_evidence": "The answer discusses \"accumulation of intrinsic faults or molecular damage\" (Side\u202fB) but offers no substantive claim or mechanism for programmed aging (Side\u202fA), and it contains no explicit evaluative or comparative statement favoring either side."
+    },
+    {
+      "query_id": "q132",
+      "query_text": "Are network motifs functionally significant, or largely statistical byproducts of network growth?",
+      "side_a": "Network motifs are functionally significant.",
+      "side_b": "Network motifs are largely statistical byproducts of network growth.",
+      "self_judge": "both_sides_retained",
+      "independent_judge": "side_a_only_or_token_b",
+      "independent_evidence": "\"Network motifs are widely considered to be functional units... Their significance is supported by the observation that they appear with surprisingly high frequency... real\u2011world networks exhibit a higher number and variety of singular motifs compared to benchmark models, suggesting that these structures are not merely statistical byproducts of network growth.\""
+    },
+    {
+      "query_id": "q134",
+      "query_text": "Can regulatory network structure be reliably inferred from expression data alone, or is it fundamentally underdetermined?",
+      "side_a": "Regulatory network structure can be reliably inferred from expression data alone.",
+      "side_b": "Regulatory network structure is fundamentally underdetermined from expression data alone.",
+      "self_judge": "both_sides_retained",
+      "independent_judge": "side_b_only_or_token_a",
+      "independent_evidence": "\"the mapping from expression data to a unique network structure is fundamentally constrained\""
+    },
+    {
+      "query_id": "q137",
+      "query_text": "Is cancer primarily a genetic disease or a disease of tissue organization and microenvironment?",
+      "side_a": "Cancer is primarily a genetic disease.",
+      "side_b": "Cancer is primarily a disease of tissue organization and the microenvironment.",
+      "self_judge": "both_sides_retained",
+      "independent_judge": "side_b_only_or_token_a",
+      "independent_evidence": "The answer stresses ecological disruption and notes tumor development can arise without sequential gene mutations, but it does not present a substantive claim that cancer is primarily genetic."
+    }
+  ]
+}
