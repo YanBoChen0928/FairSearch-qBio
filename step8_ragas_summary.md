@@ -40,15 +40,16 @@ Framework B was scored on Faithfulness only, per Prof. Sushmita's Slide 7 feedba
 
 **Answer Relevancy at 0.914** indicates answers stay on-topic; even the worst-scoring query (0.70) is still reasonably relevant.
 
-**Context Precision at 0.039 is a metric artifact, not a real retrieval failure.** The score distribution (see notebook Cell 12) is bimodal:
+**Context Precision at 0.039 is a metric artifact, not a real retrieval failure.** The score distribution (see notebook Cell 12) shows:
 - 90/100 queries scored exactly 0.0
-- 9/100 scored exactly 0.5
+- 4/100 scored ~0.5
+- 5/100 scored in-between values (~0.1, 0.11, 0.2, 0.25 ×2)
 - 1/100 scored 1.0
-- **0/100 scored anywhere between 0 and 0.5, or between 0.5 and 1**
 
-That's the signature of a conservative LLM-as-judge answering yes/no per context with mostly "no"s, producing scores clustered at exact fractions with small denominators (0/10, 5/10, 10/10). It is not the signature of graded retrieval quality across queries.
+The dominant signal is 90/100 at exactly 0.0 — the signature of a conservative LLM-as-judge answering yes/no per context with mostly "no"s, producing a spike at the "zero useful contexts" outcome rather than a graded distribution of retrieval quality. Independently verified by Jici on 2026-08-05 using two separate bootstrap implementations; all aggregated numbers reproduce to the third decimal.
 
-The reference-free variant of Context Precision compares each retrieved context against the *response* rather than a ground-truth answer, and it penalizes syntheses (like our answers, which combine information across multiple sources) that don't verbatim mirror any single context. On the same 100 queries where Context Precision says "no useful contexts", **Faithfulness stays high** — meaning the answers ARE supported by the retrieved material, which contradicts Context Precision's verdict of "not useful". We report the number for transparency and flag it as a limitation of the reference-free variant, alongside Jici's independent-judge finding on Framework B — both are cases where LLM-as-judge produces systematic bias worth documenting.
+
+The reference-free variant of Context Precision compares each retrieved context against the *response* rather than a ground-truth answer, and it penalizes syntheses (like our answers, which combine information across multiple sources) that don't verbatim mirror any single context. On the 90 queries where Context Precision scored exactly 0.0, **Faithfulness averages 0.977 — essentially unchanged from the overall 0.978 mean**. If retrieval were genuinely producing "no useful contexts" for those queries, Faithfulness would drop with them; it doesn't. The answers ARE supported by the retrieved material (per Faithfulness), which directly contradicts Context Precision's verdict of "not useful". We report the CP number for transparency and flag it as a limitation of the reference-free variant, alongside Jici's independent-judge finding on Framework B — both are cases where LLM-as-judge produces systematic bias worth documenting.
 
 ## Deviations from initial plan
 
