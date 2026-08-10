@@ -1,0 +1,25 @@
+{
+  "framework": "B (contradictory queries, 50)",
+  "judge_model": "gemini-3.1-flash-lite",
+  "judge_temperature": 0,
+  "bootstrap": {
+    "n_resamples": 10000,
+    "seed": 42
+  },
+  "metrics": {
+    "faithfulness": {
+      "mean": 0.9661,
+      "n": 50,
+      "n_dropped_null": 0,
+      "bootstrap_95CI": [
+        0.9477,
+        0.9822
+      ],
+      "min": 0.7143,
+      "max": 1.0
+    }
+  },
+  "notes": {
+    "reason_faithfulness_only": "Framework B has its own context-stance + answer two-layer judges built into its generation pipeline; RAGAS was added for Faithfulness only per professor's Slide 7 feedback."
+  }
+}
