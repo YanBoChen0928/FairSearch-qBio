@@ -640,7 +640,7 @@ if not is_neutral:
             "into it."
         )
 
-        st.markdown("**Answer-layer judgment**")
+        st.markdown("**Answer-layer judgment · self-judge**")
         st.markdown(
             f"""
             | Field | Value |
@@ -654,18 +654,72 @@ if not is_neutral:
             f'<div class="notebox">{fb["judge_evidence"]}</div>',
             unsafe_allow_html=True,
         )
+
+        # ---------- Independent judge comparison ----------
+        _ij = fb.get("independent_judge")
+        _jm = META["framework_b_judges"]
+        st.markdown("**Second opinion · independent judge**")
+        if _ij is None:
+            st.caption(
+                "This query was not in the eligible set, so no independent "
+                "judgment exists for it. Not eligible is not the same as the "
+                "two judges agreeing."
+            )
+        else:
+            _agree = _ij["agrees_with_self_judge"]
+            st.markdown(
+                f"""
+                | Judge | retention_status |
+                |---|---|
+                | self ({_jm['self_judge']['model']}) | {fb['retention_status']} |
+                | independent ({_jm['independent_judge']['model']}) | **{_ij['retention_status']}** |
+                | verdict | {'agree' if _agree else '**DISAGREE**'} |
+                """
+            )
+            if not _agree:
+                _dc = _ij.get("disagreement_case", {})
+                st.markdown(
+                    f'<div class="notebox">{_dc.get("independent_evidence", "")}</div>',
+                    unsafe_allow_html=True,
+                )
+                st.caption(
+                    "This is one of the 7 unresolved disagreements. It has NOT "
+                    "been adjudicated: no blinded third review was run before "
+                    "the deadline, so neither judgment is marked correct here."
+                )
+            else:
+                st.markdown(
+                    f'<div class="notebox">{_ij["evidence"]}</div>',
+                    unsafe_allow_html=True,
+                )
+
+        _sj, _ind = _jm["self_judge"], _jm["independent_judge"]
+        _split = ", ".join(f"{k} {v}" for k, v in _jm["direction_split"].items())
         st.caption(
-            "Corpus level: 36 of 50 contradictory queries were eligible (context "
-            "contained both sides), 35 of those retained both sides — retention "
-            "97.2%, 95% CI [91.7%, 100.0%]. Favouring one side is not a failure: "
-            "retention asks whether both sides survived into the answer, not "
-            "whether the answer stayed undecided. Judge is a self-judge (same "
-            "model as generation), disclosed in rq2_methodology.md §3.4."
+            f"Corpus level, {_sj['n_eligible']} of 50 contradictory queries were "
+            "eligible (context contained both sides). The two judges do not "
+            f"agree on how many of those retained both sides: the self-judge "
+            f"says {_sj['n_retained']}/{_sj['n_eligible']} "
+            f"({_sj['retention_rate']:.1%}, 95% CI "
+            f"[{_sj['ci95'][0]:.1%}, {_sj['ci95'][1]:.1%}]), the independent "
+            f"judge says {_ind['n_retained']}/{_ind['n_eligible']} "
+            f"({_ind['retention_rate']:.1%}, 95% CI "
+            f"[{_ind['ci95'][0]:.1%}, {_ind['ci95'][1]:.1%}]). Agreement "
+            f"{_jm['agreement_rate']:.1%}, {_jm['n_disagreements']} "
+            f"disagreements, all in one direction ({_split}). "
+            f"Status: {_jm['adjudication_status']}."
+        )
+        for _cav in _jm["caveats"]:
+            st.caption(f"· {_cav}")
+        st.caption(
+            "Favouring one side is not a failure: retention asks whether both "
+            "sides survived into the answer, not whether the answer stayed "
+            "undecided (rq2_methodology.md §3.4)."
         )
 
 # ---------- Shared RAGAS footer ----------
 st.markdown("---")
-with st.expander("RAG answer quality — RAGAS Faithfulness (Step 8)", expanded=False):
+with st.expander("RAG answer quality — RAGAS (Step 8)", expanded=False):
     st.markdown('<span class="pill-real">real data</span>', unsafe_allow_html=True)
     fmean = META["faithfulness_corpus_mean"]
     fbytype = META["faithfulness_by_type"]
@@ -693,15 +747,41 @@ with st.expander("RAG answer quality — RAGAS Faithfulness (Step 8)", expanded=
     st.caption(
         "Faithfulness measures whether claims in the generated answer are "
         "supported by the retrieved abstracts. Judge model "
-        f"{META['generation_model']}, the same model used for generation, so "
-        "this is a self-judge design (step8.md §3). Two queries (q032, q068) "
-        "failed reproducibly on an upstream structured-output error and are "
-        "excluded rather than imputed. Scores cover the BASELINE answers only: "
-        "the Step 9-A re-ranked answers were never RAGAS-scored, which is a "
-        "disclosed limitation rather than a null result. RAGAS Answer "
-        "Relevancy was attempted "
-        "and found infeasible on this stack; Context Precision was not run and "
-        "is carried as a disclosed limitation (step8.md §2b, §4a.8)."
+        f"{META['faithfulness_judge_model']}, the same model used for "
+        "generation, so this is a self-judge design (step8.md §3). Scores "
+        "cover the BASELINE answers only: the Step 9-A re-ranked answers were "
+        "never RAGAS-scored, which is a disclosed limitation rather than a "
+        "null result."
+    )
+
+    # D2: mandatory disclosure. Never show 0.978 / 0.966 as a bare number.
+    st.caption(f"Context construction: {META['faithfulness_context_disclosure']}")
+
+    # D2 / Framework B: these are different things and must not be conflated.
+    st.caption(META["faithfulness_single_judge_note"])
+
+    st.markdown("**Answer Relevancy**")
+    _ar = META["answer_relevancy"]
+    a1, a2 = st.columns(2)
+    with a1:
+        st.metric("ANSWER RELEVANCY", f"{_ar['mean']:.3f}")
+        st.caption(f"n = {_ar['n']}, neutral queries only")
+    with a2:
+        st.metric(
+            "95% CI",
+            f"[{_ar['ci95'][0]:.3f}, {_ar['ci95'][1]:.3f}]",
+        )
+        st.caption(f"strictness = {_ar['strictness']}")
+    st.caption(
+        "Answer Relevancy asks whether the generated answer actually addresses "
+        f"the question. {_ar['scope']} It was originally closed as infeasible "
+        "on this project's ragas 0.4.3 stack; it was subsequently obtained on a "
+        "ragas 0.3.9 + LangChain-wrapper stack with local HuggingFace "
+        "embeddings. That original finding stands as a statement about the "
+        f"stack, not about the metric. strictness = {_ar['strictness']} is "
+        "lower than the ragas default of 3 and is therefore noisier. "
+        "Context Precision was not run and is carried as a disclosed "
+        "limitation (step8.md §2b, §4a.8)."
     )
 
 st.markdown("---")
