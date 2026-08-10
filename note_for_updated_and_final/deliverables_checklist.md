@@ -127,6 +127,13 @@ Current deck: `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`
 `FairSearch_qBio_deck_v1_2_MODIFIED.pptx`. Confirm the deck
 maps onto this structure and does not exceed 12 slides.
 
+**Submission channel (decided 2026-08-10): this file is NOT tracked in the
+git repository.** The rubric's GitHub requirements (section 4 below) do not
+list the slide deck, so this is not a gap against that rubric. It is
+submitted to the course separately from the repo. Every "Source artifact"
+cell in the table below naming this `.pptx` refers to that separately
+submitted file, not to anything findable by cloning this repository.
+
 | #   | Rubric requirement                                                                                                                  | Have it?    | Source artifact                                                                                                 | Note                                                                                                                  |
 | --- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | 1   | **Title and Team.** Project title, member names.                                                                                    | yes         | Slide 1, `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`                                                                                                 | Title, subtitle, three RQ labels, all three member names, instructor, repo URL.                                       |
