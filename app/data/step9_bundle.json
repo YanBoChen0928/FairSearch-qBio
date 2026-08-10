@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-08-03",
+    "generated_at": "2026-08-09",
     "tier": 1,
     "n_queries_in_bundle": 20,
     "n_queries_neutral_total": 100,
@@ -26,30 +26,95 @@
     "elite_list": "QS World University Rankings 2026 Top 50",
     "sampling_seed": 42,
     "faithfulness_corpus_mean": {
-      "n": 148,
-      "mean": 0.9615034127901775,
+      "n": 150,
+      "mean": 0.9741146320999262,
       "median": 1.0,
-      "min": 0.5,
+      "min": 0.6363636363636364,
       "max": 1.0,
-      "stdev": 0.07766283240386829
+      "stdev": 0.06041110180968733
     },
     "faithfulness_by_type": {
       "neutral": {
-        "n": 98,
-        "mean": 0.9615894276458502,
+        "n": 100,
+        "mean": 0.9781414590311649,
         "median": 1.0,
-        "min": 0.7058823529411765,
+        "min": 0.6363636363636364,
         "max": 1.0,
-        "stdev": 0.06989019772577874
+        "stdev": 0.0582304081380242
       },
       "contradictory": {
         "n": 50,
-        "mean": 0.961334823673059,
+        "mean": 0.9660609782374489,
         "median": 1.0,
-        "min": 0.5,
+        "min": 0.7142857142857143,
         "max": 1.0,
-        "stdev": 0.09178730773095752
+        "stdev": 0.06440050366718834
       }
+    },
+    "faithfulness_judge_model": "gemini-3.1-flash-lite",
+    "faithfulness_source": "Raj Step 8 checkpoints, converted in step9b Cell 1b",
+    "faithfulness_context_disclosure": "Faithfulness was independently measured twice with two different context construction methods; this run's contexts were built as \"{title}\\n{abstract}\" without field labels, differing from the \"Title: ...\\nAbstract: ...\" format used at generation time and in an earlier internal run (which scored 0.9615, 148/150, see results/ragas_faithfulness_result.json). The two runs converge in direction but not in exact value.",
+    "faithfulness_single_judge_note": "RAGAS Faithfulness has ONE judge. Only Framework B has a genuine two-judge comparison. Do not conflate the two in the UI.",
+    "answer_relevancy": {
+      "mean": 0.9137898405426953,
+      "n": 100,
+      "ci95": [
+        0.899,
+        0.927
+      ],
+      "strictness": 1,
+      "scope": "neutral only, n=100. The contradictory checkpoint carries no answer_relevancy field. Never cite this as a 150-query figure.",
+      "ci_source": "D1 / comparison_step8_with_step8_ragas.md section 3. Not recomputed here; the mean printed below is the cross-check that this is the same run."
+    },
+    "context_precision": {
+      "status": "out_of_scope",
+      "note": "D3: Context Precision remains a disclosed limitation and is not promoted to a headline metric. Raj measured 0.039; used only as supporting evidence in the limitation paragraph."
+    },
+    "clamped_float_artifacts": [
+      {
+        "query_id": "q042",
+        "field": "answer_relevancy",
+        "raw_value": 1.0000000000000004
+      }
+    ],
+    "framework_b_judges": {
+      "self_judge": {
+        "model": "gemini-3.1-flash-lite",
+        "is_self": true,
+        "n_eligible": 36,
+        "n_retained": 35,
+        "retention_rate": 0.9722,
+        "ci95": [
+          0.9167,
+          1.0
+        ]
+      },
+      "independent_judge": {
+        "model": "openai/gpt-oss-20b:free",
+        "is_self": false,
+        "n_eligible": 36,
+        "n_retained": 28,
+        "retention_rate": 0.7777777777777778,
+        "ci95": [
+          0.6388888888888888,
+          0.9166666666666666
+        ],
+        "n_boot": 10000,
+        "random_seed": 42
+      },
+      "agreement_rate": 0.8055555555555556,
+      "n_disagreements": 7,
+      "direction_split": {
+        "side_b_only_or_token_a": 6,
+        "side_a_only_or_token_b": 1
+      },
+      "adjudication_status": "not_adjudicated",
+      "caveats": [
+        "The two CIs overlap, but comparing two independent CIs is the wrong test for paired data. McNemar is the appropriate test and has not been run.",
+        "All disagreements run in one direction, but that is consistent with at least three explanations: self-preference bias, criterion ambiguity, and a plain judge-capability difference. The data cannot separate them.",
+        "Independence covers the retention judgment only. Eligibility filtering came from the original pipeline, so the 36-query denominator is shared, not independently derived.",
+        "Both CIs are wide at n=36. Point estimates should not be treated as settled values."
+      ]
     },
     "answer_sources": {
       "neutral_baseline": "data/rq2_gen_checkpoint.jsonl",
@@ -310,6 +375,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 8,
             "context_elite_share": 0.0,
             "cited_elite_share": 0.0,
             "amplification": 0.0,
@@ -321,6 +387,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -443,6 +512,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.2,
             "amplification": 0.1,
@@ -454,6 +524,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
+            "cited_elite_share": 0.2,
+            "amplification": 0.1,
+            "n_labeled": 2,
             "uniq_institutions": 2,
             "uniq_countries": 0,
             "n_papers_changed": 4,
@@ -716,6 +789,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 8,
             "context_elite_share": 0.25,
             "cited_elite_share": 0.0,
             "amplification": -0.25,
@@ -727,6 +801,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -849,6 +926,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.0,
             "amplification": -0.1,
@@ -860,6 +938,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.15,
+            "cited_elite_share": 0.0,
+            "amplification": 0.15,
+            "n_labeled": 2,
             "uniq_institutions": 1,
             "uniq_countries": 1,
             "n_papers_changed": 6,
@@ -870,7 +951,7 @@
       },
       "faithfulness": {
         "status": "scored",
-        "score": 0.9
+        "score": 1.0
       }
     },
     {
@@ -1121,6 +1202,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 6,
             "context_elite_share": 0.1667,
             "cited_elite_share": 0.0,
             "amplification": -0.1667,
@@ -1132,6 +1214,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": -0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -1252,6 +1337,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.0,
             "amplification": -0.1,
@@ -1263,6 +1349,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.0667,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0667,
+            "n_labeled": 4,
             "uniq_institutions": 3,
             "uniq_countries": 1,
             "n_papers_changed": 8,
@@ -1533,6 +1622,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 4,
             "context_elite_share": 0.0,
             "cited_elite_share": 0.0,
             "amplification": 0.0,
@@ -1544,6 +1634,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -1669,6 +1762,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.0,
             "amplification": -0.1,
@@ -1680,6 +1774,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
+            "cited_elite_share": 0.0,
+            "amplification": -0.1,
+            "n_labeled": 6,
             "uniq_institutions": 5,
             "uniq_countries": 2,
             "n_papers_changed": 12,
@@ -1945,6 +2042,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 7,
             "context_elite_share": 0.0,
             "cited_elite_share": 0.0,
             "amplification": 0.0,
@@ -1956,6 +2054,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -2080,6 +2181,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.1429,
             "amplification": 0.0429,
@@ -2091,6 +2193,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
+            "cited_elite_share": 0.1429,
+            "amplification": 0.0429,
+            "n_labeled": 3,
             "uniq_institutions": 3,
             "uniq_countries": 3,
             "n_papers_changed": 6,
@@ -2101,7 +2206,7 @@
       },
       "faithfulness": {
         "status": "scored",
-        "score": 0.8571428571428571
+        "score": 0.9285714285714286
       }
     },
     {
@@ -2355,6 +2460,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 4,
             "context_elite_share": 0.5,
             "cited_elite_share": 1.0,
             "amplification": 0.5,
@@ -2366,6 +2472,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.3,
+            "cited_elite_share": 0.0,
+            "amplification": 0.3,
+            "n_labeled": -1,
             "uniq_institutions": 1,
             "uniq_countries": 0,
             "n_papers_changed": 4,
@@ -2491,6 +2600,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.125,
             "amplification": 0.025,
@@ -2502,6 +2612,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.7,
+            "cited_elite_share": -0.875,
+            "amplification": -0.175,
+            "n_labeled": 5,
             "uniq_institutions": 7,
             "uniq_countries": 5,
             "n_papers_changed": 16,
@@ -2512,7 +2625,7 @@
       },
       "faithfulness": {
         "status": "scored",
-        "score": 1.0
+        "score": 0.9333333333333333
       }
     },
     {
@@ -2768,6 +2881,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 8,
             "context_elite_share": 0.125,
             "cited_elite_share": 0.1429,
             "amplification": 0.0179,
@@ -2779,6 +2893,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": -0.0238,
+            "amplification": -0.0238,
+            "n_labeled": 0,
             "uniq_institutions": 1,
             "uniq_countries": 1,
             "n_papers_changed": 2,
@@ -2905,6 +3022,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.1111,
             "amplification": 0.0111,
@@ -2916,6 +3034,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.025,
+            "cited_elite_share": -0.0556,
+            "amplification": -0.0306,
+            "n_labeled": 2,
             "uniq_institutions": 2,
             "uniq_countries": 2,
             "n_papers_changed": 4,
@@ -3177,6 +3298,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 7,
             "context_elite_share": 0.0,
             "cited_elite_share": 0.0,
             "amplification": 0.0,
@@ -3188,6 +3310,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -3310,6 +3435,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.0,
             "amplification": -0.1,
@@ -3321,6 +3447,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
+            "cited_elite_share": 0.0,
+            "amplification": -0.1,
+            "n_labeled": 3,
             "uniq_institutions": 2,
             "uniq_countries": 1,
             "n_papers_changed": 6,
@@ -3331,7 +3460,7 @@
       },
       "faithfulness": {
         "status": "scored",
-        "score": 0.8235294117647058
+        "score": 0.9333333333333333
       }
     },
     {
@@ -3587,6 +3716,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 6,
             "context_elite_share": 0.1667,
             "cited_elite_share": 0.2,
             "amplification": 0.0333,
@@ -3598,6 +3728,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.2,
+            "amplification": 0.2,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -3719,6 +3852,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.0,
             "amplification": -0.1,
@@ -3730,6 +3864,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.0667,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0667,
+            "n_labeled": 4,
             "uniq_institutions": 4,
             "uniq_countries": 2,
             "n_papers_changed": 8,
@@ -3740,7 +3877,7 @@
       },
       "faithfulness": {
         "status": "scored",
-        "score": 0.9333333333333333
+        "score": 1.0
       }
     },
     {
@@ -3989,6 +4126,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 6,
             "context_elite_share": 0.1667,
             "cited_elite_share": 0.0,
             "amplification": -0.1667,
@@ -4000,6 +4138,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": -0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -4120,6 +4261,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.0,
             "amplification": -0.1,
@@ -4131,6 +4273,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.0667,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0667,
+            "n_labeled": 4,
             "uniq_institutions": 4,
             "uniq_countries": 3,
             "n_papers_changed": 8,
@@ -4141,7 +4286,7 @@
       },
       "faithfulness": {
         "status": "scored",
-        "score": 0.9166666666666666
+        "score": 1.0
       }
     },
     {
@@ -4394,6 +4539,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 4,
             "context_elite_share": 0.0,
             "cited_elite_share": 0.0,
             "amplification": 0.0,
@@ -4405,6 +4551,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -4529,6 +4678,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.1429,
             "amplification": 0.0429,
@@ -4540,6 +4690,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
+            "cited_elite_share": 0.1429,
+            "amplification": 0.0429,
+            "n_labeled": 6,
             "uniq_institutions": 6,
             "uniq_countries": 3,
             "n_papers_changed": 12,
@@ -4807,6 +4960,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 6,
             "context_elite_share": 0.0,
             "cited_elite_share": 0.0,
             "amplification": 0.0,
@@ -4818,6 +4972,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0,
+            "n_labeled": 0,
             "uniq_institutions": 1,
             "uniq_countries": 0,
             "n_papers_changed": 2,
@@ -4942,6 +5099,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.0,
             "amplification": -0.1,
@@ -4953,6 +5111,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
+            "cited_elite_share": 0.0,
+            "amplification": -0.1,
+            "n_labeled": 4,
             "uniq_institutions": 4,
             "uniq_countries": 0,
             "n_papers_changed": 8,
@@ -5221,6 +5382,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 6,
             "context_elite_share": 0.1667,
             "cited_elite_share": 0.25,
             "amplification": 0.0833,
@@ -5232,6 +5394,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.05,
+            "amplification": 0.05,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -5356,6 +5521,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.1429,
             "amplification": 0.0429,
@@ -5367,6 +5533,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": -0.0667,
+            "cited_elite_share": -0.0571,
+            "amplification": 0.0096,
+            "n_labeled": 4,
             "uniq_institutions": 4,
             "uniq_countries": 1,
             "n_papers_changed": 8,
@@ -5638,6 +5807,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 4,
             "context_elite_share": 0.0,
             "cited_elite_share": 0.0,
             "amplification": 0.0,
@@ -5649,6 +5819,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.0,
+            "cited_elite_share": 0.0,
+            "amplification": 0.0,
+            "n_labeled": 0,
             "uniq_institutions": 0,
             "uniq_countries": 0,
             "n_papers_changed": 0,
@@ -5774,6 +5947,7 @@
           ],
           "invalid_markers": [],
           "diagnostics": {
+            "n_labeled": 10,
             "context_elite_share": 0.1,
             "cited_elite_share": 0.125,
             "amplification": 0.025,
@@ -5785,6 +5959,9 @@
           },
           "delta_vs_baseline": {
             "context_elite_share": 0.1,
+            "cited_elite_share": 0.125,
+            "amplification": 0.025,
+            "n_labeled": 6,
             "uniq_institutions": 6,
             "uniq_countries": 5,
             "n_papers_changed": 12,
@@ -6000,7 +6177,14 @@
         "retention_status": "both_sides_retained",
         "conclusion_favor": "no_clear_favor",
         "favor_basis": "none",
-        "judge_evidence": "The answer presents the neutral theory (mentioning compensatory mutations and neutral processes) and the selectionist view (mentioning natural selection as a primary driver) as competing, ongoing areas of research without declaring one superior."
+        "judge_evidence": "The answer presents the neutral theory (mentioning compensatory mutations and neutral processes) and the selectionist view (mentioning natural selection as a primary driver) as competing, ongoing areas of research without declaring one superior.",
+        "independent_judge": {
+          "retention_status": "both_sides_retained",
+          "conclusion_favor": "no_clear_favor",
+          "favor_basis": "none",
+          "evidence": "The answer discusses natural selection as a primary driver and neutral drift as also important, but does not explicitly state that one side is better supported.",
+          "agrees_with_self_judge": true
+        }
       },
       "faithfulness": {
         "status": "scored",
@@ -6204,11 +6388,12 @@
         "retention_status": "side_b_only_or_token_a",
         "conclusion_favor": "no_clear_favor",
         "favor_basis": "none",
-        "judge_evidence": "The text provides a substantive explanation for Side B (GWAS variants as tags in LD), but it does not provide a substantive argument or evidence for Side A; it merely notes that causal variants are 'seldom observed directly' without presenting the counter-argument that they are often the causal variants themselves."
+        "judge_evidence": "The text provides a substantive explanation for Side B (GWAS variants as tags in LD), but it does not provide a substantive argument or evidence for Side A; it merely notes that causal variants are 'seldom observed directly' without presenting the counter-argument that they are often the causal variants themselves.",
+        "independent_judge": null
       },
       "faithfulness": {
         "status": "scored",
-        "score": 1.0
+        "score": 0.8333333333333334
       }
     },
     {
@@ -6414,7 +6599,8 @@
         "retention_status": "both_sides_retained",
         "conclusion_favor": "no_clear_favor",
         "favor_basis": "none",
-        "judge_evidence": "The answer presents both firing-rate coding (e.g., sensorimotor processing, macroscopic communication) and precise spike timing (e.g., network computation, microcircuits) as valid, context-dependent mechanisms without declaring one superior to the other."
+        "judge_evidence": "The answer presents both firing-rate coding (e.g., sensorimotor processing, macroscopic communication) and precise spike timing (e.g., network computation, microcircuits) as valid, context-dependent mechanisms without declaring one superior to the other.",
+        "independent_judge": null
       },
       "faithfulness": {
         "status": "scored",
@@ -6623,7 +6809,14 @@
         "retention_status": "both_sides_retained",
         "conclusion_favor": "no_clear_favor",
         "favor_basis": "none",
-        "judge_evidence": "The answer presents Side A's mechanism (minimizing prediction errors) and supporting evidence (neural responses, cortical organization), and Side B's criticisms (inconclusive evidence for error units, circular analysis, and limitations in high-dimensional tasks) without declaring one superior."
+        "judge_evidence": "The answer presents Side A's mechanism (minimizing prediction errors) and supporting evidence (neural responses, cortical organization), and Side B's criticisms (inconclusive evidence for error units, circular analysis, and limitations in high-dimensional tasks) without declaring one superior.",
+        "independent_judge": {
+          "retention_status": "both_sides_retained",
+          "conclusion_favor": "no_clear_favor",
+          "favor_basis": "none",
+          "evidence": "The answer states that predictive coding is supported by explaining neural responses and behavior, but also notes challenges such as inconclusive evidence for error units and difficulties in high-dimensional tasks, indicating substantive points for both sides without an explicit preference.",
+          "agrees_with_self_judge": true
+        }
       },
       "faithfulness": {
         "status": "scored",
@@ -6831,11 +7024,18 @@
         "retention_status": "side_a_only_or_token_b",
         "conclusion_favor": "favors_side_a",
         "favor_basis": "explanatory_primacy",
-        "judge_evidence": "The answer frames network topology as the primary driver of robustness, sensitivity, and functional outcomes, while dismissing reaction kinetics as merely 'involved' and secondary to the structural organization."
+        "judge_evidence": "The answer frames network topology as the primary driver of robustness, sensitivity, and functional outcomes, while dismissing reaction kinetics as merely 'involved' and secondary to the structural organization.",
+        "independent_judge": {
+          "retention_status": "side_a_only_or_token_b",
+          "conclusion_favor": "favors_side_a",
+          "favor_basis": "explanatory_primacy",
+          "evidence": "The answer provides substantive claims about network topology (e.g., \u201cnetwork topology can determine exploration times and reaction rates\u201d and \u201ctopological measures alone can effectively identify nodes capable of driving a network toward its attractors\u201d) but only token mentions of reaction kinetics (\u201creaction kinetics are involved in cellular processes\u201d) without a substantive argument for Side\u202fB. It concludes that functional outcomes are \u201cdeeply rooted in the network structure,\u201d framing topology as the primary explanatory factor.",
+          "agrees_with_self_judge": true
+        }
       },
       "faithfulness": {
         "status": "scored",
-        "score": 0.6923076923076923
+        "score": 0.9333333333333333
       }
     },
     {
@@ -7042,7 +7242,14 @@
         "retention_status": "both_sides_retained",
         "conclusion_favor": "no_clear_favor",
         "favor_basis": "none",
-        "judge_evidence": "The answer presents both the leader cell hypothesis (citing pulling strength and guidance) and the emergent coordination hypothesis (citing mechanical interactions and jamming/turbulence) as complementary mechanisms, explicitly stating they are not mutually exclusive."
+        "judge_evidence": "The answer presents both the leader cell hypothesis (citing pulling strength and guidance) and the emergent coordination hypothesis (citing mechanical interactions and jamming/turbulence) as complementary mechanisms, explicitly stating they are not mutually exclusive.",
+        "independent_judge": {
+          "retention_status": "both_sides_retained",
+          "conclusion_favor": "no_clear_favor",
+          "favor_basis": "none",
+          "evidence": "Collective cell migration is driven by both specialized leader cells and emergent group-level coordination, as these mechanisms are not mutually exclusive.",
+          "agrees_with_self_judge": true
+        }
       },
       "faithfulness": {
         "status": "scored",
