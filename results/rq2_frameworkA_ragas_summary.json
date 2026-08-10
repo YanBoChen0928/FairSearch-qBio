@@ -1,0 +1,51 @@
+{
+  "framework": "A (neutral queries, 100)",
+  "judge_model": "gemini-3.1-flash-lite",
+  "judge_temperature": 0,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "bootstrap": {
+    "n_resamples": 10000,
+    "seed": 42
+  },
+  "metrics": {
+    "faithfulness": {
+      "mean": 0.9781,
+      "n": 100,
+      "n_dropped_null": 0,
+      "bootstrap_95CI": [
+        0.9658,
+        0.9884
+      ],
+      "min": 0.6364,
+      "max": 1.0
+    },
+    "answer_relevancy": {
+      "mean": 0.9138,
+      "n": 100,
+      "n_dropped_null": 0,
+      "bootstrap_95CI": [
+        0.8994,
+        0.9269
+      ],
+      "min": 0.6992,
+      "max": 1.0
+    },
+    "context_precision": {
+      "mean": 0.0391,
+      "n": 100,
+      "n_dropped_null": 0,
+      "bootstrap_95CI": [
+        0.0147,
+        0.0699
+      ],
+      "min": 0.0,
+      "max": 1.0
+    }
+  },
+  "notes": {
+    "answer_relevancy_strictness": 1,
+    "answer_relevancy_strictness_reason": "gemini-3.1-flash-lite rejects multi-candidate requests; default strictness=3 fails.",
+    "context_precision_variant": "LLMContextPrecisionWithoutReference (no ground-truth used)",
+    "context_precision_caveat": "Bimodal distribution (90/100 at 0.0, 4 at ~0.5, 5 in-between, 1 at 1.0) - metric artifact of reference-free variant on synthesized answers; Faithfulness=0.977 on the 90 CP=0 queries confirms retrieval is not broken."
+  }
+}
