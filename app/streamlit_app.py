@@ -49,6 +49,25 @@ DIM = "#8791A3"
 SIDE_A = "#C084D8"
 SIDE_B = "#5FA8E0"
 
+# Plain-language gloss for the retention_status enum (rq2_methodology.md
+# section 3.2, Layer 1). "token" means mentioned in passing without
+# substantive argument, not a cryptocurrency token. Purely a display-layer
+# translation: the underlying enum value is still shown alongside it.
+RETENTION_STATUS_LABEL = {
+    "both_sides_retained": "both sides argued substantively",
+    "side_a_only_or_token_b": "only Side A argued; Side B just mentioned in passing",
+    "side_b_only_or_token_a": "only Side B argued; Side A just mentioned in passing",
+    "neither_or_unclear": "neither side clearly argued",
+}
+
+
+def retention_gloss(status):
+    """Plain-language line for a retention_status value. Falls back to the
+    raw value if the enum is ever extended without updating this dict, so a
+    new status never silently disappears from the UI."""
+    return RETENTION_STATUS_LABEL.get(status, status)
+
+
 st.markdown(
     f"""
     <style>
@@ -599,6 +618,49 @@ if not is_neutral:
     st.markdown("---")
     fb = rec["framework_b"]
     with st.expander("RQ2 Framework B — viewpoint retention", expanded=True):
+        # Eligibility. The bundle carries no explicit eligibility field, so this
+        # is inferred: the independent judge ran on exactly the eligible set, so
+        # independent_judge is None iff the query was excluded. Verified
+        # 2026-08-09 against rq2_frameworkB_result.json excluded_ids (14 queries)
+        # and the independent judge per_query list (36 queries): the two
+        # partitions match exactly. KNOWN LIMITATION: this couples the
+        # eligibility display to the independent judge run. A future bundle
+        # should carry an explicit `eligibility` field on framework_b instead.
+        _ij = fb.get("independent_judge")
+        _eligible = _ij is not None
+
+        if not _eligible:
+            st.warning(
+                "This query was EXCLUDED from the retention metric. Eligibility "
+                "requires the retrieved context to contain at least one paper "
+                "supporting each side; this query's context did not. The "
+                "retention question does not apply here, so this query is "
+                "counted in neither the 97.2% nor the 77.8% figure "
+                "(rq2_methodology.md §3.2 step 3). 36 of 50 contradictory "
+                "queries were eligible.",
+                icon="⚠️",
+            )
+
+        with st.expander("What the retention labels mean", expanded=False):
+            st.markdown(
+                """
+                The judge assigns one of four `retention_status` values. Only the
+                first counts as success. "Token" here means mentioned in passing
+                without a substantive argument.
+
+                | Value | Plain meaning |
+                |---|---|
+                | `both_sides_retained` | both sides argued substantively — **the only status counted as retained** |
+                | `side_a_only_or_token_b` | only Side A argued; Side B just mentioned in passing |
+                | `side_b_only_or_token_a` | only Side B argued; Side A just mentioned in passing |
+                | `neither_or_unclear` | neither side clearly argued |
+
+                A separate field, `conclusion_favor`, records which side the answer
+                leans toward. That is descriptive only and never enters the metric:
+                an answer can retain both sides and still favour one of them.
+                """
+            )
+
         st.markdown("**The two stated positions**")
         st.markdown(
             f'<div style="color:{SIDE_A}; font-size:13px;">side_a — {fb["side_a"]}</div>'
@@ -641,13 +703,21 @@ if not is_neutral:
         )
 
         st.markdown("**Answer-layer judgment · self-judge**")
+        if not _eligible:
+            st.caption(
+                "The answer judge ran over all 50 contradictory queries, so a "
+                "status was recorded for this one too. It is shown below for "
+                "transparency but it was NOT counted: retention is null for "
+                "excluded queries. Read it as a raw annotation, not a verdict."
+            )
         st.markdown(
             f"""
             | Field | Value |
             |---|---|
-            | retention_status | **{fb['retention_status']}** |
+            | retention_status | **{fb['retention_status']}** — {retention_gloss(fb['retention_status'])} |
             | conclusion_favor | {fb['conclusion_favor']} |
             | favor_basis | {fb['favor_basis']} |
+            | counted in metric | {'yes' if _eligible else '**no — query excluded**'} |
             """
         )
         st.markdown(
@@ -656,14 +726,14 @@ if not is_neutral:
         )
 
         # ---------- Independent judge comparison ----------
-        _ij = fb.get("independent_judge")
+        # _ij / _eligible were computed at the top of this block.
         _jm = META["framework_b_judges"]
         st.markdown("**Second opinion · independent judge**")
-        if _ij is None:
+        if not _eligible:
             st.caption(
-                "This query was not in the eligible set, so no independent "
-                "judgment exists for it. Not eligible is not the same as the "
-                "two judges agreeing."
+                "No independent judgment exists for this query, because the "
+                "independent judge ran only on the 36 eligible queries. This is "
+                "the excluded set, not a gap in the second judge's coverage."
             )
         else:
             _agree = _ij["agrees_with_self_judge"]
@@ -671,8 +741,8 @@ if not is_neutral:
                 f"""
                 | Judge | retention_status |
                 |---|---|
-                | self ({_jm['self_judge']['model']}) | {fb['retention_status']} |
-                | independent ({_jm['independent_judge']['model']}) | **{_ij['retention_status']}** |
+                | self ({_jm['self_judge']['model']}) | {fb['retention_status']} — {retention_gloss(fb['retention_status'])} |
+                | independent ({_jm['independent_judge']['model']}) | **{_ij['retention_status']}** — {retention_gloss(_ij['retention_status'])} |
                 | verdict | {'agree' if _agree else '**DISAGREE**'} |
                 """
             )
@@ -694,7 +764,9 @@ if not is_neutral:
                 )
 
         _sj, _ind = _jm["self_judge"], _jm["independent_judge"]
-        _split = ", ".join(f"{k} {v}" for k, v in _jm["direction_split"].items())
+        _split = ", ".join(
+            f"{v} case(s) \u201c{retention_gloss(k)}\u201d" for k, v in _jm["direction_split"].items()
+        )
         st.caption(
             f"Corpus level, {_sj['n_eligible']} of 50 contradictory queries were "
             "eligible (context contained both sides). The two judges do not "
@@ -706,7 +778,8 @@ if not is_neutral:
             f"({_ind['retention_rate']:.1%}, 95% CI "
             f"[{_ind['ci95'][0]:.1%}, {_ind['ci95'][1]:.1%}]). Agreement "
             f"{_jm['agreement_rate']:.1%}, {_jm['n_disagreements']} "
-            f"disagreements, all in one direction ({_split}). "
+            f"disagreements. Among those disagreements, the independent judge "
+            f"rated retention lower every time; broken down, it saw: {_split}. "
             f"Status: {_jm['adjudication_status']}."
         )
         for _cav in _jm["caveats"]:
