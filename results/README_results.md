@@ -19,9 +19,13 @@ goes here.
 | `equalized_odds_results_bio.json` | RQ1 equalized odds | signed CI crosses zero, no systematic directional bias |
 | `equalized_odds_signed_direction_bio.json` | RQ1 equalized odds | signed-direction breakdown |
 | `rq2_frameworkA_result.json` | RQ2 citation amplification | mean amplification +0.0041, bootstrap CI crosses zero |
-| `rq2_frameworkB_result.json` | RQ2 viewpoint retention | 35/36 retained both viewpoints, 97.2%, CI [91.7%, 100.0%] |
+| `rq2_frameworkB_result.json` | RQ2 viewpoint retention, self-judge | 35/36 retained both viewpoints, 97.2%, CI [91.7%, 100.0%]. **Never cite alone** — see the independent judge below |
+| `rq2_frameworkB_independent_judge_result.json` | RQ2 viewpoint retention, independent judge | 28/36 retained, 77.8%, CI [63.9%, 91.7%]; agreement 80.6% |
+| `rq2_frameworkB_judge_disagreements.json` | RQ2 judge disagreements | the 7 cases (q103, q105, q112, q122, q132, q134, q137), all one-directional, unadjudicated |
 | `rq3_results.json` | RQ3 fairness-utility tradeoff | NDCG@10 / MRR vs lambda sweep; institution-aware re-rank at lambda=0.8 |
-| `ragas_faithfulness_result.json` | Step 8 system quality | 148/150 scored, mean faithfulness 0.9615 |
+| `rq2_frameworkA_ragas_summary.json` | **Step 8 headline (neutral)** | Faithfulness 0.978 (n=100), Answer Relevancy 0.914 (n=100, strictness=1), Context Precision 0.039 (out of scope) |
+| `rq2_frameworkB_ragas_summary.json` | **Step 8 headline (contradictory)** | Faithfulness 0.966 (n=50) |
+| `ragas_faithfulness_result.json` | Step 8, **SUPERSEDED by decision D2** | ~~148/150 scored, mean 0.9615~~ retained only as the second run cited in the mandatory context-format disclosure |
 
 Charts, each paired with the JSON above it:
 `rq1_optionB_elite_share.png`, `rq1_optionB_elite_share_bio.png`,
@@ -29,11 +33,23 @@ Charts, each paired with the JSON above it:
 `equalized_odds_signed_distribution_bio.png`,
 `rq2_frameworkA_scatter.png`, `rq2_frameworkB_retention.png`,
 `rq3_lambda_ablation.png`, `rq3_institution_ablation.png`,
-`rq3_spd_significance.png`, `step8_faithfulness_chart.png`.
+`rq3_spd_significance.png`, `rq3_three_way_comparison.png`.
+
+`step8_faithfulness_chart.png` is **STALE**: it plots the superseded
+148/150 / 0.9615 run and must not be used in the report or the deck.
 
 ---
 
-## `ragas_faithfulness_result.json` (Step 8, added 2026-08-01)
+## `ragas_faithfulness_result.json` (Step 8, added 2026-08-01) — SUPERSEDED
+
+> **Superseded 2026-08-09 by decision D2.** The Step 8 headline is now Raj's
+> 150/150 run: Faithfulness 0.978 neutral / 0.966 contradictory, in
+> `rq2_frameworkA_ragas_summary.json` and `rq2_frameworkB_ragas_summary.json`.
+> This file is kept because the mandatory disclosure requires naming it: the
+> two runs used different context construction, and this one used the
+> generation-time `"Title: ...\nAbstract: ..."` format. See
+> `comparison_step8_with_step8_ragas.md` §1 and §4. Do not quote 0.9615 as a
+> current result. The description below is the original 2026-08-01 text.
 
 The Step 8 deliverable: RAGAS Faithfulness over the pre-registered 150-query
 set. Faithfulness decomposes each generated answer into individual claims and
