@@ -2,6 +2,13 @@
 
 **Created 2026-08-01. Deadline 2026-08-11, 20:59.**
 
+**2026-08-10 sync.** Numbers updated after the three-way merge (Raj step8-ragas,
+Jici power-analysis) and Step D. Two headline figures changed and one gap
+closed: Faithfulness is now Raj's 150/150 run per decision D2, Answer Relevancy
+is adopted per D1, and Framework B carries a second independent-judge number.
+Superseded values are struck through rather than deleted, so the audit trail
+survives.
+
 Source of truth for what the course actually requires, checked against what
 this project actually has. Rubric text is transcribed from Prof. Sushmita's
 Week 14 brief. Status columns are evidence-based: every "have it" must name
@@ -115,27 +122,51 @@ with the exact retention CI [91.7%, 100.0%] if space allows).
 
 ## 2. Slides (maximum 12, 15-minute presentation)
 
-Current deck: `FairSearch_qBio_deck_v1_2_MODIFIED.pptx`. Confirm the deck
+Current deck: `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`
+(12 slides, built 2026-08-10, speaker notes on every slide). Supersedes
+`FairSearch_qBio_deck_v1_2_MODIFIED.pptx`. Confirm the deck
 maps onto this structure and does not exceed 12 slides.
+
+**Submission channel (decided 2026-08-10): this file is NOT tracked in the
+git repository.** The rubric's GitHub requirements (section 4 below) do not
+list the slide deck, so this is not a gap against that rubric. It is
+submitted to the course separately from the repo. Every "Source artifact"
+cell in the table below naming this `.pptx` refers to that separately
+submitted file, not to anything findable by cloning this repository.
 
 | #   | Rubric requirement                                                                                                                  | Have it?    | Source artifact                                                                                                 | Note                                                                                                                  |
 | --- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| 1   | **Title and Team.** Project title, member names.                                                                                    | verify      | deck                                                                                                            |                                                                                                                       |
-| 2   | **Problem and Motivation.** Final refined research problem, why it matters.                                                         | verify      | deck, `README.md`                                                                                               |                                                                                                                       |
-| 3   | **Research Questions and Hypotheses.** RQ1, RQ2, RQ3 plus initial hypotheses.                                                       | verify      | `rq1/rq2/rq3_methodology.md`                                                                                    | State hypotheses as pre-registered, since several CIs cross zero.                                                     |
+| 1   | **Title and Team.** Project title, member names.                                                                                    | yes         | Slide 1, `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`                                                                                                 | Title, subtitle, three RQ labels, all three member names, instructor, repo URL.                                       |
+| 2   | **Problem and Motivation.** Final refined research problem, why it matters.                                                         | yes         | Slide 2, `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`; `README.md`                                                                                    | Opacity of the pipeline, why q-bio is the harder case, and the three commitments that make the audit trustworthy.     |
+| 3   | **Research Questions and Hypotheses.** RQ1, RQ2, RQ3 plus initial hypotheses.                                                       | yes         | Slide 3, `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`; `rq1/rq2/rq3_methodology.md`                                                                   | Each RQ carries its hypothesis and its metric. A footer states the hypotheses were fixed before any run, which is the required framing given several CIs cross zero. |
 | 4   | **Dataset and Demographic Mapping.** arXiv sample, preprocessing, proxy labeling.                                                   | yes         | `step2.md`, `data/README_data.md`, `data/qs_top50_elite_2026.json`                                              | ~55,300 q-bio papers. Disclose the smapse.com provenance of the bio elite list.                                       |
-| 5   | **System Architecture.** Embedding model, vector DB, LLM integration, Streamlit interface.                                          | partial     | ChromaDB, `app/streamlit_app.py`                                                                                | **G3 applies.** Name the real model, not "Gemini 1.5 Flash".                                                          |
+| 5   | **System Architecture.** Embedding model, vector DB, LLM integration, Streamlit interface.                                          | yes         | Slide 5, `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`; `app/streamlit_app.py`                                                                         | **G3 resolved.** Five-stage pipeline diagram plus an explicit model-disclosure card naming `gemini-3.1-flash-lite` and stating the brief said Gemini 1.5 Flash. |
 | 6   | **Experiment A: Retrieval Bias Audit.** Institutional distribution, SPD, Equalized Odds. Tables or figures.                         | yes         | `results/rq1_optionB_result.json`, `results/equalized_odds_results.json`, `results/rq1_optionB_elite_share.png` | SPD +0.029, SRR 1.28, CI [-0.005, +0.065] crosses zero. Needs an honest framing that does not read as a null project. |
-| 7   | **Experiment B: Generative Faithfulness.** Contradictory query design, Pro-Consensus vs Dissenting token ratio, RAGAS Faithfulness. | partial     | `rq2_frameworkB_summary.md`, `results/ragas_faithfulness_result.json`, `results/step8_faithfulness_chart.png`   | **G6 applies.** RAGAS side is solid: 148/150, mean 0.9615. Disclose self-judge and the two failed queries.            |
-| 8   | **Mitigation Results.** MMR, Fair-Top-K, prompt engineering. NDCG@10 and MRR. Fairness-Utility tradeoff.                            | partial     | `results/rq3_results.json`, `results/rq3_lambda_ablation.png`, `results/rq3_institution_ablation.png`           | **G1 and G2 both apply.** Only MMR exists today.                                                                      |
-| 9   | **Streamlit Fairness Scorecard Demo.** Screenshots or live demo.                                                                    | in progress | `app/streamlit_app.py`                                                                                          | Blocked on Step 9-A/9-B. Screenshots are an acceptable fallback if deployment fails.                                  |
-| 10  | **Key Takeaways.** 3 to 4 main findings.                                                                                            | verify      | deck                                                                                                            |                                                                                                                       |
-| 11  | **Future Directions.** 2 to 3 concrete directions.                                                                                  | verify      | deck                                                                                                            | Tier 3 Context Precision belongs here (`step8.md` §2b).                                                               |
-| 12  | **Questions and Discussion.**                                                                                                       | verify      | deck                                                                                                            |                                                                                                                       |
+| 7   | **Experiment B: Generative Faithfulness.** Contradictory query design, Pro-Consensus vs Dissenting token ratio, RAGAS Faithfulness. | yes         | `rq2_frameworkB_summary.md`, `results/rq2_frameworkA_ragas_summary.json`, `results/rq2_frameworkB_ragas_summary.json`, `results/rq2_frameworkB_independent_judge_result.json` | **G6 still applies (wording only).** RAGAS is now 150/150, 0 failures: Faithfulness 0.978 neutral / 0.966 contradictory; Answer Relevancy 0.914 (n=100 neutral only, strictness=1). ~~148/150, mean 0.9615~~ superseded by D2. Framework B must show BOTH judges: self 97.2% and independent 77.8%. `step8_faithfulness_chart.png` is STALE (148/150) and must not be used. |
+| 8   | **Mitigation Results.** MMR, Fair-Top-K, prompt engineering. NDCG@10 and MRR. Fairness-Utility tradeoff.                            | yes         | `results/rq3_results.json`, `results/rq3_three_way_comparison.png`, `results/rq3_lambda_ablation.png`, `results/rq3_institution_ablation.png` | **G1 resolved** (Fair-Top-K implemented and charted). **G2 remains a disclosure**, sentence drafted in §1b and now on the deck. ~~Only MMR exists today~~ no longer true. |
+| 9   | **Streamlit Fairness Scorecard Demo.** Screenshots or live demo.                                                                    | yes         | `app/streamlit_app.py`, `app/data/step9_bundle.json`                                                            | Step D complete; bundle regenerated 2026-08-09 with all four items. Screenshots are in the Update 3 deck. Demo precomputes 20 of 150 queries (Tier 1, seed 42) by design; state that whenever the demo is shown. |
+| 10  | **Key Takeaways.** 3 to 4 main findings.                                                                                            | yes         | Slide 10, `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`                                                                                                | Four takeaways, including the independent-judge gap and an explicit "no confirmed bias is not the same as fair".      |
+| 11  | **Future Directions.** 2 to 3 concrete directions.                                                                                  | yes         | Slide 11, `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`                                                                                                | Three directions, each with a named first step. Context Precision is one of them, per `step8.md` §2b.                 |
+| 12  | **Questions and Discussion.**                                                                                                       | yes         | Slide 12, `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`                                                                                                | Closing slide with five prompt chips for likely questions.                                                            |
 
 Slide scripts: English roughly one minute per slide. Slides 3 to 10 English
 scripts and Chinese drafts for slides 4 to 10 were still pending at the last
 session.
+
+---
+
+## 2a. Disclosure obligations attached to the new numbers (added 2026-08-10)
+
+These are not optional caveats. Each one must appear wherever its number is
+printed, in the deck, the report, and the app.
+
+| Number | Obligation |
+| --- | --- |
+| Faithfulness 0.978 / 0.966 | State that Faithfulness was measured twice with two different context construction methods, that the earlier run scored 0.9615 (148/150), and that the difference traces to context formatting rather than data quality. Exact required sentence: `comparison_step8_with_step8_ragas.md` section 4. Never print 0.978/0.966 bare. |
+| Answer Relevancy 0.914 | State n=100, NEUTRAL ONLY (the contradictory checkpoint carries no answer_relevancy field), and `strictness=1`, which was required because `gemini-3.1-flash-lite` rejects the ragas default of 3. Never cite it as a 150-query figure. |
+| Framework B retention | Never print 97.2% alone. The independent judge measured 77.8% on the same 36 queries. Both numbers, or neither. |
+| Fair-Top-K SPD -0.046 | Report as a statistically significant over-correction into reverse bias, not as a successful fix. |
+| Any RQ1/RQ2A headline | The bootstrap CI crosses zero. Report descriptively; no pass/fail language, since no threshold was pre-registered. |
 
 ---
 
@@ -146,7 +177,8 @@ Owner: Jici. Yan-Bo contributes RQ1, RQ2, Step 8, Step 9 material.
 ### 3.1 Problem Description
 
 Final refined version carried forward from prior submissions.
-Status: verify against `README.md` and the Update 2 submission.
+Status: **yes.** `README.md` was rewritten 2026-08-10 with the final problem
+statement; Slide 2 of the Update 3 deck carries the same framing.
 
 ### 3.2 Background
 
@@ -195,10 +227,14 @@ Measured results available for citation, do not restate from memory:
 | RQ1 bio robustness                    | SPD +0.031, CI still crosses zero                                    | `results/rq1_optionB_result_bio.json`    |
 | RQ1 Equalized Odds                    | signed CI crosses zero, no systematic direction                      | `results/equalized_odds_results.json`    |
 | RQ2 Framework A                       | mean amplification +0.0041, CI crosses zero                          | `rq2_frameworkA_summary.md`              |
-| RQ2 Framework B                       | 35/36 retained, 97.2%, CI [91.7%, 100.0%]                            | `rq2_frameworkB_summary.md`              |
+| RQ2 Framework B, self-judge           | 35/36 retained, 97.2%, CI [91.7%, 100.0%]                            | `results/rq2_frameworkB_result.json`     |
+| RQ2 Framework B, independent judge    | 28/36 retained, 77.8%, CI [63.9%, 91.7%]; agreement 80.6%, 7 disagreements, all one-directional (6:1), unadjudicated | `results/rq2_frameworkB_independent_judge_result.json` |
 | RQ3 institution-aware MMR, lambda=0.8 | SPD +0.0163, CI crosses zero; improvement vs baseline is significant | `results/rq3_results.json`               |
 | RQ3 diversity gain, lambda=0.9        | +0.17 unique institutions, CI [0.09, 0.26], significant              | `results/rq3_results.json`               |
-| Step 8 Faithfulness                   | 148/150, mean 0.9615, neutral 0.9616 vs contradictory 0.9613         | `results/ragas_faithfulness_result.json` |
+| Step 8 Faithfulness (D2, headline)    | 150/150, 0 failures. Neutral 0.978 (n=100), contradictory 0.966 (n=50) | `results/rq2_frameworkA_ragas_summary.json`, `results/rq2_frameworkB_ragas_summary.json` |
+| Step 8 Faithfulness (superseded)      | ~~148/150, mean 0.9615, neutral 0.9616 vs contradictory 0.9613~~ retained only as the second run cited in the D2 disclosure | `results/ragas_faithfulness_result.json` |
+| Step 8 Answer Relevancy (D1)          | 0.914, 95% CI [0.899, 0.927], n=100 NEUTRAL ONLY, strictness=1        | `results/rq2_frameworkA_ragas_summary.json` |
+| Step 8 Context Precision (D3)         | 0.039, out of scope, supporting evidence only for the limitation paragraph | `results/rq2_frameworkA_ragas_summary.json` |
 
 Framing note. Most headline CIs cross zero. The report must present this
 descriptively, per the project's standing "no post-hoc verdicts" rule, and
@@ -229,16 +265,41 @@ The link must appear inside the report.
 
 | Required item                                   | Have it?    | Note                                                                                                                                     |
 | ----------------------------------------------- | ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Data preprocessing scripts                      | verify      | Much of the pipeline lives in Kaggle notebooks. Confirm they are exported into the repo, not only hosted on Kaggle.                      |
-| RAG pipeline code                               | verify      | Same concern as above.                                                                                                                   |
-| Re-ranking implementations                      | partial     | `step6-reranking-yb-optimized-basedon-jici.ipynb`. **G1**: no Fair-Top-K.                                                                |
-| Streamlit fairness scorecard app                | in progress | `app/streamlit_app.py`, still reading `INTERVENTION_PAPERS_MOCK`.                                                                        |
-| JSON file with results of the 100-query audit   | **G4 open** | Decide which file this is and name it explicitly in the README.                                                                          |
-| README with setup and reproduction instructions | verify      | Must include the ragas environment workarounds from `step8.md` §4a.6, since `requirements.txt` alone does not reproduce the environment. |
+| Data preprocessing scripts                      | yes         | Exported into the repo, not only on Kaggle: `notebooks/step1-data-prep.ipynb`, `step1b-institution-labels-full-yb.ipynb`, `step2-embedding.ipynb`, `step3_chromadb.ipynb`. Named in README. |
+| RAG pipeline code                               | yes         | `notebooks/step5-retrieval-baseline-yb-kaggle-150.ipynb` (retrieval), `step7-rq2-generation-frameworka-yb.ipynb` and `step7-rq2-generation-frameworkb-yb.ipynb` (generation). All committed. |
+| Re-ranking implementations                      | yes         | `notebooks/step6-reranking-yb-optimized-basedon-jici.ipynb` contains institution-aware MMR **and** Fair-Top-K. **G1 resolved.**          |
+| Streamlit fairness scorecard app                | yes         | `app/streamlit_app.py` reads `app/data/step9_bundle.json`; the mock lists are gone. Confirm the bundle is not gitignored before submitting. |
+| JSON file with results of the 100-query audit   | yes         | **G4 resolved.** `results/rq1_optionB_result.json` is named explicitly in README under "Where the graded deliverables live", with a scope note explaining the 100-neutral / 50-contradictory split and a table of supporting per-stage result files. |
+| README with setup and reproduction instructions | yes         | Rewritten 2026-08-10. Two separate setup paths (app-only vs research), the RAGAS stack table per `step8.md` §4a.6, and an explicit statement that 18 of 24 notebooks hardcode `/kaggle/` paths so no local end-to-end run is claimed. |
 
-Also confirm `app/data/step9_bundle.json` is not gitignored once it exists.
-`git check-ignore -v app/data/step9_bundle.json` must print nothing. This is
-Blocker 3 in `step9_streamlit_deployment.md`.
+~~Also confirm `app/data/step9_bundle.json` is not gitignored once it exists.~~
+**Verified 2026-08-10:** `git check-ignore -v app/data/step9_bundle.json` prints
+nothing and the file is tracked by git. Blocker 3 in
+`step9_streamlit_deployment.md` is cleared.
+
+---
+
+## 4a. FINAL PASS 2026-08-10 — what is still genuinely open
+
+Every "verify" and "partial" above has been resolved to "yes" with a named
+file, except the items below. These are real, not bookkeeping.
+
+| # | Open item | Owner | Why it is still open |
+| --- | --- | --- | --- |
+| G5 | **20 peer-reviewed citations, counted and venue-classified.** | Jici | Never counted. arXiv preprints that were never formally published may not qualify. This is the single most mechanical remaining risk and is entirely front-loadable. |
+| G6 | **Slide 7 wording vs the rubric's "Pro-Consensus vs Dissenting token ratio".** | Yan-Bo | This project measured viewpoint *retention*, not a token ratio. The deck reports retention honestly and does not relabel it, but no sentence yet explicitly maps the rubric term onto what was measured. One sentence fixes it, in the report and optionally on Slide 7. |
+| — | **McNemar's test on the paired judge data.** | Jici | Flagged in `merge_for_final.md` §6 and disclosed in `rq2_frameworkB_summary.md` and on the deck as not run. Acceptable to ship disclosed; better to run. |
+| — | **Blinded adjudication of the 7 judge disagreements.** | — | Pre-registered as out of scope before the deadline. Displayed as unadjudicated everywhere. **Do not confuse this with the work Jici completed:** running the independent judge and identifying the 7 cases plus their 6:1 direction split is DONE; deciding which judge was right is NOT. The bundle keeps `adjudicated: false` / `adjudication_verdict: null` so a later review needs no bundle regeneration. Correct phrasing: "two judges disagree on 7 of 36 and we do not know which is correct." |
+| — | **Keep the two "two-number" situations apart.** | Yan-Bo | Framework B has two *judges*; RAGAS Faithfulness has one judge and two *runs* differing only in context construction. Raised by Jici 2026-08-10. Already enforced in the app and the bundle (`single_judge_disclosure`), and stated in `rq2_frameworkB_summary.md`. Listed here so a report writer does not merge them into one "we validated with a second model" claim. |
+| — | **Report PDF assembly.** | Jici | In progress in Overleaf, out of git scope. |
+
+Repository housekeeping deliberately NOT done, recorded so it is a decision
+rather than an oversight: several superseded files remain in the repo
+(`step9_streamlit_demo_draft.py`, `results/step8_faithfulness_chart.png` which
+holds the superseded 148/150 figure, `results/rq3_three_way_comparison copy.png`,
+`notebook-q-bio.ipynb` which is a pre-Step-1 scratch notebook). They are
+harmless to grading but can mislead a reader into citing a stale number. The
+stale chart is the one that actually matters.
 
 ---
 
