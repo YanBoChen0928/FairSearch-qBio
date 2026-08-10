@@ -114,11 +114,31 @@ and exhausts Streamlit Community Cloud's free-tier build budget.
 
 ### 2. Research pipeline (notebooks)
 
+**Read this before trying to reproduce anything.** This pipeline was built and
+run on **Kaggle Notebooks**, not locally. 18 of the 24 notebooks contain
+hardcoded `/kaggle/input/...` or `/kaggle/working/...` paths, and 8 of them read
+the Gemini API key from Kaggle Secrets (`UserSecretsClient`). Cloning this repo
+and running `jupyter lab` locally will **not** work without editing those paths
+first. No end-to-end local run of the full pipeline has ever been performed, so
+this README does not claim one is reproducible.
+
+What this means in practice:
+
+| You want to | Do this |
+| --- | --- |
+| See the interface and the results | Run the Streamlit app (section 1 above). No keys, no Kaggle, works locally. |
+| Inspect how a result was computed | Open the notebook and read it; most have saved cell outputs from the actual run. |
+| Actually re-run a stage | Upload the notebook to Kaggle, attach the datasets listed in `data/kaggle_datasets.md`, and add `GEMINI_API_KEY` to Kaggle Secrets. |
+| Re-run only the local, API-free parts | `notebooks/step9b-bundle-assembly-yb.ipynb` and `notebooks/power_analysis*.ipynb` have no `/kaggle/` paths and run locally against files in this repo. |
+
+The dependency list below is the research environment, provided for reference
+and for the locally-runnable notebooks:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-Then obtain the data, which is **not** committed:
+Raw data is **not** committed:
 
 1. Download the arXiv snapshot from
    [Kaggle — Cornell University arXiv](https://www.kaggle.com/datasets/Cornell-University/arxiv)
@@ -129,9 +149,7 @@ Then obtain the data, which is **not** committed:
    shared through Kaggle Datasets instead. See `data/kaggle_datasets.md` for the
    dataset slugs.
 
-Notebooks were developed and executed on **Kaggle Notebooks**, where the arXiv
-dataset mounts directly and where the Gemini API key is supplied through Kaggle
-Secrets as `GEMINI_API_KEY`. No key is stored in this repository.
+No API key is stored anywhere in this repository.
 
 ### RAGAS environment caveat
 
@@ -271,6 +289,22 @@ for the 100 neutral queries. SPD +0.029, SRR 1.28, bootstrap 95% CI
 significant. A binomial test returns p = 0.046 but assumes independent papers,
 an assumption violated by within-query correlation; the query-level bootstrap is
 the authoritative test. See `results/rq1_optionB_result.json`.
+
+**Step 1b — why labeling is "Option B" and not a full-corpus label.** The first
+attempt tried to label the entire ~55,300-paper corpus via OpenAlex title
+lookup. 82% of papers came back `not_found`, and the 18% that did match skewed
+toward better-indexed, more mainstream institutions — inflating the apparent
+baseline elite share to 0.233. Comparing a retrieved set against that inflated
+baseline would understate the real gap. The fix ("Option B") does not attempt
+full-corpus coverage at all: it labels two SMALL sets — a random 1,000-paper
+corpus sample and the deduplicated retrieved set — with the identical method
+(OpenAlex batched lookup, 50 ids/request, primary match on
+`landing_page_url` with DOI fallback, matched against QS Top-50). Because both
+sides use one ruler, any gap between them is attributable to retrieval, not to
+which papers happened to be easier to label. This is why the baseline (14.4%)
+and retrieved (17.3%, neutral queries) shares above come from two 1,000-scale
+samples rather than from labeling all 55,300 papers. See `rq1_methodology.md`
+§3 and `summary_step1b_OptionB.md`.
 
 **RQ1 robustness — subject-specific elite definition.** Following a suggestion
 from Prof. Sushmita, a second elite list drawn from QS World University Rankings

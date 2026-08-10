@@ -120,11 +120,19 @@ Source files: `results/rq2_frameworkB_independent_judge_result.json`,
 - Independent judge retention: 28/36 = **77.8%**, 95% CI [63.9%, 91.7%]
 - Self-judge retention (measured above): 35/36 = 97.2%, 95% CI [91.7%, 100.0%]
 - Agreement between the two judges: 80.6% (29 of 36 queries)
-- Disagreements: 7 of 36 queries, **all in the same direction** — in every
-  one, the self-judge said `both_sides_retained` and the independent judge
-  said the answer was one-sided. 6 of the 7 were rated as retaining only
-  Side B (`side_b_only_or_token_a`); 1 (q133 — the same query flagged in the
-  development-stage sanity check above) was rated as retaining only Side A.
+- Disagreements: 7 of 36 queries (q103, q105, q112, q122, q132, q134, q137),
+  **all in the same direction** — in every one, the self-judge said
+  `both_sides_retained` and the independent judge said the answer was
+  one-sided. 6 of the 7 were rated as retaining only Side B
+  (`side_b_only_or_token_a`); 1 (q132) was rated as retaining only Side A
+  (`side_a_only_or_token_b`). There is **no case in the reverse direction**:
+  zero queries where the independent judge said `both_sides_retained` and the
+  self-judge did not. Verified directly against
+  `results/rq2_frameworkB_judge_disagreements.json`.
+- Note that q133, the single retention==0 query discussed in the
+  development-stage sanity check below, is **not** one of the 7. Both judges
+  independently labelled it `side_a_only_or_token_b`, i.e. they agreed.
+  Cases identified and the disagreement file produced by Jici.
 
 **This is a substantive finding, not a minor footnote.** A 19.4
 percentage-point drop when swapping judges is large enough to weaken the
@@ -153,6 +161,31 @@ and never omitted.
 adjudication of the 7 disagreement cases. The Streamlit demo displays them
 as unadjudicated rather than resolved (`app/streamlit_app.py`, Framework B
 panel).
+
+**Division of labour, and what "done" means here (recorded 2026-08-10).**
+Two distinct pieces of work must not be conflated:
+
+| Task | Status | Who |
+| --- | --- | --- |
+| Run the independent judge over the 36 eligible queries | Done | Jici |
+| Identify the 7 disagreement cases and their direction split | Done | Jici |
+| Surface both judges per query in the app and the bundle | Done | Yan-Bo |
+| **Blinded adjudication: decide which judge was right** | **NOT DONE** | — |
+
+Identifying a disagreement is not the same as resolving it. The bundle
+therefore carries `adjudicated: false` and `adjudication_verdict: null` on
+every disagreement case, so a later blinded review can fill them in without
+regenerating the bundle. Until that happens, the honest statement is "two
+judges disagree on 7 of 36 queries and we do not know which is correct",
+never "the disagreements have been reviewed".
+
+**Scope boundary (raised by Jici, 2026-08-10).** The two-judge comparison
+exists **only** for Framework B viewpoint retention. RAGAS Faithfulness has a
+single judge; its two runs differ in context construction, not in judge
+identity (see `comparison_step8_with_step8_ragas.md` §1). Presenting the
+Faithfulness pair with the same dual-column framing used for Framework B
+would misrepresent a data-preparation difference as a second opinion. The app
+enforces this separation with an explicit note in the RAGAS panel.
 
 ## How to read this result
 
