@@ -2,6 +2,13 @@
 
 **Created 2026-08-01. Deadline 2026-08-11, 20:59.**
 
+**2026-08-10 sync.** Numbers updated after the three-way merge (Raj step8-ragas,
+Jici power-analysis) and Step D. Two headline figures changed and one gap
+closed: Faithfulness is now Raj's 150/150 run per decision D2, Answer Relevancy
+is adopted per D1, and Framework B carries a second independent-judge number.
+Superseded values are struck through rather than deleted, so the audit trail
+survives.
+
 Source of truth for what the course actually requires, checked against what
 this project actually has. Rubric text is transcribed from Prof. Sushmita's
 Week 14 brief. Status columns are evidence-based: every "have it" must name
@@ -115,7 +122,9 @@ with the exact retention CI [91.7%, 100.0%] if space allows).
 
 ## 2. Slides (maximum 12, 15-minute presentation)
 
-Current deck: `FairSearch_qBio_deck_v1_2_MODIFIED.pptx`. Confirm the deck
+Current deck: `FairSearch_qBio_project_update3_slides_Jici_Raj_YanBo.pptx`
+(12 slides, built 2026-08-10, speaker notes on every slide). Supersedes
+`FairSearch_qBio_deck_v1_2_MODIFIED.pptx`. Confirm the deck
 maps onto this structure and does not exceed 12 slides.
 
 | #   | Rubric requirement                                                                                                                  | Have it?    | Source artifact                                                                                                 | Note                                                                                                                  |
@@ -126,9 +135,9 @@ maps onto this structure and does not exceed 12 slides.
 | 4   | **Dataset and Demographic Mapping.** arXiv sample, preprocessing, proxy labeling.                                                   | yes         | `step2.md`, `data/README_data.md`, `data/qs_top50_elite_2026.json`                                              | ~55,300 q-bio papers. Disclose the smapse.com provenance of the bio elite list.                                       |
 | 5   | **System Architecture.** Embedding model, vector DB, LLM integration, Streamlit interface.                                          | partial     | ChromaDB, `app/streamlit_app.py`                                                                                | **G3 applies.** Name the real model, not "Gemini 1.5 Flash".                                                          |
 | 6   | **Experiment A: Retrieval Bias Audit.** Institutional distribution, SPD, Equalized Odds. Tables or figures.                         | yes         | `results/rq1_optionB_result.json`, `results/equalized_odds_results.json`, `results/rq1_optionB_elite_share.png` | SPD +0.029, SRR 1.28, CI [-0.005, +0.065] crosses zero. Needs an honest framing that does not read as a null project. |
-| 7   | **Experiment B: Generative Faithfulness.** Contradictory query design, Pro-Consensus vs Dissenting token ratio, RAGAS Faithfulness. | partial     | `rq2_frameworkB_summary.md`, `results/ragas_faithfulness_result.json`, `results/step8_faithfulness_chart.png`   | **G6 applies.** RAGAS side is solid: 148/150, mean 0.9615. Disclose self-judge and the two failed queries.            |
-| 8   | **Mitigation Results.** MMR, Fair-Top-K, prompt engineering. NDCG@10 and MRR. Fairness-Utility tradeoff.                            | partial     | `results/rq3_results.json`, `results/rq3_lambda_ablation.png`, `results/rq3_institution_ablation.png`           | **G1 and G2 both apply.** Only MMR exists today.                                                                      |
-| 9   | **Streamlit Fairness Scorecard Demo.** Screenshots or live demo.                                                                    | in progress | `app/streamlit_app.py`                                                                                          | Blocked on Step 9-A/9-B. Screenshots are an acceptable fallback if deployment fails.                                  |
+| 7   | **Experiment B: Generative Faithfulness.** Contradictory query design, Pro-Consensus vs Dissenting token ratio, RAGAS Faithfulness. | yes         | `rq2_frameworkB_summary.md`, `results/rq2_frameworkA_ragas_summary.json`, `results/rq2_frameworkB_ragas_summary.json`, `results/rq2_frameworkB_independent_judge_result.json` | **G6 still applies (wording only).** RAGAS is now 150/150, 0 failures: Faithfulness 0.978 neutral / 0.966 contradictory; Answer Relevancy 0.914 (n=100 neutral only, strictness=1). ~~148/150, mean 0.9615~~ superseded by D2. Framework B must show BOTH judges: self 97.2% and independent 77.8%. `step8_faithfulness_chart.png` is STALE (148/150) and must not be used. |
+| 8   | **Mitigation Results.** MMR, Fair-Top-K, prompt engineering. NDCG@10 and MRR. Fairness-Utility tradeoff.                            | yes         | `results/rq3_results.json`, `results/rq3_three_way_comparison.png`, `results/rq3_lambda_ablation.png`, `results/rq3_institution_ablation.png` | **G1 resolved** (Fair-Top-K implemented and charted). **G2 remains a disclosure**, sentence drafted in §1b and now on the deck. ~~Only MMR exists today~~ no longer true. |
+| 9   | **Streamlit Fairness Scorecard Demo.** Screenshots or live demo.                                                                    | yes         | `app/streamlit_app.py`, `app/data/step9_bundle.json`                                                            | Step D complete; bundle regenerated 2026-08-09 with all four items. Screenshots are in the Update 3 deck. Demo precomputes 20 of 150 queries (Tier 1, seed 42) by design; state that whenever the demo is shown. |
 | 10  | **Key Takeaways.** 3 to 4 main findings.                                                                                            | verify      | deck                                                                                                            |                                                                                                                       |
 | 11  | **Future Directions.** 2 to 3 concrete directions.                                                                                  | verify      | deck                                                                                                            | Tier 3 Context Precision belongs here (`step8.md` §2b).                                                               |
 | 12  | **Questions and Discussion.**                                                                                                       | verify      | deck                                                                                                            |                                                                                                                       |
@@ -136,6 +145,21 @@ maps onto this structure and does not exceed 12 slides.
 Slide scripts: English roughly one minute per slide. Slides 3 to 10 English
 scripts and Chinese drafts for slides 4 to 10 were still pending at the last
 session.
+
+---
+
+## 2a. Disclosure obligations attached to the new numbers (added 2026-08-10)
+
+These are not optional caveats. Each one must appear wherever its number is
+printed, in the deck, the report, and the app.
+
+| Number | Obligation |
+| --- | --- |
+| Faithfulness 0.978 / 0.966 | State that Faithfulness was measured twice with two different context construction methods, that the earlier run scored 0.9615 (148/150), and that the difference traces to context formatting rather than data quality. Exact required sentence: `comparison_step8_with_step8_ragas.md` section 4. Never print 0.978/0.966 bare. |
+| Answer Relevancy 0.914 | State n=100, NEUTRAL ONLY (the contradictory checkpoint carries no answer_relevancy field), and `strictness=1`, which was required because `gemini-3.1-flash-lite` rejects the ragas default of 3. Never cite it as a 150-query figure. |
+| Framework B retention | Never print 97.2% alone. The independent judge measured 77.8% on the same 36 queries. Both numbers, or neither. |
+| Fair-Top-K SPD -0.046 | Report as a statistically significant over-correction into reverse bias, not as a successful fix. |
+| Any RQ1/RQ2A headline | The bootstrap CI crosses zero. Report descriptively; no pass/fail language, since no threshold was pre-registered. |
 
 ---
 
@@ -195,10 +219,14 @@ Measured results available for citation, do not restate from memory:
 | RQ1 bio robustness                    | SPD +0.031, CI still crosses zero                                    | `results/rq1_optionB_result_bio.json`    |
 | RQ1 Equalized Odds                    | signed CI crosses zero, no systematic direction                      | `results/equalized_odds_results.json`    |
 | RQ2 Framework A                       | mean amplification +0.0041, CI crosses zero                          | `rq2_frameworkA_summary.md`              |
-| RQ2 Framework B                       | 35/36 retained, 97.2%, CI [91.7%, 100.0%]                            | `rq2_frameworkB_summary.md`              |
+| RQ2 Framework B, self-judge           | 35/36 retained, 97.2%, CI [91.7%, 100.0%]                            | `results/rq2_frameworkB_result.json`     |
+| RQ2 Framework B, independent judge    | 28/36 retained, 77.8%, CI [63.9%, 91.7%]; agreement 80.6%, 7 disagreements, all one-directional (6:1), unadjudicated | `results/rq2_frameworkB_independent_judge_result.json` |
 | RQ3 institution-aware MMR, lambda=0.8 | SPD +0.0163, CI crosses zero; improvement vs baseline is significant | `results/rq3_results.json`               |
 | RQ3 diversity gain, lambda=0.9        | +0.17 unique institutions, CI [0.09, 0.26], significant              | `results/rq3_results.json`               |
-| Step 8 Faithfulness                   | 148/150, mean 0.9615, neutral 0.9616 vs contradictory 0.9613         | `results/ragas_faithfulness_result.json` |
+| Step 8 Faithfulness (D2, headline)    | 150/150, 0 failures. Neutral 0.978 (n=100), contradictory 0.966 (n=50) | `results/rq2_frameworkA_ragas_summary.json`, `results/rq2_frameworkB_ragas_summary.json` |
+| Step 8 Faithfulness (superseded)      | ~~148/150, mean 0.9615, neutral 0.9616 vs contradictory 0.9613~~ retained only as the second run cited in the D2 disclosure | `results/ragas_faithfulness_result.json` |
+| Step 8 Answer Relevancy (D1)          | 0.914, 95% CI [0.899, 0.927], n=100 NEUTRAL ONLY, strictness=1        | `results/rq2_frameworkA_ragas_summary.json` |
+| Step 8 Context Precision (D3)         | 0.039, out of scope, supporting evidence only for the limitation paragraph | `results/rq2_frameworkA_ragas_summary.json` |
 
 Framing note. Most headline CIs cross zero. The report must present this
 descriptively, per the project's standing "no post-hoc verdicts" rule, and
@@ -232,7 +260,7 @@ The link must appear inside the report.
 | Data preprocessing scripts                      | verify      | Much of the pipeline lives in Kaggle notebooks. Confirm they are exported into the repo, not only hosted on Kaggle.                      |
 | RAG pipeline code                               | verify      | Same concern as above.                                                                                                                   |
 | Re-ranking implementations                      | partial     | `step6-reranking-yb-optimized-basedon-jici.ipynb`. **G1**: no Fair-Top-K.                                                                |
-| Streamlit fairness scorecard app                | in progress | `app/streamlit_app.py`, still reading `INTERVENTION_PAPERS_MOCK`.                                                                        |
+| Streamlit fairness scorecard app                | yes         | `app/streamlit_app.py` reads `app/data/step9_bundle.json`; the mock lists are gone. Confirm the bundle is not gitignored before submitting. |
 | JSON file with results of the 100-query audit   | **G4 open** | Decide which file this is and name it explicitly in the README.                                                                          |
 | README with setup and reproduction instructions | verify      | Must include the ragas environment workarounds from `step8.md` §4a.6, since `requirements.txt` alone does not reproduce the environment. |
 

@@ -7,6 +7,12 @@ This file summarizes Framework B for the report and for teammates. Authoritative
 methodology lives in `rq2_frameworkb_draft.md` and `rq2_plan.md` (Decision 2
 amendment); measured numbers here match the output files listed at the bottom.
 
+**2026-08-09 addendum:** an independent-judge validation was added below (new
+section, after "Measured result"). This is an ADDITION, not a revision of the
+original 2026-07-12 content; nothing above that date was altered except two
+places explicitly marked below, per this project's rule that post-hoc changes
+must be dated and labeled rather than silently edited into the original text.
+
 ## Pre-registered question
 
 When the retrieved top-10 context for a genuinely two-sided debate question
@@ -97,6 +103,57 @@ Output files (Kaggle /kaggle/working):
 `rq2_frameworkB_answer_judge.jsonl`, `rq2_frameworkB_per_query.json`,
 `rq2_frameworkB_result.json`, `rq2_frameworkB_retention.png`.
 
+## Independent judge validation (2026-08-09)
+
+Motivation: the self-judge design (Models section above) means the 97.2%
+figure could not, on its own, rule out self-preference bias. An independent
+judge run closes part of that gap.
+
+**Setup.** Jici ran the same 36 eligible queries and the same generated
+answer text through a second, genuinely different judge model
+(`openai/gpt-oss-20b:free`, via OpenRouter), using the same answer-judge
+prompt file and the same bootstrap method (seed 42, 10,000 resamples).
+Source files: `results/rq2_frameworkB_independent_judge_result.json`,
+`results/rq2_frameworkB_judge_disagreements.json`.
+
+**Result.**
+- Independent judge retention: 28/36 = **77.8%**, 95% CI [63.9%, 91.7%]
+- Self-judge retention (measured above): 35/36 = 97.2%, 95% CI [91.7%, 100.0%]
+- Agreement between the two judges: 80.6% (29 of 36 queries)
+- Disagreements: 7 of 36 queries, **all in the same direction** — in every
+  one, the self-judge said `both_sides_retained` and the independent judge
+  said the answer was one-sided. 6 of the 7 were rated as retaining only
+  Side B (`side_b_only_or_token_a`); 1 (q133 — the same query flagged in the
+  development-stage sanity check above) was rated as retaining only Side A.
+
+**This is a substantive finding, not a minor footnote.** A 19.4
+percentage-point drop when swapping judges is large enough to weaken the
+headline 97.2% figure and must be reported alongside it, never in its place
+and never omitted.
+
+**What this does and does not establish.**
+- It does not, by itself, prove the self-judge was wrong. At least three
+  explanations are consistent with a unidirectional 6:1 disagreement pattern,
+  and this data cannot separate them: self-preference bias (the leading
+  candidate, and consistent with the self-judge design disclosed above),
+  a plain capability difference between the two judge models, and
+  ambiguity in the retention criterion itself.
+- Comparing the two 95% CIs by eye is not the right statistical test here,
+  because both judges scored the *same* 36 queries — this is paired data.
+  McNemar's test is the correct test for paired binary disagreement and
+  **has not been run**.
+- "Independent" covers only the retention judgment. Eligibility (which 36
+  of 50 queries qualify) was determined once, upstream, by the original
+  context-stance judge. Both retention numbers share that same denominator;
+  the eligibility step itself was not independently re-derived.
+- Both confidence intervals are wide at n=36. Neither 97.2% nor 77.8%
+  should be treated as a settled point estimate.
+
+**Not done before the deadline:** a blinded, pre-registered manual
+adjudication of the 7 disagreement cases. The Streamlit demo displays them
+as unadjudicated rather than resolved (`app/streamlit_app.py`, Framework B
+panel).
+
 ## How to read this result
 
 The measured retention rate is high and the bootstrap CI stays above 0.90.
@@ -106,6 +163,13 @@ both reasons, this is reported as a descriptive measurement, NOT as a formal
 verdict that the model "preserves" viewpoint diversity. Report language should
 state the number and CI, then discuss interpretation separately, rather than
 asserting preserves/flattens as a conclusion.
+
+**2026-08-09 addendum, does not alter the paragraph above:** an independent
+judge run (see "Independent judge validation" above) found a materially
+lower retention rate, 77.8%, confirming that the self-judge risk named here
+was not merely theoretical. Report language must present both numbers
+together — 97.2% (self-judge) and 77.8% (independent judge) — never the
+self-judge figure alone.
 
 ## Development-stage sanity check: the single retention==0 eligible query (q133)
 
@@ -174,10 +238,23 @@ recomputed from this file.
 - **Judge model fallback.** Primary judge (gemini-3-flash-preview) was
   replaced by flash-lite because its free-tier daily quota (20) could not
   cover the ~100 judge calls needed.
-- **Direction of residual bias.** Given the q141 red-flag finding and the
+- **Direction of residual bias — speculative when written, confirmed by
+  later data (2026-08-09).** Given the q141 red-flag finding and the
   self-judge design generally, the true retention rate could plausibly be
-  somewhat lower than 97.2% if judged by an independent model. This is a known
-  DIRECTION of possible bias, not a corrected estimate.
+  somewhat lower than 97.2% if judged by an independent model. This is a
+  known DIRECTION of possible bias, not a corrected estimate. Addendum:
+  an independent judge has since measured 77.8% (see "Independent judge
+  validation" above). The direction named here was correct; this bullet's
+  original wording is left as written rather than rewritten, per this
+  project's rule that post-hoc findings are dated and added, not folded
+  silently into earlier text.
+- **Two-judge disagreement is unidirectional and unadjudicated (added
+  2026-08-09).** 7 of the 36 eligible queries get a different verdict
+  depending on which judge is used, and all 7 run the same direction (the
+  independent judge always rates retention lower, never higher). None of
+  the 7 has been manually adjudicated. See "Independent judge validation"
+  above for the full account and the reasons this cannot yet be resolved
+  to a single number.
 - **Stance rubric scope.** supports_side_a / supports_side_b require only
   directional alignment (a core claim, mechanism, or methodological position),
   not proof of a "majority" empirical claim. One consistent operational
