@@ -182,6 +182,50 @@ smaller-still +0.016, and the paired bootstrap detects that consistent
 per-query drop even though the post-rerank value alone isn't far enough from
 zero to clear significance on its own.
 
+### 6.3 Statistical power (added 2026-08-09) — read before citing §6.2
+
+Source: `results/rq3_power_analysis.json` and
+`notebooks/power_analysis_rq3.ipynb` (Jici, merged 2026-08-09), simulated at
+the λ=0.8 operating point, 3000 bootstrap replicates per target, 2000
+replicates per point.
+
+| Test | MDE at 80% power | Power at observed |
+|---|---|---|
+| Absolute SPD (§6.1) | 0.0459 | **0.229** |
+| Paired improvement (§6.2) | 0.0577 | **0.091** |
+
+**Two caveats follow, and both must travel with the §6.2 result.**
+
+**(1) The significant improvement in §6.2 was found at 9% power.** The
+paired test could only reliably detect an improvement of about 0.058; the
+observed improvement is 0.0126, roughly a fifth of that. Obtaining
+significance under such low power is not evidence of a large effect — if
+anything it warrants more caution, because in low-power designs the subset of
+effects that do reach significance is biased upward in magnitude (the
+"winner's curse" / Type M error). The §6.2 result should therefore be
+reported as **borderline and exploratory**, not as a robust demonstration,
+and the point estimate 0.0126 should not be treated as a reliable estimate of
+the true improvement size. This reinforces, rather than weakens, the §7
+argument that the improvement is a de-duplication side effect rather than a
+corrected bias.
+
+**(2) The power analysis input is a local reconstruction, not the official
+run.** Jici's notebook reconstructs the per-query institution-aware data
+locally. Per `results/rq3_power_analysis.json`, the baseline arm reproduces
+RQ1 exactly, but the institution-aware arm is close without being
+bit-identical to the officially reported run:
+
+| Quantity | Reconstructed | Official (§6) |
+|---|---|---|
+| Absolute SPD at λ=0.8 | 0.0187 | 0.0162 |
+| Paired improvement | 0.0104 | 0.0126 |
+
+The power figures are therefore approximate. The gap is small enough that the
+qualitative conclusion (this design is badly underpowered for the improvement
+test) is unaffected, but the MDE and power numbers should be cited as
+approximate and attributed to the reconstruction, not presented as exact
+properties of the official run.
+
 ---
 
 ## 7. Why the significant SPD improvement is a de-duplication side effect, not a corrected bias
@@ -228,6 +272,62 @@ From `results/rq3_results.json`:
 
 ---
 
+## 8a. Third mitigation arm: Fair-Top-K (contrast arm, rubric-named method)
+
+The rubric names Fair-Top-K alongside MMR under Mitigation. This project's
+own RQ1 result (SPD not significant) reframes it from a bias correction to
+a **contrast arm**: what does a hard quota cost, and how does it compare to
+MMR's soft penalty, at this project's own corpus-parity target (0.144, not
+50/50 demographic parity)? Full algorithm and pre-registration log live in
+`step6_fair-top-k_methodology.md` -- that file is the authoritative source
+for the design decisions; this section reports the measured result.
+
+**Measured result (2026-08-03 Kaggle run):**
+
+| Metric | Value |
+|---|---|
+| NDCG@10 | 0.8108 |
+| MRR | 0.7819 |
+| Unique institutions (avg per query) | 9.35 |
+| Unique countries (avg per query) | 5.98 |
+| Elite share | 0.098 |
+| SPD (vs. 0.144 baseline) | **-0.046** |
+| Labeled slots | 1000 (of 1000 possible -- see caveat below) |
+
+**Bootstrap checks (same query-resampling method as §6, 10,000 resamples,
+seed 42):**
+
+| Check | Value | Significant? |
+|---|---|---|
+| Absolute SPD | -0.0460, 95% CI [-0.0490, -0.0440] | **Yes** -- entirely negative, excludes zero |
+| SPD change vs. baseline (`share_base - share_ftk`) | +0.0748, 95% CI [0.0409, 0.1108] | **Yes** -- excludes zero |
+
+**This is a confirmed statistically significant over-correction, not a
+clean fix.** Unlike institution-aware MMR (§6.1, SPD not itself
+distinguishable from zero), Fair-Top-K's post-rerank SPD is itself
+significant -- and negative, meaning the hard quota pushed representation
+past parity into favoring non-elite institutions, with the direction
+confirmed by bootstrap rather than assumed from the point estimate alone.
+
+**Two caveats that must accompany this result wherever it is cited:**
+
+1. **NDCG@10/MRR are not degraded relative to baseline** (both are
+   marginally higher). This is NOT evidence that hard quotas carry no
+   relevance cost in general -- `relevance()` (§5) is a coarse binary
+   subcategory-string-match proxy, not a graded relevance judgment, so the
+   quota's reordering can coincidentally help this specific proxy metric
+   without implying the swapped-in candidates are more relevant in any
+   richer sense.
+2. **`uniq_institutions = 9.35` is partly a rule artifact.**
+   `labeled_slots` rose from 590 (baseline) to 1000 (= 100 queries x 10
+   slots, i.e. every slot labeled), because the quota rule only falls back
+   to unlabeled ("unknown") candidates once both elite and non-elite are
+   exhausted -- which this run essentially never needed to do. Part of the
+   apparent diversity gain is this near-elimination of unlabeled slots
+   rather than a pure increase in genuine institutional variety.
+
+---
+
 ## 9. Key limitations (for the report)
 
 1. **Candidate pool is capped at 50 per query** — diversity gains plateau at
@@ -250,22 +350,39 @@ From `results/rq3_results.json`:
 
 ---
 
-## 10. Relation to RQ1 and RQ2
+## 10. Relation to RQ1 and RQ2, and the two mitigation arms compared
 
 - **RQ1** provides the baseline (SPD +0.029, not significant) that RQ3's
   "before" state is identical to by construction (§2).
 - **RQ2** (Framework A) found no generation-stage citation amplification to
   correct for, which is why the optional "Framework A × RQ3" linkage
   (re-running Framework A's citation-parsing on RQ3's re-ranked context) was
-  decided **not necessary** — see `rq2_rq3_linkage_plan.md`.
+  decided **not necessary** — see `rq2_rq3_linkage_plan.md`. RQ2's
+  perspective-balanced-prompting mitigation was similarly never triggered,
+  since Framework B's baseline viewpoint retention was already 97.2%.
+- **RQ3's two mitigation arms are not interchangeable, even starting from
+  the same low-bias baseline.** Institution-aware MMR (§4.2, §6) raises
+  unique institutions per query significantly (+0.170, CI [0.090, 0.260])
+  while its own SPD stays statistically indistinguishable from zero (CI
+  crosses zero) — a clean diversity gain with no detectable directional
+  bias. Fair-Top-K (§8a) significantly overcorrects into reverse bias (SPD
+  -0.046, CI entirely negative) at the same Top-10 depth and the same
+  0.144 fairness target. The two methods answer "does re-ranking raise
+  diversity at an acceptable cost" differently: a soft, relevance-weighted
+  penalty stayed inside the non-significant zone; a hard quota calibrated
+  to a modest, corpus-derived target did not.
 - Together, RQ1 + RQ2 + RQ3 tell a consistent story: **weak, non-significant
-  institutional bias at both retrieval and generation**, with RQ3
-  demonstrating that fairness-aware re-ranking can still raise diversity at
-  negligible utility cost even when starting from a low-bias baseline.
+  institutional bias at both retrieval and generation**, and — new as of
+  the Fair-Top-K arm — **not every fairness-aware re-ranking method carries
+  the same risk profile even when the underlying bias to correct is small**.
+  A soft penalty (institution-aware MMR) raised diversity safely; a hard
+  quota (Fair-Top-K), while raising nominal diversity further, did so with
+  a statistically confirmed swing past parity in the opposite direction.
 
 ---
 
 *This document consolidates the RQ3 methodology recorded in
-`step6-reranking-yb-optimized-basedon-jici.ipynb` (Sections 5–8) and
+`step6-reranking-yb-optimized-basedon-jici.ipynb` (Sections 5–9, including
+the Fair-Top-K contrast arm added 2026-08-03) and
 `handoff_status_rq1_for_step6.md`, for reuse in the Final Report's
 Methodology and Results sections.*

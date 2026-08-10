@@ -1,0 +1,15 @@
+{
+  "model": "gemini-3.1-flash-lite",
+  "n_queries_used": 99,
+  "n_excluded_empty_denom": 1,
+  "mean_amplification": 0.004052429052429054,
+  "median_amplification": 0.0,
+  "ci_95_low": -0.025444925444925444,
+  "ci_95_high": 0.03422468734968733,
+  "ci_crosses_zero": true,
+  "n_amplifying": 31,
+  "n_reducing": 17,
+  "n_unchanged": 51,
+  "random_seed": 42,
+  "n_bootstrap": 10000
+}

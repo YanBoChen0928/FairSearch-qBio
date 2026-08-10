@@ -69,10 +69,10 @@
       "NDCG@10": 0.8116,
       "MRR": 0.7576,
       "sem_diversity": 0.398,
-      "uniq_institutions": 5.54,
+      "uniq_institutions": 5.55,
       "uniq_countries": 4.14,
-      "elite_share": 0.1672,
-      "SPD": 0.0232,
+      "elite_share": 0.1655,
+      "SPD": 0.0215,
       "labeled_slots": 586,
       "lambda": 0.5
     },
@@ -80,10 +80,10 @@
       "NDCG@10": 0.8109,
       "MRR": 0.7569,
       "sem_diversity": 0.4088,
-      "uniq_institutions": 5.55,
+      "uniq_institutions": 5.56,
       "uniq_countries": 4.11,
-      "elite_share": 0.1552,
-      "SPD": 0.0112,
+      "elite_share": 0.1534,
+      "SPD": 0.0094,
       "labeled_slots": 580,
       "lambda": 0.4
     },
@@ -91,10 +91,10 @@
       "NDCG@10": 0.8101,
       "MRR": 0.7584,
       "sem_diversity": 0.426,
-      "uniq_institutions": 5.55,
+      "uniq_institutions": 5.56,
       "uniq_countries": 4.15,
-      "elite_share": 0.1744,
-      "SPD": 0.0304,
+      "elite_share": 0.1693,
+      "SPD": 0.0253,
       "labeled_slots": 579,
       "lambda": 0.3
     }
@@ -220,12 +220,56 @@
     ],
     "significant": true
   },
+  "spd_absolute_ci": {
+    "lambda": 0.8,
+    "mean": 0.01620271383806924,
+    "ci95": [
+      -0.01394902730016781,
+      0.048374428721058606
+    ]
+  },
+  "spd_improvement_ci": {
+    "lambda": 0.8,
+    "lambda_selection": "chosen from the Section 7b sweep (diversity plateau, lowest SPD, no NDCG loss), not selected via this test",
+    "mean_improvement": 0.0126,
+    "ci95": [
+      0.0013,
+      0.0254
+    ],
+    "significant": true
+  },
+  "fair_top_k": {
+    "NDCG@10": 0.8108,
+    "MRR": 0.7819,
+    "sem_diversity": 0.403,
+    "uniq_institutions": 9.35,
+    "uniq_countries": 5.98,
+    "elite_share": 0.098,
+    "SPD": -0.046,
+    "labeled_slots": 1000
+  },
+  "fair_top_k_spd_ci": {
+    "mean": -0.04599159999999998,
+    "ci95": [
+      -0.04899999999999999,
+      -0.043999999999999984
+    ],
+    "improvement_vs_baseline": {
+      "mean_improvement": 0.0748,
+      "ci95": [
+        0.0409,
+        0.1108
+      ],
+      "significant": true
+    }
+  },
   "config": {
     "baseline_share": 0.144,
     "n_candidates": 50,
     "k": 10,
     "n_queries": 100,
     "elite": "QS Top-50",
+    "elite_quota": 1,
     "baseline_source": "stored Step 5a top-10 (retrieval_results.json)"
   }
 }

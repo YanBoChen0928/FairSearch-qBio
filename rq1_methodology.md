@@ -159,6 +159,42 @@ bootstrap CI crosses zero — the direction is present but not statistically
 distinguishable from no effect at α=0.05. This is consistent with a separate
 PCA finding that the embedding model encodes topic, not institutional origin.
 
+### 6a. Statistical power (added 2026-08-09)
+
+Source: `results/rq1_power_analysis.json` and `notebooks/power_analysis.ipynb`
+(Jici, merged 2026-08-09). Simulation-based, 3000 bootstrap replicates per
+target SPD, 2000 replicates per point, preserving the query-level clustering
+used elsewhere in this project.
+
+| Quantity | Value |
+|---|---|
+| Observed SPD | 0.029 |
+| MDE at 80% power | **0.0434** |
+| Power at the observed SPD | **0.494** |
+| Power at SPD = 0.05 | 0.894 |
+| Power at SPD = 0.06 | 0.963 |
+| Type I error at SPD = 0 | 0.0575 |
+
+**This constrains how the non-significant result may be worded.** At n = 100
+neutral queries and 590 labeled slots, this design has roughly a coin-flip
+chance (0.494) of detecting an effect the size of the one observed, even if
+that effect is real. The smallest effect it could detect reliably is 0.0434,
+which is larger than the 0.029 observed.
+
+The defensible reading is therefore:
+
+- **Supported:** a large elite tilt can be ruled out with reasonable
+  confidence. An SPD of 0.05 or above would have been detected with 89%
+  probability, and 0.06 or above with 96%.
+- **Not supported:** any claim that institutional bias has been shown to be
+  absent. This design cannot distinguish zero bias from a small bias near the
+  observed 0.029.
+
+Both the main and bio-specific elite-list definitions reach the same
+conclusion (§10), so this limitation is a property of the sample size, not of
+the labeling choice. Increasing the neutral query set is the direct remedy and
+is recorded as future work.
+
 ---
 
 ## 7. Equalized Odds (approximate, within Top-K only)

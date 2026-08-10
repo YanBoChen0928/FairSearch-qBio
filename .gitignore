@@ -20,6 +20,10 @@ __pycache__/
 *.pyc
 .env
 
+# Virtual environments (disposable, never commit — wildcard covers any name)
+.venv*/
+venv/
+
 # Jupyter
 .ipynb_checkpoints/
 
@@ -28,3 +32,4 @@ __pycache__/
 
 # documents-self reminder
 next_session_prompt.md
+temp/

@@ -1,0 +1,306 @@
+{
+  "framework": "B",
+  "metric": "viewpoint_diversity_retention_rate",
+  "judge_model": "openai/gpt-oss-20b:free",
+  "judge_is_self": false,
+  "compared_against": "gemini-3.1-flash-lite self-judge (results/rq2_frameworkB_result.json)",
+  "n_eligible": 36,
+  "n_retained": 28,
+  "retention_rate": 0.7777777777777778,
+  "ci_low": 0.6388888888888888,
+  "ci_high": 0.9166666666666666,
+  "n_boot": 10000,
+  "random_seed": 42,
+  "agreement_rate_vs_self_judge": 0.8055555555555556,
+  "n_disagreements": 7,
+  "per_query": [
+    {
+      "query_id": "q101",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "\"While functional non-coding regions can be identified through evidence of purifying selection\u2014such as decreased SNP density and optimized di-nucleotide entropy [4]\u2014the human genome contains vast quantities of junk DNA [1].\"",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q102",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer discusses natural selection as a primary driver and neutral drift as also important, but does not explicitly state that one side is better supported.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q103",
+      "retention_status": "side_b_only_or_token_a",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer states that many reported links are based on associations that may be spurious, indicating a substantive claim for Side\u202fB, while Side\u202fA is only mentioned as a hypothesis without evidence or mechanism, and no explicit evaluative or comparative statement is made to favor either side.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q104",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "Proponents argue the brain is poised near a critical point with scale\u2011invariant activity, while critics note false positives and overstatement of benefits\u2014both sides are substantively presented.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q105",
+      "retention_status": "side_b_only_or_token_a",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer states that deep\u2011learning methods \"have not fully solved the protein folding problem\" and that they \"remain a foundational component within a larger, ongoing effort to fully understand and simulate the complex process of protein folding,\" while providing no substantive claim supporting the idea that the folding problem has been effectively solved.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q107",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer discusses rare variants as a significant source of missing heritability and also notes that common variants can account for a large portion of additive genetic variance, thereby presenting substantive points for both sides. It ends by stating that the relative contribution depends on various factors, without explicitly favoring either side.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q110",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer cites geographic isolation and genetic drift as key mechanisms (Side\u202fB) and also cites natural selection and local adaptation as significant drivers (Side\u202fA), while concluding that the interplay of both sets of factors determines speciation, with no explicit preference for either side.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q111",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer explicitly discusses kin selection as a framework for altruism and also discusses group selection as an important organizing principle, providing substantive claims for both sides, but it ends with a neutral statement that both mechanisms should be integrated, with no evaluative preference for either side.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q112",
+      "retention_status": "side_b_only_or_token_a",
+      "conclusion_favor": "favors_side_b",
+      "favor_basis": "explanatory_primacy",
+      "evidence": "The answer states that the difficulty in capturing macroevolutionary features suggests that decoupling micro\u2011 and macro\u2011evolutionary mechanisms may be necessary to fully explain patterns like punctuated equilibrium, implying it is the primary explanatory model.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q115",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer states that predictive coding is supported by explaining neural responses and behavior, but also notes challenges such as inconclusive evidence for error units and difficulties in high-dimensional tasks, indicating substantive points for both sides without an explicit preference.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q116",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "favors_side_b",
+      "favor_basis": "explicit_conclusion",
+      "evidence": "\"Grid-cell firing patterns are recognized as fundamental to mammalian spatial navigation... However, research indicates that these patterns are not limited to spatial tasks; they also support more general cognitive mapping... Consequently, grid cells are increasingly viewed as playing a principal role in organizing broader cognitive representations.\"",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q117",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer states that the traditional view holds synapses as primary storage sites and also notes evidence that intracellular molecules serve as storage sites, providing substantive points for both sides, but it does not contain any explicit evaluative or comparative statement favoring one side over the other.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q118",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "\"The biological activity and functional specificity of proteins are fundamentally dependent on their native three-dimensional structures\" and \"large sections of the proteome consist of intrinsically disordered proteins (IDPs) and regions (IDRs) that lack such structures\"",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q119",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer cites both funnel-like landscapes (\u201cThe \u2018folding funnel\u2019 concept \u2026 dominates folding dynamics\u201d) and defined pathways (\u201cproteins are forced to follow certain pathways \u2026 amino acid sequences encode specific folding pathways\u201d), and concludes that the folding process is understood through a combination of these perspectives, with no explicit preference for either side.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q121",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "favors_side_a",
+      "favor_basis": "evidence_superiority",
+      "evidence": "While multi-state mechanisms involving conformational switches often confer a stronger allosteric effect [3], single-state mechanisms ... are also possible [3].",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q122",
+      "retention_status": "side_b_only_or_token_a",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer discusses \"accumulation of intrinsic faults or molecular damage\" (Side\u202fB) but offers no substantive claim or mechanism for programmed aging (Side\u202fA), and it contains no explicit evaluative or comparative statement favoring either side.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q123",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer cites natural selection as a driver of complexity and also cites genetic drift (neutral non\u2011adaptive process) as a mechanism for complexity, without giving an explicit preference for either side.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q124",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer discusses resource\u2011transport network models (e.g., fractal branching, OCNs) and alternative mechanisms (cell surface area, thermodynamic constraints, soft bounds) and concludes that network models are not universally accepted as the sole explanation, showing both sides are substantively presented but no side is favored.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q126",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer discusses both mechanistic models and ML models with their strengths and weaknesses, but does not explicitly favor one over the other.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q127",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "favors_side_b",
+      "favor_basis": "explicit_conclusion",
+      "evidence": "The answer states \"while it can reduce fidelity ... it is also functionally exploited\" and concludes \"rather than being purely a hindrance, noise is a universal feature that can be actively managed or leveraged to confer biological benefits.\"",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q128",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer contains substantive claims for modularity (\u201cBiological systems are widely regarded as modular\u2026\u201d) and for integration (\u201cHowever, biological systems should not be viewed as perfectly divisible; they are also highly integrated\u2026\u201d) but does not include an explicit evaluative or comparative statement favoring one side over the other.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q129",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer cites genuine observations of power laws in biology (e.g., \"While power laws are observed across various biological phenomena\") and evidence that stochastic processes can produce spurious power-law scaling (e.g., \"researchers have demonstrated that stochastic processes can generate spurious power-law scaling that appears convincing\u2026\"), and ends with a balanced statement that neither side is definitively favored.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q131",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "Both network redundancy (e.g., \"increased redundancy, bias, and canalization\") and specific regulatory mechanisms (e.g., \"error minimization through binding strategies\") are substantively discussed, yet the answer contains no explicit evaluative or comparative statement favoring one side over the other.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q132",
+      "retention_status": "side_a_only_or_token_b",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "\"Network motifs are widely considered to be functional units... Their significance is supported by the observation that they appear with surprisingly high frequency... real\u2011world networks exhibit a higher number and variety of singular motifs compared to benchmark models, suggesting that these structures are not merely statistical byproducts of network growth.\"",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q133",
+      "retention_status": "side_a_only_or_token_b",
+      "conclusion_favor": "favors_side_a",
+      "favor_basis": "explanatory_primacy",
+      "evidence": "The answer provides substantive claims about network topology (e.g., \u201cnetwork topology can determine exploration times and reaction rates\u201d and \u201ctopological measures alone can effectively identify nodes capable of driving a network toward its attractors\u201d) but only token mentions of reaction kinetics (\u201creaction kinetics are involved in cellular processes\u201d) without a substantive argument for Side\u202fB. It concludes that functional outcomes are \u201cdeeply rooted in the network structure,\u201d framing topology as the primary explanatory factor.",
+      "original_self_judge_retention_status": "side_a_only_or_token_b"
+    },
+    {
+      "query_id": "q134",
+      "retention_status": "side_b_only_or_token_a",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "\"the mapping from expression data to a unique network structure is fundamentally constrained\"",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q135",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer explicitly discusses deterministic models (ODEs) and stochastic models (Gillespie, noise) and concludes that the choice depends on the network motif and questions, showing both sides are substantively presented but no side is favored.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q136",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer notes that morphogen gradients provide essential positional information while also highlighting mechanical cues that regulate pattern formation, and it states that patterning can arise from the coupling of morphogen systems with tissue mechanics, indicating substantive points for both sides without favoring either.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q137",
+      "retention_status": "side_b_only_or_token_a",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer stresses ecological disruption and notes tumor development can arise without sequential gene mutations, but it does not present a substantive claim that cancer is primarily genetic.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q139",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "Collective cell migration is driven by both specialized leader cells and emergent group-level coordination, as these mechanisms are not mutually exclusive.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q140",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "\"Stem cell fate decisions are influenced by both intrinsic gene regulatory networks and extrinsic niche-based dynamics... Ultimately, the interplay between these intrinsic network architectures and extrinsic environmental factors defines the functional potential and behavioral dynamics of stem cells.\"",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q143",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer cites both sizer and adder mechanisms: \"Cell size control is achieved through various mechanisms, including the sizer, timer, and adder\" and \"The adder mechanism... has been observed in bacteria and budding yeast\" while also noting that adder behavior can be explained by sizer control. No explicit evaluative statement favors one side over the other.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q144",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer states \"The accuracy of chemotactic sensing is fundamentally limited by physical noise\" (Side A) and also discusses intracellular signaling processes such as receptor cooperativity that can influence signal transduction (Side B), but it does not explicitly favor one side over the other, concluding instead that performance is shaped by a balance of factors.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q145",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer cites \"an excitable system driven by a sequence of saddle\u2011node bifurcations, where the process is governed by sequential tasks such as DNA replication and mitosis rather than a central oscillator\" (Side B) and also \"other studies identify the cell cycle as a stable limit cycle oscillation flow, where the stability of the cycle is dictated by a funneled potential and flux landscape\" (Side A).",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q148",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "\"Cell shape is determined by a complex interplay between the cytoskeleton and membrane mechanics, rather than a single factor.\"",
+      "original_self_judge_retention_status": "both_sides_retained"
+    },
+    {
+      "query_id": "q149",
+      "retention_status": "both_sides_retained",
+      "conclusion_favor": "no_clear_favor",
+      "favor_basis": "none",
+      "evidence": "The answer discusses both individual organelle properties (e.g., independent modules, genetic material exchange) and network dynamics (fission/fusion, connectivity, phase transitions) but does not state that one side is better supported or more explanatory.",
+      "original_self_judge_retention_status": "both_sides_retained"
+    }
+  ]
+}

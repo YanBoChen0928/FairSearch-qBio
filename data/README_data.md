@@ -17,6 +17,15 @@ Quick map:
 RQ1 headline: SPD = retrieved_share - sample_share = 0.177 - 0.144 = +0.033
 (preview; CI + significance computed in Step 5b).
 
+**Superseded by the Step 5b run — the reportable RQ1 figure is SPD = +0.029,
+not the +0.033 preview above.** The preview line is kept for provenance, but
+do not quote it. The authoritative values live in
+`results/rq1_optionB_result.json`: SPD +0.029, SRR 1.28, bootstrap 95% CI
+[-0.005, +0.065], which crosses zero and is therefore not statistically
+significant. The bio-ranking robustness check gives SPD +0.031 with the same
+conclusion (`results/rq1_optionB_result_bio.json`, see `rq1_methodology.md`
+§10).
+
 See `rq1_methodology.md` §10 for the parallel robustness-check pipeline using
 `qs_top50_elite_2026_bio.json` (source: QS World University Rankings by
 Subject 2026: Biological Sciences). That check produces its own `_bio`-suffixed
@@ -226,4 +235,62 @@ random sample of corpus  ------------->  sample_labels_1000.json (0.144)
 
 Reminder: +0.033 is a small, honest gap. Do not substitute the older v1 figure
 (0.061) or any hypothetical number to make it look larger. The value of this
-project is the clean method, not a large gap.
+project is the clean method, not a large gap. (As noted at the top of this
+file, the Step 5b run supersedes the +0.033 preview with SPD = +0.029.)
+
+---
+
+## Step 8 files (RAGAS, added 2026-08-01)
+
+Three raw checkpoint files from the Step 8 RAGAS evaluation live in `data/`.
+These are RAW per-query records, not results. The aggregated result and its
+chart live in `results/` instead (see `results/README_results.md`). Full
+context for all three is in `step8.md` §4a.
+
+| File | Rows | What it is |
+|---|---|---|
+| `step8_faithfulness_full150.jsonl` | 152 | The authoritative Tier 1 raw checkpoint: one row per query attempt over all 150 pre-registered queries. |
+| `step8_pilot_faithfulness.jsonl` | 8 | The 8-query feasibility pilot (seed 42). NOT a result. |
+| `step8_pilot_relevancy.jsonl` | 5 | Tier 2 failure evidence. Contains NO valid scores. |
+
+### `step8_faithfulness_full150.jsonl`
+
+One JSON object per line:
+`query_id`, `type` (neutral / contradictory), `n_context_papers`,
+`faithfulness_score` (float 0-1, or `null` on failure), `elapsed_sec`,
+`error` (`null` on success, else the message).
+
+**Why 152 rows for 150 queries.** The runner appends rather than overwrites,
+and q032 / q068 were each attempted twice (both attempts failed). So those
+two ids appear twice. Anything reading this file must dedupe by `query_id`,
+preferring a successful row over a failed one — Cell 8 of
+`notebooks/step8-ragas-faithfulness-pilot-yb.ipynb` does exactly this, and
+its output is the file to quote from, not this one.
+
+Final tally after dedupe: 148 succeeded, 2 failed (98.7%).
+
+### `step8_pilot_faithfulness.jsonl`
+
+Same schema. The 8-query stratified pilot (4 neutral, 4 contradictory,
+`random.Random(42)`) run before committing to the full pass. Its purpose was
+to measure latency and check for rate limiting, and it did: 8/8 succeeded,
+11.75s mean, zero 429s.
+
+**Its mean of 0.9653 is a feasibility signal, not a finding.** These 8
+queries were chosen to test the pipeline, not to estimate a population
+value, and all 8 also appear in the full run. Never report this number.
+
+### `step8_pilot_relevancy.jsonl` — failure evidence, no scores
+
+Schema differs: `answer_relevancy_score` instead of `faithfulness_score`.
+
+**Every row has `answer_relevancy_score: null`.** All 5 queries failed with
+the same `embed_query` error. This file is retained deliberately, as the
+primary evidence for the first of five documented Tier 2 attempts
+(`step8.md` §4a.8, attempt 0).
+
+Do not treat this as an incomplete run awaiting a retry. Tier 2 was
+subsequently CLOSED as technically infeasible on ragas 0.4.3 with
+google-genai: the underlying `embed_query` mismatch was in fact solved, but
+a deeper async/sync deadlock made the metric impossible to construct at all.
+Four further attempts are recorded in `step8.md` §4a.8.

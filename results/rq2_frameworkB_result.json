@@ -1,0 +1,50 @@
+{
+  "framework": "B",
+  "metric": "viewpoint_diversity_retention_rate",
+  "run_date": "2026-07-12",
+  "gen_model": "gemini-3.1-flash-lite",
+  "judge_model": "gemini-3.1-flash-lite",
+  "judge_is_self": true,
+  "judge_prompt_version": "frameworkb-judge-v1",
+  "temperature": 0,
+  "n_total": 50,
+  "n_eligible": 36,
+  "n_excluded": 14,
+  "excluded_ids": [
+    "q106",
+    "q108",
+    "q109",
+    "q113",
+    "q114",
+    "q120",
+    "q125",
+    "q130",
+    "q138",
+    "q141",
+    "q142",
+    "q146",
+    "q147",
+    "q150"
+  ],
+  "n_retained": 35,
+  "n_not_retained": 1,
+  "not_retained_ids": [
+    "q133"
+  ],
+  "retention_rate": 0.9722222222222222,
+  "ci_low": 0.9166666666666666,
+  "ci_high": 1.0,
+  "n_boot": 10000,
+  "random_seed": 42,
+  "favor_distribution_all": {
+    "favors_side_a": 4,
+    "favors_side_b": 3,
+    "no_clear_favor": 43
+  },
+  "favor_distribution_eligible": {
+    "favors_side_a": 3,
+    "favors_side_b": 3,
+    "no_clear_favor": 30
+  },
+  "notes": "Self-judge (judge model == generation model, gemini-3.1-flash-lite) due to preview daily quota 20; disclosed as a limitation. Retention is binary on substantive viewpoint representation (both_sides_retained), not citation presence. Small eligible n; wide CI is expected."
+}

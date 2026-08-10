@@ -1,0 +1,40 @@
+{
+  "baseline_share": 0.1438,
+  "n_queries": 100,
+  "n_labeled_slots": 590,
+  "observed_spd": 0.029,
+  "power_curve": {
+    "0.0": 0.0575,
+    "0.01": 0.1115,
+    "0.02": 0.2585,
+    "0.03": 0.5205,
+    "0.04": 0.7525,
+    "0.05": 0.8935,
+    "0.06": 0.963,
+    "0.08": 0.999,
+    "0.1": 1.0,
+    "0.12": 1.0,
+    "0.15": 1.0
+  },
+  "type1_error_at_spd0": 0.0575,
+  "mde_at_80pct_power": 0.0434,
+  "power_at_observed_spd": 0.4943,
+  "analytic_mde_naive_independence": 0.0405,
+  "config": {
+    "n_boot_power": 3000,
+    "r_replicates": 2000,
+    "target_spds": [
+      0.0,
+      0.01,
+      0.02,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.08,
+      0.1,
+      0.12,
+      0.15
+    ]
+  }
+}

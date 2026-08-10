@@ -1,0 +1,1092 @@
+{
+  "metric": "faithfulness",
+  "judge_model": "gemini-3.1-flash-lite",
+  "self_judge_disclosure": "Same model used for both generation (Step 7a/7b) and Faithfulness judging (Step 8). Self-judge design; see step8.md Section 3 and the equivalent disclosure for RQ2 Framework B.",
+  "query_scope": {
+    "target_total": 150,
+    "succeeded": 148,
+    "failed": 2
+  },
+  "failed_queries": [
+    {
+      "query_id": "q032",
+      "type": "neutral",
+      "error": "ragas returned NaN/None for faithfulness \u2014 internal job failure",
+      "elapsed_sec": 136.7,
+      "attempts": 2,
+      "disclosed_limitation": "Failed identically on two separate Cell 7 executions (InstructorRetryException: 'Please return your response as a function call'), elapsed ~136-138s both times. Checked and ruled out: answer length (below corpus median), citation count (below corpus median), citation formatting (adjacent brackets / two-digit numbers - common corpus-wide, not distinctive to these two queries), and non-ASCII characters in retrieved context (none found). No content-based cause identified; treated as an unresolved intermittent Gemini/instructor structured-output failure, not re-attempted a third time."
+    },
+    {
+      "query_id": "q068",
+      "type": "neutral",
+      "error": "ragas returned NaN/None for faithfulness \u2014 internal job failure",
+      "elapsed_sec": 138.01,
+      "attempts": 2,
+      "disclosed_limitation": "Failed identically on two separate Cell 7 executions (InstructorRetryException: 'Please return your response as a function call'), elapsed ~136-138s both times. Checked and ruled out: answer length (below corpus median), citation count (below corpus median), citation formatting (adjacent brackets / two-digit numbers - common corpus-wide, not distinctive to these two queries), and non-ASCII characters in retrieved context (none found). No content-based cause identified; treated as an unresolved intermittent Gemini/instructor structured-output failure, not re-attempted a third time."
+    }
+  ],
+  "faithfulness_overall": {
+    "n": 148,
+    "mean": 0.9615034127901775,
+    "median": 1.0,
+    "min": 0.5,
+    "max": 1.0,
+    "stdev": 0.07766283240386829
+  },
+  "faithfulness_by_type": {
+    "neutral": {
+      "n": 98,
+      "mean": 0.9615894276458502,
+      "median": 1.0,
+      "min": 0.7058823529411765,
+      "max": 1.0,
+      "stdev": 0.06989019772577874
+    },
+    "contradictory": {
+      "n": 50,
+      "mean": 0.961334823673059,
+      "median": 1.0,
+      "min": 0.5,
+      "max": 1.0,
+      "stdev": 0.09178730773095752
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "q001",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.7
+    },
+    {
+      "query_id": "q002",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.63
+    },
+    {
+      "query_id": "q003",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.97
+    },
+    {
+      "query_id": "q004",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 13.09
+    },
+    {
+      "query_id": "q005",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.11
+    },
+    {
+      "query_id": "q006",
+      "type": "neutral",
+      "faithfulness_score": 0.875,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.2
+    },
+    {
+      "query_id": "q007",
+      "type": "neutral",
+      "faithfulness_score": 0.9285714285714286,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.97
+    },
+    {
+      "query_id": "q008",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.58
+    },
+    {
+      "query_id": "q009",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.77
+    },
+    {
+      "query_id": "q010",
+      "type": "neutral",
+      "faithfulness_score": 0.9,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.82
+    },
+    {
+      "query_id": "q011",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.87
+    },
+    {
+      "query_id": "q012",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.82
+    },
+    {
+      "query_id": "q013",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.01
+    },
+    {
+      "query_id": "q014",
+      "type": "neutral",
+      "faithfulness_score": 0.9230769230769231,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.78
+    },
+    {
+      "query_id": "q015",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.37
+    },
+    {
+      "query_id": "q016",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.81
+    },
+    {
+      "query_id": "q017",
+      "type": "neutral",
+      "faithfulness_score": 0.9166666666666666,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.84
+    },
+    {
+      "query_id": "q018",
+      "type": "neutral",
+      "faithfulness_score": 0.8461538461538461,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.95
+    },
+    {
+      "query_id": "q019",
+      "type": "neutral",
+      "faithfulness_score": 0.9411764705882353,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.26
+    },
+    {
+      "query_id": "q020",
+      "type": "neutral",
+      "faithfulness_score": 0.9411764705882353,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.64
+    },
+    {
+      "query_id": "q021",
+      "type": "neutral",
+      "faithfulness_score": 0.8571428571428571,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.39
+    },
+    {
+      "query_id": "q022",
+      "type": "neutral",
+      "faithfulness_score": 0.8571428571428571,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.29
+    },
+    {
+      "query_id": "q023",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.45
+    },
+    {
+      "query_id": "q024",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.81
+    },
+    {
+      "query_id": "q025",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.05
+    },
+    {
+      "query_id": "q026",
+      "type": "neutral",
+      "faithfulness_score": 0.7142857142857143,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.32
+    },
+    {
+      "query_id": "q027",
+      "type": "neutral",
+      "faithfulness_score": 0.9375,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.56
+    },
+    {
+      "query_id": "q028",
+      "type": "neutral",
+      "faithfulness_score": 0.8571428571428571,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.64
+    },
+    {
+      "query_id": "q029",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.79
+    },
+    {
+      "query_id": "q030",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.03
+    },
+    {
+      "query_id": "q031",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.85
+    },
+    {
+      "query_id": "q033",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.42
+    },
+    {
+      "query_id": "q034",
+      "type": "neutral",
+      "faithfulness_score": 0.7058823529411765,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.56
+    },
+    {
+      "query_id": "q035",
+      "type": "neutral",
+      "faithfulness_score": 0.9,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.94
+    },
+    {
+      "query_id": "q036",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.23
+    },
+    {
+      "query_id": "q037",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.12
+    },
+    {
+      "query_id": "q038",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.93
+    },
+    {
+      "query_id": "q039",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.28
+    },
+    {
+      "query_id": "q040",
+      "type": "neutral",
+      "faithfulness_score": 0.9375,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.29
+    },
+    {
+      "query_id": "q041",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.78
+    },
+    {
+      "query_id": "q042",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.04
+    },
+    {
+      "query_id": "q043",
+      "type": "neutral",
+      "faithfulness_score": 0.8235294117647058,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.69
+    },
+    {
+      "query_id": "q044",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.62
+    },
+    {
+      "query_id": "q045",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.21
+    },
+    {
+      "query_id": "q046",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.46
+    },
+    {
+      "query_id": "q047",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.28
+    },
+    {
+      "query_id": "q048",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.82
+    },
+    {
+      "query_id": "q049",
+      "type": "neutral",
+      "faithfulness_score": 0.7142857142857143,
+      "n_context_papers": 10,
+      "elapsed_sec": 14.46
+    },
+    {
+      "query_id": "q050",
+      "type": "neutral",
+      "faithfulness_score": 0.9333333333333333,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.12
+    },
+    {
+      "query_id": "q051",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.94
+    },
+    {
+      "query_id": "q052",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.78
+    },
+    {
+      "query_id": "q053",
+      "type": "neutral",
+      "faithfulness_score": 0.875,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.04
+    },
+    {
+      "query_id": "q054",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.36
+    },
+    {
+      "query_id": "q055",
+      "type": "neutral",
+      "faithfulness_score": 0.9166666666666666,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.08
+    },
+    {
+      "query_id": "q056",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.8
+    },
+    {
+      "query_id": "q057",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.22
+    },
+    {
+      "query_id": "q058",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.45
+    },
+    {
+      "query_id": "q059",
+      "type": "neutral",
+      "faithfulness_score": 0.7272727272727273,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.42
+    },
+    {
+      "query_id": "q060",
+      "type": "neutral",
+      "faithfulness_score": 0.8461538461538461,
+      "n_context_papers": 10,
+      "elapsed_sec": 14.3
+    },
+    {
+      "query_id": "q061",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.8
+    },
+    {
+      "query_id": "q062",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.94
+    },
+    {
+      "query_id": "q063",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.67
+    },
+    {
+      "query_id": "q064",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.61
+    },
+    {
+      "query_id": "q065",
+      "type": "neutral",
+      "faithfulness_score": 0.9285714285714286,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.83
+    },
+    {
+      "query_id": "q066",
+      "type": "neutral",
+      "faithfulness_score": 0.9090909090909091,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.57
+    },
+    {
+      "query_id": "q067",
+      "type": "neutral",
+      "faithfulness_score": 0.9411764705882353,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.95
+    },
+    {
+      "query_id": "q069",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.54
+    },
+    {
+      "query_id": "q070",
+      "type": "neutral",
+      "faithfulness_score": 0.9166666666666666,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.65
+    },
+    {
+      "query_id": "q071",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.95
+    },
+    {
+      "query_id": "q072",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.42
+    },
+    {
+      "query_id": "q073",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.91
+    },
+    {
+      "query_id": "q074",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.69
+    },
+    {
+      "query_id": "q075",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.57
+    },
+    {
+      "query_id": "q076",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.17
+    },
+    {
+      "query_id": "q077",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 13.13
+    },
+    {
+      "query_id": "q078",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.34
+    },
+    {
+      "query_id": "q079",
+      "type": "neutral",
+      "faithfulness_score": 0.9166666666666666,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.73
+    },
+    {
+      "query_id": "q080",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.46
+    },
+    {
+      "query_id": "q081",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.17
+    },
+    {
+      "query_id": "q082",
+      "type": "neutral",
+      "faithfulness_score": 0.9444444444444444,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.61
+    },
+    {
+      "query_id": "q083",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.19
+    },
+    {
+      "query_id": "q084",
+      "type": "neutral",
+      "faithfulness_score": 0.8461538461538461,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.5
+    },
+    {
+      "query_id": "q085",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.31
+    },
+    {
+      "query_id": "q086",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.61
+    },
+    {
+      "query_id": "q087",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.0
+    },
+    {
+      "query_id": "q088",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.2
+    },
+    {
+      "query_id": "q089",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.48
+    },
+    {
+      "query_id": "q090",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.55
+    },
+    {
+      "query_id": "q091",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.98
+    },
+    {
+      "query_id": "q092",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.3
+    },
+    {
+      "query_id": "q093",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.28
+    },
+    {
+      "query_id": "q094",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.88
+    },
+    {
+      "query_id": "q095",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.19
+    },
+    {
+      "query_id": "q096",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.62
+    },
+    {
+      "query_id": "q097",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.0
+    },
+    {
+      "query_id": "q098",
+      "type": "neutral",
+      "faithfulness_score": 0.9583333333333334,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.61
+    },
+    {
+      "query_id": "q099",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.2
+    },
+    {
+      "query_id": "q100",
+      "type": "neutral",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.4
+    },
+    {
+      "query_id": "q101",
+      "type": "contradictory",
+      "faithfulness_score": 0.8666666666666667,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.49
+    },
+    {
+      "query_id": "q102",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.21
+    },
+    {
+      "query_id": "q103",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.03
+    },
+    {
+      "query_id": "q104",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.06
+    },
+    {
+      "query_id": "q105",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.19
+    },
+    {
+      "query_id": "q106",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.78
+    },
+    {
+      "query_id": "q107",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.77
+    },
+    {
+      "query_id": "q108",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 8.95
+    },
+    {
+      "query_id": "q109",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.94
+    },
+    {
+      "query_id": "q110",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.31
+    },
+    {
+      "query_id": "q111",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.35
+    },
+    {
+      "query_id": "q112",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.59
+    },
+    {
+      "query_id": "q113",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.48
+    },
+    {
+      "query_id": "q114",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.39
+    },
+    {
+      "query_id": "q115",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.11
+    },
+    {
+      "query_id": "q116",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.98
+    },
+    {
+      "query_id": "q117",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 13.09
+    },
+    {
+      "query_id": "q118",
+      "type": "contradictory",
+      "faithfulness_score": 0.7777777777777778,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.68
+    },
+    {
+      "query_id": "q119",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.5
+    },
+    {
+      "query_id": "q120",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.42
+    },
+    {
+      "query_id": "q121",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.76
+    },
+    {
+      "query_id": "q122",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.54
+    },
+    {
+      "query_id": "q123",
+      "type": "contradictory",
+      "faithfulness_score": 0.9230769230769231,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.02
+    },
+    {
+      "query_id": "q124",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.59
+    },
+    {
+      "query_id": "q125",
+      "type": "contradictory",
+      "faithfulness_score": 0.5,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.32
+    },
+    {
+      "query_id": "q126",
+      "type": "contradictory",
+      "faithfulness_score": 0.9444444444444444,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.49
+    },
+    {
+      "query_id": "q127",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.29
+    },
+    {
+      "query_id": "q128",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.64
+    },
+    {
+      "query_id": "q129",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 13.14
+    },
+    {
+      "query_id": "q130",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 13.89
+    },
+    {
+      "query_id": "q131",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.08
+    },
+    {
+      "query_id": "q132",
+      "type": "contradictory",
+      "faithfulness_score": 0.9375,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.76
+    },
+    {
+      "query_id": "q133",
+      "type": "contradictory",
+      "faithfulness_score": 0.6923076923076923,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.28
+    },
+    {
+      "query_id": "q134",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.52
+    },
+    {
+      "query_id": "q135",
+      "type": "contradictory",
+      "faithfulness_score": 0.8666666666666667,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.09
+    },
+    {
+      "query_id": "q136",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.4
+    },
+    {
+      "query_id": "q137",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.53
+    },
+    {
+      "query_id": "q138",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.23
+    },
+    {
+      "query_id": "q139",
+      "type": "contradictory",
+      "faithfulness_score": 0.9230769230769231,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.2
+    },
+    {
+      "query_id": "q140",
+      "type": "contradictory",
+      "faithfulness_score": 0.9523809523809523,
+      "n_context_papers": 10,
+      "elapsed_sec": 12.58
+    },
+    {
+      "query_id": "q141",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.72
+    },
+    {
+      "query_id": "q142",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.04
+    },
+    {
+      "query_id": "q143",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.04
+    },
+    {
+      "query_id": "q144",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.64
+    },
+    {
+      "query_id": "q145",
+      "type": "contradictory",
+      "faithfulness_score": 0.8666666666666667,
+      "n_context_papers": 10,
+      "elapsed_sec": 11.19
+    },
+    {
+      "query_id": "q146",
+      "type": "contradictory",
+      "faithfulness_score": 0.875,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.92
+    },
+    {
+      "query_id": "q147",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.21
+    },
+    {
+      "query_id": "q148",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.57
+    },
+    {
+      "query_id": "q149",
+      "type": "contradictory",
+      "faithfulness_score": 0.9411764705882353,
+      "n_context_papers": 10,
+      "elapsed_sec": 10.88
+    },
+    {
+      "query_id": "q150",
+      "type": "contradictory",
+      "faithfulness_score": 1.0,
+      "n_context_papers": 10,
+      "elapsed_sec": 9.44
+    }
+  ]
+}

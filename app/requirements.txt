@@ -1,0 +1,14 @@
+# App-only dependencies for the deployed Streamlit interface.
+#
+# Deliberately minimal. Under the Route A architecture (step9_plan.md §3)
+# this app is a pure JSON reader and chart renderer: it never embeds text,
+# never queries ChromaDB, never calls Gemini.
+#
+# Do NOT copy lines in from the root requirements.txt. That file is the
+# research/notebook environment; sentence-transformers alone pulls in
+# PyTorch (~2GB), which will exhaust Streamlit Community Cloud's free-tier
+# memory and build-time budget.
+#
+# Every line here is install time on every rebuild. Keep it short.
+
+streamlit>=1.45
