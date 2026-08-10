@@ -1,0 +1,44 @@
+{
+  "elite_list": "QS World University Rankings by Subject 2026: Biological Sciences",
+  "baseline_share": 0.1584,
+  "n_queries": 100,
+  "n_labeled_slots": 591,
+  "observed_spd": 0.0311,
+  "power_curve": {
+    "0.0": 0.054,
+    "0.01": 0.095,
+    "0.02": 0.2435,
+    "0.03": 0.4725,
+    "0.04": 0.7115,
+    "0.05": 0.872,
+    "0.06": 0.9565,
+    "0.08": 0.9985,
+    "0.1": 1.0,
+    "0.12": 1.0,
+    "0.15": 1.0
+  },
+  "type1_error_at_spd0": 0.054,
+  "mde_at_80pct_power": 0.0455,
+  "power_at_observed_spd": 0.4988,
+  "compare_qs_overall": {
+    "mde_at_80pct_power": 0.0434,
+    "power_at_observed_spd": 0.4943
+  },
+  "config": {
+    "n_boot_power": 3000,
+    "r_replicates": 2000,
+    "target_spds": [
+      0.0,
+      0.01,
+      0.02,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.08,
+      0.1,
+      0.12,
+      0.15
+    ]
+  }
+}
