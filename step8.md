@@ -2,8 +2,12 @@
 
 **Status:** Tier 1 full 150-query run COMPLETE (148/150 succeeded,
 2026-08-01). See §4a.7 for the full results and the q032/q068 failure
-investigation. Tier 2 CLOSED as infeasible on this stack (async/sync
-deadlock, §4a.8), not merely parked. Tier 3 deferred by plan.
+investigation. **Superseded 2026-08-09 as the reported headline: see
+`comparison_step8_with_step8_ragas.md` D2.** Tier 2 CLOSED as infeasible
+**on the ragas 0.4.3 + native google-genai stack used here** (async/sync
+deadlock, §4a.8), not merely parked. **Subsequently obtained on a different
+stack by Raj and adopted 2026-08-09, see D1 in the same comparison
+document.** Tier 3 deferred by plan.
 
 **AMENDED 2026-08-01 (twice).** First amendment: metric priority is now
 tiered (Faithfulness required, Answer Relevancy opportunistic, Context
@@ -144,8 +148,8 @@ and should be read as historical record only.
 
 | Tier | Metric | Final disposition |
 |---|---|---|
-| 1 | Faithfulness | DONE. 148/150, mean 0.9615. The reported deliverable. (§4a.7) |
-| 2 | Answer Relevancy | CLOSED as attempted-and-infeasible, reported as a documented note with the full five-attempt evidence trail. Never described as skipped. (§4a.8, §7 limitation 3) |
+| 1 | Faithfulness | This run: DONE. 148/150, mean 0.9615. (§4a.7) **SUPERSEDED 2026-08-09 as the reported headline** by Raj's independent run (0.978 neutral / 0.966 contradictory, 150/150). The two runs used differently-constructed contexts; the difference is disclosed wherever the new number is cited. Full analysis: `comparison_step8_with_step8_ragas.md` D2. |
+| 2 | Answer Relevancy | Infeasible **on the stack used in this notebook** (ragas 0.4.3 + native `google.genai.Client`), documented note with the full five-attempt evidence trail. Never described as skipped. (§4a.8, §7 limitation 3) **ADOPTED 2026-08-09** from Raj's run on a different stack (ragas 0.3.9 + LangChain wrapper + local HuggingFace embeddings): mean 0.914, 95% CI [0.899, 0.927], n=100. `strictness=1` disclosed (see `comparison_step8_with_step8_ragas.md` D1). |
 | 3 | Context Precision | NOT RUN. Carried as a reportable limitation (§7 limitation 4) and as future work. No further deliberation. |
 
 **Why this is defensible.** Tier 1 satisfies both rubric mentions of RAGAS
