@@ -182,6 +182,50 @@ smaller-still +0.016, and the paired bootstrap detects that consistent
 per-query drop even though the post-rerank value alone isn't far enough from
 zero to clear significance on its own.
 
+### 6.3 Statistical power (added 2026-08-09) — read before citing §6.2
+
+Source: `results/rq3_power_analysis.json` and
+`notebooks/power_analysis_rq3.ipynb` (Jici, merged 2026-08-09), simulated at
+the λ=0.8 operating point, 3000 bootstrap replicates per target, 2000
+replicates per point.
+
+| Test | MDE at 80% power | Power at observed |
+|---|---|---|
+| Absolute SPD (§6.1) | 0.0459 | **0.229** |
+| Paired improvement (§6.2) | 0.0577 | **0.091** |
+
+**Two caveats follow, and both must travel with the §6.2 result.**
+
+**(1) The significant improvement in §6.2 was found at 9% power.** The
+paired test could only reliably detect an improvement of about 0.058; the
+observed improvement is 0.0126, roughly a fifth of that. Obtaining
+significance under such low power is not evidence of a large effect — if
+anything it warrants more caution, because in low-power designs the subset of
+effects that do reach significance is biased upward in magnitude (the
+"winner's curse" / Type M error). The §6.2 result should therefore be
+reported as **borderline and exploratory**, not as a robust demonstration,
+and the point estimate 0.0126 should not be treated as a reliable estimate of
+the true improvement size. This reinforces, rather than weakens, the §7
+argument that the improvement is a de-duplication side effect rather than a
+corrected bias.
+
+**(2) The power analysis input is a local reconstruction, not the official
+run.** Jici's notebook reconstructs the per-query institution-aware data
+locally. Per `results/rq3_power_analysis.json`, the baseline arm reproduces
+RQ1 exactly, but the institution-aware arm is close without being
+bit-identical to the officially reported run:
+
+| Quantity | Reconstructed | Official (§6) |
+|---|---|---|
+| Absolute SPD at λ=0.8 | 0.0187 | 0.0162 |
+| Paired improvement | 0.0104 | 0.0126 |
+
+The power figures are therefore approximate. The gap is small enough that the
+qualitative conclusion (this design is badly underpowered for the improvement
+test) is unaffected, but the MDE and power numbers should be cited as
+approximate and attributed to the reconstruction, not presented as exact
+properties of the official run.
+
 ---
 
 ## 7. Why the significant SPD improvement is a de-duplication side effect, not a corrected bias
