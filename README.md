@@ -299,12 +299,25 @@ baseline would understate the real gap. The fix ("Option B") does not attempt
 full-corpus coverage at all: it labels two SMALL sets — a random 1,000-paper
 corpus sample and the deduplicated retrieved set — with the identical method
 (OpenAlex batched lookup, 50 ids/request, primary match on
-`landing_page_url` with DOI fallback, matched against QS Top-50). Because both
-sides use one ruler, any gap between them is attributable to retrieval, not to
-which papers happened to be easier to label. This is why the baseline (14.4%)
-and retrieved (17.3%, neutral queries) shares above come from two 1,000-scale
-samples rather than from labeling all 55,300 papers. See `rq1_methodology.md`
-§3 and `summary_step1b_OptionB.md`.
+`landing_page_url` with DOI fallback, matched against QS Top-50). Applying one
+identical procedure to both sides removes *asymmetric measurement* as an
+explanation for the gap. It does **not** prove the gap is free of all labeling
+effects: coverage still differs between the two sets (44% baseline vs 58%
+retrieved), so conclusions remain conditional on resolved records, and
+differential missingness cannot be ruled out from this design alone.
+
+**Which elite-share number goes with which denominator.** Three figures appear
+in this project and they are not interchangeable:
+
+| Figure | Denominator | Used for |
+| --- | --- | --- |
+| 14.4% | 63 elite of 438 resolved baseline papers | the parity reference |
+| 17.7% | 141 of 798 resolved unique retrieved papers, all 150 queries | an all-queries cross-check |
+| **17.3%** | **102 of 590 resolved Top-10 slots, q001–q100 neutral only** | **the RQ1 test** |
+
+The headline SPD is `17.29% − 14.38% = +0.029`, so it pairs 17.3% with 14.4%.
+The 17.7% figure is a wider cross-check and is never the input to the test. See
+`rq1_methodology.md` §3 and `summary_step1b_OptionB.md`.
 
 **RQ1 robustness — subject-specific elite definition.** Following a suggestion
 from Prof. Sushmita, a second elite list drawn from QS World University Rankings
@@ -336,11 +349,23 @@ the top of this README — this gap is a headline limitation, not a footnote.
 **RQ3 — fairness/utility tradeoff.** Institution-aware MMR at λ=0.8 raises
 unique institutions per query from 5.49 to 5.73 with NDCG@10 flat at 0.809 and
 MRR unchanged. Its own SPD (+0.0163) has a CI crossing zero, but the improvement
-versus baseline is significant (−0.0126, CI [0.0013, 0.0254]). Fair-Top-K, a
-hard quota at the corpus elite share, nearly doubles unique institutions to 9.35
-and does not cost NDCG@10 (0.8108), but drives SPD to −0.046 with CI
-[−0.049, −0.044] excluding zero: a statistically significant over-correction
-into reverse bias. The two are parallel contrast arms, not a hierarchy.
+versus baseline is significant: **+0.0126**, defined as baseline SPD minus MMR
+SPD (0.0289 − 0.0163), so a positive value means SPD moved toward parity;
+95% CI [+0.0013, +0.0254].
+
+Fair-Top-K is the hard-quota contrast arm. Note what the quota actually resolves
+to: `round(10 × 0.144) = 1`, so in a Top-10 list the operating target is **one
+elite slot, i.e. 10%**, not 14.4%. Measured elite share lands at 0.098 and SPD
+at −0.046, CI [−0.049, −0.044] excluding zero: a statistically significant
+over-correction into reverse bias, largely a consequence of that integer
+resolution. Unique institutions rise to 9.35, but this is **not a pure
+diversity gain**: Fair-Top-K fills all 1,000 output slots from the labeled
+elite/non-elite pools, versus 590 labeled slots at baseline and 574 under MMR,
+so part of the 9.35 is a mechanical coverage effect
+(`step6_fair-top-k_methodology.md` §7). Neither arm costs NDCG@10 **under this
+project's binary subcategory-match relevance proxy**; that must not be
+generalized into a claim that hard quotas are relevance-free in general. The two
+arms are parallel contrasts, not a hierarchy.
 
 **Power.** RQ1 operates at roughly 49% power (MDE 0.0434 against an observed SPD
 of 0.029); the RQ3 paired improvement test is lower still. Several null results
