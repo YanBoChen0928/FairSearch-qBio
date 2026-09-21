@@ -11,6 +11,18 @@
 
 ---
 
+## Live Demo
+
+The Streamlit Fairness Scorecard is deployed and publicly accessible:
+
+**https://fairsearch-qbio-demo.streamlit.app/**
+
+The demo precomputes 20 of 150 queries (Tier 1, seed=42) by design; see
+`step9_query_subset.md` for the sampling method. If the app is asleep
+(free-tier inactivity), the first load may take 30+ seconds.
+
+---
+
 ## Headline results, with their caveats
 
 Every number below is measured and traceable to a file in this repository. Most
@@ -57,7 +69,7 @@ ragas default of 3. Never cite it as a 150-query figure.
 | Data preprocessing scripts | `notebooks/step1-data-prep.ipynb`, `notebooks/step1b-institution-labels-full-yb.ipynb`, `notebooks/step2-embedding.ipynb`, `notebooks/step3_chromadb.ipynb` |
 | RAG pipeline code | `notebooks/step5-retrieval-baseline-yb-kaggle-150.ipynb` (retrieval), `notebooks/step7-rq2-generation-frameworka-yb.ipynb` and `notebooks/step7-rq2-generation-frameworkb-yb.ipynb` (generation) |
 | Re-ranking implementations | `notebooks/step6-reranking-yb-optimized-basedon-jici.ipynb` — institution-aware MMR **and** Fair-Top-K |
-| Streamlit fairness scorecard app | `app/streamlit_app.py`, reading `app/data/step9_bundle.json` |
+| Streamlit fairness scorecard app | `app/streamlit_app.py`, reading `app/data/step9_bundle.json` — **live at https://fairsearch-qbio-demo.streamlit.app/** |
 | **JSON results of the 100-query audit** | **`results/rq1_optionB_result.json`** — see the scope note directly below |
 | README with setup and reproduction | this file, section "Setup and reproduction" |
 
