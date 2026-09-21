@@ -17,6 +17,33 @@ do not assume root paths without checking.
 
 ---
 
+## 000000. Post-deadline addendum — Streamlit Community Cloud deployment confirmed (undated)
+
+**Read this before trusting `step9_streamlit_deployment.md`'s status
+table.** That file's §0/§0a record "no Streamlit Community Cloud deployment
+has been attempted" as of 2026-08-02. That claim is now known to be
+incomplete: **the app was in fact deployed and is publicly live at
+https://fairsearch-qbio-demo.streamlit.app/**, confirmed working by Yan-Bo
+directly (not independently re-verified by Claude — `robots.txt` on
+`streamlit.app` blocks automated fetching, so this cannot be confirmed via
+web_fetch).
+
+The exact date/commit of the deployment action itself was never recorded
+anywhere in this repo (not here, not in `deliverables_checklist.md`, not in
+`README.md`) — this is a process gap, not a technical one. Git history
+shows deployment-adjacent work on branch `step9-deploy-dryrun` (commit
+`9f877d8`, 2026-08-03 17:56, "set dark Streamlit theme via config.toml"),
+which is merged into `main`, but no commit message anywhere says "deployed"
+or records the resulting URL. The URL itself was supplied directly by
+Yan-Bo in conversation, not recovered from any file.
+
+**Now fixed:** the URL has been added to `README.md` (a new "Live Demo"
+section near the top, plus inline in the "Where the graded deliverables
+live" table) and to `deliverables_checklist.md` item #9. Rubric item 9
+("Screenshots or live demo") is satisfied by both, not screenshots alone.
+
+---
+
 ## 00000. Session 2026-08-03 (continued) — Track A, Step 9-A and 9-B both complete
 
 **NEWEST SECTION. Read this first. Supersedes §0000 and everything below
